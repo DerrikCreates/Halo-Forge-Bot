@@ -5,8 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <RootNamespace>Halo_Forge_Bot</RootNamespace>
         <Nullable>enable</Nullable>
-        <UseWindowsForms>true</UseWindowsForms>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
     </PropertyGroup>
 
 </Project>

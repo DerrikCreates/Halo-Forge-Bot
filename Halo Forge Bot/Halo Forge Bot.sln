@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halo Forge Bot", "Halo Forge Bot\Halo Forge Bot.csproj", "{C1A612DF-D2E5-49AF-AF96-AECEC3C788BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halo Forge Bot", "Halo Forge Bot\Halo Forge Bot.csproj", "{E2255DC5-0CDE-4C23-926A-44820530A6BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C1A612DF-D2E5-49AF-AF96-AECEC3C788BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1A612DF-D2E5-49AF-AF96-AECEC3C788BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1A612DF-D2E5-49AF-AF96-AECEC3C788BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1A612DF-D2E5-49AF-AF96-AECEC3C788BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2255DC5-0CDE-4C23-926A-44820530A6BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2255DC5-0CDE-4C23-926A-44820530A6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2255DC5-0CDE-4C23-926A-44820530A6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2255DC5-0CDE-4C23-926A-44820530A6BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
