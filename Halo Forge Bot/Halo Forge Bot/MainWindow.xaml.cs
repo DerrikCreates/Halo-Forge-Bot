@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ForgeMacros;
 
 namespace Halo_Forge_Bot
 {
@@ -27,7 +28,7 @@ namespace Halo_Forge_Bot
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            NativeHelper.ReadContentBrowser();
         }
     }
 }
