@@ -1,5 +1,8 @@
+using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using Halo_Forge_Bot;
 
 namespace ForgeMacros;
 
@@ -38,5 +41,30 @@ public static class NativeHelper
         StringBuilder sb = new StringBuilder(length + 1);
         NativeHelper.GetWindowText(hWnd, sb, sb.Capacity);
         return sb.ToString();
+    }
+
+    public static bool SetHaloActive()
+    {
+        if (!Input.InputActive) Input.InitInput();
+        Process[] haloProcesses = Process.GetProcessesByName("HaloInfinite");
+
+        foreach (var process in haloProcesses)
+        {
+            if (process != null)
+            {
+                SetForegroundWindow(process.MainWindowHandle);
+                SetActiveWindow(process.MainWindowHandle);
+                return true;
+            }
+        }
+
+        throw new InvalidOperationException($"Halo infinite process wasn't found");
+        return false;
+    }
+
+    public static void ReadContentBrowser()
+    {
+        SetHaloActive();
+        ForgeUI.Init();
     }
 }
