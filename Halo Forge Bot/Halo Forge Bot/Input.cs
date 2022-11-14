@@ -12,6 +12,7 @@ public static class Input
     public static InputSimulator Simulate = new InputSimulator();
     public static LowLevelMouseHook MouseHook = new LowLevelMouseHook();
     public static LowLevelKeyboardHook KeyboardHook = new LowLevelKeyboardHook();
+    
     public static bool InputActive = false;
 
     public static void InitInput()

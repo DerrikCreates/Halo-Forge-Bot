@@ -11,6 +11,9 @@ public static class ForgeUI
 {
     public static Rect ProcessRect;
     public static Rect UIRect;
+    public delegate void Notify();
+
+    public static event Notify? OnInitDone;
 
     public async static void Init()
     {
@@ -27,7 +30,7 @@ public static class ForgeUI
         UIRect.X = args.X;
         UIRect.Y = args.Y;
     }
-    
+
     private static void CaptureUIWidthHeight(object? sender, MouseEventArgs args)
     {
         if (args.X > UIRect.X)
@@ -39,7 +42,7 @@ public static class ForgeUI
             UIRect.Width = UIRect.X - args.X;
             UIRect.X = args.X;
         }
-            
+
         if (args.Y > UIRect.Y)
         {
             UIRect.Height = args.Y - UIRect.Y;
@@ -60,8 +63,13 @@ public static class ForgeUI
         {
             Task.Delay(10);
         }
-        
+
         Input.MouseHook.MouseDown -= CaptureUITopLeft;
         Input.MouseHook.MouseUp -= CaptureUIWidthHeight;
+
+        if (OnInitDone != null)
+        {
+            OnInitDone.Invoke();
+        }
     }
 }

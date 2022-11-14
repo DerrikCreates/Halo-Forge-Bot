@@ -28,23 +28,24 @@ public static class NativeHelper
 
     [DllImport("user32.dll", SetLastError = true)]
     public static extern IntPtr SetActiveWindow(IntPtr hWnd);
-    
+
     [DllImport("user32.dll")]
-    public static extern bool SetForegroundWindow (IntPtr hWnd);
+    public static extern bool SetForegroundWindow(IntPtr hWnd);
 
     public delegate bool CallBackPtr(int hwnd, int lParam);
 
     [DllImport("user32.dll")]
     public static extern int EnumWindows(CallBackPtr callPtr, int lPar);
-    
-    [DllImport("user32.dll", SetLastError=true)]
+
+    [DllImport("user32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
-    
+    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy,
+        uint uFlags);
+
     [DllImport("user32.dll")]
     static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
-    
-    [DllImport("user32.dll", SetLastError=true)]
+
+    [DllImport("user32.dll", SetLastError = true)]
     static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
     public static string GetText(IntPtr hWnd)
@@ -77,16 +78,21 @@ public static class NativeHelper
     public static Rect GetHaloProcessRect()
     {
         if (HaloProcess == null) throw new InvalidOperationException($"Halo infinite process wasn't found");
-        
+
         //GetWi
         return new Rect();
     }
 
     public static Process HaloProcess;
 
+   
     public static void ReadContentBrowser()
     {
         HaloProcess = SetHaloActive();
-        //ForgeUI.Init();
+        ForgeUI.Init();
+        
     }
+
+
+    
 }
