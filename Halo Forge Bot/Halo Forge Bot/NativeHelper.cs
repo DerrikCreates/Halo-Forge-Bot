@@ -2,7 +2,10 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Windows;
 using Halo_Forge_Bot;
+using ManagedWinapi.Windows;
 
 namespace ForgeMacros;
 
@@ -33,6 +36,16 @@ public static class NativeHelper
 
     [DllImport("user32.dll")]
     public static extern int EnumWindows(CallBackPtr callPtr, int lPar);
+    
+    [DllImport("user32.dll", SetLastError=true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
+    
+    [DllImport("user32.dll")]
+    static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
+    
+    [DllImport("user32.dll", SetLastError=true)]
+    static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
     public static string GetText(IntPtr hWnd)
     {
@@ -43,7 +56,7 @@ public static class NativeHelper
         return sb.ToString();
     }
 
-    public static bool SetHaloActive()
+    public static Process SetHaloActive()
     {
         if (!Input.InputActive) Input.InitInput();
         Process[] haloProcesses = Process.GetProcessesByName("HaloInfinite");
@@ -54,17 +67,26 @@ public static class NativeHelper
             {
                 SetForegroundWindow(process.MainWindowHandle);
                 SetActiveWindow(process.MainWindowHandle);
-                return true;
+                return process;
             }
         }
 
         throw new InvalidOperationException($"Halo infinite process wasn't found");
-        return false;
     }
+
+    public static Rect GetHaloProcessRect()
+    {
+        if (HaloProcess == null) throw new InvalidOperationException($"Halo infinite process wasn't found");
+        
+        //GetWi
+        return new Rect();
+    }
+
+    public static Process HaloProcess;
 
     public static void ReadContentBrowser()
     {
-        SetHaloActive();
-        ForgeUI.Init();
+        HaloProcess = SetHaloActive();
+        //ForgeUI.Init();
     }
 }

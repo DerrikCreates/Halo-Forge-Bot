@@ -26,6 +26,7 @@ public static class Input
                 {
                     MouseHook.Dispose();
                     KeyboardHook.Dispose();
+                    
                     throw new Exception($"Implement proper exit here");
                 }
             };

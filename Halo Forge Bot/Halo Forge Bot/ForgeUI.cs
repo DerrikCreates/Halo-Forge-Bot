@@ -9,12 +9,17 @@ namespace Halo_Forge_Bot;
 
 public static class ForgeUI
 {
-
+    public static Rect ProcessRect;
     public static Rect UIRect;
 
     public async static void Init()
     {
         await Task.Run(SetupForgeUIArea);
+    }
+
+    public static void EnsureUIRect()
+    {
+        //if (NativeHelper.HaloProcess.MainWindowHandle)
     }
 
     private static void CaptureUITopLeft(object? sender, MouseEventArgs args)
