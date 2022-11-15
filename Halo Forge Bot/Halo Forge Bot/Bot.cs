@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading;
@@ -10,9 +11,6 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-    public static Rectangle ForgeMenu { get; set; }
-    public static Rectangle RenameBox { get; set; }
-
     public static void WatchForChange(ref bool hasChanged, Rectangle rectangle, int timeout, int delay = 10)
     {
         var bitmap = new Bitmap(rectangle.Width, rectangle.Height);
@@ -72,23 +70,50 @@ public static class Bot
         throw new Exception("NO CHANGE IN AREA");
     }
 
-    public static void PressWithMonitor(Rectangle area, VirtualKeyCode key)
+    /// <summary>
+    /// Modifier key defaults to control
+    /// </summary>
+    /// <param name="area"> Area on the screen to monitor</param>
+    /// <param name="key"> main key to press</param>
+    /// <param name="useMod"> determines if the modifier key is pressed</param>
+    /// <param name="mod">the modifier key</param>
+    /// <param name="keySleep">the time to sleep in between each key action</param>
+    public static void PressWithMonitor(Rectangle area, VirtualKeyCode key, bool useMod = false,
+        VirtualKeyCode mod = VirtualKeyCode.CONTROL, int keySleep = 50)
     {
         bool hasChanged = false;
         Task.Run((() => WatchForChange(ref hasChanged, area, 1000, 10)));
 
-        PressKey(key);
+        PressKey(key, keySleep, useMod, mod);
         while (hasChanged == false)
         {
         }
     }
 
-    public static void PressKey(VirtualKeyCode key, int sleep = 50)
+
+    public static void PressKey(VirtualKeyCode key, int sleep = 50, bool useMod = false,
+        VirtualKeyCode mod = VirtualKeyCode.CONTROL
+    )
     {
+        if (!useMod)
+        {
+            Thread.Sleep(sleep);
+            Input.Simulate.Keyboard.KeyDown(key);
+            Thread.Sleep(sleep);
+            Input.Simulate.Keyboard.KeyUp(key);
+            Thread.Sleep(sleep);
+            return;
+        }
+
+        //todo find solution to halo not detecting ctr+x
+        Thread.Sleep(sleep);
+        Input.Simulate.Keyboard.KeyDown(mod);
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyDown(key);
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyUp(key);
+        Thread.Sleep(sleep);
+        Input.Simulate.Keyboard.KeyUp(mod);
         Thread.Sleep(sleep);
     }
 
@@ -114,13 +139,17 @@ public static class Bot
         }
     }
 
-    public static void GatherItemStrings(Rectangle rectangle)
+    public static void GatherItemStrings()
     {
-        NativeHelper.SetForegroundWindow(ForgeUI.HaloProcess.MainWindowHandle);
+        ForgeUI.SetHaloProcess();
+        //NativeHelper.SetForegroundWindow(ForgeUI.HaloProcess.MainWindowHandle);
+        // PressWithMonitor(ForgeUI.RenameBox,VirtualKeyCode.VK_X);
 
-        PressWithMonitor(rectangle, VirtualKeyCode.VK_S);
-        PressWithMonitor(rectangle, VirtualKeyCode.RETURN);
-        PressWithMonitor(rectangle, VirtualKeyCode.RETURN);
-        PressWithMonitor(rectangle, VirtualKeyCode.F2);
+        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
+        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
+        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
+        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.F2);
+        Thread.Sleep(1000);
+        PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_X, true);
     }
 }

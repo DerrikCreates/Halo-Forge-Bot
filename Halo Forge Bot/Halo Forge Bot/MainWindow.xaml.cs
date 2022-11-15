@@ -16,6 +16,7 @@ using WindowsInput.Native;
 using Image = System.Windows.Controls.Image;
 using Point = System.Windows.Point;
 using Rectangle = System.Drawing.Rectangle;
+using Size = System.Drawing.Size;
 
 namespace Halo_Forge_Bot
 {
@@ -27,6 +28,8 @@ namespace Halo_Forge_Bot
         public MainWindow()
         {
             InitializeComponent();
+            Input.InitInput();
+            ForgeUI.SetHaloProcess();
         }
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
@@ -42,11 +45,14 @@ namespace Halo_Forge_Bot
 
         private void GetItemNames_OnClick(object sender, RoutedEventArgs e)
         {
+            Bot.GatherItemStrings();
         }
 
 
-        private void DebugRect_OnClick(object sender, RoutedEventArgs e)
+        private async void DebugRect_OnClick(object sender, RoutedEventArgs e)
         {
+            // new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
+            var rectangle = await Task.Run(ForgeUI.GetRectFromMouse);
         }
     }
 }

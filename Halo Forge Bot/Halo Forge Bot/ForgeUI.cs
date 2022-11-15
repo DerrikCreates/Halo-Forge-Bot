@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Drawing;
 using ForgeMacros;
+using Size = System.Drawing.Size;
 
 namespace Halo_Forge_Bot;
 
@@ -13,7 +14,13 @@ public static class ForgeUI
 {
     public static Process HaloProcess;
 
-    public static Process SetHaloActive()
+    public static Rectangle ForgeMenu { get; set; } =
+        new Rectangle(new System.Drawing.Point(45, 49), new Size(372, 623));
+
+    public static Rectangle RenameBox { get; set; } =
+        new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
+
+    public static Process SetHaloProcess()
     {
         if (!Input.InputActive) Input.InitInput();
         Process[] haloProcesses = Process.GetProcessesByName("HaloInfinite");
@@ -24,6 +31,7 @@ public static class ForgeUI
             {
                 NativeHelper.SetForegroundWindow(process.MainWindowHandle);
                 NativeHelper.SetActiveWindow(process.MainWindowHandle);
+                HaloProcess = process;
                 return process;
             }
         }
@@ -31,7 +39,7 @@ public static class ForgeUI
         throw new InvalidOperationException($"Halo infinite process wasn't found");
     }
 
-    private static Rectangle GetRectFromMouse()
+    public static async Task<Rectangle> GetRectFromMouse()
     {
         Rectangle rectangle = new Rectangle();
         Input.MouseHook.MouseDown += CaptureUiTopLeft;
@@ -39,7 +47,7 @@ public static class ForgeUI
 
         while (rectangle.Height == 0 || rectangle.Width == 0)
         {
-            Task.Delay(10);
+            await Task.Delay(10);
         }
 
         Input.MouseHook.MouseDown -= CaptureUiTopLeft;
