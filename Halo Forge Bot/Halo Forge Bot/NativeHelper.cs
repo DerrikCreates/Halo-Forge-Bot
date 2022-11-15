@@ -57,41 +57,11 @@ public static class NativeHelper
         return sb.ToString();
     }
 
-    public static Process SetHaloActive()
-    {
-        if (!Input.InputActive) Input.InitInput();
-        Process[] haloProcesses = Process.GetProcessesByName("HaloInfinite");
+    
 
-        foreach (var process in haloProcesses)
-        {
-            if (process != null)
-            {
-                SetForegroundWindow(process.MainWindowHandle);
-                SetActiveWindow(process.MainWindowHandle);
-                return process;
-            }
-        }
-
-        throw new InvalidOperationException($"Halo infinite process wasn't found");
-    }
-
-    public static Rect GetHaloProcessRect()
-    {
-        if (HaloProcess == null) throw new InvalidOperationException($"Halo infinite process wasn't found");
-
-        //GetWi
-        return new Rect();
-    }
-
-    public static Process HaloProcess;
+    
 
    
-    public static void ReadContentBrowser()
-    {
-        HaloProcess = SetHaloActive();
-        ForgeUI.Init();
-        
-    }
 
 
     

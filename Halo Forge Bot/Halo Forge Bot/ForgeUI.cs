@@ -1,75 +1,79 @@
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Drawing;
 using ForgeMacros;
 
 namespace Halo_Forge_Bot;
 
 public static class ForgeUI
 {
-    public static Rect ProcessRect;
-    public static Rect UIRect;
-    public delegate void Notify();
+    public static Process HaloProcess;
 
-    public static event Notify? OnInitDone;
-
-    public async static void Init()
+    public static Process SetHaloActive()
     {
-        await Task.Run(SetupForgeUIArea);
-    }
+        if (!Input.InputActive) Input.InitInput();
+        Process[] haloProcesses = Process.GetProcessesByName("HaloInfinite");
 
-    public static void EnsureUIRect()
-    {
-        //if (NativeHelper.HaloProcess.MainWindowHandle)
-    }
-
-    private static void CaptureUITopLeft(object? sender, MouseEventArgs args)
-    {
-        UIRect.X = args.X;
-        UIRect.Y = args.Y;
-    }
-
-    private static void CaptureUIWidthHeight(object? sender, MouseEventArgs args)
-    {
-        if (args.X > UIRect.X)
+        foreach (var process in haloProcesses)
         {
-            UIRect.Width = args.X - UIRect.X;
-        }
-        else
-        {
-            UIRect.Width = UIRect.X - args.X;
-            UIRect.X = args.X;
+            if (process != null)
+            {
+                NativeHelper.SetForegroundWindow(process.MainWindowHandle);
+                NativeHelper.SetActiveWindow(process.MainWindowHandle);
+                return process;
+            }
         }
 
-        if (args.Y > UIRect.Y)
-        {
-            UIRect.Height = args.Y - UIRect.Y;
-        }
-        else
-        {
-            UIRect.Height = UIRect.Y - args.Y;
-            UIRect.Y = args.Y;
-        }
+        throw new InvalidOperationException($"Halo infinite process wasn't found");
     }
 
-    private static void SetupForgeUIArea()
+    private static Rectangle GetRectFromMouse()
     {
-        Input.MouseHook.MouseDown += CaptureUITopLeft;
-        Input.MouseHook.MouseUp += CaptureUIWidthHeight;
+        Rectangle rectangle = new Rectangle();
+        Input.MouseHook.MouseDown += CaptureUiTopLeft;
+        Input.MouseHook.MouseUp += CaptureUiWidthHeight;
 
-        while (UIRect.Height == 0 || UIRect.Width == 0)
+        while (rectangle.Height == 0 || rectangle.Width == 0)
         {
             Task.Delay(10);
         }
 
-        Input.MouseHook.MouseDown -= CaptureUITopLeft;
-        Input.MouseHook.MouseUp -= CaptureUIWidthHeight;
+        Input.MouseHook.MouseDown -= CaptureUiTopLeft;
+        Input.MouseHook.MouseUp -= CaptureUiWidthHeight;
 
-        if (OnInitDone != null)
+        return rectangle;
+
+        void CaptureUiTopLeft(object? sender, MouseEventArgs args)
         {
-            OnInitDone.Invoke();
+            rectangle.X = args.X;
+            rectangle.Y = args.Y;
+        }
+
+        void CaptureUiWidthHeight(object? sender, MouseEventArgs args)
+        {
+            if (args.X > rectangle.X)
+            {
+                rectangle.Width = args.X - rectangle.X;
+            }
+            else
+            {
+                rectangle.Width = rectangle.X - args.X;
+                rectangle.X = args.X;
+            }
+
+            if (args.Y > rectangle.Y)
+            {
+                rectangle.Height = args.Y - rectangle.Y;
+            }
+            else
+            {
+                rectangle.Height = rectangle.Y - args.Y;
+                rectangle.Y = args.Y;
+            }
         }
     }
 }

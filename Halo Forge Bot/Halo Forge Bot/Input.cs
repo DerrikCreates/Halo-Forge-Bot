@@ -1,11 +1,9 @@
 using System;
-using System.Threading.Tasks;
 using ManagedWinapi.Hooks;
 using WindowsInput;
 using WindowsInput.Native;
 
-
-namespace ForgeMacros;
+namespace Halo_Forge_Bot;
 
 public static class Input
 {
@@ -17,6 +15,7 @@ public static class Input
 
     public static void InitInput()
     {
+        
         InputActive = true;
         if (!MouseHook.Hooked) MouseHook.StartHook();
         if (!KeyboardHook.Hooked) KeyboardHook.StartHook();

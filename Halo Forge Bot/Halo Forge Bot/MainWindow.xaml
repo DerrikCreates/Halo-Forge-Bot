@@ -23,5 +23,8 @@
         
         <Button Grid.Row="2" Grid.Column="0" Name="DownloadMvarButton" Height="20" Width="100"  Click="DownloadMvarButton_OnClick" >Download .mvar</Button>
         <TextBox Name="FileShareLinkTextBox" Grid.Row="1" Grid.Column="0" Height="20" Width="100"> FileShare Link</TextBox>
+        
+        <Button Grid.Row="2" Grid.Column="1" Name="GetItemNames" Height="20" Width="100"  Click="GetItemNames_OnClick" >Get Item Names</Button>
+        <Button Grid.Row="2" Grid.Column="2"  Height="20" Width="100"  Click="DebugRect_OnClick" >Debug Rect</Button>
     </Grid>
 </Window>
