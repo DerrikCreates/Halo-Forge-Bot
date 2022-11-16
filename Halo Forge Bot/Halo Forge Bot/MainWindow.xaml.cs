@@ -12,6 +12,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using ForgeMacros;
 using Microsoft.VisualBasic.CompilerServices;
+using Serilog;
+using Serilog.Formatting.Compact;
 using WindowsInput.Native;
 using Image = System.Windows.Controls.Image;
 using Point = System.Windows.Point;
@@ -27,6 +29,17 @@ namespace Halo_Forge_Bot
     {
         public MainWindow()
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.WithThreadId()
+                .WriteTo.Console()
+                .WriteTo.File("Z://josh/log.txt")
+                .WriteTo.File(new CompactJsonFormatter(),"Z://josh/log.json")
+                .WriteTo.Debug()
+                .CreateLogger();
+
+            Log.Information("----------APP START----------");
+
+
             InitializeComponent();
             Input.InitInput();
             ForgeUI.SetHaloProcess();

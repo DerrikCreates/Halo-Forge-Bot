@@ -1,10 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.PerformanceData;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ForgeMacros;
+using InfiniteForgeConstants.Forge_UI;
+using InfiniteForgeConstants.Forge_UI.Object_Browser;
+using Newtonsoft.Json;
+using Serilog;
 using WindowsInput.Native;
 
 namespace Halo_Forge_Bot;
@@ -13,6 +22,8 @@ public static class Bot
 {
     public static void WatchForChange(ref bool hasChanged, Rectangle rectangle, int timeout, int delay = 10)
     {
+        Log.Information("Staring to WatchForChange Delay:{Delay} , Timeout:{Timeout}",
+            delay, timeout);
         var bitmap = new Bitmap(rectangle.Width, rectangle.Height);
         var g = Graphics.FromImage(bitmap);
         var lastPixelArray = new System.Drawing.Color[rectangle.Width * rectangle.Height];
@@ -51,7 +62,9 @@ public static class Bot
                     {
                         bitmap.SetPixel(x, y, Color.Red);
                         bitmap.Save($"Z:/josh/imageDIFF.png", ImageFormat.Png);
-
+                        Log.Information(
+                            "WatchForChange Change Detected --- Color Changed: {Color} Delay:{Delay} , Timeout:{Timeout}",
+                            current.ToString(), delay, timeout);
                         hasChanged = true;
                         return;
                     }
@@ -65,6 +78,8 @@ public static class Bot
             Task.Delay(delay).Wait();
         }
 
+        Log.Fatal("WatchForChange NO Change Detected ---  Delay:{Delay} , Timeout:{Timeout}",
+            delay, timeout);
         bitmap.Save("Z:/josh/imageNOCHANGE.png", ImageFormat.Png);
         g.Dispose();
         throw new Exception("NO CHANGE IN AREA");
@@ -81,8 +96,18 @@ public static class Bot
     public static void PressWithMonitor(Rectangle area, VirtualKeyCode key, bool useMod = false,
         VirtualKeyCode mod = VirtualKeyCode.CONTROL, int keySleep = 50)
     {
+        Log.Information(
+            "PressWithMonitor Starting -- Pressing {Key} With Monitor, Sleep:{KeySleep}, UseMod:{UseMode}, ModKey:{ModKey} "
+            , key, keySleep, useMod, mod);
+
         bool hasChanged = false;
-        Task.Run((() => WatchForChange(ref hasChanged, area, 1000, 10)));
+        var task = Task.Run((() => WatchForChange(ref hasChanged, area, 1000, 10)));
+
+        while (task.Status != TaskStatus.Running)
+        {
+            Thread.Sleep(1);
+        }
+
 
         PressKey(key, keySleep, useMod, mod);
         while (hasChanged == false)
@@ -102,10 +127,13 @@ public static class Bot
             Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyUp(key);
             Thread.Sleep(sleep);
+            Log.Information("Pressing {Key} Sleep:{KeySleep}, UseMod:{UseMod} Modkey: {mod}"
+                , key, sleep, useMod, mod);
             return;
         }
 
-        //todo find solution to halo not detecting ctr+x
+        Log.Information("Pressing {Key} with modifier {mod} Sleep:{KeySleep}, UseMod:{UseMod}"
+            , key, mod, sleep, useMod);
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyDown(mod);
         Thread.Sleep(sleep);
@@ -142,14 +170,87 @@ public static class Bot
     public static void GatherItemStrings()
     {
         ForgeUI.SetHaloProcess();
+        var folders = ForgeObjectBrowser.Categories["Accents"].CategoryFolders;
+        var foldersCount = ForgeObjectBrowser.Categories["Accents"].CategoryFolders.Count;
+
+
+        ForgeObjectBrowser.Categories["Accents"].CategoryFolders.Values.ToList();
+        foreach (var folder in folders)
+        {
+            PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
+            PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
+
+            while (true)
+            {
+                PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
+                Thread.Sleep(300);
+                PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.F2);
+                Thread.Sleep(300);
+                if (GetClipboardChange(out var clipboard) == false)
+                {
+                    Log.Fatal("Clipboard hasn't changed");
+                    throw new Exception();
+                }
+
+                Log.Information("Clipboard contains: {ClipboardText}", clipboard);
+                Thread.Sleep(300);
+                PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.ESCAPE);
+                Thread.Sleep(300);
+                try
+                {
+                    PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
+                }
+                catch (Exception e)
+                {
+                    Log.Warning("Issue with Last Delete keypress trying again");
+                    PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_F);
+                    PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
+                }
+
+                PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
+                PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
+                PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
+                try
+                {
+                    folder.Value.AddItem(clipboard);
+                }
+                catch (Exception e)
+                {
+                    break;
+                }
+            }
+
+
+            PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.BACK);
+        }
+
+        var json = JsonConvert.SerializeObject(ForgeObjectBrowser.Categories);
+        File.WriteAllText(json, "Z://josh/itemNames.json");
+
+        // var p = ForgeUI.SetHaloProcess();
+        // NativeHelper.SetActiveWindow(p.MainWindowHandle);
         //NativeHelper.SetForegroundWindow(ForgeUI.HaloProcess.MainWindowHandle);
         // PressWithMonitor(ForgeUI.RenameBox,VirtualKeyCode.VK_X);
 
-        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.F2);
-        Thread.Sleep(1000);
-        PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_X, true);
+
+        //  PressKey(VirtualKeyCode.VK_X, useMod: true);
+        //PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_X, true);
+    }
+
+
+    private static bool GetClipboardChange(out string clipboardString)
+    {
+        var current = Clipboard.GetText();
+        PressKey(VirtualKeyCode.VK_C, useMod: true);
+        Thread.Sleep(100);
+        string newClipboard = Clipboard.GetText();
+        if (newClipboard == current)
+        {
+            clipboardString = string.Empty;
+            return false;
+        }
+
+        clipboardString = newClipboard;
+        return true;
     }
 }

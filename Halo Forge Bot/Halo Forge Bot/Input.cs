@@ -22,7 +22,7 @@ public static class Input
         KeyboardHook.KeyIntercepted +=
             (int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled) =>
             {
-                if (code == (int)VirtualKeyCode.ESCAPE)
+                if (code == (int)VirtualKeyCode.NUMPAD0)
                 {
                     MouseHook.Dispose();
                     KeyboardHook.Dispose();
