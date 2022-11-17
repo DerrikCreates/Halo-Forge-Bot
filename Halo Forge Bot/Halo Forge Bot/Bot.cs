@@ -20,56 +20,65 @@ public static class Bot
     public static void GatherItemStrings()
     {
         ForgeUI.SetHaloProcess();
-        var folders = ForgeObjectBrowser.Categories["Accents"].CategoryFolders;
-        var foldersCount = ForgeObjectBrowser.Categories["Accents"].CategoryFolders.Count;
-
-
-        ForgeObjectBrowser.Categories["Accents"].CategoryFolders.Values.ToList();
-        foreach (var folder in folders)
+        
+        foreach (var category in ForgeObjectBrowser.Categories)
         {
-            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
+            if (category.Value.CategoryName is "Recents" or "Prefabs")
+            {
+                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
+                continue;
+            }
+            
             Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
 
-            while (true)
+            foreach (var folder in category.Value.CategoryFolders)
             {
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-                Thread.Sleep(300);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.F2);
-                Thread.Sleep(300);
-
-                BotClipboard.GetClipboardChange(out var clipboard);
-
-                Log.Information("Clipboard contains: {ClipboardText}", clipboard);
-                Thread.Sleep(300);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.ESCAPE);
-                Thread.Sleep(300);
-                try
-                {
-                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
-                }
-                catch (Exception e)
-                {
-                    Log.Warning("Issue with Last Delete keypress trying again");
-                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_F);
-                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
-                }
-
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
                 Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                try
+                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
+
+                while (true)
                 {
-                    folder.Value.AddItem(clipboard);
+                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
+                    Thread.Sleep(300);
+                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.F2);
+                    Thread.Sleep(300);
+
+                    BotClipboard.GetClipboardChange(out var clipboard);
+
+                    Log.Information("Clipboard contains: {ClipboardText}", clipboard);
+                    Thread.Sleep(300);
+                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.ESCAPE);
+                    Thread.Sleep(300);
+                    try
+                    {
+                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning("Issue with Last Delete keypress trying again");
+                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_F);
+                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
+                    }
+
+                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
+                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
+                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
+                    try
+                    {
+                        folder.Value.AddItem(clipboard);
+                    }
+                    catch (Exception e)
+                    {
+                        //Item already exists inside folder so continue onto next item
+                        break;
+                    }
                 }
-                catch (Exception e)
-                {
-                    //Item already exists inside folder so continue onto next item
-                    break;
-                }
+
+                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.BACK);
             }
-
-
+            
             Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.BACK);
+            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
         }
 
         var json = JsonConvert.SerializeObject(ForgeObjectBrowser.Categories);
