@@ -27,7 +27,7 @@ public static class Input
         KeyboardHook.KeyIntercepted +=
             (int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled) =>
             {
-                if (code == (int)VirtualKeyCode.NUMPAD0)
+                if (code == (int)VirtualKeyCode.VK_0)
                 {
                     MouseHook.Dispose();
                     KeyboardHook.Dispose();
