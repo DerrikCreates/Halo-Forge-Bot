@@ -26,5 +26,6 @@
         
         <Button Grid.Row="2" Grid.Column="1" Name="GetItemNames" Height="20" Width="100"  Click="GetItemNames_OnClick" >Get Item Names</Button>
         <Button Grid.Row="2" Grid.Column="2"  Height="20" Width="100"  Click="DebugRect_OnClick" >Debug Rect</Button>
+        <Button Grid.Row="3" Grid.Column="2"  Height="20" Width="100"  Click="ButtonBase_OnClick" >Dev Testing</Button>
     </Grid>
 </Window>

@@ -36,7 +36,8 @@ public static class ForgeUI
             }
         }
 
-        throw new InvalidOperationException($"Halo infinite process wasn't found");
+        //throw new InvalidOperationException($"Halo infinite process wasn't found");
+        return null;
     }
 
     public static async Task<Rectangle> GetRectFromMouse()

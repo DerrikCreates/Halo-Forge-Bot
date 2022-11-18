@@ -33,7 +33,7 @@ namespace Halo_Forge_Bot
                 .Enrich.WithThreadId()
                 .WriteTo.Console()
                 .WriteTo.File("Z://josh/log.txt")
-                .WriteTo.File(new CompactJsonFormatter(),"Z://josh/log.json")
+                .WriteTo.File(new CompactJsonFormatter(), "Z://josh/log.json")
                 .WriteTo.Debug()
                 .CreateLogger();
 
@@ -66,6 +66,11 @@ namespace Halo_Forge_Bot
         {
             // new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
             var rectangle = await Task.Run(ForgeUI.GetRectFromMouse);
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Bot.DevTesting();
         }
     }
 }
