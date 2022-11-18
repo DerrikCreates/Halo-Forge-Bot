@@ -14,7 +14,10 @@ using ForgeMacros;
 using Microsoft.VisualBasic.CompilerServices;
 using Serilog;
 using Serilog.Formatting.Compact;
+using TextCopy;
 using WindowsInput.Native;
+using WK.Libraries.SharpClipboardNS;
+using Clipboard = System.Windows.Forms.Clipboard;
 using Image = System.Windows.Controls.Image;
 using Point = System.Windows.Point;
 using Rectangle = System.Drawing.Rectangle;
@@ -27,6 +30,8 @@ namespace Halo_Forge_Bot
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static SharpClipboard clipboard = new SharpClipboard();
+
         public MainWindow()
         {
             Log.Logger = new LoggerConfiguration()
@@ -39,10 +44,21 @@ namespace Halo_Forge_Bot
 
             Log.Information("----------APP START----------");
 
-
+            // BotClipboard.clipboard.ClipboardChanged += BotClipboard.ClipboardChanged;
             InitializeComponent();
-            Input.InitInput();
+            //Task.Run(Input.InitInput);
             ForgeUI.SetHaloProcess();
+            
+
+            clipboard.MonitorClipboard = true;
+            clipboard.ClipboardChanged += (sender, args) =>
+            {
+                Log.Information("Clipboard Data: "+args.Content.ToString() + " --- Type:" + args.Content.GetType().ToString() + " " +
+                                args.SourceApplication.ToString());
+                
+                Log.Information(ClipboardService.GetText() + " ClipboardService Lib");
+            };
+            clipboard.StartMonitoring();
         }
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
@@ -68,9 +84,14 @@ namespace Halo_Forge_Bot
             var rectangle = await Task.Run(ForgeUI.GetRectFromMouse);
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Bot.DevTesting();
+            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+
+
+            Task.Run(Bot.DevTesting);
+
+            // await Task.Run(Bot.DevTesting);
         }
     }
 }

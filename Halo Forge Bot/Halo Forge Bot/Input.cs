@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ManagedWinapi.Hooks;
 using Serilog;
 using WindowsInput;
@@ -82,23 +83,24 @@ public static class Input
     /// <param name="sleep"> The delay between any key actions </param>
     /// <param name="mod"> Controls what secondary key should be pressed </param>
     public static void PressKey(VirtualKeyCode key, int sleep = 50, VirtualKeyCode mod = VirtualKeyCode.NONAME)
-    
+
     {
-        
         if (mod == VirtualKeyCode.NONAME)
         {
-           // Thread.Sleep(sleep);
+            Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyDown(key);
             Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyUp(key);
-           // Thread.Sleep(sleep);
+            Thread.Sleep(sleep);
             Log.Information("Pressing {Key} Sleep:{KeySleep}, Modkey: None"
                 , key, sleep);
             return;
         }
 
-        Log.Information("Pressing {Key} with modifier {mod} Sleep:{KeySleep}"
-            , key, mod, sleep);
+        Log.Information("Pressing {Key} with modifier {mod} Sleep:{KeySleep}");
+        Simulate.Keyboard.ModifiedKeyStroke(mod, key);
+        Thread.Sleep(sleep);
+        /*     , key, mod, sleep);
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyDown(mod);
         Thread.Sleep(sleep);
@@ -108,6 +110,7 @@ public static class Input
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyUp(mod);
         Thread.Sleep(sleep);
+        */
     }
 
     public static async void PressMultipleTimes(int count, VirtualKeyCode key, Rectangle rectangle, int delay = 10,
@@ -126,6 +129,17 @@ public static class Input
             }
 
             Thread.Sleep(50);
+        }
+    }
+
+    
+
+    public static void TypeChars(char[] chars)
+    {
+        foreach (var character in chars)
+        {
+            PressWithMonitor(ForgeUI.RenameBox, (VirtualKeyCode)character);
+            Thread.Sleep(10);
         }
     }
 }

@@ -18,6 +18,8 @@
       <PackageReference Include="Serilog.Sinks.Console" Version="4.1.1-dev-00896" />
       <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
+      <PackageReference Include="SharpClipboard" Version="3.5.2" />
+      <PackageReference Include="TextCopy" Version="6.2.0" />
     </ItemGroup>
 
     <ItemGroup>
