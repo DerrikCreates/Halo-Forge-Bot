@@ -15,12 +15,11 @@ public static class Input
     public static InputSimulator Simulate = new InputSimulator();
     public static LowLevelMouseHook MouseHook = new LowLevelMouseHook();
     public static LowLevelKeyboardHook KeyboardHook = new LowLevelKeyboardHook();
-    
+
     public static bool InputActive = false;
 
     public static void InitInput()
     {
-        
         InputActive = true;
         if (!MouseHook.Hooked) MouseHook.StartHook();
         if (!KeyboardHook.Hooked) KeyboardHook.StartHook();
@@ -31,13 +30,13 @@ public static class Input
                 {
                     MouseHook.Dispose();
                     KeyboardHook.Dispose();
-                    
+
                     throw new Exception($"Implement proper exit here");
                 }
             };
     }
-    
-    
+
+
     /// <summary>
     /// Modifier key defaults to control
     /// </summary>
@@ -83,14 +82,16 @@ public static class Input
     /// <param name="sleep"> The delay between any key actions </param>
     /// <param name="mod"> Controls what secondary key should be pressed </param>
     public static void PressKey(VirtualKeyCode key, int sleep = 50, VirtualKeyCode mod = VirtualKeyCode.NONAME)
+    
     {
-        if (mod != VirtualKeyCode.NONAME)
+        
+        if (mod == VirtualKeyCode.NONAME)
         {
-            Thread.Sleep(sleep);
+           // Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyDown(key);
             Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyUp(key);
-            Thread.Sleep(sleep);
+           // Thread.Sleep(sleep);
             Log.Information("Pressing {Key} Sleep:{KeySleep}, Modkey: None"
                 , key, sleep);
             return;
@@ -109,7 +110,7 @@ public static class Input
         Thread.Sleep(sleep);
     }
 
-    public static void PressMultipleTimes(int count, VirtualKeyCode key, Rectangle rectangle, int delay = 10,
+    public static async void PressMultipleTimes(int count, VirtualKeyCode key, Rectangle rectangle, int delay = 10,
         int timeout = 1000)
     {
         for (int i = 0; i < count; i++)
