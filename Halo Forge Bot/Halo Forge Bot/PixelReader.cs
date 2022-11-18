@@ -8,6 +8,18 @@ namespace Halo_Forge_Bot;
 
 public static class PixelReader
 {
+    public static Bitmap ScreenshotArea(Rectangle area)
+    {
+        var bitmap = new Bitmap(area.Width, area.Height);
+        using var graphics = Graphics.FromImage(bitmap);
+
+        var point = new System.Drawing.Point(area.X, area.Y);
+        var imageSize = new System.Drawing.Size(area.Width, area.Height);
+        graphics.CopyFromScreen(point, new Point(0, 0), imageSize);
+
+        return bitmap;
+    }
+
     public static void WatchForChange(ref bool hasChanged, Rectangle rectangle, int timeout, int delay = 10)
     {
         Log.Information("Staring to WatchForChange Delay:{Delay} , Timeout:{Timeout}",
@@ -34,7 +46,7 @@ public static class PixelReader
         int imageCount = 0;
         var endTime = DateTime.Now.AddMilliseconds(timeout);
 
-        while (DateTime.Now < endTime)
+        while (DateTime.Now < endTime) //todo make this a task and await it.
         {
             g.CopyFromScreen(point, destPoint, imageSize);
             //bitmap.Save($"Z:/JOSH{i}.png");
