@@ -30,8 +30,6 @@ namespace Halo_Forge_Bot
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static SharpClipboard clipboard = new SharpClipboard();
-
         public MainWindow()
         {
             Log.Logger = new LoggerConfiguration()
@@ -46,19 +44,8 @@ namespace Halo_Forge_Bot
 
             // BotClipboard.clipboard.ClipboardChanged += BotClipboard.ClipboardChanged;
             InitializeComponent();
-            //Task.Run(Input.InitInput);
+            Input.InitInput();
             ForgeUI.SetHaloProcess();
-            
-
-            clipboard.MonitorClipboard = true;
-            clipboard.ClipboardChanged += (sender, args) =>
-            {
-                Log.Information("Clipboard Data: "+args.Content.ToString() + " --- Type:" + args.Content.GetType().ToString() + " " +
-                                args.SourceApplication.ToString());
-                
-                Log.Information(ClipboardService.GetText() + " ClipboardService Lib");
-            };
-            clipboard.StartMonitoring();
         }
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
@@ -80,6 +67,8 @@ namespace Halo_Forge_Bot
 
         private async void DebugRect_OnClick(object sender, RoutedEventArgs e)
         {
+            //46 25
+            //399 671
             // new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
             var rectangle = await Task.Run(ForgeUI.GetRectFromMouse);
         }

@@ -18,7 +18,7 @@ public static class Input
     public static LowLevelKeyboardHook KeyboardHook = new LowLevelKeyboardHook();
 
     public static bool InputActive = false;
-
+    public static bool EXIT = false;
     public static void InitInput()
     {
         InputActive = true;
@@ -27,12 +27,14 @@ public static class Input
         KeyboardHook.KeyIntercepted +=
             (int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled) =>
             {
-                if (code == (int)VirtualKeyCode.VK_0)
+                if (code == (int)VirtualKeyCode.NUMPAD0)
                 {
                     MouseHook.Dispose();
                     KeyboardHook.Dispose();
 
-                    throw new Exception($"Implement proper exit here");
+                    EXIT = true;
+
+                    //throw new Exception($"Implement proper exit here");
                 }
             };
     }
@@ -64,11 +66,12 @@ public static class Input
         bool hasChanged = false;
         var task = Task.Run((() => PixelReader.WatchForChange(ref hasChanged, area, 1000, 10)));
 
-        while (task.Status != TaskStatus.Running)
+        while (task.Status is TaskStatus.WaitingForActivation or TaskStatus.WaitingToRun)
         {
             Thread.Sleep(1);
         }
 
+        Log.Information("PressWithMonitor - The watch for change task's state is: {TaskStatus}", task.Status);
 
         PressKey(key, keySleep, mod);
         while (hasChanged == false)
@@ -87,20 +90,19 @@ public static class Input
     {
         if (mod == VirtualKeyCode.NONAME)
         {
+            Log.Information("Starting to Press {Key} Sleep:{KeySleep}, Modkey: None", key, sleep);
             Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyDown(key);
             Thread.Sleep(sleep);
             Input.Simulate.Keyboard.KeyUp(key);
             Thread.Sleep(sleep);
-            Log.Information("Pressing {Key} Sleep:{KeySleep}, Modkey: None"
-                , key, sleep);
+            Log.Information("Pressing ended {Key} Sleep:{KeySleep}, Modkey: None", key, sleep);
             return;
         }
 
-        Log.Information("Pressing {Key} with modifier {mod} Sleep:{KeySleep}");
-        Simulate.Keyboard.ModifiedKeyStroke(mod, key);
-        Thread.Sleep(sleep);
-        /*     , key, mod, sleep);
+        Log.Information("Pressing {Key} with modifier {mod} Sleep:{KeySleep}", key, mod, sleep);
+        //Simulate.Keyboard.ModifiedKeyStroke(mod, key);
+
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyDown(mod);
         Thread.Sleep(sleep);
@@ -110,7 +112,6 @@ public static class Input
         Thread.Sleep(sleep);
         Input.Simulate.Keyboard.KeyUp(mod);
         Thread.Sleep(sleep);
-        */
     }
 
     public static async void PressMultipleTimes(int count, VirtualKeyCode key, Rectangle rectangle, int delay = 10,
@@ -132,7 +133,6 @@ public static class Input
         }
     }
 
-    
 
     public static void TypeChars(char[] chars)
     {

@@ -14,8 +14,10 @@ public static class ForgeUI
 {
     public static Process HaloProcess;
 
+    //46 25
+    //399 671
     public static Rectangle ForgeMenu { get; set; } =
-        new Rectangle(new System.Drawing.Point(45, 49), new Size(372, 623));
+        new Rectangle(new System.Drawing.Point(46, 25), new Size(399, 671));
 
     public static Rectangle RenameBox { get; set; } =
         new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
