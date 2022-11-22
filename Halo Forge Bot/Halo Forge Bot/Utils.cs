@@ -5,11 +5,15 @@ using System.Net.Http;
 using System.Numerics;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace Halo_Forge_Bot;
 
 public static class Utils
 {
+    private static string dllPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+    public static string ExePath = Path.GetDirectoryName(dllPath);
+
     public static Rectangle ConvertRectToRectangle(Rect rect)
     {
         //TODO create a property in the forge ui rect to auto convert;
@@ -246,7 +250,11 @@ public static class Utils
         return (new Vector3(x, y, z), new Vector3(x, y, z) * (180 / MathF.PI));
     }
 
-    public static void SaveJson()
+    public static void SaveJson(object objectToSave, string filename)
     {
+        JsonSerializerSettings jss = new JsonSerializerSettings();
+        jss.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        var json = JsonConvert.SerializeObject(objectToSave, jss);
+        File.WriteAllText($"{ExePath}/{filename}.json", json);
     }
 }

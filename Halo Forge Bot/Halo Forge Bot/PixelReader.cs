@@ -20,12 +20,12 @@ public static class PixelReader
         return bitmap;
     }
 
-    public static void WatchForChange(ref bool hasChanged, Rectangle rectangle, int timeout, int delay = 10)
+    public static bool WatchForChange(Rectangle rectangle, int timeout, int delay = 10)
     {
         Log.Information("Staring to WatchForChange Delay:{Delay} , Timeout:{Timeout}",
             delay, timeout);
-        var bitmap = new Bitmap(rectangle.Width, rectangle.Height);
-        var g = Graphics.FromImage(bitmap);
+        using var bitmap = new Bitmap(rectangle.Width, rectangle.Height);
+        using var g = Graphics.FromImage(bitmap);
         var lastPixelArray = new System.Drawing.Color[rectangle.Width * rectangle.Height];
 
         var point = new System.Drawing.Point(rectangle.X, rectangle.Y);
@@ -61,12 +61,13 @@ public static class PixelReader
                     if (current != lastPixelArray[(x * bitmap.Height) + y])
                     {
                         bitmap.SetPixel(x, y, Color.Red);
-                        bitmap.Save($"Z:/josh/imageDIFF.png", ImageFormat.Png);
+                        //  bitmap.Save($"Z:/josh/imageDIFF.png", ImageFormat.Png);
                         Log.Information(
                             "WatchForChange Change Detected --- Color Changed: {Color} Delay:{Delay} , Timeout:{Timeout}",
                             current.ToString(), delay, timeout);
-                        hasChanged = true;
-                        return;
+
+
+                        return true;
                     }
 
 
@@ -80,8 +81,10 @@ public static class PixelReader
 
         Log.Fatal("WatchForChange NO Change Detected ---  Delay:{Delay} , Timeout:{Timeout}",
             delay, timeout);
-        bitmap.Save("Z:/josh/imageNOCHANGE.png", ImageFormat.Png);
-        g.Dispose();
+        //  bitmap.Save("Z:/josh/imageNOCHANGE.png", ImageFormat.Png);
+        
+
+        return false;
         throw new Exception("NO CHANGE IN AREA");
     }
 }

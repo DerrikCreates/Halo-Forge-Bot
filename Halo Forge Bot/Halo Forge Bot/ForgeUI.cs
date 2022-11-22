@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Drawing;
 using ForgeMacros;
+using InfiniteForgeConstants.Forge_UI;
 using Size = System.Drawing.Size;
 
 namespace Halo_Forge_Bot;
@@ -21,6 +22,8 @@ public static class ForgeUI
 
     public static Rectangle RenameBox { get; set; } =
         new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
+    //x 556 y 846 w 803 h 206
+    public static Rectangle TransformHUD = new Rectangle(new System.Drawing.Point(556, 846), new Size(803, 206));
 
     public static Process SetHaloProcess()
     {
@@ -85,6 +88,35 @@ public static class ForgeUI
                 rectangle.Height = rectangle.Y - args.Y;
                 rectangle.Y = args.Y;
             }
+        }
+    }
+    
+    public static ForgeUIObjectModeEnum GetDefaultObjectMode()
+    {
+        using (var image = PixelReader.ScreenshotArea(Screen.PrimaryScreen.Bounds))
+        {
+            var staticByDefault = image.GetPixel(77, 433);
+            if (staticByDefault == Color.FromArgb(255, 57, 57, 57))
+            {
+                return ForgeUIObjectModeEnum.STATIC_FIRST;
+                //  Log.Information("static by default");
+            }
+
+            var dynamicOnly = image.GetPixel(77, 296);
+            if (dynamicOnly == Color.FromArgb(255, 57, 57, 57))
+            {
+                return ForgeUIObjectModeEnum.DYNAMIC;
+                // Log.Information("dynamic only");
+            }
+
+            var dynamicDefault = image.GetPixel(77, 331);
+            if (dynamicDefault == Color.FromArgb(255, 57, 57, 57))
+            {
+                return ForgeUIObjectModeEnum.DYNAMIC_FIRST;
+            }
+
+            throw new Exception("No Object Mode Detected");
+            //image.Save("z:/josh/fuckoff.png", ImageFormat.Png);
         }
     }
 }

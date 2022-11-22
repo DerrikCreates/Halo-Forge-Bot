@@ -1,9 +1,7 @@
 using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using ManagedWinapi.Hooks;
 using Serilog;
 using WindowsInput;
@@ -17,8 +15,9 @@ public static class Input
     public static LowLevelMouseHook MouseHook = new LowLevelMouseHook();
     public static LowLevelKeyboardHook KeyboardHook = new LowLevelKeyboardHook();
 
-    public static bool InputActive = false;
-    public static bool EXIT = false;
+    public static bool InputActive;
+    public static bool EXIT;
+
     public static void InitInput()
     {
         InputActive = true;
@@ -27,7 +26,7 @@ public static class Input
         KeyboardHook.KeyIntercepted +=
             (int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled) =>
             {
-                if (code == (int)VirtualKeyCode.NUMPAD0)
+                if (code == (int)VirtualKeyCode.LEFT)
                 {
                     MouseHook.Dispose();
                     KeyboardHook.Dispose();
@@ -47,7 +46,7 @@ public static class Input
     /// <param name="key"> main key to press</param>
     /// <param name="mod"> Controls what secondary key should be pressed </param>
     /// <param name="keySleep">the time to sleep in between each key action</param>
-    public static void PressWithMonitor(Rectangle area, VirtualKeyCode key,
+    public static async Task<bool> PressWithMonitor(Rectangle area, VirtualKeyCode key,
         VirtualKeyCode mod = VirtualKeyCode.NONAME, int keySleep = 50)
     {
         if (mod == VirtualKeyCode.NONAME)
@@ -64,19 +63,30 @@ public static class Input
         }
 
         bool hasChanged = false;
-        var task = Task.Run((() => PixelReader.WatchForChange(ref hasChanged, area, 1000, 10)));
+        var task = Task.Run((() => PixelReader.WatchForChange(area, 1000, 10)));
 
         while (task.Status is TaskStatus.WaitingForActivation or TaskStatus.WaitingToRun)
         {
             Thread.Sleep(1);
         }
 
+
         Log.Information("PressWithMonitor - The watch for change task's state is: {TaskStatus}", task.Status);
 
         PressKey(key, keySleep, mod);
-        while (hasChanged == false)
+
+        var b = await task;
+        if (b == false)
         {
+            Log.Error("Press with monitor task did not detect change! Trying 1 more time");
+            task = Task.Run((() => PixelReader.WatchForChange(area, 1000, 10)));
+
+            PressKey(key, keySleep, mod);
         }
+
+        var result = await task;
+        Log.Error("Press with monitor is retuning with value {Result}", result);
+        return result;
     }
 
     /// <summary>
@@ -120,7 +130,7 @@ public static class Input
         for (int i = 0; i < count; i++)
         {
             bool hasChanged = false;
-            Task.Run(() => { PixelReader.WatchForChange(ref hasChanged, rectangle, 1000, delay); });
+            Task.Run(() => { PixelReader.WatchForChange(rectangle, 1000, delay); });
 
             PressKey(key);
 
