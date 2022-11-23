@@ -147,6 +147,11 @@ public static class Input
         }
     }
 
+    public static void MoveMouseTo(int x, int y)
+    {
+        Simulate.Mouse.MoveMouseTo(0, 0);
+        Simulate.Mouse.MoveMouseBy(x, y);
+    }
 
     public static void TypeChars(char[] chars)
     {
