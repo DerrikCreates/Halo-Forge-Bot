@@ -257,4 +257,16 @@ public static class Utils
         var json = JsonConvert.SerializeObject(objectToSave, jss);
         File.WriteAllText($"{ExePath}/{filename}.json", json);
     }
+
+    public static Random Random = new Random();
+
+    public static T GetRandomEnum<T>()
+    {
+        Array values = Enum.GetValues(typeof(T));
+
+        var randomEnum = (T)values.GetValue
+            (Random.Next(values.Length));
+        
+        return randomEnum;
+    }
 }
