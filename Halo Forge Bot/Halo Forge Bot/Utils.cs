@@ -260,13 +260,12 @@ public static class Utils
 
     public static Random Random = new Random();
 
-    public static T GetRandomEnum<T>()
+    public static T? GetRandomEnum<T>()
     {
         Array values = Enum.GetValues(typeof(T));
 
-        var randomEnum = (T)values.GetValue
-            (Random.Next(values.Length));
-        
+        var randomEnum = (T?)values.GetValue(Random.Next(values.Length));
+
         return randomEnum;
     }
 }
