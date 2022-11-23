@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using BondReader;
 using BondReader.Schemas;
 using BondReader.Schemas.Items;
+using Halo_Forge_Bot.GameUI;
+using Halo_Forge_Bot.Utilitities;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using InfiniteForgeConstants.ObjectSettings;
@@ -22,120 +24,6 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-
-
-   
-
-
-
-
-    
-
-    private static async void SetRotM(Vector3 pos)
-    {
-        pos.X = MathF.Round(pos.X, 5);
-        pos.Y = MathF.Round(pos.Y, 5);
-        pos.Z = MathF.Round(pos.Z, 5);
-
-        // might be correct. todo when you wake up finish testing all axis and object rotation
-        await SetAxis(pos.Z, UIIndex["rotZ"]); // zyx, yzx,yxz,
-        Thread.Sleep(1000);
-        await SetAxis(pos.X, UIIndex["rotY"]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Y, UIIndex["rotX"]);
-    }
-
-    private static async Task SetPosM(Vector3 pos)
-    {
-        await SetAxis(pos.X, UIIndex["posX"]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Y, UIIndex["posY"]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Z, UIIndex["posZ"]);
-    }
-
-    private static async Task SetScaleM(Vector3 pos)
-    {
-        await SetAxis(pos.X, UIIndex["sizeX"]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Y, UIIndex["sizeY"]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Z, UIIndex["sizeZ"]);
-    }
-
-    private static float GetAxis(int uiIndex)
-    {
-        Log.Information("Get Axis- UIIndex:{UIIndex}", uiIndex);
-
-
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
-        Thread.Sleep(50);
-        Input.PressKey(VirtualKeyCode.RETURN);
-        Thread.Sleep(200);
-        Input.PressKey(VirtualKeyCode.VK_C, 20, VirtualKeyCode.CONTROL);
-        Thread.Sleep(25);
-        var text = ClipboardService.GetText();
-        Thread.Sleep(50);
-        Input.PressKey(VirtualKeyCode.ESCAPE);
-        Thread.Sleep(50);
-        if (text is not null)
-        {
-            var axisText = text.ToCharArray().ToList();
-
-            //clean up axis data
-            var num = text.Split(".");
-            var right = num[1].Substring(0, 2);
-
-            var final = $"{num[0]}.{right}";
-
-            var number = float.Parse(final);
-            return number;
-        }
-
-        Log.Information("The Clipboard Text is null");
-        return -1;
-    }
-
-    private static async Task SetAxis(float pos, int uiIndex, int sleep = 100)
-    {
-        Log.Information("Set Axis with Value: {value} , UIIndex:{UIIndex}", pos, uiIndex);
-        pos = MathF.Round(pos, 5);
-
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
-        Thread.Sleep(sleep);
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
-        Thread.Sleep(300);
-        Input.PressKey(VirtualKeyCode.RETURN);
-        Thread.Sleep(300);
-        ClipboardService.SetText(pos.ToString());
-        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.BACK);
-        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-        Thread.Sleep(sleep);
-
-
-        Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-        Thread.Sleep(sleep);
-    }
-
-    static Dictionary<string, int> UIIndex = new();
-
-    public static List<ForgeUIFolder?> folders = new();
-
-
-    public static void SetupFolders() //todo use lite db and not josh's bs :)
-    {
-        foreach (var cat in ForgeObjectBrowser.Categories)
-        {
-            foreach (var folder in cat.Value.CategoryFolders)
-            {
-                folders.Add(folder.Value);
-            }
-
-            folders.Add(null);
-        }
-    }
-
     public static async Task DevTesting()
     {
         UIData();
@@ -144,23 +32,6 @@ public static class Bot
 
         MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id, out string failReason);
 
-
-        UIIndex = new();
-        // ForgeUI.SetHaloProcess();
-
-
-        UIIndex.Add("sizeX", 4);
-        UIIndex.Add("sizeY", 5);
-        UIIndex.Add("sizeZ", 6);
-
-
-        UIIndex.Add("posX", 10);
-        UIIndex.Add("posY", 11);
-        UIIndex.Add("posZ", 12);
-
-        UIIndex.Add("rotX", 14);
-        UIIndex.Add("rotY", 15);
-        UIIndex.Add("rotZ", 16);
 
         BondSchema bond = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/SnowMap.mvar");
 
@@ -252,21 +123,12 @@ public static class Bot
                     Input.PressKey(VirtualKeyCode.VK_E);
                 }
 
-                // after spawning check if we have already collected the default scale
-
-                // if not then collect it and save it to the dic
-
 
                 if (currentItem.DefaultScale == Vector3.Zero)
                 {
-                    //Start collecting scale
-                    //currentItem.DefaultObjectMode.
-                    //ForgeUI.GetDefaultObjectMode()
-
-
-                    var x = GetAxis(UIIndex["sizeX"]);
-                    var y = GetAxis(UIIndex["sizeY"]);
-                    var z = GetAxis(UIIndex["sizeZ"]);
+                    var x = GetAxis(StaticByDefault.Layout[PropertyName.Forward]);
+                    var y = GetAxis(StaticByDefault.Layout[PropertyName.Horizontal]);
+                    var z = GetAxis(StaticByDefault.Layout[PropertyName.Vertical]);
 
                     currentItem.DefaultScale = new Vector3(x, y, z);
 
@@ -303,216 +165,112 @@ public static class Bot
                 SetRotM(r);
             }
         }
+    }
 
-        return;
+    private static async void SetRotM(Vector3 pos)
+    {
+        pos.X = MathF.Round(pos.X, 5);
+        pos.Y = MathF.Round(pos.Y, 5);
+        pos.Z = MathF.Round(pos.Z, 5);
 
-        /*
-        int editMenuSleep = 1;
-        Thread.Sleep(4000);
-        foreach (var item in bond.ItemList)
-        {
-            if (item.ItemId == 1759788903)
-            {
-                var forward = new Vector3(item.ForwardX, -item.ForwardY, item.ForwardZ);
-                var up = new Vector3(item.UpX, -item.UpY, item.UpZ);
+        // might be correct. todo when you wake up finish testing all axis and object rotation
+        await SetAxis(pos.Z, StaticByDefault.Layout[PropertyName.Roll]); // zyx, yzx,yxz,
+        Thread.Sleep(1000);
+        await SetAxis(pos.X, StaticByDefault.Layout[PropertyName.Pitch]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Y, StaticByDefault.Layout[PropertyName.Yaw]);
+    }
 
-                var rotation = Utils.DirectionToEuler(forward, up);
-                var position = Vector3.Multiply(10, new Vector3(item.PositionX, item.PositionY, item.PositionZ));
+    private static async Task SetPosM(Vector3 pos)
+    {
+        await SetAxis(pos.X, StaticByDefault.Layout[PropertyName.Forward]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Y, StaticByDefault.Layout[PropertyName.Horizontal]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Z, StaticByDefault.Layout[PropertyName.Vertical]);
+    }
 
-                // Starting at the correct object this enter spawns the item;
-                Log.Information("----Starting New Item----");
-                Thread.Sleep(editMenuSleep);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-                Thread.Sleep(editMenuSleep);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_R);
-                Thread.Sleep(editMenuSleep);
+    private static async Task SetScaleM(Vector3 pos)
+    {
+        await SetAxis(pos.X, StaticByDefault.Layout[PropertyName.SizeX]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Y, StaticByDefault.Layout[PropertyName.SizeY]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Z, StaticByDefault.Layout[PropertyName.SizeZ]);
+    }
 
-
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_E);
-
-                Log.Information("Scrolling to the top");
-                for (int i = 0; i < 25; i++)
-                {
-                    Input.Simulate.Mouse.VerticalScroll(1);
-                    Thread.Sleep(4);
-                }
-
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Z);
-
-                Log.Information("Traveling to size vector");
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-
-                Log.Information("Collecting Scale Vector");
-                var scaleStrings = new string[3] { "4", "4", "4" }; // await CollectVector3();
-                // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                //  Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                //   Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-
-                //   Vector3 defaultScale = new Vector3(float.Parse(scaleStrings[0].Substring(0, 3)),
-                //        float.Parse(scaleStrings[1].Substring(0, 3)), float.Parse(scaleStrings[2].Substring(0, 3)));
-                //      Log.Information("X:{defaultScaleX},Y:{defaultScaleY},Z{defaultScaleZ}", defaultScale.X, defaultScale.Y,
-                //           defaultScale.Z);
-
-                Vector3 scale = new Vector3(item.ScaleX, item.ScaleY, item.ScaleZ);
-                //scale *= 10;
-
-                Vector3 realScale = Vector3.Multiply(scale, new Vector3(4, 4, 4));
-
-                Log.Information("Reseting at X scale for writing");
+    private static float GetAxis(int uiIndex)
+    {
+        Log.Information("Get Axis- UIIndex:{UIIndex}", uiIndex);
 
 
-                // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W);
-                //  Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W);
-
-
-                SetVector3(realScale); // Setting the scale vector
-
-
-                /* SetSelectedScale(scale.X);
-                 Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                 SetSelectedScale(scale.Y);
-                 Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                 SetSelectedScale(scale.Z);
-                 */
-/*
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-
-
-        SetVector3(position);
-        /* Log.Information("We are now hovering X/Forward");
-         // We are now hovering X/Forward
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-         Thread.Sleep(300); // Sleeping for the edit menu to show
-         ClipboardService.SetText(position.X.ToString());
-         Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-
-         Log.Information("We are now hovering Y/Horizontal");
-         // We are now hovering Y/Horizontal
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-         Thread.Sleep(300); // Sleeping for the edit menu to show
-         ClipboardService.SetText(position.Y.ToString());
-         Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-
-         Log.Information(" We are now hovering Z/Vertical");
-         // We are now hovering Z/Vertical
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-         Thread.Sleep(300); // Sleeping for the edit menu to show
-         ClipboardService.SetText(position.Z.ToString());
-         Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-         Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-         
-
-
-        Log.Information("Traveling to the roll input");
-        //Traveling to the roll input
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        //Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        //Input.PressKey(VirtualKeyCode.RETURN);
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
         Thread.Sleep(50);
-        // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W);
-
-        SetVector3(new Vector3(rotation.Degrees.Z, rotation.Degrees.X, rotation.Degrees.Y));
-
-
-        //todo create method for the process of settings and reading vector3's in the ui
-        Log.Information("Setting the Roll");
-        // Setting the Roll
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Thread.Sleep(300); // Sleeping for the edit menu to show
-        ClipboardService.SetText(rotation.Degrees.X.ToString());
-        Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W);
-
-        Log.Information("Setting the Pitch");
-        // Setting the Pitch
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Thread.Sleep(300); // Sleeping for the edit menu to show
-        ClipboardService.SetText(rotation.Degrees.X.ToString());
-        Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W);
-
-        Log.Information("Setting the Yaw");
-        // Setting the Yaw
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Thread.Sleep(300); // Sleeping for the edit menu to show
-        ClipboardService.SetText(rotation.Degrees.X.ToString());
-        Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-
-
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
-        Log.Information("----End of item----");
-    }
-    
-}
-
-return;
-*/
-
-//77 443 - if static by default
-//77 296 - dynamic only
-//77 331 - not static by default
-
-
-// ForgeUI.SetHaloProcess();
-
-//  TraverseFolder(ForgeObjectBrowser.Categories["Decals"]);
-
-// var json = JsonConvert.SerializeObject(ForgeObjectBrowser.Categories);
-// File.WriteAllText(json, "Z://josh/itemNames.json");
-// CollectScale();
-
-/* 
-        for (int i = 0; i < 40; i++)
+        Input.PressKey(VirtualKeyCode.RETURN);
+        Thread.Sleep(200);
+        Input.PressKey(VirtualKeyCode.VK_C, 20, VirtualKeyCode.CONTROL);
+        Thread.Sleep(25);
+        var text = ClipboardService.GetText();
+        Thread.Sleep(50);
+        Input.PressKey(VirtualKeyCode.ESCAPE);
+        Thread.Sleep(50);
+        if (text is not null)
         {
-            Input.Simulate.Mouse.VerticalScroll(1);
-            await Task.Delay(5);
+            var axisText = text.ToCharArray().ToList();
+
+            //clean up axis data
+            var num = text.Split(".");
+            var right = num[1].Substring(0, 2);
+
+            var final = $"{num[0]}.{right}";
+
+            var number = float.Parse(final);
+            return number;
         }
-        
-int delay = 4;
-while (true)
-{
-    for (int i = 0; i < 50; i++)
+
+        Log.Information("The Clipboard Text is null");
+        return -1;
+    }
+
+    private static async Task SetAxis(float pos, int uiIndex, int sleep = 100)
     {
-       // Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
-       Input.PressKey(VirtualKeyCode.VK_S,delay);
-       // await Task.Delay(delay);
+        Log.Information("Set Axis with Value: {value} , UIIndex:{UIIndex}", pos, uiIndex);
+        pos = MathF.Round(pos, 5);
+
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
+        Thread.Sleep(sleep);
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
+        Thread.Sleep(300);
+        Input.PressKey(VirtualKeyCode.RETURN);
+        Thread.Sleep(300);
+        ClipboardService.SetText(pos.ToString());
+        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.BACK);
+        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
+        Thread.Sleep(sleep);
+
+
+        Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+        Thread.Sleep(sleep);
     }
 
-    await Task.Delay(1000);
 
-    for (int i = 0; i < 50; i++)
+    public static List<ForgeUIFolder?> folders = new();
+
+
+    public static void SetupFolders() //todo use lite db and not josh's bs :)
     {
-       // Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
-       Input.PressKey(VirtualKeyCode.VK_W,delay);
-       // await Task.Delay(delay);
+        foreach (var cat in ForgeObjectBrowser.Categories)
+        {
+            foreach (var folder in cat.Value.CategoryFolders)
+            {
+                folders.Add(folder.Value);
+            }
+
+            folders.Add(null);
+        }
     }
 
-    await Task.Delay(1000);
-    */
-
-        var settings = new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
-        var json = JsonConvert.SerializeObject(ForgeObjectBrowser.Categories, settings);
-        File.WriteAllText("Z:/josh/godhelpme.json", json);
-    }
 
     private static async Task NavigateToRandomItem()
     {
@@ -528,44 +286,6 @@ while (true)
         }
     }
 
-
-    public static void GetUIData()
-    {
-        foreach (var category in ForgeObjectBrowser.Categories)
-        {
-            if (Input.EXIT)
-            {
-                return;
-            }
-
-            Input.PressKey(VirtualKeyCode.VK_Z);
-            Input.PressKey(VirtualKeyCode.VK_Z);
-
-            for (int i = 0; i < category.Value.CategoryOrder - 1; i++) // travel to category
-            {
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                Thread.Sleep(50);
-            }
-
-            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-
-            //the category folder is open
-            foreach (var folder in category.Value.CategoryFolders)
-            {
-                //start moving though the folder
-                if (Input.EXIT)
-                {
-                    return;
-                }
-
-                for (int i = 0; i < folder.Value.FolderOffset; i++)
-                {
-                    // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                    //  Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-                }
-            }
-        }
-    }
 
     public static void UIData()
     {
@@ -750,24 +470,5 @@ while (true)
         }
 
         return null;
-    }
-
-
-    private static void SetSelectedScale(float axis)
-    {
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Thread.Sleep(300);
-
-        //todo make all clipboard actions use setdata with retry times
-        //  IDataObject dataObject = new DataObject();
-        //   dataObject.SetData(ConvertToDataFormats(TextDataFormat.UnicodeText), false, axis.ToString());
-        ClipboardService.SetText(axis.ToString());
-        // Clipboard.SetDataObject(dataObject, false, 5, 10);
-
-
-        Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-        Thread.Sleep(300);
     }
 }

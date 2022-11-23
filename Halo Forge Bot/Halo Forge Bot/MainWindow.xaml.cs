@@ -1,28 +1,12 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Threading;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Forms;
-using ForgeMacros;
-using Microsoft.VisualBasic.CompilerServices;
+using Halo_Forge_Bot.GameUI;
 using Serilog;
 using Serilog.Formatting.Compact;
-using TextCopy;
-using WindowsInput.Native;
-using Clipboard = System.Windows.Forms.Clipboard;
-using Image = System.Windows.Controls.Image;
-using Point = System.Windows.Point;
-using Rectangle = System.Drawing.Rectangle;
-using Size = System.Drawing.Size;
+using Utils = Halo_Forge_Bot.Utilitities.Utils;
 
-namespace Halo_Forge_Bot
+namespace Halo_Forge_Bot.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

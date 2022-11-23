@@ -43,9 +43,6 @@
       <None Update="dlls\InfiniteForgeConstants.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="ForgeObjects.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="tes\fast\eng.traineddata">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
@@ -55,7 +52,14 @@
       <None Update="dlls\InfiniteForgePacker.dll">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="SnowMap.mvar">
+      <None Update="Temp\SnowMap.mvar">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Data\ForgeObjects.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="C:\Users\Derrik\.nuget\packages\mwinapi\0.3.0.5\build\ManagedWinapiNativeHelper.dll">
+        <Link>dlls\ManagedWinapiNativeHelper.dll</Link>
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
