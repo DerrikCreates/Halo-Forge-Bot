@@ -21,9 +21,6 @@
       <PackageReference Include="Serilog.Sinks.Console" Version="4.1.1-dev-00896" />
       <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
-      <PackageReference Include="SharpClipboard" Version="3.5.2" />
-      <PackageReference Include="Tesseract" Version="4.1.1" />
-      <PackageReference Include="Tesseract.Drawing" Version="4.1.1" />
       <PackageReference Include="TextCopy" Version="6.2.0" />
     </ItemGroup>
 
@@ -33,6 +30,9 @@
       </Reference>
       <Reference Include="InfiniteForgePacker">
         <HintPath>dlls\InfiniteForgePacker.dll</HintPath>
+      </Reference>
+      <Reference Include="System.Drawing.Common">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\6.0.10\System.Drawing.Common.dll</HintPath>
       </Reference>
     </ItemGroup>
 

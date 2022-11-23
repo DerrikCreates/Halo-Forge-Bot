@@ -1,254 +1,35 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Numerics;
-using System.Security.AccessControl;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using BondReader;
 using BondReader.Schemas;
 using BondReader.Schemas.Items;
-//using System.Windows.Media;
-using ForgeMacros;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using InfiniteForgeConstants.ObjectSettings;
-using Memory;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.Devices;
-using Microsoft.Windows.Themes;
 using Newtonsoft.Json;
 using Serilog;
-using Serilog.Core;
 using TextCopy;
 using WindowsInput.Native;
-using WK.Libraries.SharpClipboardNS;
-using Clipboard = System.Windows.Forms.Clipboard;
 
 
 namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-    public static void GatherItemStrings()
-    {
-        ForgeUI.SetHaloProcess();
-
-        foreach (var category in ForgeObjectBrowser.Categories)
-        {
-            if (category.Value.CategoryName is "Recents" or "Prefabs")
-            {
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                continue;
-            }
-
-            TraverseFolder(category.Value);
-        }
-
-        var json = JsonConvert.SerializeObject(ForgeObjectBrowser.Categories);
-        File.WriteAllText(json, "Z://josh/itemNames.json");
-
-        // var p = ForgeUI.SetHaloProcess();
-        // NativeHelper.SetActiveWindow(p.MainWindowHandle);
-        //NativeHelper.SetForegroundWindow(ForgeUI.HaloProcess.MainWindowHandle);
-        // PressWithMonitor(ForgeUI.RenameBox,VirtualKeyCode.VK_X);
 
 
-        //  PressKey(VirtualKeyCode.VK_X, useMod: true);
-        //PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_X, true);
-    }
-
-    private static async Task TraverseFolder(ForgeUICategory category)
-    {
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-
-        foreach (var folder in category.CategoryFolders)
-        {
-            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-
-            while (true)
-            {
-                // collecting items
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-                Thread.Sleep(300);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.F2);
-                Thread.Sleep(300);
-                var clipboardResult = await BotClipboard.GetClipboardChange();
-                string clipboard = clipboardResult;
-
-                Log.Information("Clipboard contains: {ClipboardText}", clipboard);
-                Thread.Sleep(300);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.ESCAPE);
-                Thread.Sleep(300);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q); // Q into the object properties
-
-                // COLLECT THE DEFAULT SCALE HERE
-                for (int i = 0; i < 50; i++)
-                {
-                    Input.Simulate.Mouse.VerticalScroll(1);
-                    Thread.Sleep(5);
-                }
-
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Z);
-
-                Vector3 scale = new Vector3();
-                /*
-                var defaultMode = = defaultMode, //GetDefaultObjectMode();
-                switch (defaultMode)
-                {
-                    case ForgeUIObjectModeEnum.STATIC_FIRST:
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        CollectVector3();
-                        break;
-
-                    case ForgeUIObjectModeEnum.DYNAMIC:
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        CollectVector3();
-                        break;
-
-                    case ForgeUIObjectModeEnum.DYNAMIC_FIRST:
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                        CollectVector3();
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                        
-                }
-*/
-
-                try
-                {
-                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
-                }
-                catch (Exception e)
-                {
-                    Log.Warning("Issue with Last Delete keypress trying again");
-                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_F);
-                    Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.DELETE);
-                }
+   
 
 
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
-                Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-                try
-                {
-                    // folder.Value.AddItem(clipboard);
-                }
-                catch (Exception e)
-                {
-                    //Item already exists inside folder so continue onto next item
-                    break;
-                }
-
-                folder.Value.FolderObjects[clipboard].DefaultScale = scale;
-            }
-
-            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.BACK);
-        }
-
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.BACK);
-        Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-    }
-
-    public static void OpenVectorEditUI()
-    {
-    }
-
-    private static void SetVector3(Vector3 vector, bool reverse = false)
-    {
-        string[] vectorStrings = new string[3];
-        vectorStrings[0] = vector.X.ToString();
-        vectorStrings[1] = (vector.Y).ToString();
-        vectorStrings[2] = vector.Z.ToString();
-        // Assuming we are hovered the FIRST element of the vector in the ui;
-        if (reverse)
-        {
-            for (int i = 2; i > -1; i--)
-            {
-                SetAxis(i, VirtualKeyCode.VK_W);
-            }
-
-            return;
-        }
 
 
-        for (int i = 0; i < 3; i++)
-        {
-            SetAxis(i, VirtualKeyCode.VK_S);
-        }
-
-
-        void SetAxis(int i, VirtualKeyCode nextElementKey)
-        {
-            Thread.Sleep(50); // small delay before we start
-            Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN); // Enter Edit UI
-            Thread.Sleep(350); // Sleep for window open animation
-            ClipboardService.SetText(vectorStrings[i]);
-            Thread.Sleep(50); // Sleeping just in case the clipboard is not set yet for some reason?
-            Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-            Thread.Sleep(50); // Sleep Extra so that there is time for the paste to apply in the game
-            Input.PressWithMonitor(ForgeUI.ForgeMenu,
-                VirtualKeyCode.RETURN); // pressing enter to apply and exit the menu
-            Thread.Sleep(350); // waiting to make sure you have exited the edit menu fully
-            Input.PressWithMonitor(ForgeUI.ForgeMenu,
-                nextElementKey); // Move down to the next element of the vector
-
-            Thread.Sleep(50); // small delay after
-        }
-    }
-
-    public static async Task<string[]> CollectVector3()
-    {
-        int menuOpenSleep = 100;
-        Log.Information("Collecting Vector3");
-        string[] vectorStrings = new string[3];
-
-
-        for (int i = 0; i < 3; i++)
-        {
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-
-            Thread.Sleep(menuOpenSleep);
-            var clipboard = await BotClipboard.GetClipboardChange();
-            vectorStrings[i] = clipboard;
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.ESCAPE);
-            Thread.Sleep(menuOpenSleep);
-
-            if (i != 2)
-                await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S);
-        }
-
-        return vectorStrings;
-    }
-
-
-    private static void MoveMouseTo(int x, int y)
-    {
-        Input.Simulate.Mouse.MoveMouseTo(0, 0);
-        //Input.Simulate.Mouse.MoveMouseBy(48, 145);
-        Input.Simulate.Mouse.MoveMouseBy(x, y);
-        Thread.Sleep(20);
-    }
+    
 
     private static async void SetRotM(Vector3 pos)
     {

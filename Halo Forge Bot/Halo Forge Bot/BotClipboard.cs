@@ -7,14 +7,14 @@ using System.Windows;
 using Serilog;
 using TextCopy;
 using WindowsInput.Native;
-using WK.Libraries.SharpClipboardNS;
+
 using Clipboard = System.Windows.Forms.Clipboard;
 
 namespace Halo_Forge_Bot;
 
 public static class BotClipboard
 {
-    public static SharpClipboard Clipboard = new SharpClipboard();
+    
     public static string ClipboardText;
 
 
@@ -33,18 +33,5 @@ public static class BotClipboard
 
     private static bool testCheck = false;
 
-    public static void ClipboardChanged(object? sender, SharpClipboard.ClipboardChangedEventArgs args)
-    {
-        Log.Information("SharpClipboard Callback Starting");
-        Log.Information($"-------Clipboard Data:{args.Content}:--- Type:" +
-                        args.Content.GetType() + " " +
-                        args.SourceApplication);
-
-
-        string clipboard = ClipboardService.GetText();
-        ClipboardText = clipboard;
-
-        testCheck = true;
-        Log.Information(clipboard + " ClipboardService Lib");
-    }
+   
 }

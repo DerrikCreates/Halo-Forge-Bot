@@ -16,7 +16,6 @@ using Serilog;
 using Serilog.Formatting.Compact;
 using TextCopy;
 using WindowsInput.Native;
-using WK.Libraries.SharpClipboardNS;
 using Clipboard = System.Windows.Forms.Clipboard;
 using Image = System.Windows.Controls.Image;
 using Point = System.Windows.Point;
@@ -66,7 +65,7 @@ namespace Halo_Forge_Bot
 
         private void GetItemNames_OnClick(object sender, RoutedEventArgs e)
         {
-            Bot.GatherItemStrings();
+           
         }
 
 
