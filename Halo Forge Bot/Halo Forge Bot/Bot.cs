@@ -18,6 +18,7 @@ using ForgeMacros;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using InfiniteForgeConstants.ObjectSettings;
+using Memory;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.Devices;
 using Microsoft.Windows.Themes;
@@ -249,54 +250,54 @@ public static class Bot
         Thread.Sleep(20);
     }
 
-    private static void SetRotM(Vector3 pos)
+    private static async void SetRotM(Vector3 pos)
     {
         pos.X = MathF.Round(pos.X, 5);
         pos.Y = MathF.Round(pos.Y, 5);
         pos.Z = MathF.Round(pos.Z, 5);
 
         // might be correct. todo when you wake up finish testing all axis and object rotation
-        SetAxis(pos.Z, UIIndex["rotZ"]); // zyx, yzx,yxz,
-        SetAxis(pos.X, UIIndex["rotY"]);
-        SetAxis(pos.Y, UIIndex["rotX"]);
+        await SetAxis(pos.Z, UIIndex["rotZ"]); // zyx, yzx,yxz,
+        Thread.Sleep(1000);
+        await SetAxis(pos.X, UIIndex["rotY"]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Y, UIIndex["rotX"]);
     }
 
-    private static void SetPosM(Vector3 pos)
+    private static async Task SetPosM(Vector3 pos)
     {
-        SetAxis(pos.X, UIIndex["posX"]);
-        // Thread.Sleep(1000);
-        SetAxis(pos.Y, UIIndex["posY"]);
-        // Thread.Sleep(1000);
-        SetAxis(pos.Z, UIIndex["posZ"]);
+        await SetAxis(pos.X, UIIndex["posX"]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Y, UIIndex["posY"]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Z, UIIndex["posZ"]);
     }
 
-    private static void SetScaleM(Vector3 pos)
+    private static async Task SetScaleM(Vector3 pos)
     {
-        SetAxis(pos.X, UIIndex["sizeX"]);
-        // Thread.Sleep(1000);
-        SetAxis(pos.Y, UIIndex["sizeY"]);
-        // Thread.Sleep(1000);
-        SetAxis(pos.Z, UIIndex["sizeZ"]);
-        // Thread.Sleep(1000);
+        await SetAxis(pos.X, UIIndex["sizeX"]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Y, UIIndex["sizeY"]);
+        Thread.Sleep(1000);
+        await SetAxis(pos.Z, UIIndex["sizeZ"]);
     }
 
     private static float GetAxis(int uiIndex)
     {
         Log.Information("Get Axis- UIIndex:{UIIndex}", uiIndex);
-        MoveMouseTo(245, 147 + (uiIndex * 33) - 15);
+
+
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
         Thread.Sleep(50);
-
-        Input.Simulate.Mouse.LeftButtonDown();
-        Thread.Sleep(15);
-        Input.Simulate.Mouse.LeftButtonUp();
-
+        Input.PressKey(VirtualKeyCode.RETURN);
         Thread.Sleep(200);
         Input.PressKey(VirtualKeyCode.VK_C, 20, VirtualKeyCode.CONTROL);
         Thread.Sleep(25);
         var text = ClipboardService.GetText();
         Thread.Sleep(50);
         Input.PressKey(VirtualKeyCode.ESCAPE);
-
+        Thread.Sleep(50);
         if (text is not null)
         {
             var axisText = text.ToCharArray().ToList();
@@ -315,22 +316,21 @@ public static class Bot
         return -1;
     }
 
-    private static void SetAxis(float pos, int uiIndex)
+    private static async Task SetAxis(float pos, int uiIndex, int sleep = 100)
     {
         Log.Information("Set Axis with Value: {value} , UIIndex:{UIIndex}", pos, uiIndex);
         pos = MathF.Round(pos, 5);
-        int sleep = 10;
-        MoveMouseTo(245,
-            147 + (uiIndex * 33) - 15); //todo make position relative to know user set position instead of hardcoding
-        Thread.Sleep(sleep);
-        Input.Simulate.Mouse.LeftButtonDown();
-        Thread.Sleep(sleep);
-        Input.Simulate.Mouse.LeftButtonUp();
 
-        Thread.Sleep(50);
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
+        Thread.Sleep(sleep);
+        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
+        Thread.Sleep(300);
+        Input.PressKey(VirtualKeyCode.RETURN);
+        Thread.Sleep(300);
         ClipboardService.SetText(pos.ToString());
-        Input.PressKey(VirtualKeyCode.VK_V, 20, VirtualKeyCode.CONTROL);
-        Thread.Sleep(50);
+        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.BACK);
+        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
+        Thread.Sleep(sleep);
 
 
         Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
@@ -339,42 +339,52 @@ public static class Bot
 
     static Dictionary<string, int> UIIndex = new();
 
+    public static List<ForgeUIFolder?> folders = new();
+
+
+    public static void SetupFolders() //todo use lite db and not josh's bs :)
+    {
+        foreach (var cat in ForgeObjectBrowser.Categories)
+        {
+            foreach (var folder in cat.Value.CategoryFolders)
+            {
+                folders.Add(folder.Value);
+            }
+
+            folders.Add(null);
+        }
+    }
+
     public static async Task DevTesting()
     {
+        UIData();
+
         ForgeUI.SetHaloProcess();
 
-
-        UIData();
-        //ForgeUI.SetHaloProcess();
-        // GetUIData();
+        MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id, out string failReason);
 
 
         UIIndex = new();
         // ForgeUI.SetHaloProcess();
 
 
-        UIIndex.Add("sizeX", 5);
-        UIIndex.Add("sizeY", 6);
-        UIIndex.Add("sizeZ", 7);
+        UIIndex.Add("sizeX", 4);
+        UIIndex.Add("sizeY", 5);
+        UIIndex.Add("sizeZ", 6);
 
 
-        UIIndex.Add("posX", 11);
-        UIIndex.Add("posY", 12);
-        UIIndex.Add("posZ", 13);
+        UIIndex.Add("posX", 10);
+        UIIndex.Add("posY", 11);
+        UIIndex.Add("posZ", 12);
 
-        UIIndex.Add("rotX", 15);
-        UIIndex.Add("rotY", 16);
-        UIIndex.Add("rotZ", 17);
-        // SetScaleM(new Vector3(1, 2, 3));
-        //  SetPosM(new Vector3(4, 5, 6));
-        //  SetRotM(new Vector3(7, 8, 9));
+        UIIndex.Add("rotX", 14);
+        UIIndex.Add("rotY", 15);
+        UIIndex.Add("rotZ", 16);
 
         BondSchema bond = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/SnowMap.mvar");
-        // BlenderMap bond = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText("z:/josh/test.DCjson"));
-        MoveMouseTo(0, 0);
-        int clickSleep = 100;
 
         Dictionary<ObjectId, List<ItemSchema>> Items = new Dictionary<ObjectId, List<ItemSchema>>();
+        SetupFolders();
         int skipCounter = 0;
         foreach (var item in bond.Items)
         {
@@ -389,13 +399,13 @@ public static class Bot
         bool lazy = false;
         foreach (var id in Items)
         {
-            await NavigateToItem(id.Key); // takes us the the item we want to spawn
+            // await NavigateToItem(id.Key); // takes us the the item we want to spawn
             var currentItem = GetItemByID(id.Key);
             skipCounter++;
             if (lazy == false)
             {
                 lazy = true;
-                await UnNavigateToItem(id.Key);
+                //await UnNavigateToItem(id.Key);
                 continue;
             }
 
@@ -406,8 +416,6 @@ public static class Bot
                 {
                     return;
                 }
-
-
                 else
                 {
                     lazy = true;
@@ -415,27 +423,38 @@ public static class Bot
 
 
                 //click to spawn prim cube
-                MoveMouseTo(110, 70); // to object menu and click
-                Input.Simulate.Mouse.LeftButtonClick();
-                Thread.Sleep(10);
-                Input.Simulate.Mouse.LeftButtonClick();
+                // MoveMouseTo(110, 70); // to object menu and click
 
-                Thread.Sleep(100);
+                // mem.WriteMemory(MemoryHelper.RootBrowserHover, "int", "4");
+
+                while (MemoryHelper.Memory.ReadInt(MemoryHelper.TopBrowserHover) != 0)
+                {
+                    Input.PressKey(VirtualKeyCode.VK_E);
+                }
 
 
-/*
-                Input.Simulate.Mouse.LeftButtonDown();
-                Thread.Sleep(clickSleep);
-                Input.Simulate.Mouse.LeftButtonUp();
-                Thread.Sleep(clickSleep);
-                Input.Simulate.Mouse.LeftButtonDown();
-                Thread.Sleep(clickSleep);
-                Input.Simulate.Mouse.LeftButtonUp();
-                */
+                var index = folders.IndexOf(currentItem.ParentFolder) + 3;
+                if (index == -1)
+                {
+                    Log.Error("Could not find index for {Item}", currentItem.ObjectName);
+                }
 
-                Thread.Sleep(clickSleep);
-                await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN);
-                Thread.Sleep(50);
+                Thread.Sleep(200);
+                MemoryHelper.Memory.WriteMemory(MemoryHelper.RootBrowserHover, "int", index.ToString());
+                Thread.Sleep(200);
+                MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", index.ToString());
+
+                Thread.Sleep(200);
+                Input.PressKey(VirtualKeyCode.RETURN);
+                Thread.Sleep(200);
+
+                MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int",
+                    (currentItem.ObjectOrder - 1).ToString());
+                MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int",
+                    (currentItem.ObjectOrder - 1).ToString());
+                Thread.Sleep(200);
+                Input.PressKey(VirtualKeyCode.RETURN);
+                Thread.Sleep(200);
                 saveCounter++;
                 if (saveCounter == 5)
                 {
@@ -444,18 +463,25 @@ public static class Bot
                     Thread.Sleep(300);
                 }
 
+                Thread.Sleep(200);
+                Input.PressKey(VirtualKeyCode.VK_R);
+                Thread.Sleep(200);
+                while (MemoryHelper.Memory.ReadInt(MemoryHelper.TopBrowserHover) != 1)
+                {
+                    Input.PressKey(VirtualKeyCode.VK_E);
+                }
 
-                await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_R);
                 // after spawning check if we have already collected the default scale
 
                 // if not then collect it and save it to the dic
 
-                await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_E);
+
                 if (currentItem.DefaultScale == Vector3.Zero)
                 {
                     //Start collecting scale
                     //currentItem.DefaultObjectMode.
                     //ForgeUI.GetDefaultObjectMode()
+
 
                     var x = GetAxis(UIIndex["sizeX"]);
                     var y = GetAxis(UIIndex["sizeY"]);
@@ -473,30 +499,20 @@ public static class Bot
                 }
 
 
-                Thread.Sleep(500);
-                MoveMouseTo(180, 70); // move to obj props and click
-                Input.Simulate.Mouse.LeftButtonDown();
-                Thread.Sleep(clickSleep);
-                Input.Simulate.Mouse.LeftButtonUp();
-                Thread.Sleep(clickSleep);
-
-                for (int i = 0; i < 5; i++)
-                {
-                    Input.Simulate.Mouse.VerticalScroll(1);
-                    Thread.Sleep(5);
-                }
-
+                MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
+                Thread.Sleep(10);
                 Vector3 realScale =
                     Vector3.Multiply(new Vector3(item.SettingsContainer.Scale.First().ScaleContainer.X,
                         item.SettingsContainer.Scale.First().ScaleContainer.Y,
                         item.SettingsContainer.Scale.First().ScaleContainer.Z), currentItem.DefaultScale);
-                SetScaleM(realScale);
+
+                await SetScaleM(realScale);
 
                 var position = Vector3.Multiply(10, new Vector3(item.Position.X, item.Position.Y, item.Position.Z));
                 position.X = MathF.Round(position.X, 5);
                 position.Y = MathF.Round(position.Y, 5);
                 position.Z = MathF.Round(position.Z, 5);
-                SetPosM(position);
+                await SetPosM(position);
 
                 var forward = new Vector3(item.Forward.X, item.Forward.Y, item.Forward.Z);
                 var up = new Vector3(item.Up.X, item.Up.Y, item.Up.Z);
@@ -505,13 +521,6 @@ public static class Bot
 
                 SetRotM(r);
             }
-
-            MoveMouseTo(110, 70); // to object menu and click
-            Input.Simulate.Mouse.LeftButtonClick();
-            Thread.Sleep(10);
-            Input.Simulate.Mouse.LeftButtonClick();
-            //await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_Q);
-            await UnNavigateToItem(id.Key);
         }
 
         return;
