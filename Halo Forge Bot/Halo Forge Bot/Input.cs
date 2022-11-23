@@ -12,9 +12,9 @@ namespace Halo_Forge_Bot;
 public static class Input
 {
     public static InputSimulator Simulate = new InputSimulator();
+
     public static LowLevelMouseHook MouseHook = new LowLevelMouseHook();
     public static LowLevelKeyboardHook KeyboardHook = new LowLevelKeyboardHook();
-
     public static bool InputActive;
     public static bool EXIT;
 
@@ -23,21 +23,25 @@ public static class Input
         InputActive = true;
         if (!MouseHook.Hooked) MouseHook.StartHook();
         if (!KeyboardHook.Hooked) KeyboardHook.StartHook();
-        KeyboardHook.KeyIntercepted +=
-            (int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled) =>
-            {
-                if (code == (int)VirtualKeyCode.LEFT)
-                {
-                    MouseHook.Dispose();
-                    KeyboardHook.Dispose();
-
-                    EXIT = true;
-
-                    //throw new Exception($"Implement proper exit here");
-                }
-            };
+        KeyboardHook.KeyIntercepted += InputHook;
     }
 
+    private static void InputHook(int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled)
+    {
+        if (code == (int)VirtualKeyCode.LEFT)
+        {
+            KeyboardHook.KeyIntercepted -= InputHook;
+            KeyboardHook.Unhook();
+            MouseHook.Unhook();
+
+            MouseHook.Dispose();
+            KeyboardHook.Dispose();
+
+            //EXIT = true;
+
+            //throw new Exception($"Implement proper exit here");
+        }
+    }
 
     /// <summary>
     /// Modifier key defaults to control
