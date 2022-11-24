@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,7 @@ using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using InfiniteForgeConstants.ObjectSettings;
+using Memory;
 using Newtonsoft.Json;
 using Serilog;
 using TextCopy;
@@ -52,15 +54,18 @@ public static class Bot
     public static async Task DevTesting()
     {
         LoadItemData();
-
+        // BondSchema map = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/SnowMap.mvar");
 
         ForgeUI.SetHaloProcess();
 
 
-        while (MemoryHelper.GetEditMenuState() != 1)
-        {
-            Input.PressKey(VirtualKeyCode.RETURN);
-        }
+        int count = 0;
+
+        List<string?> data = new();
+
+
+        var b = await Task.Run(CollectElement);
+
 
         return;
 
@@ -113,7 +118,7 @@ public static class Bot
 
                 // mem.WriteMemory(MemoryHelper.RootBrowserHover, "int", "4");
 
-                while (MemoryHelper.Memory.ReadInt(MemoryHelper.TopBrowserHover) != 0)
+                while (MemoryHelper.Memory.ReadInt(MemoryHelper._TopBrowserHover) != 0)
                 {
                     Input.PressKey(VirtualKeyCode.VK_E);
                 }
@@ -128,15 +133,15 @@ public static class Bot
                 Thread.Sleep(200);
                 MemoryHelper.Memory.WriteMemory(MemoryHelper.RootBrowserHover, "int", index.ToString());
                 Thread.Sleep(200);
-                MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", index.ToString());
+                MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", index.ToString());
 
                 Thread.Sleep(200);
                 Input.PressKey(VirtualKeyCode.RETURN);
                 Thread.Sleep(200);
 
-                MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int",
+                MemoryHelper.Memory.WriteMemory(MemoryHelper._SubBrowserHover, "int",
                     (currentItem.ObjectOrder - 1).ToString());
-                MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int",
+                MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int",
                     (currentItem.ObjectOrder - 1).ToString());
                 Thread.Sleep(200);
                 Input.PressKey(VirtualKeyCode.RETURN);
@@ -152,7 +157,7 @@ public static class Bot
                 Thread.Sleep(200);
                 Input.PressKey(VirtualKeyCode.VK_R);
                 Thread.Sleep(200);
-                while (MemoryHelper.Memory.ReadInt(MemoryHelper.TopBrowserHover) != 1)
+                while (MemoryHelper.Memory.ReadInt(MemoryHelper._TopBrowserHover) != 1)
                 {
                     Input.PressKey(VirtualKeyCode.VK_E);
                 }
@@ -176,7 +181,7 @@ public static class Bot
                 }
 
 
-                MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
+                MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", "0");
                 Thread.Sleep(10);
                 Vector3 realScale =
                     Vector3.Multiply(new Vector3(item.SettingsContainer.Scale.First().ScaleContainer.X,
@@ -199,6 +204,41 @@ public static class Bot
                 SetRotM(r);
             }
         }
+    }
+
+    private static int CollectElement()
+    {
+        while (MemoryHelper.GetTopBrowserHover() != 1)
+        {
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
+            //Input.PressKey(VirtualKeyCode.VK_Q);
+        }
+
+        MemoryHelper.FreezeGlobalHover(StaticByDefault.Layout[PropertyName.SizeX]);
+        Thread.Sleep(100);
+        MemoryHelper.UnFreezeGlobalHover();
+
+        while (MemoryHelper.GetEditMenuState() == 0)
+        {
+            //Thread.Sleep(50);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+        }
+
+        Thread.Sleep(300);
+        Input.Simulate.Keyboard.ModifiedKeyStroke
+            (VirtualKeyCode.CONTROL, VirtualKeyCode.VK_C);
+        //data.Add(ClipboardService.GetText());
+        Thread.Sleep(300);
+
+        while (MemoryHelper.GetEditMenuState() == 1)
+        {
+           // Thread.Sleep(300);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+        }
+
+        Thread.Sleep(300);
+
+        return 1;
     }
 
     private static async void SetRotM(Vector3 pos)
@@ -238,8 +278,8 @@ public static class Bot
         Log.Information("Get Axis- UIIndex:{UIIndex}", uiIndex);
 
 
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
+        MemoryHelper.Memory.WriteMemory(MemoryHelper._SubBrowserHover, "int", uiIndex.ToString());
+        MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", "0");
         Thread.Sleep(50);
         Input.PressKey(VirtualKeyCode.RETURN);
         Thread.Sleep(200);
@@ -272,9 +312,9 @@ public static class Bot
         Log.Information("Set Axis with Value: {value} , UIIndex:{UIIndex}", pos, uiIndex);
         pos = MathF.Round(pos, 5);
 
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.SubBrowserHover, "int", uiIndex.ToString());
+        MemoryHelper.Memory.WriteMemory(MemoryHelper._SubBrowserHover, "int", uiIndex.ToString());
         Thread.Sleep(sleep);
-        MemoryHelper.Memory.WriteMemory(MemoryHelper.ScrollBar, "int", "0");
+        MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", "0");
         Thread.Sleep(300);
         Input.PressKey(VirtualKeyCode.RETURN);
         Thread.Sleep(300);

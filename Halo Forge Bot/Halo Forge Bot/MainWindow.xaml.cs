@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using Halo_Forge_Bot.GameUI;
 using Halo_Forge_Bot.Utilities;
+using Memory;
 using Serilog;
 using Serilog.Formatting.Compact;
 using Utils = Halo_Forge_Bot.Utilities.Utils;
@@ -16,7 +19,9 @@ namespace Halo_Forge_Bot
     {
         public MainWindow()
         {
+            MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
             Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
                 .Enrich.WithThreadId()
                 .WriteTo.Console()
                 .WriteTo.File($"{Utils.ExePath}/log.txt")
@@ -27,14 +32,14 @@ namespace Halo_Forge_Bot
             Log.Information("----------APP START----------");
 
             // BotClipboard.clipboard.ClipboardChanged += BotClipboard.ClipboardChanged;
-            
+
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
 
             Directory.CreateDirectory(Utils.ExePath + "/images/");
+
             InitializeComponent();
             Input.InitInput();
-            ForgeUI.SetHaloProcess();
         }
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
@@ -50,7 +55,6 @@ namespace Halo_Forge_Bot
 
         private void GetItemNames_OnClick(object sender, RoutedEventArgs e)
         {
-           
         }
 
 
@@ -60,7 +64,6 @@ namespace Halo_Forge_Bot
             //399 671
             // new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
             var rectangle = await Task.Run(ForgeUI.GetRectFromMouse);
-            
         }
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -68,9 +71,15 @@ namespace Halo_Forge_Bot
             var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
 
-            Bot.DevTesting();
+            await Bot.DevTesting();
 
             // await Task.Run(Bot.DevTesting);
+        }
+
+
+        private void UpdateMem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MemoryTestUI.Text = MemoryHelper.GetEditBoxText().ToString();
         }
     }
 }
