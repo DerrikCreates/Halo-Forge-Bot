@@ -6,9 +6,11 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 using BondReader;
 using BondReader.Schemas;
 using BondReader.Schemas.Items;
+using Halo_Forge_Bot.DataModels;
 using Halo_Forge_Bot.GameUI;
 using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI;
@@ -24,11 +26,43 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
+    private static Dictionary<ObjectId, UIItem> UIItems = new();
+
+    private static void LoadItemData()
+    {
+        var separators = new[] { ':', '>' };
+        string path = Utils.ExePath + "/RawData/ForgeObjects.txt";
+        var lines = File.ReadAllLines(path);
+
+        for (int i = 0; i < lines.Count(); i++)
+        {
+            var itemData = new UIItem();
+
+            var data = lines[i].Split(separators);
+
+            itemData.Category = data[0].Trim();
+            itemData.SubCategory = data[1].Trim();
+            itemData.ItemName = data[2].Trim();
+            itemData.ItemId = (ObjectId)int.Parse(data[3].Trim());
+
+            UIItems.Add(itemData.ItemId, itemData);
+        }
+    }
+
     public static async Task DevTesting()
     {
-        UIData();
+        LoadItemData();
+
 
         ForgeUI.SetHaloProcess();
+
+
+        while (MemoryHelper.GetEditMenuState() != 1)
+        {
+            Input.PressKey(VirtualKeyCode.RETURN);
+        }
+
+        return;
 
         MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id, out string failReason);
 
