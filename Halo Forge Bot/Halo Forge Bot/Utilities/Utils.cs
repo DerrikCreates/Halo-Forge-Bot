@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 
-namespace Halo_Forge_Bot.Utilitities;
+namespace Halo_Forge_Bot.Utilities;
 
 public static class Utils
 {

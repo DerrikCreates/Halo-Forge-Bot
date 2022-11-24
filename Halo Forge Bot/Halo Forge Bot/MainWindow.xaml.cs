@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using System.Windows;
 using Halo_Forge_Bot.GameUI;
+using Halo_Forge_Bot.Utilities;
 using Serilog;
 using Serilog.Formatting.Compact;
-using Utils = Halo_Forge_Bot.Utilitities.Utils;
+using Utils = Halo_Forge_Bot.Utilities.Utils;
 
-namespace Halo_Forge_Bot.UI
+namespace Halo_Forge_Bot
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

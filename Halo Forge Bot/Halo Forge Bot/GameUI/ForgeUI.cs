@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Halo_Forge_Bot.Utilitities;
+using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI;
 using Size = System.Drawing.Size;
 

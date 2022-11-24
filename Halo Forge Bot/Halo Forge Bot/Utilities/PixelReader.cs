@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using Serilog;
 
-namespace Halo_Forge_Bot.Utilitities;
+namespace Halo_Forge_Bot.Utilities;
 
 public static class PixelReader
 {

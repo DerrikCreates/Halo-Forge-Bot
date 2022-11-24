@@ -3,13 +3,12 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using Halo_Forge_Bot.GameUI;
-using Halo_Forge_Bot.Utilitities;
 using ManagedWinapi.Hooks;
 using Serilog;
 using WindowsInput;
 using WindowsInput.Native;
 
-namespace Halo_Forge_Bot;
+namespace Halo_Forge_Bot.Utilities;
 
 public static class Input
 {

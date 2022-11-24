@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Halo_Forge_Bot.UI
+namespace Halo_Forge_Bot
 {
     /// <summary>
     /// Interaction logic for App.xaml

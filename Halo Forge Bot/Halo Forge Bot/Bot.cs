@@ -10,7 +10,7 @@ using BondReader;
 using BondReader.Schemas;
 using BondReader.Schemas.Items;
 using Halo_Forge_Bot.GameUI;
-using Halo_Forge_Bot.Utilitities;
+using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using InfiniteForgeConstants.ObjectSettings;
