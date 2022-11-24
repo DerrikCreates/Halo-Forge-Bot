@@ -5,30 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Halo_Forge_Bot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid ShowGridLines="True">
+        Title="MainWindow" Height="450" Width="800" MinWidth="800" MinHeight="450">
+
+
+    <Grid ShowGridLines="False">
+        <Grid.Resources>
+            <Style x:Key="DefaultMargin">
+                <Setter Property="FrameworkElement.Margin" Value="0,0,1,1" />
+
+            </Style>
+        </Grid.Resources>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+
         </Grid.RowDefinitions>
-        
-        <Button Name="Test" Height="20" Width="50" Click="TestBot_OnClick" >Test</Button>
-        
-        <Button Grid.Row="2" Grid.Column="0" Name="DownloadMvarButton" Height="20" Width="100"  Click="DownloadMvarButton_OnClick" >Download .mvar</Button>
+
+        <Button Name="Test" Height="20" Width="50" Click="TestBot_OnClick">Test</Button>
+
+        <Button Grid.Row="2" Grid.Column="0" Name="DownloadMvarButton" Height="20" Width="100"
+                Click="DownloadMvarButton_OnClick">
+            Download .mvar
+        </Button>
         <TextBox Name="FileShareLinkTextBox" Grid.Row="1" Grid.Column="0" Height="20" Width="100"> FileShare Link</TextBox>
-        
-        <Button Grid.Row="2" Grid.Column="1" Name="GetItemNames" Height="20" Width="100"  Click="GetItemNames_OnClick" >Get Item Names</Button>
-        <Button Grid.Row="2" Grid.Column="2"  Height="20" Width="100"  Click="DebugRect_OnClick" >Debug Rect</Button>
-        <Button Grid.Row="3" Grid.Column="2"  Height="20" Width="100"  Click="ButtonBase_OnClick" >Dev Testing</Button>
+
+        <Button Grid.Row="2" Grid.Column="1" Name="GetItemNames" Height="20" Width="100" Click="GetItemNames_OnClick">Get Item Names</Button>
+        <Button Grid.Row="1" Grid.Column="2" Height="20" Width="100" Click="DebugRect_OnClick">Debug Rect</Button>
+        <Button Grid.Row="3" Grid.Column="2" Height="20" Width="100" Click="ButtonBase_OnClick">Dev Testing</Button>
         <TextBox Name="ForgeDataPathTextBox" Grid.Row="0" Grid.Column="0" Height="20" Width="100"> ForgeDataPath</TextBox>
-        <TextBox Name="MemoryTestUI" Grid.Row="1" Grid.Column="1"  Height="20" Width="100">Memory TestUI</TextBox>
-        <Button Grid.Row="1" Grid.Column="2"  Height="20" Width="100"  Click="UpdateMem_OnClick" >Update Memory Test</Button>
+        <TextBox Name="MemoryTestUI" Grid.Row="1" Grid.Column="1" Height="20" Width="100">Memory TestUI</TextBox>
+        
+
+        <Grid Grid.Row="0" Grid.Column="2">
+
+            <StackPanel>
+
+                <TextBox Name="DebugMemoryLabel" IsReadOnly="True" Style="{StaticResource DefaultMargin}" HorizontalAlignment="Center"></TextBox>
+                <TextBox Height="25" Name="DebugMemoryAddressTextBox" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center" Style="{StaticResource DefaultMargin}">
+                    Memory Address
+                </TextBox>
+                <TextBox Height="25" Name="DebugMemoryAddressLengthTextBox" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center" Style="{StaticResource DefaultMargin}">
+                    Memory Read Length
+                </TextBox>
+                <Button Name="ReadAddressButton" Style="{StaticResource DefaultMargin}"
+                        Click="ReadAddressButton_OnClick">
+                    Read Address
+                </Button>
+                <Button Name="AttachToHaloButton" Margin="0,5,0,0" Height="50" FontSize="20"
+                        Click="AttachToHalo_OnClick">
+                    Attach To Halo
+                </Button>
+                <TextBox IsReadOnly="True" FontSize="9" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                         Name="CurrentPointersLabel"  Margin="0,5,0,0" VerticalContentAlignment="Top" Height="75" Width="190">
+                </TextBox>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>

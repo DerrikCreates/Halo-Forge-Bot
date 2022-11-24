@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -40,6 +42,16 @@ namespace Halo_Forge_Bot
 
             InitializeComponent();
             Input.InitInput();
+
+            var staticFields = typeof(MemoryHelper).GetFields();
+            foreach (var field in staticFields)
+            {
+                if (field.FieldType == typeof(string))
+                {
+                    CurrentPointersLabel.Text += Environment.NewLine + field.Name.ToString() + ": " +
+                                                 (string)field.GetValue(null);
+                }
+            }
         }
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
@@ -79,7 +91,23 @@ namespace Halo_Forge_Bot
 
         private void UpdateMem_OnClick(object sender, RoutedEventArgs e)
         {
-            MemoryTestUI.Text = MemoryHelper.GetEditBoxText().ToString();
+            MemoryTestUI.Text = MemoryHelper.GetEditBoxText();
+        }
+
+
+        private void ReadAddressButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var address = DebugMemoryAddressTextBox.Text;
+            if (int.TryParse(DebugMemoryAddressLengthTextBox.Text, out int result))
+            {
+                var data = MemoryHelper.Memory.ReadBytes(address, result);
+                DebugMemoryLabel.Text = Convert.ToHexString(data);
+            }
+        }
+
+        private void AttachToHalo_OnClick(object sender, RoutedEventArgs e)
+        {
+            MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id);
         }
     }
 }
