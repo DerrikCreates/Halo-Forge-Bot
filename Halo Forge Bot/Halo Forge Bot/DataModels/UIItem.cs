@@ -8,4 +8,6 @@ public class UIItem
     public string SubCategory;
     public string ItemName;
     public ObjectId ItemId;
+    public int BrowserIndex;
+    public int SubIndex;
 }

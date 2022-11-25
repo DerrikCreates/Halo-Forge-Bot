@@ -7,7 +7,9 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Windows.Threading;
 using BondReader;
 using BondReader.Schemas;
 using BondReader.Schemas.Items;
@@ -22,6 +24,7 @@ using Newtonsoft.Json;
 using Serilog;
 using TextCopy;
 using WindowsInput.Native;
+using Clipboard = TextCopy.Clipboard;
 
 
 namespace Halo_Forge_Bot;
@@ -36,6 +39,10 @@ public static class Bot
         string path = Utils.ExePath + "/RawData/ForgeObjects.txt";
         var lines = File.ReadAllLines(path);
 
+        string lastSubFolder = "";
+        string lastCat = "";
+        int subFolderIndex = 0;
+        int catIndex = 0;
         for (int i = 0; i < lines.Count(); i++)
         {
             var itemData = new UIItem();
@@ -47,198 +54,351 @@ public static class Bot
             itemData.ItemName = data[2].Trim();
             itemData.ItemId = (ObjectId)int.Parse(data[3].Trim());
 
+            if (lastCat != itemData.Category)
+            {
+                catIndex++;
+            }
+
+            if (lastSubFolder != itemData.SubCategory)
+            {
+                subFolderIndex++;
+            }
+
+            // itemData.= subFolderIndex + catIndex;
             UIItems.Add(itemData.ItemId, itemData);
+            lastSubFolder = itemData.SubCategory;
         }
+    }
+
+    private static int CalcScroll(int uiSize, int cursorLocation)
+    {
+        if (uiSize < 13)
+        {
+            return 0;
+        }
+
+        int diff = cursorLocation - uiSize;
+        if (diff < 13)
+        {
+            return uiSize + 13;
+        }
+
+        return cursorLocation;
     }
 
     public static async Task DevTesting()
     {
-        LoadItemData();
-        // BondSchema map = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/SnowMap.mvar");
+        // LoadItemData();
+        UIData();
+        var map = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/Temp/SnowMap.mvar");
 
-        ForgeUI.SetHaloProcess();
-
-
-        int count = 0;
-
-        List<string?> data = new();
-
-
-        var b = await Task.Run(CollectElement);
-
-
-        return;
-
-        MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id, out string failReason);
-
-
-        BondSchema bond = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/SnowMap.mvar");
-
-        Dictionary<ObjectId, List<ItemSchema>> Items = new Dictionary<ObjectId, List<ItemSchema>>();
-        SetupFolders();
-        int skipCounter = 0;
-        foreach (var item in bond.Items)
+        Dictionary<ObjectId, List<ItemSchema>> items = new();
+        foreach (var itemSchema in map.Items)
         {
-            if (!Items.ContainsKey((ObjectId)item.ItemId.Int))
-            {
-                Items.Add((ObjectId)item.ItemId.Int, new List<ItemSchema>());
-            }
+            var id = (ObjectId)itemSchema.ItemId.Int;
 
-            Items[(ObjectId)item.ItemId.Int].Add(item);
-        }
 
-        bool lazy = false;
-        foreach (var id in Items)
-        {
-            // await NavigateToItem(id.Key); // takes us the the item we want to spawn
-            var currentItem = GetItemByID(id.Key);
-            skipCounter++;
-            if (lazy == false)
+            if (items.ContainsKey(id))
             {
-                lazy = true;
-                //await UnNavigateToItem(id.Key);
+                items[id].Add(itemSchema);
                 continue;
             }
 
-            int saveCounter = 0;
-            foreach (var item in id.Value)
+            items.Add(id, new List<ItemSchema>());
+            items[id].Add(itemSchema);
+        }
+
+        ForgeUI.SetHaloProcess();
+        int itemCountID = 0;
+        int saveCount = 0;
+        foreach (var item in items)
+        {
+            while (MemoryHelper.GetGlobalHover() != 0)
             {
-                if (Input.EXIT)
-                {
-                    return;
-                }
-                else
-                {
-                    lazy = true;
-                }
-
-
-                //click to spawn prim cube
-                // MoveMouseTo(110, 70); // to object menu and click
-
-                // mem.WriteMemory(MemoryHelper.RootBrowserHover, "int", "4");
-
-                while (MemoryHelper.Memory.ReadInt(MemoryHelper._TopBrowserHover) != 0)
-                {
-                    Input.PressKey(VirtualKeyCode.VK_E);
-                }
-
-
-                var index = folders.IndexOf(currentItem.ParentFolder) + 3;
-                if (index == -1)
-                {
-                    Log.Error("Could not find index for {Item}", currentItem.ObjectName);
-                }
-
-                Thread.Sleep(200);
-                MemoryHelper.Memory.WriteMemory(MemoryHelper.RootBrowserHover, "int", index.ToString());
-                Thread.Sleep(200);
-                MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", index.ToString());
-
-                Thread.Sleep(200);
-                Input.PressKey(VirtualKeyCode.RETURN);
-                Thread.Sleep(200);
-
-                MemoryHelper.Memory.WriteMemory(MemoryHelper._SubBrowserHover, "int",
-                    (currentItem.ObjectOrder - 1).ToString());
-                MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int",
-                    (currentItem.ObjectOrder - 1).ToString());
-                Thread.Sleep(200);
-                Input.PressKey(VirtualKeyCode.RETURN);
-                Thread.Sleep(200);
-                saveCounter++;
-                if (saveCounter == 5)
-                {
-                    saveCounter = 0;
-                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                    Thread.Sleep(300);
-                }
-
-                Thread.Sleep(200);
-                Input.PressKey(VirtualKeyCode.VK_R);
-                Thread.Sleep(200);
-                while (MemoryHelper.Memory.ReadInt(MemoryHelper._TopBrowserHover) != 1)
-                {
-                    Input.PressKey(VirtualKeyCode.VK_E);
-                }
-
-
-                if (currentItem.DefaultScale == Vector3.Zero)
-                {
-                    var x = GetAxis(StaticByDefault.Layout[PropertyName.Forward]);
-                    var y = GetAxis(StaticByDefault.Layout[PropertyName.Horizontal]);
-                    var z = GetAxis(StaticByDefault.Layout[PropertyName.Vertical]);
-
-                    currentItem.DefaultScale = new Vector3(x, y, z);
-
-                    Utils.SaveJson(ForgeObjectBrowser.Categories, "ObjectBrowser");
-                }
-
-                if (currentItem.DefaultObjectMode == ForgeUIObjectModeEnum.NONE)
-                {
-                    // collect the default object mode and save it to the dict
-                    currentItem.DefaultObjectMode = ForgeUI.GetDefaultObjectMode();
-                }
-
-
-                MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", "0");
-                Thread.Sleep(10);
-                Vector3 realScale =
-                    Vector3.Multiply(new Vector3(item.SettingsContainer.Scale.First().ScaleContainer.X,
-                        item.SettingsContainer.Scale.First().ScaleContainer.Y,
-                        item.SettingsContainer.Scale.First().ScaleContainer.Z), currentItem.DefaultScale);
-
-                await SetScaleM(realScale);
-
-                var position = Vector3.Multiply(10, new Vector3(item.Position.X, item.Position.Y, item.Position.Z));
-                position.X = MathF.Round(position.X, 5);
-                position.Y = MathF.Round(position.Y, 5);
-                position.Z = MathF.Round(position.Z, 5);
-                await SetPosM(position);
-
-                var forward = new Vector3(item.Forward.X, item.Forward.Y, item.Forward.Z);
-                var up = new Vector3(item.Up.X, item.Up.Y, item.Up.Z);
-
-                var r = Utils.DidFishSaveTheDay(forward, up);
-
-                SetRotM(r);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
             }
+
+            await Task.Delay(200);
+
+            while (MemoryHelper.GetTopBrowserHover() != 0) // set item browser to active menu
+            {
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
+                await Task.Delay(10);
+            }
+
+            var currentObjectId = item.Key;
+
+            ForgeObjectBrowser.FindItem(currentObjectId, out ForgeUIObject? mapitem);
+
+            if (mapitem == null)
+            {
+                Log.Warning("Skipping null item, MapId: {id}, Name: {name} ", Enum.GetName(currentObjectId));
+                continue;
+            }
+            //navigate to item with memory checks
+
+            while (MemoryHelper.GetGlobalHover() !=
+                   mapitem.ParentFolder.ParentCategory.CategoryOrder - 1) //Set cursor to correct cat
+            {
+                Log.Debug("Move To Cat currentHover:{Hover} , Required Hover: {Reqired}",
+                    MemoryHelper.GetGlobalHover(), mapitem.ParentFolder.ParentCategory.CategoryOrder - 1);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
+
+                await Task.Delay(10);
+            }
+
+            await Task.Delay(200);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // open the cat
+            await Task.Delay(200);
+
+
+            while (MemoryHelper.GetGlobalHover() !=
+                   mapitem.ParentFolder.ParentCategory.CategoryOrder +
+                   mapitem.ParentFolder.FolderOffset - 1) // move cursor to sub cat
+            {
+                Log.Debug("Move To subCat currentHover:{Hover} , Required Hover: {Reqired}",
+                    MemoryHelper.GetGlobalHover(),
+                    mapitem.ParentFolder.ParentCategory.CategoryOrder +
+                    mapitem.ParentFolder.FolderOffset - 1);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
+
+                await Task.Delay(10);
+            }
+
+            await Task.Delay(200);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // enter the sub cat
+            await Task.Delay(200);
+
+
+            while (MemoryHelper.GetGlobalHover() != mapitem.ObjectOrder - 1) // hover item
+            {
+                Input.PressKey(VirtualKeyCode.VK_S);
+                await Task.Delay(10);
+            }
+
+
+            foreach (var itemSchema in item.Value)
+            {
+                if (saveCount == 5)
+                {
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                    saveCount = 0;
+                }
+
+                saveCount++;
+                await Task.Delay(200);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // spawn the item?
+                await Task.Delay(200);
+
+                /*
+                while (MemoryHelper.GetEditMenuState() == 0)
+                {
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.F2);
+                }
+
+                await Task.Delay(75);
+
+                var newName = $"{Enum.GetName((ObjectId)itemSchema.ItemId.Int)}--{itemCountID}--";
+                await ClipboardService.SetTextAsync(newName);
+                while (await ClipboardService.GetTextAsync() != newName)
+                {
+                    await ClipboardService.SetTextAsync(newName);
+                }
+
+                await Task.Delay(10);
+                while (MemoryHelper.GetEditBoxText() != newName)
+                {
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
+                    await Task.Delay(10);
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
+                    await Task.Delay(10);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+                    await Task.Delay(10);
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+                }
+
+
+                while (MemoryHelper.GetMenusVisible() != 0)
+                {
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+                    await Task.Delay(10);
+                }
+                */
+
+                while (MemoryHelper.GetMenusVisible() == 0)
+                {
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
+                    await Task.Delay(50);
+                }
+
+
+                while (MemoryHelper.GetTopBrowserHover() != 1)
+                {
+                    await Task.Delay(50);
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
+                    await Task.Delay(5);
+                }
+
+                var defaultScale = MemoryHelper.GetSelectedScale();
+
+                var xScale = itemSchema.SettingsContainer.Scale.First().ScaleContainer.X;
+                var yScale = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Y;
+                var zScale = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z;
+
+                var itemScale = new Vector3(xScale, yScale, zScale);
+
+                var realScale = (itemScale * defaultScale); //Vector3.Multiply(itemScale, defaultScale) * 10;
+
+                await SetProp(realScale.X.ToString(), StaticByDefault.Layout[PropertyName.SizeX]);
+                await SetProp(realScale.Y.ToString(), StaticByDefault.Layout[PropertyName.SizeY]);
+                await SetProp(realScale.Z.ToString(), StaticByDefault.Layout[PropertyName.SizeZ]);
+
+
+                var xPos = itemSchema.Position.X * 10;
+                var yPos = itemSchema.Position.Y * 10;
+                var zPos = itemSchema.Position.Z * 10;
+
+                await SetProp(xPos.ToString(), StaticByDefault.Layout[PropertyName.Forward]);
+                await SetProp(yPos.ToString(), StaticByDefault.Layout[PropertyName.Horizontal]);
+                await SetProp(zPos.ToString(), StaticByDefault.Layout[PropertyName.Vertical]);
+
+                var xForward = itemSchema.Forward.X;
+                var yForward = itemSchema.Forward.Y;
+                var zForward = itemSchema.Forward.Z;
+
+                var xUp = itemSchema.Up.X;
+                var yUp = itemSchema.Up.Y;
+                var zUp = itemSchema.Up.Z;
+
+                var rotation =
+                    Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, xForward), new Vector3(xUp, yUp, zUp));
+
+
+                await SetProp(rotation.X.ToString(), StaticByDefault.Layout[PropertyName.Roll]);
+                await SetProp(rotation.X.ToString(), StaticByDefault.Layout[PropertyName.Pitch], VirtualKeyCode.VK_W);
+                await SetProp(rotation.Y.ToString(), StaticByDefault.Layout[PropertyName.Yaw], VirtualKeyCode.VK_W);
+
+                await Task.Delay(50);
+
+                while (MemoryHelper.GetTopBrowserHover() != 0)
+                {
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
+                    await Task.Delay(10);
+                }
+
+
+                itemCountID++;
+            }
+
+            await Task.Delay(75);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
+            await Task.Delay(100);
+
+            while (MemoryHelper.GetGlobalHover() != mapitem.ParentFolder.ParentCategory.CategoryOrder - 1)
+            {
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+                await Task.Delay(10);
+            }
+
+            await Task.Delay(100);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            await Task.Delay(500);
+            // Input.Simulate.Keyboard
+
+            //MemoryHelper.SetGlobalHover(UIItems[currentObjectId].index);
+            //  MemoryHelper.SetBrowserScroll(UIItems[currentObjectId].index);
         }
     }
 
-    private static int CollectElement()
+    private static async Task SetProp(string data, int index, VirtualKeyCode key = VirtualKeyCode.VK_S)
     {
-        while (MemoryHelper.GetTopBrowserHover() != 1)
+        while (MemoryHelper.GetGlobalHover() != index)
+        {
+            Input.Simulate.Keyboard.KeyPress(key);
+            await Task.Delay(15);
+        }
+
+
+        //          var selectedPosition = MemoryHelper.GetSelectedPosition();
+
+        while (MemoryHelper.GetEditMenuState() == 0)
+        {
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            await Task.Delay(50);
+        }
+
+        var clipData = "";
+        while (await ClipboardService.GetTextAsync() != data)
+        {
+            await ClipboardService.SetTextAsync(data);
+        }
+
+
+        while (MemoryHelper.GetEditBoxText() != data)
+        {
+            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
+            await Task.Delay(150);
+            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+            await Task.Delay(50);
+        }
+
+        while (MemoryHelper.GetEditMenuState() != 0)
+        {
+            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            await Task.Delay(50);
+        }
+    }
+
+    private static async Task<string> CollectElement(int elementId, int menu = 1)
+    {
+        while (MemoryHelper.GetTopBrowserHover() != menu)
         {
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
             //Input.PressKey(VirtualKeyCode.VK_Q);
         }
 
-        MemoryHelper.FreezeGlobalHover(StaticByDefault.Layout[PropertyName.SizeX]);
-        Thread.Sleep(100);
+        MemoryHelper.FreezeGlobalHover(elementId);
+        while (MemoryHelper.GetGlobalHover() != elementId)
+        {
+            await Task.Delay(10);
+        }
+
         MemoryHelper.UnFreezeGlobalHover();
 
         while (MemoryHelper.GetEditMenuState() == 0)
         {
             //Thread.Sleep(50);
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            Thread.Sleep(100);
         }
 
-        Thread.Sleep(300);
-        Input.Simulate.Keyboard.ModifiedKeyStroke
-            (VirtualKeyCode.CONTROL, VirtualKeyCode.VK_C);
-        //data.Add(ClipboardService.GetText());
-        Thread.Sleep(300);
+        var a = MemoryHelper.GetEditBoxText();
+        float value;
 
-        while (MemoryHelper.GetEditMenuState() == 1)
+        while (float.TryParse(a, out value) == false)
         {
-           // Thread.Sleep(300);
+            a = MemoryHelper.GetEditBoxText();
+        }
+
+        //double check
+        if (float.TryParse(MemoryHelper.GetEditBoxText(), out float valueCheck) == true)
+        {
+            if (Math.Abs(value - valueCheck) < 0.01 == false)
+            {
+                Log.Error("Value collected was not correct");
+            }
+        }
+
+
+        while (MemoryHelper.GetEditMenuState() != 0)
+        {
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
         }
 
-        Thread.Sleep(300);
-
-        return 1;
+        await ClipboardService.SetTextAsync("");
+        Thread.Sleep(350);
+        return a;
     }
 
     private static async void SetRotM(Vector3 pos)
@@ -278,8 +438,8 @@ public static class Bot
         Log.Information("Get Axis- UIIndex:{UIIndex}", uiIndex);
 
 
-        MemoryHelper.Memory.WriteMemory(MemoryHelper._SubBrowserHover, "int", uiIndex.ToString());
-        MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", "0");
+        MemoryHelper.Memory.WriteMemory(HaloPointers.SubBrowserHover, "int", uiIndex.ToString());
+        MemoryHelper.Memory.WriteMemory(HaloPointers.BrowserScroll, "int", "0");
         Thread.Sleep(50);
         Input.PressKey(VirtualKeyCode.RETURN);
         Thread.Sleep(200);
@@ -312,9 +472,9 @@ public static class Bot
         Log.Information("Set Axis with Value: {value} , UIIndex:{UIIndex}", pos, uiIndex);
         pos = MathF.Round(pos, 5);
 
-        MemoryHelper.Memory.WriteMemory(MemoryHelper._SubBrowserHover, "int", uiIndex.ToString());
+        MemoryHelper.Memory.WriteMemory(HaloPointers.SubBrowserHover, "int", uiIndex.ToString());
         Thread.Sleep(sleep);
-        MemoryHelper.Memory.WriteMemory(MemoryHelper._BrowserScroll, "int", "0");
+        MemoryHelper.Memory.WriteMemory(HaloPointers.BrowserScroll, "int", "0");
         Thread.Sleep(300);
         Input.PressKey(VirtualKeyCode.RETURN);
         Thread.Sleep(300);
@@ -365,7 +525,7 @@ public static class Bot
     {
         string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
         string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
-        var data = File.ReadAllLines(strWorkPath + "/ForgeObjects.txt");
+        var data = File.ReadAllLines(strWorkPath + "/RawData/ForgeObjects.txt");
 
         List<string> rootFolder = new();
         List<string> subFolder = new();
@@ -389,7 +549,8 @@ public static class Bot
         {
             var rootFolderName = FixCapatial(rootFolder[x].ToLower());
             var subFolderName = FixCapatial(subFolder[x].ToLower());
-            var itemNameName = FixCapatial(itemName[x].ToLower());
+            var itemNameName = Enum.GetName((ObjectId)int.Parse(itemID[x]));
+
 
             subFolderName = subFolderName.Replace("Mp", "MP");
             subFolderName = subFolderName.Replace(" ", "_");
@@ -413,9 +574,12 @@ public static class Bot
                 break;
             }
 
+            if (itemNameName == null)
+            {
+            }
 
             ForgeObjectBrowser.Categories[rootFolderName].CategoryFolders[subFolderName]
-                .AddItem(itemNameName, Enum.Parse<ObjectId>(itemID[x]));
+                .AddItem(itemNameName ??= itemName[x], Enum.Parse<ObjectId>(itemID[x]));
         }
 
         string FixCapatial(string value)

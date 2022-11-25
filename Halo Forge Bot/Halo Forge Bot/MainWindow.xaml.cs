@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -43,7 +44,7 @@ namespace Halo_Forge_Bot
             InitializeComponent();
             Input.InitInput();
 
-            var staticFields = typeof(MemoryHelper).GetFields();
+            var staticFields = typeof(HaloPointers).GetFields();
             foreach (var field in staticFields)
             {
                 if (field.FieldType == typeof(string))
@@ -53,6 +54,7 @@ namespace Halo_Forge_Bot
                 }
             }
         }
+
 
         private void TestBot_OnClick(object sender, RoutedEventArgs e)
         {
@@ -94,15 +96,35 @@ namespace Halo_Forge_Bot
             MemoryTestUI.Text = MemoryHelper.GetEditBoxText();
         }
 
+        bool keepUpdating = true;
+
+
+        private Task UpdateMemoryUI(string address, string length)
+        {
+            if (int.TryParse(length, out int result))
+            {
+                while (keepUpdating)
+                {
+                    var data = MemoryHelper.Memory.ReadBytes(address, result);
+                    Dispatcher.Invoke(() => { return DebugMemoryLabel.Text = Convert.ToHexString(data); });
+
+                    Thread.Sleep(10);
+                }
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private void OnupdateMemoryUI(string s)
+        {
+            DebugMemoryLabel.Text = s;
+        }
 
         private void ReadAddressButton_OnClick(object sender, RoutedEventArgs e)
         {
             var address = DebugMemoryAddressTextBox.Text;
-            if (int.TryParse(DebugMemoryAddressLengthTextBox.Text, out int result))
-            {
-                var data = MemoryHelper.Memory.ReadBytes(address, result);
-                DebugMemoryLabel.Text = Convert.ToHexString(data);
-            }
+            var length = DebugMemoryAddressLengthTextBox.Text;
+            Task.Run(() => UpdateMemoryUI(address, length));
         }
 
         private void AttachToHalo_OnClick(object sender, RoutedEventArgs e)

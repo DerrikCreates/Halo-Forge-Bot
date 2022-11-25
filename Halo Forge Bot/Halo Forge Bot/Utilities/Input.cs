@@ -79,7 +79,7 @@ public static class Input
         Log.Information("PressWithMonitor - The watch for change task's state is: {TaskStatus}", task.Status);
 
         PressKey(key, keySleep, mod);
-
+        
         var b = await task;
         if (b == false)
         {

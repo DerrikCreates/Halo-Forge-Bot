@@ -83,7 +83,12 @@ public static class Utils
             return v;
         }
 
-        return to180(final);
+        final = to180(final);
+
+        final.X = MathF.Round(final.X, 4);
+        final.Y = MathF.Round(final.Y, 4);
+        final.Z = MathF.Round(final.Z, 4);
+        return final;
     }
 
     public static Quaternion LookRotation(Vector3 forward, Vector3 up)
