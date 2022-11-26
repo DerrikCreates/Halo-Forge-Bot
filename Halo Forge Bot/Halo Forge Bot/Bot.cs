@@ -31,72 +31,25 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-    private static Dictionary<ObjectId, UIItem> UIItems = new();
-
-    private static void LoadItemData()
+    public static async Task StartBot(BondSchema map, int itemsToSkip = 0, int itemsToStopAt = 0)
     {
-        var separators = new[] { ':', '>' };
-        string path = Utils.ExePath + "/RawData/ForgeObjects.txt";
-        var lines = File.ReadAllLines(path);
-
-        string lastSubFolder = "";
-        string lastCat = "";
-        int subFolderIndex = 0;
-        int catIndex = 0;
-        for (int i = 0; i < lines.Count(); i++)
-        {
-            var itemData = new UIItem();
-
-            var data = lines[i].Split(separators);
-
-            itemData.Category = data[0].Trim();
-            itemData.SubCategory = data[1].Trim();
-            itemData.ItemName = data[2].Trim();
-            itemData.ItemId = (ObjectId)int.Parse(data[3].Trim());
-
-            if (lastCat != itemData.Category)
-            {
-                catIndex++;
-            }
-
-            if (lastSubFolder != itemData.SubCategory)
-            {
-                subFolderIndex++;
-            }
-
-            // itemData.= subFolderIndex + catIndex;
-            UIItems.Add(itemData.ItemId, itemData);
-            lastSubFolder = itemData.SubCategory;
-        }
-    }
-
-    private static int CalcScroll(int uiSize, int cursorLocation)
-    {
-        if (uiSize < 13)
-        {
-            return 0;
-        }
-
-        int diff = cursorLocation - uiSize;
-        if (diff < 13)
-        {
-            return uiSize + 13;
-        }
-
-        return cursorLocation;
-    }
-
-    public static async Task DevTesting()
-    {
+        int currentSkipCount = 0;
         // LoadItemData();
-        UIData();
-        var map = BondHelper.ProcessFile<BondSchema>($"{Utils.ExePath}/Temp/SnowMap.mvar");
-
+        BuildUiLayout();
+        var splitItemList = map.Items.ToList();
+        splitItemList = splitItemList.GetRange(itemsToSkip, itemsToStopAt == 0 ? splitItemList.Count : itemsToSkip);
         Dictionary<ObjectId, List<ItemSchema>> items = new();
-        foreach (var itemSchema in map.Items)
+        foreach (var itemSchema in splitItemList)
         {
             var id = (ObjectId)itemSchema.ItemId.Int;
 
+            if (itemSchema.StaticDynamicFlagUnknown != 21)
+            {
+                Log.Warning(
+                    "Item with id: {ItemID} is dynamic, we currently only support static items, skipping this item",
+                    id);
+                continue;
+            }
 
             if (items.ContainsKey(id))
             {
@@ -111,6 +64,7 @@ public static class Bot
         ForgeUI.SetHaloProcess();
         int itemCountID = 0;
         int saveCount = 0;
+
         foreach (var item in items)
         {
             while (MemoryHelper.GetGlobalHover() != 0)
@@ -179,16 +133,32 @@ public static class Bot
 
             foreach (var itemSchema in item.Value)
             {
-                if (saveCount == 5)
+                /*
+
+                if (itemCountID >= itemToStopAt)
                 {
-                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                    saveCount = 0;
+                    Log.Information("--STOPPING THE BOT-- ITEM COUNT LIMIT REACHED");
+                    return;
                 }
 
+*/
                 saveCount++;
                 await Task.Delay(200);
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // spawn the item?
+                while (MemoryHelper.GetMenusVisible() == 1)
+                {
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // spawn the item?
+                    await Task.Delay(200);
+                }
+
                 await Task.Delay(200);
+
+                if (saveCount == 10)
+                {
+                    await Task.Delay(100);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                    saveCount = 0;
+                    await Task.Delay(100);
+                }
 
                 /*
                 while (MemoryHelper.GetEditMenuState() == 0)
@@ -241,9 +211,9 @@ public static class Bot
 
                 var defaultScale = MemoryHelper.GetSelectedScale();
 
-                var xScale = itemSchema.SettingsContainer.Scale.First().ScaleContainer.X;
-                var yScale = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Y;
-                var zScale = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z;
+                var xScale = MathF.Round(itemSchema.SettingsContainer.Scale.First().ScaleContainer.X, 3);
+                var yScale = MathF.Round(itemSchema.SettingsContainer.Scale.First().ScaleContainer.Y, 3);
+                var zScale = MathF.Round(itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z, 3);
 
                 var itemScale = new Vector3(xScale, yScale, zScale);
 
@@ -254,31 +224,36 @@ public static class Bot
                 await SetProp(realScale.Z.ToString(), StaticByDefault.Layout[PropertyName.SizeZ]);
 
 
-                var xPos = itemSchema.Position.X * 10;
-                var yPos = itemSchema.Position.Y * 10;
-                var zPos = itemSchema.Position.Z * 10;
+                var xPos = MathF.Round(itemSchema.Position.X * 10, 3);
+                var yPos = MathF.Round(itemSchema.Position.Y * 10, 3);
+                var zPos = MathF.Round(itemSchema.Position.Z * 10, 3);
 
                 await SetProp(xPos.ToString(), StaticByDefault.Layout[PropertyName.Forward]);
                 await SetProp(yPos.ToString(), StaticByDefault.Layout[PropertyName.Horizontal]);
                 await SetProp(zPos.ToString(), StaticByDefault.Layout[PropertyName.Vertical]);
 
-                var xForward = itemSchema.Forward.X;
-                var yForward = itemSchema.Forward.Y;
-                var zForward = itemSchema.Forward.Z;
+                var yForward = MathF.Round(itemSchema.Forward.Y, 3);
+                var zForward = MathF.Round(itemSchema.Forward.Z, 3);
+                var xForward = MathF.Round(itemSchema.Forward.X, 3);
 
-                var xUp = itemSchema.Up.X;
-                var yUp = itemSchema.Up.Y;
-                var zUp = itemSchema.Up.Z;
+                var yUp = MathF.Round(itemSchema.Up.Y, 3);
+                var xUp = MathF.Round(itemSchema.Up.X, 3);
+                var zUp = MathF.Round(itemSchema.Up.Z, 3);
 
                 var rotation =
-                    Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, xForward), new Vector3(xUp, yUp, zUp));
+                    Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, zForward), new Vector3(xUp, yUp, zUp));
 
 
-                await SetProp(rotation.X.ToString(), StaticByDefault.Layout[PropertyName.Roll]);
+                await SetProp(rotation.Z.ToString(), StaticByDefault.Layout[PropertyName.Roll]);
                 await SetProp(rotation.X.ToString(), StaticByDefault.Layout[PropertyName.Pitch], VirtualKeyCode.VK_W);
                 await SetProp(rotation.Y.ToString(), StaticByDefault.Layout[PropertyName.Yaw], VirtualKeyCode.VK_W);
-
                 await Task.Delay(50);
+
+
+                while (MemoryHelper.GetGlobalHover() != StaticByDefault.Layout[PropertyName.SizeX])
+                {
+                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+                }
 
                 while (MemoryHelper.GetTopBrowserHover() != 0)
                 {
@@ -312,9 +287,15 @@ public static class Bot
 
     private static async Task SetProp(string data, int index, VirtualKeyCode key = VirtualKeyCode.VK_S)
     {
+        if (data == "")
+        {
+            data = "0";
+        }
+
         while (MemoryHelper.GetGlobalHover() != index)
         {
             Input.Simulate.Keyboard.KeyPress(key);
+            //MemoryHelper.SetGlobalHover(index);
             await Task.Delay(15);
         }
 
@@ -324,10 +305,10 @@ public static class Bot
         while (MemoryHelper.GetEditMenuState() == 0)
         {
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(50);
+            await Task.Delay(100);
         }
 
-        var clipData = "";
+
         while (await ClipboardService.GetTextAsync() != data)
         {
             await ClipboardService.SetTextAsync(data);
@@ -337,9 +318,16 @@ public static class Bot
         while (MemoryHelper.GetEditBoxText() != data)
         {
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
-            await Task.Delay(150);
-            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+            await Task.Delay(50);
+            var toType = data.ToCharArray();
+            foreach (var c in toType)
+            {
+                SendKeys.SendWait(c.ToString());
+                await Task.Delay(33);
+            }
+
+
+            // Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
             await Task.Delay(50);
         }
 
@@ -350,182 +338,12 @@ public static class Bot
         }
     }
 
-    private static async Task<string> CollectElement(int elementId, int menu = 1)
-    {
-        while (MemoryHelper.GetTopBrowserHover() != menu)
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
-            //Input.PressKey(VirtualKeyCode.VK_Q);
-        }
 
-        MemoryHelper.FreezeGlobalHover(elementId);
-        while (MemoryHelper.GetGlobalHover() != elementId)
-        {
-            await Task.Delay(10);
-        }
-
-        MemoryHelper.UnFreezeGlobalHover();
-
-        while (MemoryHelper.GetEditMenuState() == 0)
-        {
-            //Thread.Sleep(50);
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            Thread.Sleep(100);
-        }
-
-        var a = MemoryHelper.GetEditBoxText();
-        float value;
-
-        while (float.TryParse(a, out value) == false)
-        {
-            a = MemoryHelper.GetEditBoxText();
-        }
-
-        //double check
-        if (float.TryParse(MemoryHelper.GetEditBoxText(), out float valueCheck) == true)
-        {
-            if (Math.Abs(value - valueCheck) < 0.01 == false)
-            {
-                Log.Error("Value collected was not correct");
-            }
-        }
-
-
-        while (MemoryHelper.GetEditMenuState() != 0)
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-        }
-
-        await ClipboardService.SetTextAsync("");
-        Thread.Sleep(350);
-        return a;
-    }
-
-    private static async void SetRotM(Vector3 pos)
-    {
-        pos.X = MathF.Round(pos.X, 5);
-        pos.Y = MathF.Round(pos.Y, 5);
-        pos.Z = MathF.Round(pos.Z, 5);
-
-        // might be correct. todo when you wake up finish testing all axis and object rotation
-        await SetAxis(pos.Z, StaticByDefault.Layout[PropertyName.Roll]); // zyx, yzx,yxz,
-        Thread.Sleep(1000);
-        await SetAxis(pos.X, StaticByDefault.Layout[PropertyName.Pitch]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Y, StaticByDefault.Layout[PropertyName.Yaw]);
-    }
-
-    private static async Task SetPosM(Vector3 pos)
-    {
-        await SetAxis(pos.X, StaticByDefault.Layout[PropertyName.Forward]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Y, StaticByDefault.Layout[PropertyName.Horizontal]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Z, StaticByDefault.Layout[PropertyName.Vertical]);
-    }
-
-    private static async Task SetScaleM(Vector3 pos)
-    {
-        await SetAxis(pos.X, StaticByDefault.Layout[PropertyName.SizeX]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Y, StaticByDefault.Layout[PropertyName.SizeY]);
-        Thread.Sleep(1000);
-        await SetAxis(pos.Z, StaticByDefault.Layout[PropertyName.SizeZ]);
-    }
-
-    private static float GetAxis(int uiIndex)
-    {
-        Log.Information("Get Axis- UIIndex:{UIIndex}", uiIndex);
-
-
-        MemoryHelper.Memory.WriteMemory(HaloPointers.SubBrowserHover, "int", uiIndex.ToString());
-        MemoryHelper.Memory.WriteMemory(HaloPointers.BrowserScroll, "int", "0");
-        Thread.Sleep(50);
-        Input.PressKey(VirtualKeyCode.RETURN);
-        Thread.Sleep(200);
-        Input.PressKey(VirtualKeyCode.VK_C, 20, VirtualKeyCode.CONTROL);
-        Thread.Sleep(25);
-        var text = ClipboardService.GetText();
-        Thread.Sleep(50);
-        Input.PressKey(VirtualKeyCode.ESCAPE);
-        Thread.Sleep(50);
-        if (text is not null)
-        {
-            var axisText = text.ToCharArray().ToList();
-
-            //clean up axis data
-            var num = text.Split(".");
-            var right = num[1].Substring(0, 2);
-
-            var final = $"{num[0]}.{right}";
-
-            var number = float.Parse(final);
-            return number;
-        }
-
-        Log.Information("The Clipboard Text is null");
-        return -1;
-    }
-
-    private static async Task SetAxis(float pos, int uiIndex, int sleep = 100)
-    {
-        Log.Information("Set Axis with Value: {value} , UIIndex:{UIIndex}", pos, uiIndex);
-        pos = MathF.Round(pos, 5);
-
-        MemoryHelper.Memory.WriteMemory(HaloPointers.SubBrowserHover, "int", uiIndex.ToString());
-        Thread.Sleep(sleep);
-        MemoryHelper.Memory.WriteMemory(HaloPointers.BrowserScroll, "int", "0");
-        Thread.Sleep(300);
-        Input.PressKey(VirtualKeyCode.RETURN);
-        Thread.Sleep(300);
-        ClipboardService.SetText(pos.ToString());
-        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.BACK);
-        await Input.PressWithMonitor(ForgeUI.RenameBox, VirtualKeyCode.VK_V, VirtualKeyCode.CONTROL);
-        Thread.Sleep(sleep);
-
-
-        Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-        Thread.Sleep(sleep);
-    }
-
-
-    public static List<ForgeUIFolder?> folders = new();
-
-
-    public static void SetupFolders() //todo use lite db and not josh's bs :)
-    {
-        foreach (var cat in ForgeObjectBrowser.Categories)
-        {
-            foreach (var folder in cat.Value.CategoryFolders)
-            {
-                folders.Add(folder.Value);
-            }
-
-            folders.Add(null);
-        }
-    }
-
-
-    private static async Task NavigateToRandomItem()
-    {
-        Array values = Enum.GetValues(typeof(ObjectId));
-        Random random = new Random();
-
-        for (int i = 0; i < 200; i++)
-        {
-            var randomObject = (ObjectId)values.GetValue
-                (random.Next(values.Length));
-
-            await NavigateToItem(randomObject);
-        }
-    }
-
-
-    public static void UIData()
+    public static void BuildUiLayout()
     {
         string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
         string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
-        var data = File.ReadAllLines(strWorkPath + "/RawData/ForgeObjects.txt");
+        var data = File.ReadAllLines(strWorkPath + "/config/ForgeObjects.txt");
 
         List<string> rootFolder = new();
         List<string> subFolder = new();
@@ -616,78 +434,6 @@ public static class Bot
         ForgeObjectBrowser.Categories["Accents"].CategoryFolders["City_Props_MP"] = cp;
         var a = JsonConvert.SerializeObject(ForgeObjectBrowser.Categories, s);
         // File.WriteAllText("z:/josh/ItemData.json", a);
-    }
-
-    private static int tempImageCount = 0;
-
-    public static async Task NavigateToItem(ObjectId id)
-    {
-        string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-        string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
-
-        var item = GetItemByID(id);
-        // todo make a proper db to store the data. 
-        // todo make the bot collect the default scale / static/dynamic state and save it if its not there
-
-        var catOrder = item.ParentFolder.ParentCategory.CategoryOrder;
-        var subOrder = item.ParentFolder.FolderOffset;
-        var itemOrder = item.ObjectOrder;
-
-        for (int j = 0; j < catOrder - 1; j++) // travel to the correct cat
-        {
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S, keySleep: 25);
-        }
-
-        await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN, keySleep: 25); //enter cat
-
-        for (int j = 0; j < subOrder; j++) //travel to correct folder
-        {
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S, keySleep: 25);
-        }
-
-        await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN, keySleep: 25); // enter folder
-        for (int j = 0; j < itemOrder - 1; j++) // travel to requested object
-        {
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_S, keySleep: 25);
-        }
-
-        var selectedItemImage = PixelReader.ScreenshotArea(ForgeUI.ForgeMenu);
-        selectedItemImage.Save(strWorkPath +
-                               $"/images/{item.ObjectName}-{catOrder}-{subOrder}-{itemOrder}---{tempImageCount}.png",
-            ImageFormat.Png);
-        Thread.Sleep(100);
-        // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN, keySleep: 125);
-        // Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_R, keySleep: 25);
-
-        tempImageCount++;
-
-
-        // we should now be reset
-    }
-
-    public static async Task UnNavigateToItem(ObjectId id)
-    {
-        var item = GetItemByID(id);
-
-        var catOrder = item.ParentFolder.ParentCategory.CategoryOrder;
-        var subOrder = item.ParentFolder.FolderOffset;
-
-        // reset the cursor to the start for next item
-
-        await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.BACK, keySleep: 25);
-
-
-        for (int j = 0; j < subOrder; j++)
-        {
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W, keySleep: 25);
-        }
-
-        await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.RETURN, keySleep: 25);
-
-        for (int j = 0; j < catOrder - 1; j++)
-        {
-            await Input.PressWithMonitor(ForgeUI.ForgeMenu, VirtualKeyCode.VK_W, keySleep: 25);
-        }
     }
 
 

@@ -85,15 +85,16 @@ public static class Utils
 
         final = to180(final);
 
-        final.X = MathF.Round(final.X, 4);
-        final.Y = MathF.Round(final.Y, 4);
-        final.Z = MathF.Round(final.Z, 4);
+        final.X = MathF.Round(final.X, 3);
+        final.Y = MathF.Round(final.Y, 3);
+        final.Z = MathF.Round(final.Z, 3);
         return final;
     }
 
     public static Quaternion LookRotation(Vector3 forward, Vector3 up)
     {
         forward = Vector3.Normalize(forward);
+        up = Vector3.Normalize(up); //added for test remove later if not working
 
         Vector3 vector = Vector3.Normalize(forward);
         Vector3 vector2 = Vector3.Normalize(Vector3.Cross(up, vector));

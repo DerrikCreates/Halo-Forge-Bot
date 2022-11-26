@@ -1,7 +1,10 @@
 using System;
+using System.IO;
 using System.Numerics;
 using System.Threading;
+using Halo_Forge_Bot.GameUI;
 using Memory;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace Halo_Forge_Bot.Utilities;
@@ -10,6 +13,9 @@ public static class MemoryHelper
 {
     public static readonly Mem Memory = new();
 
+    public static readonly HaloPointers HaloPointers =
+        JsonConvert.DeserializeObject<HaloPointers>(File.ReadAllText("./config/halo_pointers.json")) ??
+        throw new NullReferenceException("/config/halo_pointers.json file has an issue");
 
     public static T ReadMemory<T>(string address)
     {
@@ -80,27 +86,27 @@ public static class MemoryHelper
     {
         // return Memory.ReadMemory<decimal>(HaloPointers._xPositionUI);
 
-        var x = ReadMemory<decimal>(HaloPointers._xPositionUI);
-        var y = ReadMemory<decimal>(HaloPointers._yPositionUI);
-        var z = ReadMemory<decimal>(HaloPointers._zPositionUI);
+        var x = ReadMemory<decimal>(HaloPointers.XPositionUi);
+        var y = ReadMemory<decimal>(HaloPointers.YPositionUi);
+        var z = ReadMemory<decimal>(HaloPointers.ZPositionUi);
 
         return new Vector3(Convert.ToSingle(x), Convert.ToSingle(y), (Convert.ToSingle(z)));
     }
 
     public static Vector3 GetSelectedScale()
     {
-        var x = Memory.ReadFloat(HaloPointers._xScaleUI);
-        var y = Memory.ReadFloat(HaloPointers._yScaleUI);
-        var z = Memory.ReadFloat(HaloPointers._zScaleUI);
+        var x = Memory.ReadFloat(HaloPointers.XScaleUi);
+        var y = Memory.ReadFloat(HaloPointers.YScaleUi);
+        var z = Memory.ReadFloat(HaloPointers.ZScaleUi);
 
         return new Vector3(x, y, z);
     }
 
     public static Vector3 GetSelectedRotation()
     {
-        var x = ReadMemory<decimal>(HaloPointers._xRotationUI);
-        var y = ReadMemory<decimal>(HaloPointers._xRotationUI);
-        var z = ReadMemory<decimal>(HaloPointers._xRotationUI);
+        var x = ReadMemory<decimal>(HaloPointers.XRotationUi);
+        var y = ReadMemory<decimal>(HaloPointers.XRotationUi);
+        var z = ReadMemory<decimal>(HaloPointers.XRotationUi);
 
         return new Vector3(Convert.ToSingle(x), Convert.ToSingle(y), (Convert.ToSingle(z)));
     }
@@ -178,6 +184,6 @@ public static class MemoryHelper
 
     public static int GetMenusVisible()
     {
-        return ReadMemory<int>(HaloPointers.UIMenuVisible);
+        return ReadMemory<int>(HaloPointers.UiMenuVisible);
     }
 }

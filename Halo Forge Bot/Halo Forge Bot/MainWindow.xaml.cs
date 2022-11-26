@@ -6,9 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using BondReader;
+using BondReader.Schemas;
 using Halo_Forge_Bot.GameUI;
 using Halo_Forge_Bot.Utilities;
 using Memory;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using Serilog;
 using Serilog.Formatting.Compact;
 using Utils = Halo_Forge_Bot.Utilities.Utils;
@@ -24,7 +28,7 @@ namespace Halo_Forge_Bot
         {
             MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
+                .MinimumLevel.Information()
                 .Enrich.WithThreadId()
                 .WriteTo.Console()
                 .WriteTo.File($"{Utils.ExePath}/log.txt")
@@ -44,92 +48,46 @@ namespace Halo_Forge_Bot
             InitializeComponent();
             Input.InitInput();
 
-            var staticFields = typeof(HaloPointers).GetFields();
-            foreach (var field in staticFields)
+
+            /*  var staticFields = typeof(HaloPointers).GetFields();
+              foreach (var field in staticFields)
+              {
+                  if (field.FieldType == typeof(string))
+                  {
+                      CurrentPointersLabel.Text += Environment.NewLine + field.Name.ToString() + ": " +
+                                                   (string)field.GetValue(null);
+                  }
+              }
+              */
+        }
+
+        private BondSchema? _selectedMap;
+
+        private void LoadMvar_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "mvar files (*.mvar)|*.mvar|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
             {
-                if (field.FieldType == typeof(string))
-                {
-                    CurrentPointersLabel.Text += Environment.NewLine + field.Name.ToString() + ": " +
-                                                 (string)field.GetValue(null);
-                }
+                _selectedMap = BondHelper.ProcessFile<BondSchema>(openFileDialog.FileName);
+
+                MapItemCount.Content = _selectedMap.Items.Count;
+                string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
+                EstimatedTime.Content = estimate;
             }
         }
 
-
-        private void TestBot_OnClick(object sender, RoutedEventArgs e)
+        private async void StartBot_OnClick(object sender, RoutedEventArgs e)
         {
-        }
-
-
-        private async void DownloadMvarButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            await Utils.DownloadMvar(FileShareLinkTextBox.Text, "");
-        }
-
-
-        private void GetItemNames_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
-
-        private async void DebugRect_OnClick(object sender, RoutedEventArgs e)
-        {
-            //46 25
-            //399 671
-            // new Rectangle(new System.Drawing.Point(669, 545), new Size(578, 33));
-            var rectangle = await Task.Run(ForgeUI.GetRectFromMouse);
-        }
-
-        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-
-
-            await Bot.DevTesting();
-
-            // await Task.Run(Bot.DevTesting);
-        }
-
-
-        private void UpdateMem_OnClick(object sender, RoutedEventArgs e)
-        {
-            MemoryTestUI.Text = MemoryHelper.GetEditBoxText();
-        }
-
-        bool keepUpdating = true;
-
-
-        private Task UpdateMemoryUI(string address, string length)
-        {
-            if (int.TryParse(length, out int result))
+            if (_selectedMap == null)
             {
-                while (keepUpdating)
-                {
-                    var data = MemoryHelper.Memory.ReadBytes(address, result);
-                    Dispatcher.Invoke(() => { return DebugMemoryLabel.Text = Convert.ToHexString(data); });
-
-                    Thread.Sleep(10);
-                }
+                Log.Error("Selected map is null, select a map first");
+                return;
             }
 
-            return Task.CompletedTask;
-        }
-
-        private void OnupdateMemoryUI(string s)
-        {
-            DebugMemoryLabel.Text = s;
-        }
-
-        private void ReadAddressButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var address = DebugMemoryAddressTextBox.Text;
-            var length = DebugMemoryAddressLengthTextBox.Text;
-            Task.Run(() => UpdateMemoryUI(address, length));
-        }
-
-        private void AttachToHalo_OnClick(object sender, RoutedEventArgs e)
-        {
-            MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id);
+            Log.Information("-----STARTING BOT-----");
+            await Bot.StartBot(_selectedMap, int.Parse(ItemsToSkip.Text), int.Parse(ItemsToStopAt.Text));
+            Log.Information("-----STOPPING BOT-----");
         }
     }
 }
