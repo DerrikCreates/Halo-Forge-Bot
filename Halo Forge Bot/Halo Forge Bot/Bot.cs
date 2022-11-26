@@ -31,13 +31,19 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-    public static async Task StartBot(BondSchema map, int itemsToSkip = 0, int itemsToStopAt = 0)
+    public static async Task StartBot(BondSchema map, int itemStart = 0, int itemEnd = 0)
     {
         int currentSkipCount = 0;
         // LoadItemData();
         BuildUiLayout();
+
         var splitItemList = map.Items.ToList();
-        splitItemList = splitItemList.GetRange(itemsToSkip, itemsToStopAt == 0 ? splitItemList.Count : itemsToSkip);
+        if (itemEnd == 0)
+        {
+            itemEnd = splitItemList.Count;
+        }
+
+        splitItemList = splitItemList.GetRange(itemStart, itemEnd - itemStart);
         Dictionary<ObjectId, List<ItemSchema>> items = new();
         foreach (var itemSchema in splitItemList)
         {
@@ -98,7 +104,7 @@ public static class Bot
                     MemoryHelper.GetGlobalHover(), mapitem.ParentFolder.ParentCategory.CategoryOrder - 1);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
 
-                await Task.Delay(10);
+                await Task.Delay(33);
             }
 
             await Task.Delay(200);
@@ -116,7 +122,7 @@ public static class Bot
                     mapitem.ParentFolder.FolderOffset - 1);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
 
-                await Task.Delay(10);
+                await Task.Delay(33);
             }
 
             await Task.Delay(200);
@@ -127,7 +133,7 @@ public static class Bot
             while (MemoryHelper.GetGlobalHover() != mapitem.ObjectOrder - 1) // hover item
             {
                 Input.PressKey(VirtualKeyCode.VK_S);
-                await Task.Delay(10);
+                await Task.Delay(33);
             }
 
 
@@ -198,15 +204,15 @@ public static class Bot
                 while (MemoryHelper.GetMenusVisible() == 0)
                 {
                     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
-                    await Task.Delay(50);
+                    await Task.Delay(60);
                 }
 
 
                 while (MemoryHelper.GetTopBrowserHover() != 1)
                 {
-                    await Task.Delay(50);
+                    await Task.Delay(60);
                     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
-                    await Task.Delay(5);
+                    await Task.Delay(60);
                 }
 
                 var defaultScale = MemoryHelper.GetSelectedScale();
@@ -258,7 +264,7 @@ public static class Bot
                 while (MemoryHelper.GetTopBrowserHover() != 0)
                 {
                     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
-                    await Task.Delay(10);
+                    await Task.Delay(33);
                 }
 
 
@@ -272,7 +278,7 @@ public static class Bot
             while (MemoryHelper.GetGlobalHover() != mapitem.ParentFolder.ParentCategory.CategoryOrder - 1)
             {
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
-                await Task.Delay(10);
+                await Task.Delay(33);
             }
 
             await Task.Delay(100);
@@ -296,7 +302,7 @@ public static class Bot
         {
             Input.Simulate.Keyboard.KeyPress(key);
             //MemoryHelper.SetGlobalHover(index);
-            await Task.Delay(15);
+            await Task.Delay(33);
         }
 
 
@@ -317,17 +323,18 @@ public static class Bot
 
         while (MemoryHelper.GetEditBoxText() != data)
         {
-            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
             await Task.Delay(50);
+            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
+
+            /*
             var toType = data.ToCharArray();
             foreach (var c in toType)
             {
                 SendKeys.SendWait(c.ToString());
                 await Task.Delay(33);
             }
-
-
-            // Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+            */
+            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
             await Task.Delay(50);
         }
 
