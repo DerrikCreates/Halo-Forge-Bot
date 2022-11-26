@@ -5,26 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Halo_Forge_Bot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinWidth="800" MinHeight="450">
+
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-        
-        <Button Name="Test" Height="20" Width="50" Click="TestBot_OnClick" >Test</Button>
-        
-        <Button Grid.Row="2" Grid.Column="0" Name="DownloadMvarButton" Height="20" Width="100"  Click="DownloadMvarButton_OnClick" >Download .mvar</Button>
-        <TextBox Name="FileShareLinkTextBox" Grid.Row="1" Grid.Column="0" Height="20" Width="100"> FileShare Link</TextBox>
-        
-        <Button Grid.Row="2" Grid.Column="1" Name="GetItemNames" Height="20" Width="100"  Click="GetItemNames_OnClick" >Get Item Names</Button>
-        <Button Grid.Row="2" Grid.Column="2"  Height="20" Width="100"  Click="DebugRect_OnClick" >Debug Rect</Button>
+
+
+        <StackPanel>
+            <Button Name="LoadMvar" Height="50" FontSize="20" Click="LoadMvar_OnClick">Load .mvar</Button>
+            <Button Name="LoadBlender" Height="50" FontSize="20">Load blender</Button>
+            <Button Height="50" FontSize="20" Click="StartBot_OnClick">START BOT</Button>
+            <Label Height="50" FontSize="15">LEFT ARROW IS STOP</Label>
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15">Items To Skip:</Label>
+                <TextBox Name="ItemsToSkip" Width="45" Height="auto" FontSize="15" HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center">
+                    0
+                </TextBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="15">Items To Stop:</Label>
+                <TextBox Name="ItemsToStopAt" Width="45" Height="auto" FontSize="15" HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center">
+                    0
+                </TextBox>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <StackPanel Name="MapInfoStackPanel">
+                <Grid ShowGridLines="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <Label>Item Count:</Label>
+                        <Label>EstimatedTime</Label>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Stretch">
+                        <Label Name="MapItemCount"></Label>
+                        <Label Name="EstimatedTime" HorizontalContentAlignment="Left" Width="auto"></Label>
+                    </StackPanel>
+
+
+                </Grid>
+            </StackPanel>
+
+
+        </Grid>
+
     </Grid>
+
 </Window>

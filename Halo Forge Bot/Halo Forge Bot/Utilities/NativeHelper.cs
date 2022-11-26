@@ -1,13 +1,9 @@
 using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
-using System.Windows;
-using Halo_Forge_Bot;
 using ManagedWinapi.Windows;
 
-namespace ForgeMacros;
+namespace Halo_Forge_Bot.Utilities;
 
 public static class NativeHelper
 {

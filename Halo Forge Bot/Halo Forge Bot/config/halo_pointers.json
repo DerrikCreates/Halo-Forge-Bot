@@ -1,0 +1,20 @@
+{
+  "RootBrowserHover": "HaloInfinite.exe+0x482B178,0xB8,0x950",
+  "GlobalHover": "HaloInfinite.exe+0x42CCE70,0xBA0,0x950",
+  "SubBrowserHover": "HaloInfinite.exe+0x42CCE70,0xBB0,0x950",
+  "TopBrowserHover": "HaloInfinite.exe+0x49FD8A0,0x1A8",
+  "BrowserScroll": "HaloInfinite.exe+0x482B108,0xB8,0x934",
+  "EditPropertyBool": "HaloInfinite.exe+0x00000482B1F8,0xB5",
+  "EditNameBox": "HaloInfinite.exe+0x0000042CC760,0xBA0,0x774",
+  "UiMenuVisible": "HaloInfinite.exe+00000425EB28,0x0,0x28",
+  "TransformOffset": "0x128",
+  "XPositionUi": "HaloInfinite.exe+0x42CCE48,0x80,128",
+  "YPositionUi": "HaloInfinite.exe+0x42CCE48,0x80,12C",
+  "ZPositionUi": "HaloInfinite.exe+0x42CCE48,0x80,130",
+  "ZRotationUi": "HaloInfinite.exe+0x42CCE48,0x80,134",
+  "YRotationUi": "HaloInfinite.exe+0x42CCE48,0x80,138",
+  "XRotationUi": "HaloInfinite.exe+0x42CCE48,0x80,13C",
+  "XScaleUi": "HaloInfinite.exe+0x42CCE48,0x80,140",
+  "YScaleUi": "HaloInfinite.exe+0x42CCE48,0x80,144",
+  "ZScaleUi": "HaloInfinite.exe+0x42CCE48,0x80,148"
+}

@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Text.RegularExpressions;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Forms;
-using ForgeMacros;
-using Microsoft.VisualBasic.CompilerServices;
-using WindowsInput.Native;
-using Image = System.Windows.Controls.Image;
-using Point = System.Windows.Point;
-using Rectangle = System.Drawing.Rectangle;
+using System.Windows.Input;
+using BondReader;
+using BondReader.Schemas;
+using Halo_Forge_Bot.GameUI;
+using Halo_Forge_Bot.Utilities;
+using Memory;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using Serilog;
+using Serilog.Formatting.Compact;
+using Utils = Halo_Forge_Bot.Utilities.Utils;
 
 namespace Halo_Forge_Bot
 {
@@ -26,27 +26,68 @@ namespace Halo_Forge_Bot
     {
         public MainWindow()
         {
+            MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .Enrich.WithThreadId()
+                .WriteTo.Console()
+                .WriteTo.File($"{Utils.ExePath}/log.txt")
+                .WriteTo.File(new CompactJsonFormatter(), $"{Utils.ExePath}/log.json")
+                .WriteTo.Debug()
+                .CreateLogger();
+
+            Log.Information("----------APP START----------");
+
+            // BotClipboard.clipboard.ClipboardChanged += BotClipboard.ClipboardChanged;
+
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+            Directory.CreateDirectory(Utils.ExePath + "/images/");
+
             InitializeComponent();
+            Input.InitInput();
+
+
+            /*  var staticFields = typeof(HaloPointers).GetFields();
+              foreach (var field in staticFields)
+              {
+                  if (field.FieldType == typeof(string))
+                  {
+                      CurrentPointersLabel.Text += Environment.NewLine + field.Name.ToString() + ": " +
+                                                   (string)field.GetValue(null);
+                  }
+              }
+              */
         }
 
-        private void TestBot_OnClick(object sender, RoutedEventArgs e)
+        private BondSchema? _selectedMap;
+
+        private void LoadMvar_OnClick(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "mvar files (*.mvar)|*.mvar|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _selectedMap = BondHelper.ProcessFile<BondSchema>(openFileDialog.FileName);
+
+                MapItemCount.Content = _selectedMap.Items.Count;
+                string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
+                EstimatedTime.Content = estimate;
+            }
         }
 
-
-        private async void DownloadMvarButton_OnClick(object sender, RoutedEventArgs e)
+        private async void StartBot_OnClick(object sender, RoutedEventArgs e)
         {
-            await Utils.DownloadMvar(FileShareLinkTextBox.Text, "");
-        }
+            if (_selectedMap == null)
+            {
+                Log.Error("Selected map is null, select a map first");
+                return;
+            }
 
-
-        private void GetItemNames_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
-
-        private void DebugRect_OnClick(object sender, RoutedEventArgs e)
-        {
+            Log.Information("-----STARTING BOT-----");
+            await Bot.StartBot(_selectedMap, int.Parse(ItemsToSkip.Text), int.Parse(ItemsToStopAt.Text));
+            Log.Information("-----STOPPING BOT-----");
         }
     }
 }
