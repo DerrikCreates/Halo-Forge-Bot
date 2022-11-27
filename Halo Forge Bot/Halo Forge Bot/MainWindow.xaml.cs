@@ -45,7 +45,7 @@ namespace Halo_Forge_Bot
             Directory.CreateDirectory(Utils.ExePath + "/images/");
 
             InitializeComponent();
-            Task.Run(Input.InitInput);
+            Input.InitInput();
 
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
