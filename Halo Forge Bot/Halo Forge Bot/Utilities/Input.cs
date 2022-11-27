@@ -19,7 +19,7 @@ public static class Input
     public static bool InputActive;
     public static bool EXIT;
 
-    public static void InitInput()
+    public static  void InitInput()
     {
         InputActive = true;
         if (!MouseHook.Hooked) MouseHook.StartHook();

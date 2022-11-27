@@ -26,7 +26,6 @@ namespace Halo_Forge_Bot
     {
         public MainWindow()
         {
-            MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .Enrich.WithThreadId()
@@ -46,7 +45,7 @@ namespace Halo_Forge_Bot
             Directory.CreateDirectory(Utils.ExePath + "/images/");
 
             InitializeComponent();
-            Input.InitInput();
+            Task.Run(Input.InitInput);
 
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
@@ -62,6 +61,7 @@ namespace Halo_Forge_Bot
         }
 
         private BondSchema? _selectedMap;
+        public static string? SelecteMapPath;
 
         private void LoadMvar_OnClick(object sender, RoutedEventArgs e)
         {
@@ -70,7 +70,7 @@ namespace Halo_Forge_Bot
             if (openFileDialog.ShowDialog() == true)
             {
                 _selectedMap = BondHelper.ProcessFile<BondSchema>(openFileDialog.FileName);
-
+                SelecteMapPath = Path.GetDirectoryName(openFileDialog.FileName);
                 MapItemCount.Content = _selectedMap.Items.Count;
                 string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
                 EstimatedTime.Content = estimate;
@@ -86,7 +86,7 @@ namespace Halo_Forge_Bot
             }
 
             Log.Information("-----STARTING BOT-----");
-            await Bot.StartBot(_selectedMap, int.Parse(ItemsToSkip.Text), int.Parse(ItemsToStopAt.Text));
+            await Bot.StartBot(_selectedMap, int.Parse(ItemRangeStart.Text), int.Parse(ItemRangeEnd.Text));
             Log.Information("-----STOPPING BOT-----");
         }
     }

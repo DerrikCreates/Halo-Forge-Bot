@@ -18,22 +18,21 @@
             <Button Name="LoadMvar" Height="50" FontSize="20" Click="LoadMvar_OnClick">Load .mvar</Button>
             <Button Name="LoadBlender" Height="50" FontSize="20">Load blender</Button>
             <Button Height="50" FontSize="20" Click="StartBot_OnClick">START BOT</Button>
-            <Label Height="50" FontSize="15">LEFT ARROW IS STOP</Label>
-            <StackPanel Orientation="Horizontal">
-                <Label FontSize="15">Items To Skip:</Label>
-                <TextBox Name="ItemsToSkip" Width="45" Height="auto" FontSize="15" HorizontalContentAlignment="Left"
-                         VerticalContentAlignment="Center">
-                    0
-                </TextBox>
-            </StackPanel>
+            <TextBlock Height="50" FontSize="15" TextWrapping="Wrap" TextAlignment="Center">press LEFT ARROW to stop!</TextBlock>
             
+            <Label FontSize="15">Object Range:</Label>
             <StackPanel Orientation="Horizontal">
-                <Label FontSize="15">Items To Stop:</Label>
-                <TextBox Name="ItemsToStopAt" Width="45" Height="auto" FontSize="15" HorizontalContentAlignment="Left"
+                <TextBox Name="ItemRangeStart" Margin="5 0 0 0" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center">
+                    0
+                </TextBox>
+                <Label FontSize="15">-></Label>
+                <TextBox Name="ItemRangeEnd" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center">
                     0
                 </TextBox>
             </StackPanel>
+            <Label FontSize="10">keep range at 0 for entire map</Label>
         </StackPanel>
 
         <Grid Grid.Column="1">
