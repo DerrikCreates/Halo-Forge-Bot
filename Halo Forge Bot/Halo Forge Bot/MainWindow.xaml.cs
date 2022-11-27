@@ -86,7 +86,7 @@ namespace Halo_Forge_Bot
             }
 
             Log.Information("-----STARTING BOT-----");
-            await Bot.StartBot(_selectedMap, int.Parse(ItemsToSkip.Text), int.Parse(ItemsToStopAt.Text));
+            await Bot.StartBot(_selectedMap, int.Parse(ItemRangeStart.Text), int.Parse(ItemRangeEnd.Text));
             Log.Information("-----STOPPING BOT-----");
         }
     }
