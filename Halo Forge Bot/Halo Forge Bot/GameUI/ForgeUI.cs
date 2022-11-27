@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI;
+using InfiniteForgeConstants.Forge_UI.Object_Properties;
 using Size = System.Drawing.Size;
 
 namespace Halo_Forge_Bot.GameUI;

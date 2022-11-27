@@ -87,7 +87,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="config\ForgeObjects.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="config\halo_pointers.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
