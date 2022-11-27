@@ -37,11 +37,12 @@ public static class Bot
     public static async Task StartBot(BondSchema map, int itemStart = 0, int itemEnd = 0, bool resumeFromLast = false)
     {
         //todo create a class for both blender and .mvar files, maybe use the blender file json
-        MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id); // todo add checks to the ui to stop the starting of the bot without halo being open / crash detection
-        
+        MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
+            .Id); // todo add checks to the ui to stop the starting of the bot without halo being open / crash detection
+
         int startIndex = itemStart;
         Dictionary<ObjectId, List<MapItem>> items = new();
-        
+
         // LoadItemData();
         BuildUILayout();
 
@@ -59,15 +60,17 @@ public static class Bot
         else
         {
             var splitItemList = new List<ItemSchema>(); // item list of the items to process
-            var tempArray = map.Items.ToArray(); // temp to an array to i know now for sure its in the correct order. might be unnecessary 
+            var tempArray =
+                map.Items.ToArray().OrderBy(item => item.ItemId.Int)
+                    .ToList(); // temp to an array to i know now for sure its in the correct order. might be unnecessary 
             if (itemEnd == 0)
             {
-                itemEnd = tempArray.Length;
+                itemEnd = tempArray.Count();
             }
 
             int index = 0;
 
-            
+
             for (int i = itemStart; i < itemEnd; i++) // extracting the requested items from the map. 
             {
                 splitItemList.Add(tempArray[i]);
@@ -88,7 +91,7 @@ public static class Bot
                 }
 
                 var mapItem = new MapItem(index++, itemSchema);
-                
+
                 if (items.ContainsKey(id)) // collect similar items into lists to reduce the bots ui traveling 
                 {
                     items[id].Add(mapItem);
@@ -102,16 +105,18 @@ public static class Bot
             WriteObjectRecoveryFile(items);
         }
 
-        ForgeUI.SetHaloProcess(); 
+        ForgeUI.SetHaloProcess();
         int itemCountID = 0;
         int saveCount = 0;
 
         foreach (var item in items)
         {
             //todo extract all the data processing and the bot logic from each other
-            while (MemoryHelper.GetGlobalHover() != 0) // reset the cursor to the top of the current menu (in most cases the object browser)
+            while
+                (MemoryHelper.GetGlobalHover() !=
+                 0) // reset the cursor to the top of the current menu (in most cases the object browser)
             {
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W); 
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
             }
 
             await Task.Delay(200);
@@ -131,7 +136,7 @@ public static class Bot
                 Log.Warning("Skipping null item, MapId: {id}, Name: {name} ", Enum.GetName(currentObjectId));
                 continue;
             }
-           
+
             //navigate to item with memory checks
             while (MemoryHelper.GetGlobalHover() !=
                    mapitem.ParentFolder.ParentCategory.CategoryOrder - 1) //Set cursor to correct cat
@@ -175,13 +180,13 @@ public static class Bot
 
             foreach (var mapItem in item.Value) // the start of the item spawning loop
             {
-                if (mapItem.UniqueId < startIndex)
+                if (mapItem.UniqueId < startIndex && resumeFromLast)
                 {
                     continue;
                 }
 
                 WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
-                
+
                 saveCount++;
                 await Task.Delay(200);
                 while (MemoryHelper.GetMenusVisible() == 1)
@@ -299,15 +304,15 @@ public static class Bot
 
         return null;
     }
-    
+
     private static Tuple<int, Dictionary<ObjectId, List<MapItem>>> GetRecoveryFiles()
     {
         Tuple<int, Dictionary<ObjectId, List<MapItem>>> recoveryObject =
             new Tuple<int, Dictionary<ObjectId, List<MapItem>>>(0, new Dictionary<ObjectId, List<MapItem>>());
-        
+
         JsonSerializerSettings s = new JsonSerializerSettings();
         s.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-        
+
         if (!File.Exists(Utils.ExePath + "/recovery/currentObjectRecoveryIndex.json"))
         {
             WriteObjectRecoveryIndexToFile(20);
@@ -317,7 +322,8 @@ public static class Bot
         using (JsonTextReader reader = new JsonTextReader(file))
         {
             var index = JToken.ReadFrom(reader).Value<int>();
-            recoveryObject = new Tuple<int, Dictionary<ObjectId, List<MapItem>>>(index, new Dictionary<ObjectId, List<MapItem>>());
+            recoveryObject =
+                new Tuple<int, Dictionary<ObjectId, List<MapItem>>>(index, new Dictionary<ObjectId, List<MapItem>>());
         }
 
 
@@ -327,8 +333,9 @@ public static class Bot
             using (StreamReader file = File.OpenText(Utils.ExePath + "/recovery/ObjectRecoveryData.json"))
             using (JsonTextReader reader = new JsonTextReader(file))
             {
-                var items = (JObject) JToken.ReadFrom(reader);
-                recoveryObject = new Tuple<int, Dictionary<ObjectId, List<MapItem>>>(recoveryObject.Item1, items.ToObject<Dictionary<ObjectId,List<MapItem>>>());
+                var items = (JObject)JToken.ReadFrom(reader);
+                recoveryObject = new Tuple<int, Dictionary<ObjectId, List<MapItem>>>(recoveryObject.Item1,
+                    items.ToObject<Dictionary<ObjectId, List<MapItem>>>());
             }
         }
 
@@ -344,7 +351,7 @@ public static class Bot
         var a = JsonConvert.SerializeObject(index, s);
         File.WriteAllText(Utils.ExePath + "/recovery/currentObjectRecoveryIndex.json", a);
     }
-    
+
     private static void WriteObjectRecoveryFile(Dictionary<ObjectId, List<MapItem>> items)
     {
         JsonSerializerSettings s = new JsonSerializerSettings();
