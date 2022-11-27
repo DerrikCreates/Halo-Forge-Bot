@@ -35,17 +35,25 @@ public static class Bot
 {
     public static async Task StartBot(BondSchema map, int itemStart = 0, int itemEnd = 0)
     {
-        int currentSkipCount = 0;
+        //todo create a class for both blender and .mvar files, maybe use the blender file json
+        MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id); // todo add checks to the ui to stop the starting of the bot without halo being open / crash detection
+
         // LoadItemData();
         BuildUILayout();
 
-        var splitItemList = map.Items.ToList();
+        var splitItemList = new List<ItemSchema>(); // item list of the items to process
+        var tempArray = map.Items.ToArray(); // temp to an array to i know now for sure its in the correct order. might be unnecessary 
         if (itemEnd == 0)
         {
-            itemEnd = splitItemList.Count;
+            itemEnd = tempArray.Length;
         }
 
-        splitItemList = splitItemList.GetRange(itemStart, itemEnd - itemStart);
+
+        for (int i = itemStart; i < itemEnd; i++) // extracting the requested items from the map. 
+        {
+            splitItemList.Add(tempArray[i]);
+        }
+
         Dictionary<ObjectId, List<ItemSchema>> items = new();
         foreach (var itemSchema in splitItemList)
         {
@@ -53,13 +61,15 @@ public static class Bot
 
             if (itemSchema.StaticDynamicFlagUnknown != 21)
             {
+                //todo have a better way to detect if an item is default static / dynamic. the bot will currently break if we try and spawn a dynamic by default item
+
                 Log.Warning(
                     "Item with id: {ItemID} is dynamic, we currently only support static items, skipping this item",
                     id);
                 continue;
             }
 
-            if (items.ContainsKey(id))
+            if (items.ContainsKey(id)) // collect similar items into lists to reduce the bots ui traveling 
             {
                 items[id].Add(itemSchema);
                 continue;
@@ -69,15 +79,16 @@ public static class Bot
             items[id].Add(itemSchema);
         }
 
-        ForgeUI.SetHaloProcess();
+        ForgeUI.SetHaloProcess(); 
         int itemCountID = 0;
         int saveCount = 0;
 
         foreach (var item in items)
         {
-            while (MemoryHelper.GetGlobalHover() != 0)
+            //todo extract all the data processing and the bot logic from each other
+            while (MemoryHelper.GetGlobalHover() != 0) // reset the cursor to the top of the current menu (in most cases the object browser)
             {
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W); 
             }
 
             await Task.Delay(200);
@@ -90,15 +101,15 @@ public static class Bot
 
             var currentObjectId = item.Key;
 
-            ForgeObjectBrowser.FindItem(currentObjectId, out ForgeUIObject? mapitem);
+            ForgeObjectBrowser.FindItem(currentObjectId, out ForgeUIObject? mapitem); // gets the items ui location data
 
             if (mapitem == null)
             {
                 Log.Warning("Skipping null item, MapId: {id}, Name: {name} ", Enum.GetName(currentObjectId));
                 continue;
             }
+           
             //navigate to item with memory checks
-
             while (MemoryHelper.GetGlobalHover() !=
                    mapitem.ParentFolder.ParentCategory.CategoryOrder - 1) //Set cursor to correct cat
             {
@@ -138,18 +149,10 @@ public static class Bot
                 await Task.Delay(33);
             }
 
-            
-            foreach (var itemSchema in item.Value)
+
+            foreach (var itemSchema in item.Value) // the start of the item spawning loop
             {
-                /*
-
-                if (itemCountID >= itemToStopAt)
-                {
-                    Log.Information("--STOPPING THE BOT-- ITEM COUNT LIMIT REACHED");
-                    return;
-                }
-
-*/
+                
                 saveCount++;
                 await Task.Delay(200);
                 while (MemoryHelper.GetMenusVisible() == 1)
@@ -162,6 +165,7 @@ public static class Bot
 
                 if (saveCount == 10)
                 {
+                    //todo add a save count setting to the ui
                     await Task.Delay(100);
                     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
                     saveCount = 0;
@@ -233,7 +237,7 @@ public static class Bot
     {
         //Your cursed stuff is in here if you still need it, manually fixed the part of the file.
         //ConformForgeObjects.BuildUiLayout();
-        
+
         string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
         string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
         var data = File.ReadAllLines(strWorkPath + "/config/ForgeObjects.txt");
@@ -242,7 +246,7 @@ public static class Bot
         {
             var objectData = line.Split(":");
             if (objectData[0] == "Z_NULL" || objectData[0] == "Z_UNUSED") continue;
-            
+
             ForgeObjectBrowser.AddItem(ConformForgeObjects.FixCapital(objectData[0].ToLower()),
                 ConformForgeObjects.FixCapital(objectData[1].ToLower()),
                 Enum.GetName((ObjectId)int.Parse(objectData[3])) ?? objectData[2], Enum.Parse<ObjectId>(objectData[3]));

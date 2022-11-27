@@ -13,7 +13,7 @@ public static class PropertyHelper
 {
     private static async Task SetProperty(string data, int index, VirtualKeyCode key = VirtualKeyCode.VK_S)
     {
-        if (data == "")
+        if (data == "") // not sure if its possible to ever be "" but just in case.
         {
             data = "0";
         }
