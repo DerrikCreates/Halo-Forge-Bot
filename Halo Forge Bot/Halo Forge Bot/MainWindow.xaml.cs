@@ -45,7 +45,7 @@ namespace Halo_Forge_Bot
             Directory.CreateDirectory(Utils.ExePath + "/images/");
 
             InitializeComponent();
-            Task.Run(Input.InitInput);
+            Input.InitInput();
 
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
@@ -87,6 +87,25 @@ namespace Halo_Forge_Bot
 
             Log.Information("-----STARTING BOT-----");
             await Bot.StartBot(_selectedMap, int.Parse(ItemRangeStart.Text), int.Parse(ItemRangeEnd.Text));
+            Log.Information("-----STOPPING BOT-----");
+        }
+        
+        private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_selectedMap == null)
+            {
+                Log.Error("Selected map is null, select a map first");
+                return;
+            }
+
+            if (!File.Exists(Utils.ExePath + "/recovery/ObjectRecoveryData.json"))
+            {
+                Log.Error("No recovery data found.");
+                return;
+            }
+
+            Log.Information("-----STARTING BOT-----");
+            await Bot.StartBot(_selectedMap, int.Parse(ItemRangeStart.Text), int.Parse(ItemRangeEnd.Text), true);
             Log.Information("-----STOPPING BOT-----");
         }
     }
