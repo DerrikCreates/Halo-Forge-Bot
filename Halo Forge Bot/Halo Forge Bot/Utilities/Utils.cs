@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using BondReader.Schemas;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Halo_Forge_Bot.Utilities;
 
@@ -277,19 +278,23 @@ public static class Utils
 
         return randomEnum;
     }
-    
+
     public static List<ForgeItem> SchemaToItemList(BondSchema map)
     {
+        int index = 0;
         var forgeItems = new List<ForgeItem>();
         foreach (var itemSchema in map.Items)
         {
             var forgeItem = new ForgeItem();
-
+            forgeItem.DEBUGSCHEMA = itemSchema;
             forgeItem.IsStatic = itemSchema.StaticDynamicFlagUnknown == 21;
 
             forgeItem.ItemId = itemSchema.ItemId.Int;
 
+
             forgeItem.ForwardX = itemSchema.Forward.X;
+
+
             forgeItem.ForwardY = itemSchema.Forward.Y;
             forgeItem.ForwardZ = itemSchema.Forward.Z;
 
@@ -308,10 +313,36 @@ public static class Utils
                 forgeItem.ScaleZ = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z;
             }
 
-            forgeItems.Add(forgeItem);
+
+            if (IsValidNumbers(forgeItem))
+            {
+                forgeItems.Add(forgeItem);
+                continue;
+            }
+
+            Log.Warning("NaN detected in item id {ItemId} skipping this item", forgeItem.ItemId);
         }
 
         return forgeItems;
-    }
 
+
+        bool IsValidNumbers(ForgeItem forgeItem)
+        {
+            var fields = forgeItem.GetType().GetFields();
+            foreach (var field in fields)
+            {
+                if (field.FieldType == typeof(float))
+                {
+                    var value = (float)field.GetValue(forgeItem);
+
+                    if (float.IsNaN(value))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+    }
 }
