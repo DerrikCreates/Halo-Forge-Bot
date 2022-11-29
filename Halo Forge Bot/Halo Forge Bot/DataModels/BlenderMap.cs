@@ -9,6 +9,6 @@ public class BlenderMap
     [JsonProperty("mapId")] 
     public int MapId { get; set; }
     [JsonProperty("itemList")] 
-    public List<BlenderItem> ItemList { get; set; }
+    public List<ForgeItem> ItemList { get; set; }
 }
 

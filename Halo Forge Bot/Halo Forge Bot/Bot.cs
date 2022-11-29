@@ -34,7 +34,9 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-    public static async Task StartBot(BondSchema map, int itemStart = 0, int itemEnd = 0, bool resumeFromLast = false)
+    //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
+    public static async Task StartBot(List<ForgeItem> map, int itemStart = 0, int itemEnd = 0,
+        bool resumeFromLast = false)
     {
         //todo create a class for both blender and .mvar files, maybe use the blender file json
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
@@ -59,9 +61,9 @@ public static class Bot
         }
         else
         {
-            var splitItemList = new List<ItemSchema>(); // item list of the items to process
+            var splitItemList = new List<ForgeItem>(); // item list of the items to process
             var tempArray =
-                map.Items.ToArray().OrderBy(item => item.ItemId.Int)
+                map.OrderBy(item => item.ItemId)
                     .ToList(); // temp to an array to i know now for sure its in the correct order. might be unnecessary 
             if (itemEnd == 0)
             {
@@ -78,9 +80,9 @@ public static class Bot
 
             foreach (var itemSchema in splitItemList)
             {
-                var id = (ObjectId)itemSchema.ItemId.Int;
+                var id = (ObjectId)itemSchema.ItemId;
 
-                if (itemSchema.StaticDynamicFlagUnknown != 21)
+                if (itemSchema.IsStatic == false)
                 {
                     //todo have a better way to detect if an item is default static / dynamic. the bot will currently break if we try and spawn a dynamic by default item
 
@@ -91,7 +93,7 @@ public static class Bot
                 }
 
                 var mapItem = new MapItem(index++, itemSchema);
-
+                mapItem.item = itemSchema;
                 if (items.ContainsKey(id)) // collect similar items into lists to reduce the bots ui traveling 
                 {
                     items[id].Add(mapItem);
@@ -99,6 +101,7 @@ public static class Bot
                 }
 
                 items.Add(id, new List<MapItem>());
+
                 items[id].Add(mapItem);
             }
 
@@ -241,7 +244,7 @@ public static class Bot
                 }
                 */
 
-                await PropertyHelper.SetMainProperties(mapItem.Schema);
+                await PropertyHelper.SetMainProperties(mapItem.item);
                 itemCountID++;
             }
 
@@ -352,7 +355,7 @@ public static class Bot
         File.WriteAllText(Utils.ExePath + "/recovery/currentObjectRecoveryIndex.json", a);
     }
 
-    private static void WriteObjectRecoveryFile(Dictionary<ObjectId, List<MapItem>> items)
+    private static void WriteObjectRecoveryFile(Dictionary<ObjectId, List<DataModels.MapItem>> items)
     {
         JsonSerializerSettings s = new JsonSerializerSettings();
         s.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

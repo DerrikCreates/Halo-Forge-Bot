@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Numerics;
 using System.Threading.Tasks;
 using System.Windows;
+using BondReader.Schemas;
 using Newtonsoft.Json;
 
 namespace Halo_Forge_Bot.Utilities;
@@ -274,4 +277,41 @@ public static class Utils
 
         return randomEnum;
     }
+    
+    public static List<ForgeItem> SchemaToItemList(BondSchema map)
+    {
+        var forgeItems = new List<ForgeItem>();
+        foreach (var itemSchema in map.Items)
+        {
+            var forgeItem = new ForgeItem();
+
+            forgeItem.IsStatic = itemSchema.StaticDynamicFlagUnknown == 21;
+
+            forgeItem.ItemId = itemSchema.ItemId.Int;
+
+            forgeItem.ForwardX = itemSchema.Forward.X;
+            forgeItem.ForwardY = itemSchema.Forward.Y;
+            forgeItem.ForwardZ = itemSchema.Forward.Z;
+
+            forgeItem.UpX = itemSchema.Up.X;
+            forgeItem.UpY = itemSchema.Up.Y;
+            forgeItem.UpY = itemSchema.Up.Y;
+
+            forgeItem.PositionX = itemSchema.Position.X;
+            forgeItem.PositionY = itemSchema.Position.Y;
+            forgeItem.PositionZ = itemSchema.Position.Z;
+
+            if (forgeItem.IsStatic)
+            {
+                forgeItem.ScaleX = itemSchema.SettingsContainer.Scale.First().ScaleContainer.X;
+                forgeItem.ScaleY = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Y;
+                forgeItem.ScaleZ = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z;
+            }
+
+            forgeItems.Add(forgeItem);
+        }
+
+        return forgeItems;
+    }
+
 }

@@ -4,8 +4,11 @@ using System.Numerics;
 using System.Threading.Tasks;
 using BondReader.Schemas.Items;
 using InfiniteForgeConstants.Forge_UI.Object_Properties;
+using Microsoft.VisualBasic.Logging;
 using TextCopy;
 using WindowsInput.Native;
+using Serilog;
+using Log = Serilog.Log;
 
 namespace Halo_Forge_Bot.Utilities;
 
@@ -13,6 +16,7 @@ public static class PropertyHelper
 {
     private static async Task SetProperty(string data, int index, VirtualKeyCode key = VirtualKeyCode.VK_S)
     {
+        Log.Information("Setting property at Index:{Index} with value: {Value}", index, data);
         if (data == "") // not sure if its possible to ever be "" but just in case.
         {
             data = "0";
@@ -43,9 +47,9 @@ public static class PropertyHelper
 
         while (MemoryHelper.GetEditBoxText() != data)
         {
-            await Task.Delay(50);
+            await Task.Delay(25);
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
-
+            await Task.Delay(25);
             /*
             var toType = data.ToCharArray();
             foreach (var c in toType)
@@ -55,7 +59,7 @@ public static class PropertyHelper
             }
             */
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
-            await Task.Delay(50);
+            await Task.Delay(25);
         }
 
         while (MemoryHelper.GetEditMenuState() != 0)
@@ -65,7 +69,7 @@ public static class PropertyHelper
         }
     }
 
-    public static async Task SetMainProperties(ItemSchema itemSchema)
+    public static async Task SetMainProperties(ForgeItem itemSchema)
     {
         while (MemoryHelper.GetMenusVisible() == 0)
         {
@@ -83,9 +87,9 @@ public static class PropertyHelper
 
         var defaultScale = MemoryHelper.GetSelectedScale();
 
-        var xScale = MathF.Round(itemSchema.SettingsContainer.Scale.First().ScaleContainer.X, 3);
-        var yScale = MathF.Round(itemSchema.SettingsContainer.Scale.First().ScaleContainer.Y, 3);
-        var zScale = MathF.Round(itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z, 3);
+        var yScale = MathF.Round(itemSchema.ScaleY, 3);
+        var xScale = MathF.Round(itemSchema.ScaleX, 3);
+        var zScale = MathF.Round(itemSchema.ScaleZ, 3);
 
         var itemScale = new Vector3(xScale, yScale, zScale);
 
@@ -95,29 +99,31 @@ public static class PropertyHelper
         await SetProperty(realScale.Y.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeY]);
         await SetProperty(realScale.Z.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeZ]);
 
-        var xPos = MathF.Round(itemSchema.Position.X * 10, 3);
-        var yPos = MathF.Round(itemSchema.Position.Y * 10, 3);
-        var zPos = MathF.Round(itemSchema.Position.Z * 10, 3);
+        var xPos = MathF.Round(itemSchema.PositionX * 10, 3);
+        var yPos = MathF.Round(itemSchema.PositionY * 10, 3);
+        var zPos = MathF.Round(itemSchema.PositionZ * 10, 3);
 
         await SetProperty(xPos.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Forward]);
         await SetProperty(yPos.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Horizontal]);
         await SetProperty(zPos.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Vertical]);
 
-        var yForward = MathF.Round(itemSchema.Forward.Y, 3);
-        var zForward = MathF.Round(itemSchema.Forward.Z, 3);
-        var xForward = MathF.Round(itemSchema.Forward.X, 3);
+        var yForward = MathF.Round(itemSchema.ForwardY, 3);
+        var zForward = MathF.Round(itemSchema.ForwardZ, 3);
+        var xForward = MathF.Round(itemSchema.ForwardX, 3);
 
-        var yUp = MathF.Round(itemSchema.Up.Y, 3);
-        var xUp = MathF.Round(itemSchema.Up.X, 3);
-        var zUp = MathF.Round(itemSchema.Up.Z, 3);
+        var yUp = MathF.Round(itemSchema.UpY, 3);
+        var xUp = MathF.Round(itemSchema.UpX, 3);
+        var zUp = MathF.Round(itemSchema.UpZ, 3);
 
         var rotation =
             Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, zForward), new Vector3(xUp, yUp, zUp));
 
 
         await SetProperty(rotation.Z.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-        await SetProperty(rotation.X.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch], VirtualKeyCode.VK_W);
-        await SetProperty(rotation.Y.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw], VirtualKeyCode.VK_W);
+        await SetProperty(rotation.X.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch],
+            VirtualKeyCode.VK_W);
+        await SetProperty(rotation.Y.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw],
+            VirtualKeyCode.VK_W);
         await Task.Delay(50);
 
 
