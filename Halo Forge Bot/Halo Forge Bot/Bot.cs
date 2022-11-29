@@ -34,6 +34,9 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
+    public static int travelSleep = 10;
+
+    public static int WhenToSave = 15;
     //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
     public static async Task StartBot(List<ForgeItem> map, int itemStart = 0, int itemEnd = 0,
         bool resumeFromLast = false)
@@ -120,6 +123,7 @@ public static class Bot
                  0) // reset the cursor to the top of the current menu (in most cases the object browser)
             {
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+                await Task.Delay(travelSleep);
             }
 
             await Task.Delay(200);
@@ -127,7 +131,7 @@ public static class Bot
             while (MemoryHelper.GetTopBrowserHover() != 0) // set item browser to active menu
             {
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
-                await Task.Delay(10);
+                await Task.Delay(travelSleep);
             }
 
             var currentObjectId = item.Key;
@@ -148,7 +152,7 @@ public static class Bot
                     MemoryHelper.GetGlobalHover(), mapitem.ParentFolder.ParentCategory.CategoryOrder - 1);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
 
-                await Task.Delay(33);
+                await Task.Delay(travelSleep);
             }
 
             await Task.Delay(200);
@@ -166,7 +170,7 @@ public static class Bot
                     mapitem.ParentFolder.FolderOffset - 1);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
 
-                await Task.Delay(33);
+                await Task.Delay(travelSleep);
             }
 
             await Task.Delay(200);
@@ -177,7 +181,7 @@ public static class Bot
             while (MemoryHelper.GetGlobalHover() != mapitem.ObjectOrder - 1) // hover item
             {
                 Input.PressKey(VirtualKeyCode.VK_S);
-                await Task.Delay(33);
+                await Task.Delay(travelSleep);
             }
 
 
@@ -200,7 +204,7 @@ public static class Bot
 
                 await Task.Delay(200);
 
-                if (saveCount == 10)
+                if (saveCount == WhenToSave)
                 {
                     //todo add a save count setting to the ui
                     await Task.Delay(100);
@@ -255,7 +259,7 @@ public static class Bot
             while (MemoryHelper.GetGlobalHover() != mapitem.ParentFolder.ParentCategory.CategoryOrder - 1)
             {
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
-                await Task.Delay(33);
+                await Task.Delay(travelSleep);
             }
 
             await Task.Delay(100);

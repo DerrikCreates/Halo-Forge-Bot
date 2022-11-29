@@ -89,9 +89,10 @@ public static class Utils
 
         final = to180(final);
 
-        final.X = MathF.Round(final.X, 3);
-        final.Y = MathF.Round(final.Y, 3);
-        final.Z = MathF.Round(final.Z, 3);
+
+        // final.X = float.IsNaN(final.X) ? 0  : final.X;
+        // final.Y = float.IsNaN(final.Y) ? 180  : final.Y;
+        //  final.Z = float.IsNaN(final.Z) ? 0 : final.Z;
         return final;
     }
 
@@ -241,9 +242,9 @@ public static class Utils
             return (Vector3.Zero, Vector3.Zero);
 
         var right = Vector3.Cross(forward, up);
-        var z = MathF.Round(MathF.Atan2(forward.Y, forward.X), 5);
+        var z = MathF.Atan2(forward.Y, forward.X);
 
-        var y = MathF.Round(MathF.Atan2(forward.Z, MathF.Sqrt(forward.X * forward.X + forward.Y * forward.Y)), 5);
+        var y = MathF.Atan2(forward.Z, MathF.Sqrt(forward.X * forward.X + forward.Y * forward.Y));
 
         if (y > MathF.PI / 2)
         {
@@ -255,7 +256,7 @@ public static class Utils
             y = -MathF.PI - y;
         }
 
-        var x = -MathF.Round(MathF.Atan2(right.Z, up.Z), 5);
+        var x = -MathF.Atan2(right.Z, up.Z);
 
         return (new Vector3(x, y, z), new Vector3(x, y, z) * (180 / MathF.PI));
     }
@@ -293,14 +294,12 @@ public static class Utils
 
 
             forgeItem.ForwardX = itemSchema.Forward.X;
-
-
             forgeItem.ForwardY = itemSchema.Forward.Y;
             forgeItem.ForwardZ = itemSchema.Forward.Z;
 
             forgeItem.UpX = itemSchema.Up.X;
             forgeItem.UpY = itemSchema.Up.Y;
-            forgeItem.UpY = itemSchema.Up.Y;
+            forgeItem.UpZ = itemSchema.Up.Z;
 
             forgeItem.PositionX = itemSchema.Position.X;
             forgeItem.PositionY = itemSchema.Position.Y;
@@ -343,6 +342,76 @@ public static class Utils
             }
 
             return true;
+        }
+    }
+
+
+    public static Vector3 DidZSaveTheDay(Vector3 forward, Vector3 up)
+    {
+        var quat = LookRotation(forward, up);
+        return ToEulerAngles(quat);
+
+
+        Vector3 ToEulerAngles(Quaternion q)
+        {
+            // Convert X Angle
+            float sinr_cosp = (float)(2 * (-q.W * q.X + q.Y * q.Z));
+            float cosr_cosp = (float)(1 - 2 * (q.X * q.X + q.Y * q.Y));
+            float xAngle = (float)Math.Atan2(sinr_cosp, cosr_cosp) * -1;
+
+            // Convert Y Angle
+            float sinp = (float)(2 * (-q.W * q.Y - q.Z * q.X));
+            float yAngle;
+            if (Math.Abs(sinp) >= 1)
+                yAngle = (float)(Math.PI / 2 * Math.Sign(sinp)) * -1;
+            else
+                yAngle = (float)Math.Asin(sinp) * -1;
+
+            // Convert Z Angle
+            float siny_cosp = (float)(2 * (-q.W * q.Z + q.X * q.Y));
+            float cosy_cosp = (float)(1 - 2 * (q.Y * q.Y + q.Z * q.Z));
+            float zAngle = (float)Math.Atan2(siny_cosp, cosy_cosp) * -1;
+
+            return new Vector3((float)Math.Round(xAngle, 2), (float)Math.Round(yAngle, 2),
+                (float)Math.Round(zAngle, 2));
+        }
+
+        Vector3 ToDegree(Vector3 r)
+        {
+            float xDeg = (float)(r.X * 180 / Math.PI);
+            float yDeg = (float)(r.Y * 180 / Math.PI);
+            float zDeg = (float)(r.Z * 180 / Math.PI);
+
+            return new Vector3(xDeg, yDeg, zDeg);
+        }
+
+        Vector3 ToRadian(Vector3 d)
+        {
+            float xRad = (float)(d.X * Math.PI / 180);
+            float yRad = (float)(d.Y * Math.PI / 180);
+            float zRad = (float)(d.Z * Math.PI / 180);
+
+            return new Vector3((float)Math.Round(xRad, 2), (float)Math.Round(yRad, 2), (float)Math.Round(zRad, 2));
+        }
+
+        Quaternion ToQuaternion(Vector3 e)
+        {
+            double cy = Math.Cos(e.Z * 0.5);
+            double sy = Math.Sin(e.Z * 0.5);
+            double cp = Math.Cos(e.Y * 0.5);
+            double sp = Math.Sin(e.Y * 0.5);
+            double cr = Math.Cos(e.X * 0.5);
+            double sr = Math.Sin(e.X * 0.5);
+
+            Quaternion q = new Quaternion
+            {
+                W = (float)(cr * cp * cy + sr * sp * sy * -1),
+                X = (float)(sr * cp * cy - cr * sp * sy * -1),
+                Y = (float)(cr * sp * cy + sr * cp * sy * -1),
+                Z = (float)(cr * cp * sy - sr * sp * cy * -1)
+            };
+
+            return q;
         }
     }
 }

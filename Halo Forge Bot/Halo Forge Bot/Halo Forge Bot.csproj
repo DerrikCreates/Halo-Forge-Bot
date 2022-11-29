@@ -38,7 +38,7 @@
 
     <ItemGroup>
       <None Update="dlls\InfiniteForgeConstants.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="dlls\InfiniteForgeConstants.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -50,7 +50,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="dlls\InfiniteForgePacker.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Temp\SnowMap.mvar">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

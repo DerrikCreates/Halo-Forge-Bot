@@ -1,9 +1,11 @@
+using BondReader.Schemas.Items;
 using Newtonsoft.Json;
 
 namespace Halo_Forge_Bot
 {
     public class ForgeItem
     {
+        [JsonIgnore] public ItemSchema DEBUGSCHEMA;
         [JsonProperty("positionX")] public float PositionX;
         [JsonProperty("positionY")] public float PositionY;
         [JsonProperty("positionZ")] public float PositionZ;

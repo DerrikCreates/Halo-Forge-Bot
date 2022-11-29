@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using BondReader.Schemas.Items;
 using InfiniteForgeConstants.Forge_UI.Object_Properties;
 using Microsoft.VisualBasic.Logging;
@@ -26,7 +27,7 @@ public static class PropertyHelper
         {
             Input.Simulate.Keyboard.KeyPress(key);
             //MemoryHelper.SetGlobalHover(index);
-            await Task.Delay(33);
+            await Task.Delay(Bot.travelSleep);
         }
 
 
@@ -35,7 +36,7 @@ public static class PropertyHelper
         while (MemoryHelper.GetEditMenuState() == 0)
         {
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(100);
+            await Task.Delay(200);
         }
 
 
@@ -50,15 +51,15 @@ public static class PropertyHelper
             await Task.Delay(25);
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
             await Task.Delay(25);
-            /*
+
             var toType = data.ToCharArray();
             foreach (var c in toType)
             {
                 SendKeys.SendWait(c.ToString());
-                await Task.Delay(33);
+                await Task.Delay(10);
             }
-            */
-            Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
+
+            //Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
             await Task.Delay(100);
         }
 
@@ -87,42 +88,45 @@ public static class PropertyHelper
 
         var defaultScale = MemoryHelper.GetSelectedScale();
 
-        var yScale = MathF.Round(itemSchema.ScaleY, 3);
-        var xScale = MathF.Round(itemSchema.ScaleX, 3);
-        var zScale = MathF.Round(itemSchema.ScaleZ, 3);
+        var yScale = itemSchema.ScaleY;
+        var xScale = itemSchema.ScaleX;
+        var zScale = itemSchema.ScaleZ;
 
         var itemScale = new Vector3(xScale, yScale, zScale);
 
         var realScale = (itemScale * defaultScale); //Vector3.Multiply(itemScale, defaultScale) * 10;
 
-        await SetProperty(realScale.X.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX]);
-        await SetProperty(realScale.Y.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeY]);
-        await SetProperty(realScale.Z.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeZ]);
+        await SetProperty(realScale.X.ToString("N6"),
+            ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX]);
+        await SetProperty(realScale.Y.ToString("N6"),
+            ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeY]);
+        await SetProperty(realScale.Z.ToString("N6"),
+            ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeZ]);
 
-        var xPos = MathF.Round(itemSchema.PositionX * 10, 3);
-        var yPos = MathF.Round(itemSchema.PositionY * 10, 3);
-        var zPos = MathF.Round(itemSchema.PositionZ * 10, 3);
+        var xPos = itemSchema.PositionX * 10;
+        var yPos = itemSchema.PositionY * 10;
+        var zPos = itemSchema.PositionZ * 10;
 
-        await SetProperty(xPos.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Forward]);
-        await SetProperty(yPos.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Horizontal]);
-        await SetProperty(zPos.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Vertical]);
+        await SetProperty(xPos.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Forward]);
+        await SetProperty(yPos.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Horizontal]);
+        await SetProperty(zPos.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Vertical]);
 
-        var yForward = MathF.Round(itemSchema.ForwardY, 3);
-        var zForward = MathF.Round(itemSchema.ForwardZ, 3);
-        var xForward = MathF.Round(itemSchema.ForwardX, 3);
+        var yForward = itemSchema.ForwardY;
+        var zForward = itemSchema.ForwardZ;
+        var xForward = itemSchema.ForwardX;
 
-        var yUp = MathF.Round(itemSchema.UpY, 3);
-        var xUp = MathF.Round(itemSchema.UpX, 3);
-        var zUp = MathF.Round(itemSchema.UpZ, 3);
+        var yUp = itemSchema.UpY;
+        var xUp = itemSchema.UpX;
+        var zUp = itemSchema.UpZ;
 
         var rotation =
             Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, zForward), new Vector3(xUp, yUp, zUp));
 
 
-        await SetProperty(rotation.Z.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-        await SetProperty(rotation.X.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch],
+        await SetProperty(rotation.Z.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
+        await SetProperty(rotation.X.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch],
             VirtualKeyCode.VK_W);
-        await SetProperty(rotation.Y.ToString(), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw],
+        await SetProperty(rotation.Y.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw],
             VirtualKeyCode.VK_W);
         await Task.Delay(50);
 
