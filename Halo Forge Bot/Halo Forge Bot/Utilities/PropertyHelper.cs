@@ -59,13 +59,13 @@ public static class PropertyHelper
             }
             */
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
-            await Task.Delay(25);
+            await Task.Delay(100);
         }
 
         while (MemoryHelper.GetEditMenuState() != 0)
         {
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(50);
+            await Task.Delay(100);
         }
     }
 
