@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,34 +15,58 @@ public static class Input
 {
     public static InputSimulator Simulate = new InputSimulator();
 
-    public static LowLevelMouseHook MouseHook = new LowLevelMouseHook();
-    public static LowLevelKeyboardHook KeyboardHook = new LowLevelKeyboardHook();
+    public static readonly LowLevelMouseHook MouseHook = new LowLevelMouseHook();
+    private static readonly Thread EnsureExitThread = new Thread(new ThreadStart(HandleExitThread));
     public static bool InputActive;
-    public static bool EXIT;
 
-    public static  void InitInput()
+    public static void InitInput()
     {
+        if (InputActive) return;
         InputActive = true;
-        if (!MouseHook.Hooked) MouseHook.StartHook();
-        if (!KeyboardHook.Hooked) KeyboardHook.StartHook();
-        KeyboardHook.KeyIntercepted += InputHook;
+        
+        EnsureExitThread.Start();
     }
 
-    private static void InputHook(int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled)
+    //Added to remove laggy mouse hook from main input
+    public static void InitMouseHook()
     {
-        if (code == (int)VirtualKeyCode.LEFT)
+        if (!MouseHook.Hooked) MouseHook.StartHook();
+    }
+
+    /// <summary>
+    /// Ensure you can always exit the bot by using a specific key down event
+    /// </summary>
+    private static void HandleExitThread()
+    {
+        // var keyboardHook = new LowLevelKeyboardHook();
+        // keyboardHook.StartHook();
+        // keyboardHook.KeyIntercepted += InputHook;
+        var exit = false;
+
+        while (!exit)
         {
-            KeyboardHook.KeyIntercepted -= InputHook;
-            KeyboardHook.Unhook();
-            MouseHook.Unhook();
-
-            MouseHook.Dispose();
-            KeyboardHook.Dispose();
-
-            //EXIT = true;
-
-            throw new Exception($"Implement proper exit here");
+            if (Simulate.InputDeviceState.IsHardwareKeyDown(VirtualKeyCode.LEFT))
+            {
+                exit = true;
+                Process.GetCurrentProcess().Kill();
+            }
+            Thread.Sleep(1);
         }
+
+        // void InputHook(int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled)
+        // {
+        //     if (code != (int)VirtualKeyCode.LEFT) return;
+        //     // KeyboardHook.KeyIntercepted -= InputHook;
+        //     // KeyboardHook.Unhook();
+        //     // MouseHook.Unhook();
+        //
+        //     MouseHook.Dispose();
+        //     keyboardHook.Dispose();
+        //
+        //     exit = true;
+        //     Process.GetCurrentProcess().Kill();
+        //     //throw new Exception($"Implement proper exit here");
+        // }
     }
 
     /// <summary>
@@ -161,5 +186,12 @@ public static class Input
             PressWithMonitor(ForgeUI.RenameBox, (VirtualKeyCode)character);
             Thread.Sleep(10);
         }
+    }
+
+    public static async Task KeyPress(VirtualKeyCode key, int sleepTime, int initialDelay = 0)
+    {
+        await Task.Delay(initialDelay);
+        Simulate.Keyboard.KeyPress(key);
+        await Task.Delay(sleepTime);
     }
 }
