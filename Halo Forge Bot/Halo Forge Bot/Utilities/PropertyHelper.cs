@@ -15,7 +15,7 @@ namespace Halo_Forge_Bot.Utilities;
 
 public static class PropertyHelper
 {
-    private static async Task SetProperty(string data, int index, VirtualKeyCode key = VirtualKeyCode.VK_S)
+    private static async Task SetProperty(string data, int index)
     {
         Log.Information("Setting property at Index:{Index} with value: {Value}", index, data);
         if (data == "") // not sure if its possible to ever be "" but just in case.
@@ -126,17 +126,16 @@ public static class PropertyHelper
 
 
         await SetProperty(rotation.Z.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-        await SetProperty(rotation.X.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch],
-            VirtualKeyCode.VK_W);
-        await SetProperty(rotation.Y.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw],
-            VirtualKeyCode.VK_W);
+        await SetProperty(rotation.X.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
+        await SetProperty(rotation.Y.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
         await Task.Delay(50);
 
-
-        while (MemoryHelper.GetGlobalHover() != ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX])
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
-        }
+        /*
+    while (MemoryHelper.GetGlobalHover() != ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX])
+    {
+        Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+    }
+    */
 
         // while (MemoryHelper.GetTopBrowserHover() != 0)
         // {

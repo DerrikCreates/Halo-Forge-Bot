@@ -109,9 +109,17 @@ namespace Halo_Forge_Bot
             }
 
             Log.Information("-----STARTING BOT-----");
-            await Bot.StartBot(Utils.SchemaToItemList(_selectedMap), int.Parse(ItemRangeStart.Text),
-                int.Parse(ItemRangeEnd.Text), true);
-            Log.Information("-----STOPPING BOT-----");
+            try
+            {
+                await Bot.StartBot(Utils.SchemaToItemList(_selectedMap), int.Parse(ItemRangeStart.Text),
+                    int.Parse(ItemRangeEnd.Text), true);
+                Log.Information("-----STOPPING BOT-----");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
 
         private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
@@ -122,10 +130,10 @@ namespace Halo_Forge_Bot
             if (openFileDialog.ShowDialog() == true)
             {
                 items = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText(openFileDialog.FileName)).ItemList;
-                
-               // MapItemCount.Content = _selectedMap.Items.Count;
-               // string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
-               // EstimatedTime.Content = estimate;
+
+                // MapItemCount.Content = _selectedMap.Items.Count;
+                // string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
+                // EstimatedTime.Content = estimate;
             }
 
             //todo make the bot use blender rotation and not the forward/up
@@ -133,6 +141,7 @@ namespace Halo_Forge_Bot
         }
 
         private static readonly DevUI DevWindow = new DevUI();
+
         private void EnterDev_OnClick(object sender, RoutedEventArgs e)
         {
             DevWindow.Show();

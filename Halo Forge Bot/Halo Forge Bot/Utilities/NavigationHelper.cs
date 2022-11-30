@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
+using Memory;
 using WindowsInput.Native;
 
 namespace Halo_Forge_Bot.Utilities;
@@ -100,7 +101,7 @@ public static class NavigationHelper
     public static async Task OpenUI(ContentBrowserTabs? openToTab = null)
     {
         //Ensure the UI menu is open
-        while (MemoryHelper.GetMenusVisible() == 0)
+        while (MemoryHelper.GetMenusVisible() != 1)
         {
             await Input.KeyPress(VirtualKeyCode.VK_R, 250, 250);
         }
@@ -147,17 +148,21 @@ public static class NavigationHelper
     {
         await OpenUI();
         if (MemoryHelper.GetGlobalHover() == index) return;
-        
-        MemoryHelper.SetGlobalHover(index);
-        if (index == 0)
+
+        while (MemoryHelper.GetGlobalHover() != index)
         {
-            await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep);
-            await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep);
-        }
-        else
-        {
-            await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep);
-            await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep);
+            MemoryHelper.SetGlobalHover(index);
+            if (index == 0)
+            {
+                await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep,50);
+                await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep,50);
+            }
+            else
+            {
+                await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep,50);
+                await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep,50);
+            }
+            
         }
         _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
         

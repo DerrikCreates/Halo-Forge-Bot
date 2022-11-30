@@ -270,12 +270,13 @@ public static class Bot
                 await PropertyHelper.SetMainProperties(mapItem.item);
                 itemCountID++;
             }
-
+            /*
             await Task.Delay(75);
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
+           // Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
             await Task.Delay(100);
             
             // while (MemoryHelper.GetGlobalHover() != mapitem.ParentFolder.ParentCategory.CategoryOrder - 1)
+           
             while (MemoryHelper.GetGlobalHover() != _forgeObject.ParentFolder.ParentCategory.CategoryOrder - 1)
             {
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
@@ -289,6 +290,7 @@ public static class Bot
 
             //MemoryHelper.SetGlobalHover(UIItems[currentObjectId].index);
             //  MemoryHelper.SetBrowserScroll(UIItems[currentObjectId].index);
+            */
         }
     }
 
