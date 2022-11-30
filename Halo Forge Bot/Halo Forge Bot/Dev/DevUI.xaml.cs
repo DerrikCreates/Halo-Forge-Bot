@@ -70,4 +70,19 @@ public partial class DevUI : Window
     {
         MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id);
     }
+    
+    private void GetHaloObjects_OnClick(object sender, RoutedEventArgs e)
+    {
+        Dev.GetAllObjectTypeData();
+    }
+    
+    private void GetHaloObjects2_OnClick(object sender, RoutedEventArgs e)
+    {
+        Dev.GetAllObjectTypeData2();
+    }
+    
+    private void ResetState_OnClick(object sender, RoutedEventArgs e)
+    {
+        NavigationHelper.ResetNavigationState();
+    }
 }

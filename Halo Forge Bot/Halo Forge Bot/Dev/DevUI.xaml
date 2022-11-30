@@ -1,0 +1,89 @@
+<Window x:Class="Halo_Forge_Bot.Windows.DevUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Halo_Forge_Bot.Windows"
+        mc:Ignorable="d"
+        Title="DevUI" Height="450" Width="800">
+    <Grid>
+        <Grid ShowGridLines="False">
+            <Grid.Resources>
+                <Style x:Key="DefaultMargin">
+                    <Setter Property="FrameworkElement.Margin" Value="0,0,1,1" />
+
+                </Style>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+
+            </Grid.RowDefinitions>
+
+
+            <Button Grid.Row="2" Grid.Column="0" Name="DownloadMvarButton" Height="20" Width="100"
+                    Click="DownloadMvarButton_OnClick">
+                Download .mvar
+            </Button>
+            <TextBox Name="FileShareLinkTextBox" Grid.Row="1" Grid.Column="0" Height="20" Width="100"> FileShare Link</TextBox>
+
+            <Button Grid.Row="3" Grid.Column="2" Height="20" Width="100" Click="ButtonBase_OnClick">Dev Testing</Button>
+            <TextBox Name="ForgeDataPathTextBox" Grid.Row="0" Grid.Column="0" Height="20" Width="100"> ForgeDataPath</TextBox>
+            <TextBox Name="MemoryTestUI" Grid.Row="1" Grid.Column="1" Height="20" Width="100">Memory TestUI</TextBox>
+
+
+            <Grid Grid.Row="0" Grid.Column="2">
+
+                <StackPanel>
+
+                    <TextBox Name="DebugMemoryLabel" IsReadOnly="True" Style="{StaticResource DefaultMargin}"
+                             HorizontalAlignment="Center">
+                    </TextBox>
+                    <TextBox Height="25" Name="DebugMemoryAddressTextBox" HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center" Style="{StaticResource DefaultMargin}">
+                        Memory Address
+                    </TextBox>
+                    <TextBox Height="25" Name="DebugMemoryAddressLengthTextBox" HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center" Style="{StaticResource DefaultMargin}">
+                        Memory Read Length
+                    </TextBox>
+                    <Button Name="ReadAddressButton" Style="{StaticResource DefaultMargin}"
+                            Click="ReadAddressButton_OnClick">
+                        Read Address
+                    </Button>
+                    <Button Name="AttachToHaloButton" Margin="0,5,0,0" Height="50" FontSize="20"
+                            Click="AttachToHalo_OnClick">
+                        Attach To Halo
+                    </Button>
+                    <TextBox IsReadOnly="True" FontSize="9" HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Auto"
+                             Name="CurrentPointersLabel" Margin="0,5,0,0" VerticalContentAlignment="Top" Height="75"
+                             Width="190">
+                    </TextBox>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+        
+        <Button Name="GetHaloObjects"  Margin="-400,5,0,0" Height="25" Width="100" FontSize="10"
+                Click="GetHaloObjects_OnClick">
+            Get Halo Objects
+        </Button>
+        
+        <Button Name="GetHaloObjects2"  Margin="-200,5,0,0" Height="25" Width="100" FontSize="10"
+                Click="GetHaloObjects2_OnClick">
+            Get Halo Objects 2
+        </Button>
+        
+        <Button Name="ResetState"  Margin="-600,5,0,0" Height="25" Width="100" FontSize="10"
+                Click="ResetState_OnClick">
+            Reset State
+        </Button>
+    </Grid>
+</Window>
