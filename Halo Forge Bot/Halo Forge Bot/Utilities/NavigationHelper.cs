@@ -73,6 +73,19 @@ public static class NavigationHelper
                     throw new Exception("Trying to update state on a tab that hasn't been setup yet.");
             }
         }
+
+        /// <summary>
+        /// Grabs the current vertical state of the UI
+        /// </summary>
+        public int GetVerticalState()
+        {
+            return CurrentTabSelection switch
+            {
+                0 => ObjectBrowserState.CurrentVerticalSelection,
+                1 => ObjectPropertiesState.CurrentVerticalSelection,
+                _ => -1
+            };
+        }
     }
 
     private static NavigationState _navigationState = new NavigationState();
@@ -151,32 +164,31 @@ public static class NavigationHelper
 
         while (MemoryHelper.GetGlobalHover() != index)
         {
-            MemoryHelper.SetGlobalHover(index);
-            if (index == 0)
+            if (Math.Abs(MemoryHelper.GetGlobalHover() - index) > 1)
             {
-                await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep,50);
-                await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep,50);
+                if (index == 0)
+                {
+                    MemoryHelper.SetGlobalHover(index + 1);
+                    await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep, 50);
+                }
+                else { 
+                    MemoryHelper.SetGlobalHover(index - 1);
+                    await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep, 50);
+                }
+                    
+                _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
             }
             else
             {
-                await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep,50);
-                await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep,50);
+                await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
+                    ? VirtualKeyCode.VK_S
+                    : VirtualKeyCode.VK_W, _travelSleep);
+
+                _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
             }
-            
         }
-        _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
         
-        // var shortestPathUp = MemoryHelper.GetGlobalHover() > index;
-        // while (MemoryHelper.GetGlobalHover() != index)
-        // {
-        //     await Input.KeyPress(shortestPathUp
-        //         ? VirtualKeyCode.VK_W
-        //         : VirtualKeyCode.VK_S, _travelSleep);
-        //
-        //     _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
-        // }
-        //
-        // _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+        _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
     }
 
     /// <summary>
