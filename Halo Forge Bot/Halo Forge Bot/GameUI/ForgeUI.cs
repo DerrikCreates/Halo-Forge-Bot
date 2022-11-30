@@ -46,6 +46,8 @@ public static class ForgeUI
 
     public static async Task<Rectangle> GetRectFromMouse()
     {
+        Input.InitMouseHook();
+        
         Rectangle rectangle = new Rectangle();
         Input.MouseHook.MouseDown += CaptureUiTopLeft;
         Input.MouseHook.MouseUp += CaptureUiWidthHeight;

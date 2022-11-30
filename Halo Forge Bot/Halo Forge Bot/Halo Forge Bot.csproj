@@ -38,7 +38,7 @@
 
     <ItemGroup>
       <None Update="dlls\InfiniteForgeConstants.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="dlls\InfiniteForgeConstants.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -50,7 +50,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="dlls\InfiniteForgePacker.dll">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Temp\SnowMap.mvar">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -92,6 +92,18 @@
       <None Update="config\halo_pointers.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Windows" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Dev\DevUI.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
 </Project>

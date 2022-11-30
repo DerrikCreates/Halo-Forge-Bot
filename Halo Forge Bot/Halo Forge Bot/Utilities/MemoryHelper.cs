@@ -143,25 +143,25 @@ public static class MemoryHelper
         return i;
     }
 
-    public static int GetBrowserHover()
+   [Obsolete] public static int GetBrowserHover()
     {
         Log.Verbose("Getting browser hover");
         return ReadMemory<int>(HaloPointers.RootBrowserHover);
     }
 
-    public static int GetSubBrowserHover()
+   [Obsolete] public static int GetSubBrowserHover()
     {
         Log.Verbose("Getting sub browser hover");
         return ReadMemory<int>(HaloPointers.SubBrowserHover);
     }
 
-    public static void SetBrowserHover(int data)
+   [Obsolete] public static void SetBrowserHover(int data)
     {
         Log.Debug("Setting Browser Hover with Data: {Data}", data);
         WriteMemory(HaloPointers.RootBrowserHover, data);
     }
 
-    public static void SetSubBrowserHover(int data)
+   [Obsolete]public static void SetSubBrowserHover(int data)
     {
         Log.Debug("Setting Browser Hover with Data: {Data}", data);
         WriteMemory(HaloPointers.SubBrowserHover, data);

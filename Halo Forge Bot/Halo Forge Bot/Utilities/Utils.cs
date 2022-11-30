@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Numerics;
 using System.Threading.Tasks;
 using System.Windows;
+using BondReader.Schemas;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Halo_Forge_Bot.Utilities;
 
@@ -46,49 +50,73 @@ public static class Utils
         var final = QuaternionToYXZ(quat);
 
 
-        Vector3 to180(Vector3 v)
+        final = To180(final);
+
+
+        // final.X = float.IsNaN(final.X) ? 0  : final.X;
+        // final.Y = float.IsNaN(final.Y) ? 180  : final.Y;
+        //  final.Z = float.IsNaN(final.Z) ? 0 : final.Z;
+        return final;
+    }
+
+
+    public static float To90(float v)
+    {
+        bool inRange = false;
+        while (inRange == false)
         {
-            if (v.X > 180)
+            inRange = true;
+            if (v > 90)
             {
-                v.X -= 360;
+                inRange = false;
+                v -= 180;
             }
 
-            if (v.X < -180)
+            if (v < -90)
             {
-                v.X += 360;
+                inRange = false;
+                v += 180;
             }
-
-
-            if (v.Y > 180)
-            {
-                v.Y -= 360;
-            }
-
-            if (v.Y < -180)
-            {
-                v.Y += 360;
-            }
-
-
-            if (v.Z > 180)
-            {
-                v.Z -= 360;
-            }
-
-            if (v.Z < -180)
-            {
-                v.Z += 360;
-            }
-
-            return v;
         }
 
-        final = to180(final);
+        return v;
+    }
 
-        final.X = MathF.Round(final.X, 3);
-        final.Y = MathF.Round(final.Y, 3);
-        final.Z = MathF.Round(final.Z, 3);
-        return final;
+    public static Vector3 To180(Vector3 v)
+    {
+        if (v.X > 180)
+        {
+            v.X -= 360;
+        }
+
+        if (v.X < -180)
+        {
+            v.X += 360;
+        }
+
+
+        if (v.Y > 180)
+        {
+            v.Y -= 360;
+        }
+
+        if (v.Y < -180)
+        {
+            v.Y += 360;
+        }
+
+
+        if (v.Z > 180)
+        {
+            v.Z -= 360;
+        }
+
+        if (v.Z < -180)
+        {
+            v.Z += 360;
+        }
+
+        return v;
     }
 
     public static Quaternion LookRotation(Vector3 forward, Vector3 up)
@@ -237,9 +265,9 @@ public static class Utils
             return (Vector3.Zero, Vector3.Zero);
 
         var right = Vector3.Cross(forward, up);
-        var z = MathF.Round(MathF.Atan2(forward.Y, forward.X), 5);
+        var z = MathF.Atan2(forward.Y, forward.X);
 
-        var y = MathF.Round(MathF.Atan2(forward.Z, MathF.Sqrt(forward.X * forward.X + forward.Y * forward.Y)), 5);
+        var y = MathF.Atan2(forward.Z, MathF.Sqrt(forward.X * forward.X + forward.Y * forward.Y));
 
         if (y > MathF.PI / 2)
         {
@@ -251,7 +279,7 @@ public static class Utils
             y = -MathF.PI - y;
         }
 
-        var x = -MathF.Round(MathF.Atan2(right.Z, up.Z), 5);
+        var x = -MathF.Atan2(right.Z, up.Z);
 
         return (new Vector3(x, y, z), new Vector3(x, y, z) * (180 / MathF.PI));
     }
@@ -273,5 +301,139 @@ public static class Utils
         var randomEnum = (T?)values.GetValue(Random.Next(values.Length));
 
         return randomEnum;
+    }
+
+    public static List<ForgeItem> SchemaToItemList(BondSchema map)
+    {
+        int index = 0;
+        var forgeItems = new List<ForgeItem>();
+        foreach (var itemSchema in map.Items)
+        {
+            var forgeItem = new ForgeItem();
+            forgeItem.DEBUGSCHEMA = itemSchema;
+            forgeItem.IsStatic = itemSchema.StaticDynamicFlagUnknown == 21;
+
+            forgeItem.ItemId = itemSchema.ItemId.Int;
+
+
+            forgeItem.ForwardX = itemSchema.Forward.X;
+            forgeItem.ForwardY = itemSchema.Forward.Y;
+            forgeItem.ForwardZ = itemSchema.Forward.Z;
+
+            forgeItem.UpX = itemSchema.Up.X;
+            forgeItem.UpY = itemSchema.Up.Y;
+            forgeItem.UpZ = itemSchema.Up.Z;
+
+            forgeItem.PositionX = itemSchema.Position.X;
+            forgeItem.PositionY = itemSchema.Position.Y;
+            forgeItem.PositionZ = itemSchema.Position.Z;
+
+            if (forgeItem.IsStatic)
+            {
+                forgeItem.ScaleX = itemSchema.SettingsContainer.Scale.First().ScaleContainer.X;
+                forgeItem.ScaleY = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Y;
+                forgeItem.ScaleZ = itemSchema.SettingsContainer.Scale.First().ScaleContainer.Z;
+            }
+
+
+            if (IsValidNumbers(forgeItem))
+            {
+                forgeItems.Add(forgeItem);
+                continue;
+            }
+
+            Log.Warning("NaN detected in item id {ItemId} skipping this item", forgeItem.ItemId);
+        }
+
+        return forgeItems;
+
+
+        bool IsValidNumbers(ForgeItem forgeItem)
+        {
+            var fields = forgeItem.GetType().GetFields();
+            foreach (var field in fields)
+            {
+                if (field.FieldType == typeof(float))
+                {
+                    var value = (float)field.GetValue(forgeItem);
+
+                    if (float.IsNaN(value))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+    }
+
+    public static Vector3 ToEulerAnglesZ(Quaternion q)
+    {
+        // Convert X Angle
+        float sinr_cosp = (float)(2 * (-q.W * q.X + q.Y * q.Z));
+        float cosr_cosp = (float)(1 - 2 * (q.X * q.X + q.Y * q.Y));
+        float xAngle = (float)Math.Atan2(sinr_cosp, cosr_cosp) * -1;
+
+        // Convert Y Angle
+        float sinp = (float)(2 * (-q.W * q.Y - q.Z * q.X));
+        float yAngle;
+        if (Math.Abs(sinp) >= 1)
+            yAngle = (float)(Math.PI / 2 * Math.Sign(sinp)) * -1;
+        else
+            yAngle = (float)Math.Asin(sinp) * -1;
+
+        // Convert Z Angle
+        float siny_cosp = (float)(2 * (-q.W * q.Z + q.X * q.Y));
+        float cosy_cosp = (float)(1 - 2 * (q.Y * q.Y + q.Z * q.Z));
+        float zAngle = (float)Math.Atan2(siny_cosp, cosy_cosp) * -1;
+
+        return new Vector3((float)Math.Round(xAngle, 2), (float)Math.Round(yAngle, 2),
+            (float)Math.Round(zAngle, 2));
+    }
+
+    public static Quaternion ToQuaternionZ(Vector3 e)
+    {
+        double cy = Math.Cos(e.Z * 0.5);
+        double sy = Math.Sin(e.Z * 0.5);
+        double cp = Math.Cos(e.Y * 0.5);
+        double sp = Math.Sin(e.Y * 0.5);
+        double cr = Math.Cos(e.X * 0.5);
+        double sr = Math.Sin(e.X * 0.5);
+
+        Quaternion q = new Quaternion
+        {
+            W = (float)(cr * cp * cy + sr * sp * sy * -1),
+            X = (float)(sr * cp * cy - cr * sp * sy * -1),
+            Y = (float)(cr * sp * cy + sr * cp * sy * -1),
+            Z = (float)(cr * cp * sy - sr * sp * cy * -1)
+        };
+
+        return q;
+    }
+
+    public static Vector3 DidZSaveTheDay(Vector3 forward, Vector3 up)
+    {
+        var quat = LookRotation(forward, up);
+        return ToEulerAnglesZ(quat);
+
+
+        Vector3 ToRadian(Vector3 d)
+        {
+            float xRad = (float)(d.X * Math.PI / 180);
+            float yRad = (float)(d.Y * Math.PI / 180);
+            float zRad = (float)(d.Z * Math.PI / 180);
+
+            return new Vector3((float)Math.Round(xRad, 2), (float)Math.Round(yRad, 2), (float)Math.Round(zRad, 2));
+        }
+    }
+
+    public static Vector3 ToDegree(Vector3 r)
+    {
+        float xDeg = (float)(r.X * 180 / Math.PI);
+        float yDeg = (float)(r.Y * 180 / Math.PI);
+        float zDeg = (float)(r.Z * 180 / Math.PI);
+
+        return new Vector3(xDeg, yDeg, zDeg);
     }
 }

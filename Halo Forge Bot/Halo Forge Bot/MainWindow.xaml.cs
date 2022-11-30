@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -8,8 +9,10 @@ using System.Windows;
 using System.Windows.Input;
 using BondReader;
 using BondReader.Schemas;
+using Halo_Forge_Bot.DataModels;
 using Halo_Forge_Bot.GameUI;
 using Halo_Forge_Bot.Utilities;
+using Halo_Forge_Bot.Windows;
 using Memory;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -86,10 +89,11 @@ namespace Halo_Forge_Bot
             }
 
             Log.Information("-----STARTING BOT-----");
-            await Bot.StartBot(_selectedMap, int.Parse(ItemRangeStart.Text), int.Parse(ItemRangeEnd.Text));
+            await Bot.StartBot(Utils.SchemaToItemList(_selectedMap), int.Parse(ItemRangeStart.Text),
+                int.Parse(ItemRangeEnd.Text));
             Log.Information("-----STOPPING BOT-----");
         }
-        
+
         private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
         {
             if (_selectedMap == null)
@@ -105,8 +109,61 @@ namespace Halo_Forge_Bot
             }
 
             Log.Information("-----STARTING BOT-----");
-            await Bot.StartBot(_selectedMap, int.Parse(ItemRangeStart.Text), int.Parse(ItemRangeEnd.Text), true);
-            Log.Information("-----STOPPING BOT-----");
+            try
+            {
+                await Bot.StartBot(Utils.SchemaToItemList(_selectedMap), int.Parse(ItemRangeStart.Text),
+                    int.Parse(ItemRangeEnd.Text), true);
+                Log.Information("-----STOPPING BOT-----");
+            }
+            catch (Exception exception)
+            {
+                ShowErrorPage(exception);
+
+                Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                    exception.StackTrace);
+            }
+        }
+
+        private void ShowErrorPage(Exception exception)
+        {
+            Error error = new Error();
+            error.ErrorTextBox.Text = exception.Message + Environment.NewLine + exception.StackTrace;
+            error.Show();
+        }
+
+        private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
+        {
+            List<ForgeItem> items = new();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                items = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText(openFileDialog.FileName)).ItemList;
+
+                // MapItemCount.Content = _selectedMap.Items.Count;
+                // string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
+                // EstimatedTime.Content = estimate;
+            }
+
+            //todo make the bot use blender rotation and not the forward/up
+
+            try
+            {
+                await Bot.StartBot(items, isBlender: true);
+            }
+            catch (Exception exception)
+            {
+                ShowErrorPage(exception);
+                Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                    exception.StackTrace);
+            }
+        }
+
+        private static readonly DevUI DevWindow = new DevUI();
+
+        private void EnterDev_OnClick(object sender, RoutedEventArgs e)
+        {
+            DevWindow.Show();
         }
     }
 }
