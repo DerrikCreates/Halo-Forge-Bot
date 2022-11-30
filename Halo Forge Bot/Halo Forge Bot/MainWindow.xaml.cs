@@ -137,7 +137,7 @@ namespace Halo_Forge_Bot
             }
 
             //todo make the bot use blender rotation and not the forward/up
-            await Bot.StartBot(items);
+            await Bot.StartBot(items, isBlender: true);
         }
 
         private static readonly DevUI DevWindow = new DevUI();

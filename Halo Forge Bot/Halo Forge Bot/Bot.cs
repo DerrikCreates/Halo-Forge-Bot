@@ -39,7 +39,7 @@ public static class Bot
     public static int WhenToSave = 15;
     //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
     public static async Task StartBot(List<ForgeItem> map, int itemStart = 0, int itemEnd = 0,
-        bool resumeFromLast = false)
+        bool resumeFromLast = false , bool isBlender = false)
     {
         //todo create a class for both blender and .mvar files, maybe use the blender file json
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()

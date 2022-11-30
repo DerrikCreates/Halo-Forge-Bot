@@ -72,7 +72,7 @@ public static class PropertyHelper
         // }
     }
 
-    public static async Task SetMainProperties(ForgeItem itemSchema)
+    public static async Task SetMainProperties(ForgeItem itemSchema, bool isBlender = false)
     {
         await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
         // while (MemoryHelper.GetMenusVisible() == 0)
@@ -125,10 +125,32 @@ public static class PropertyHelper
             Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, zForward), new Vector3(xUp, yUp, zUp));
 
 
-        await SetProperty(rotation.Z.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-        await SetProperty(rotation.X.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
-        await SetProperty(rotation.Y.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
-        await Task.Delay(50);
+        if (isBlender)
+        {
+            var blenderRotation = new Vector3(itemSchema.RotationX, itemSchema.RotationY, itemSchema.RotationZ);
+
+            blenderRotation = Utils.ToDegree(blenderRotation);
+
+
+            await SetProperty(blenderRotation.Z.ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
+            await SetProperty(blenderRotation.X.ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
+            await SetProperty(blenderRotation.Y.ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
+            await Task.Delay(50);
+        }
+        else
+        {
+            await SetProperty(rotation.Z.ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
+            await SetProperty(rotation.X.ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
+            await SetProperty(rotation.Y.ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
+            await Task.Delay(50);
+        }
+
 
         /*
     while (MemoryHelper.GetGlobalHover() != ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX])

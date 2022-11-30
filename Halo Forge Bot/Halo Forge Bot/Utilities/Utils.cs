@@ -376,14 +376,6 @@ public static class Utils
                 (float)Math.Round(zAngle, 2));
         }
 
-        Vector3 ToDegree(Vector3 r)
-        {
-            float xDeg = (float)(r.X * 180 / Math.PI);
-            float yDeg = (float)(r.Y * 180 / Math.PI);
-            float zDeg = (float)(r.Z * 180 / Math.PI);
-
-            return new Vector3(xDeg, yDeg, zDeg);
-        }
 
         Vector3 ToRadian(Vector3 d)
         {
@@ -413,5 +405,14 @@ public static class Utils
 
             return q;
         }
+    }
+
+    public static Vector3 ToDegree(Vector3 r)
+    {
+        float xDeg = (float)(r.X * 180 / Math.PI);
+        float yDeg = (float)(r.Y * 180 / Math.PI);
+        float zDeg = (float)(r.Z * 180 / Math.PI);
+
+        return new Vector3(xDeg, yDeg, zDeg);
     }
 }
