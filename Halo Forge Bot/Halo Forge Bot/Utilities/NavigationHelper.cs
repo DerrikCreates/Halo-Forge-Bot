@@ -89,7 +89,8 @@ public static class NavigationHelper
     }
 
     private static NavigationState _navigationState = new NavigationState();
-    
+
+    private static int ContentBrowserTabsCount = Enum.GetNames(typeof(ContentBrowserTabs)).Length;
     public enum ContentBrowserTabs
     {
         ObjectBrowser = 0,
@@ -215,10 +216,17 @@ public static class NavigationHelper
     {
         await OpenUI();
         
-        var shortestPathLeft = Math.Abs(MemoryHelper.GetTopBrowserHover() - (int)tabIndex) < 2;
         while (MemoryHelper.GetTopBrowserHover() != (int)tabIndex)
         {
-            await Input.KeyPress(shortestPathLeft ? VirtualKeyCode.VK_E : VirtualKeyCode.VK_Q, _travelSleep);
+            var leftDistance = (int)tabIndex > MemoryHelper.GetTopBrowserHover()
+                ? MemoryHelper.GetTopBrowserHover() + (ContentBrowserTabsCount - (int)tabIndex)
+                : MemoryHelper.GetTopBrowserHover() - (int)tabIndex;
+
+            var rightDistance = (int)tabIndex < MemoryHelper.GetTopBrowserHover()
+                ? ContentBrowserTabsCount - MemoryHelper.GetTopBrowserHover() + (int)tabIndex
+                : (int)tabIndex - MemoryHelper.GetTopBrowserHover();
+            
+            await Input.KeyPress(leftDistance < rightDistance ? VirtualKeyCode.VK_Q : VirtualKeyCode.VK_E, _travelSleep);
             _navigationState.CurrentTabSelection = MemoryHelper.GetTopBrowserHover();
         }
         
