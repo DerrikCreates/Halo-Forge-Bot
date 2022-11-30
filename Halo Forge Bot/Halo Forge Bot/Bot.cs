@@ -267,7 +267,7 @@ public static class Bot
                 }
                 */
 
-                await PropertyHelper.SetMainProperties(mapItem.item);
+                await PropertyHelper.SetMainProperties(mapItem.item,isBlender);
                 itemCountID++;
             }
             /*

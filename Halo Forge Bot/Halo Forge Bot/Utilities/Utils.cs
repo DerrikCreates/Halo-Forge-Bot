@@ -50,50 +50,73 @@ public static class Utils
         var final = QuaternionToYXZ(quat);
 
 
-        Vector3 to180(Vector3 v)
-        {
-            if (v.X > 180)
-            {
-                v.X -= 360;
-            }
-
-            if (v.X < -180)
-            {
-                v.X += 360;
-            }
-
-
-            if (v.Y > 180)
-            {
-                v.Y -= 360;
-            }
-
-            if (v.Y < -180)
-            {
-                v.Y += 360;
-            }
-
-
-            if (v.Z > 180)
-            {
-                v.Z -= 360;
-            }
-
-            if (v.Z < -180)
-            {
-                v.Z += 360;
-            }
-
-            return v;
-        }
-
-        final = to180(final);
+        final = To180(final);
 
 
         // final.X = float.IsNaN(final.X) ? 0  : final.X;
         // final.Y = float.IsNaN(final.Y) ? 180  : final.Y;
         //  final.Z = float.IsNaN(final.Z) ? 0 : final.Z;
         return final;
+    }
+
+
+    public static float To90(float v)
+    {
+        bool inRange = false;
+        while (inRange == false)
+        {
+            inRange = true;
+            if (v > 90)
+            {
+                inRange = false;
+                v -= 180;
+            }
+
+            if (v < -90)
+            {
+                inRange = false;
+                v += 180;
+            }
+        }
+
+        return v;
+    }
+
+    public static Vector3 To180(Vector3 v)
+    {
+        if (v.X > 180)
+        {
+            v.X -= 360;
+        }
+
+        if (v.X < -180)
+        {
+            v.X += 360;
+        }
+
+
+        if (v.Y > 180)
+        {
+            v.Y -= 360;
+        }
+
+        if (v.Y < -180)
+        {
+            v.Y += 360;
+        }
+
+
+        if (v.Z > 180)
+        {
+            v.Z -= 360;
+        }
+
+        if (v.Z < -180)
+        {
+            v.Z += 360;
+        }
+
+        return v;
     }
 
     public static Quaternion LookRotation(Vector3 forward, Vector3 up)
@@ -345,36 +368,54 @@ public static class Utils
         }
     }
 
+    public static Vector3 ToEulerAnglesZ(Quaternion q)
+    {
+        // Convert X Angle
+        float sinr_cosp = (float)(2 * (-q.W * q.X + q.Y * q.Z));
+        float cosr_cosp = (float)(1 - 2 * (q.X * q.X + q.Y * q.Y));
+        float xAngle = (float)Math.Atan2(sinr_cosp, cosr_cosp) * -1;
+
+        // Convert Y Angle
+        float sinp = (float)(2 * (-q.W * q.Y - q.Z * q.X));
+        float yAngle;
+        if (Math.Abs(sinp) >= 1)
+            yAngle = (float)(Math.PI / 2 * Math.Sign(sinp)) * -1;
+        else
+            yAngle = (float)Math.Asin(sinp) * -1;
+
+        // Convert Z Angle
+        float siny_cosp = (float)(2 * (-q.W * q.Z + q.X * q.Y));
+        float cosy_cosp = (float)(1 - 2 * (q.Y * q.Y + q.Z * q.Z));
+        float zAngle = (float)Math.Atan2(siny_cosp, cosy_cosp) * -1;
+
+        return new Vector3((float)Math.Round(xAngle, 2), (float)Math.Round(yAngle, 2),
+            (float)Math.Round(zAngle, 2));
+    }
+
+    public static Quaternion ToQuaternionZ(Vector3 e)
+    {
+        double cy = Math.Cos(e.Z * 0.5);
+        double sy = Math.Sin(e.Z * 0.5);
+        double cp = Math.Cos(e.Y * 0.5);
+        double sp = Math.Sin(e.Y * 0.5);
+        double cr = Math.Cos(e.X * 0.5);
+        double sr = Math.Sin(e.X * 0.5);
+
+        Quaternion q = new Quaternion
+        {
+            W = (float)(cr * cp * cy + sr * sp * sy * -1),
+            X = (float)(sr * cp * cy - cr * sp * sy * -1),
+            Y = (float)(cr * sp * cy + sr * cp * sy * -1),
+            Z = (float)(cr * cp * sy - sr * sp * cy * -1)
+        };
+
+        return q;
+    }
 
     public static Vector3 DidZSaveTheDay(Vector3 forward, Vector3 up)
     {
         var quat = LookRotation(forward, up);
-        return ToEulerAngles(quat);
-
-
-        Vector3 ToEulerAngles(Quaternion q)
-        {
-            // Convert X Angle
-            float sinr_cosp = (float)(2 * (-q.W * q.X + q.Y * q.Z));
-            float cosr_cosp = (float)(1 - 2 * (q.X * q.X + q.Y * q.Y));
-            float xAngle = (float)Math.Atan2(sinr_cosp, cosr_cosp) * -1;
-
-            // Convert Y Angle
-            float sinp = (float)(2 * (-q.W * q.Y - q.Z * q.X));
-            float yAngle;
-            if (Math.Abs(sinp) >= 1)
-                yAngle = (float)(Math.PI / 2 * Math.Sign(sinp)) * -1;
-            else
-                yAngle = (float)Math.Asin(sinp) * -1;
-
-            // Convert Z Angle
-            float siny_cosp = (float)(2 * (-q.W * q.Z + q.X * q.Y));
-            float cosy_cosp = (float)(1 - 2 * (q.Y * q.Y + q.Z * q.Z));
-            float zAngle = (float)Math.Atan2(siny_cosp, cosy_cosp) * -1;
-
-            return new Vector3((float)Math.Round(xAngle, 2), (float)Math.Round(yAngle, 2),
-                (float)Math.Round(zAngle, 2));
-        }
+        return ToEulerAnglesZ(quat);
 
 
         Vector3 ToRadian(Vector3 d)
@@ -384,26 +425,6 @@ public static class Utils
             float zRad = (float)(d.Z * Math.PI / 180);
 
             return new Vector3((float)Math.Round(xRad, 2), (float)Math.Round(yRad, 2), (float)Math.Round(zRad, 2));
-        }
-
-        Quaternion ToQuaternion(Vector3 e)
-        {
-            double cy = Math.Cos(e.Z * 0.5);
-            double sy = Math.Sin(e.Z * 0.5);
-            double cp = Math.Cos(e.Y * 0.5);
-            double sp = Math.Sin(e.Y * 0.5);
-            double cr = Math.Cos(e.X * 0.5);
-            double sr = Math.Sin(e.X * 0.5);
-
-            Quaternion q = new Quaternion
-            {
-                W = (float)(cr * cp * cy + sr * sp * sy * -1),
-                X = (float)(sr * cp * cy - cr * sp * sy * -1),
-                Y = (float)(cr * sp * cy + sr * cp * sy * -1),
-                Z = (float)(cr * cp * sy - sr * sp * cy * -1)
-            };
-
-            return q;
         }
     }
 

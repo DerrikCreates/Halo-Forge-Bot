@@ -6,6 +6,11 @@ namespace Halo_Forge_Bot
     public class ForgeItem
     {
         [JsonIgnore] public ItemSchema DEBUGSCHEMA;
+        [JsonProperty("qX")] public float quatX;
+        [JsonProperty("qY")] public float quatY;
+        [JsonProperty("qZ")] public float quatZ;
+        [JsonProperty("qW")] public float quatW;
+        
         [JsonProperty("positionX")] public float PositionX;
         [JsonProperty("positionY")] public float PositionY;
         [JsonProperty("positionZ")] public float PositionZ;

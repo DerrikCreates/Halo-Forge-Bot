@@ -129,15 +129,22 @@ public static class PropertyHelper
         {
             var blenderRotation = new Vector3(itemSchema.RotationX, itemSchema.RotationY, itemSchema.RotationZ);
 
-            blenderRotation = Utils.ToDegree(blenderRotation);
 
+            var test = Utils.ToQuaternionZ(blenderRotation); //Utils.ToDegree(blenderRotation); //Utils.QuaternionToYXZ(quat);
 
-            await SetProperty(blenderRotation.Z.ToString("F3"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-            await SetProperty(blenderRotation.X.ToString("F3"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
-            await SetProperty(blenderRotation.Y.ToString("F3"),
+         var  newRot = Utils.ToEulerAnglesZ(test);
+         newRot = Utils.ToDegree(newRot);
+            //newRot = Utils.To180(newRot);
+
+            //newRot.Y = Utils.To90(newRot.Y);
+            Log.Error("DEBUG ROT: {ROT}",newRot);
+            // newRot.Y = -newRot.Y;
+            await SetProperty(newRot.Z.ToString("F3"),
                 ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
+            await SetProperty((-newRot.Y).ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
+            await SetProperty((newRot.X).ToString("F3"),
+                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
             await Task.Delay(50);
         }
         else
