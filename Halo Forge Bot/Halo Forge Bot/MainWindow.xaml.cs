@@ -117,9 +117,18 @@ namespace Halo_Forge_Bot
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
-                throw;
+                ShowErrorPage(exception);
+
+                Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                    exception.StackTrace);
             }
+        }
+
+        private void ShowErrorPage(Exception exception)
+        {
+            Error error = new Error();
+            error.ErrorTextBox.Text = exception.Message + Environment.NewLine + exception.StackTrace;
+            error.Show();
         }
 
         private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
@@ -137,7 +146,17 @@ namespace Halo_Forge_Bot
             }
 
             //todo make the bot use blender rotation and not the forward/up
-            await Bot.StartBot(items, isBlender: true);
+
+            try
+            {
+                await Bot.StartBot(items, isBlender: true);
+            }
+            catch (Exception exception)
+            {
+                ShowErrorPage(exception);
+                Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                    exception.StackTrace);
+            }
         }
 
         private static readonly DevUI DevWindow = new DevUI();

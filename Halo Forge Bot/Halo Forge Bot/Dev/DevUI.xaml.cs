@@ -23,10 +23,12 @@ public partial class DevUI : Window
 
     private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+       // var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+       Error errorWindow = new Error();
+       errorWindow.ErrorTextBox.Text = "TESTSETSTSTESTT THIS IS A TEST";
+       errorWindow.Show();
 
-
-        // await Task.Run(Bot.DevTesting);
+       // await Task.Run(Bot.DevTesting);
     }
 
 
