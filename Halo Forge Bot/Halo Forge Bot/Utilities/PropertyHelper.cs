@@ -23,21 +23,22 @@ public static class PropertyHelper
             data = "0";
         }
 
-        while (MemoryHelper.GetGlobalHover() != index)
-        {
-            Input.Simulate.Keyboard.KeyPress(key);
-            //MemoryHelper.SetGlobalHover(index);
-            await Task.Delay(Bot.travelSleep);
-        }
+        await NavigationHelper.OpenEditUI(index);
+        // while (MemoryHelper.GetGlobalHover() != index)
+        // {
+        //     Input.Simulate.Keyboard.KeyPress(key);
+        //     //MemoryHelper.SetGlobalHover(index);
+        //     await Task.Delay(Bot.travelSleep);
+        // }
 
 
         //          var selectedPosition = MemoryHelper.GetSelectedPosition();
 
-        while (MemoryHelper.GetEditMenuState() == 0)
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(200);
-        }
+        // while (MemoryHelper.GetEditMenuState() == 0)
+        // {
+        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+        //     await Task.Delay(200);
+        // }
 
 
         while (await ClipboardService.GetTextAsync() != data)
@@ -63,28 +64,29 @@ public static class PropertyHelper
             await Task.Delay(100);
         }
 
-        while (MemoryHelper.GetEditMenuState() != 0)
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(100);
-        }
+        await NavigationHelper.CloseEditUI();
+        // while (MemoryHelper.GetEditMenuState() != 0)
+        // {
+        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+        //     await Task.Delay(100);
+        // }
     }
 
     public static async Task SetMainProperties(ForgeItem itemSchema)
     {
-        while (MemoryHelper.GetMenusVisible() == 0)
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
-            await Task.Delay(60);
-        }
+        await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
+        // while (MemoryHelper.GetMenusVisible() == 0)
+        // {
+        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
+        //     await Task.Delay(60);
+        // }
 
-
-        while (MemoryHelper.GetTopBrowserHover() != 1)
-        {
-            await Task.Delay(60);
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
-            await Task.Delay(60);
-        }
+        // while (MemoryHelper.GetTopBrowserHover() != 1)
+        // {
+        //     await Task.Delay(60);
+        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
+        //     await Task.Delay(60);
+        // }
 
         var defaultScale = MemoryHelper.GetSelectedScale();
 
@@ -96,20 +98,20 @@ public static class PropertyHelper
 
         var realScale = (itemScale * defaultScale); //Vector3.Multiply(itemScale, defaultScale) * 10;
 
-        await SetProperty(realScale.X.ToString("N6"),
+        await SetProperty(realScale.X.ToString("F3"),
             ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX]);
-        await SetProperty(realScale.Y.ToString("N6"),
+        await SetProperty(realScale.Y.ToString("F3"),
             ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeY]);
-        await SetProperty(realScale.Z.ToString("N6"),
+        await SetProperty(realScale.Z.ToString("F3"),
             ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeZ]);
 
         var xPos = itemSchema.PositionX * 10;
         var yPos = itemSchema.PositionY * 10;
         var zPos = itemSchema.PositionZ * 10;
 
-        await SetProperty(xPos.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Forward]);
-        await SetProperty(yPos.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Horizontal]);
-        await SetProperty(zPos.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Vertical]);
+        await SetProperty(xPos.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Forward]);
+        await SetProperty(yPos.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Horizontal]);
+        await SetProperty(zPos.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Vertical]);
 
         var yForward = itemSchema.ForwardY;
         var zForward = itemSchema.ForwardZ;
@@ -123,10 +125,10 @@ public static class PropertyHelper
             Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, zForward), new Vector3(xUp, yUp, zUp));
 
 
-        await SetProperty(rotation.Z.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-        await SetProperty(rotation.X.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch],
+        await SetProperty(rotation.Z.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
+        await SetProperty(rotation.X.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch],
             VirtualKeyCode.VK_W);
-        await SetProperty(rotation.Y.ToString("N6"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw],
+        await SetProperty(rotation.Y.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw],
             VirtualKeyCode.VK_W);
         await Task.Delay(50);
 
@@ -136,10 +138,10 @@ public static class PropertyHelper
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
         }
 
-        while (MemoryHelper.GetTopBrowserHover() != 0)
-        {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
-            await Task.Delay(33);
-        }
+        // while (MemoryHelper.GetTopBrowserHover() != 0)
+        // {
+        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
+        //     await Task.Delay(33);
+        // }
     }
 }

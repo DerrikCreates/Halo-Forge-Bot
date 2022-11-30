@@ -117,22 +117,28 @@ public static class Bot
 
         foreach (var item in items)
         {
+            /*
             //todo extract all the data processing and the bot logic from each other
-            while
-                (MemoryHelper.GetGlobalHover() !=
-                 0) // reset the cursor to the top of the current menu (in most cases the object browser)
-            {
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
-                await Task.Delay(travelSleep);
-            }
+            // while
+            //     (MemoryHelper.GetGlobalHover() !=
+            //      0) // reset the cursor to the top of the current menu (in most cases the object browser)
+            // {
+            //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
+            //     await Task.Delay(travelSleep);
+            // }
+
+            await NavigationHelper.ReturnToTop();
 
             await Task.Delay(200);
 
-            while (MemoryHelper.GetTopBrowserHover() != 0) // set item browser to active menu
-            {
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
-                await Task.Delay(travelSleep);
-            }
+            // while (MemoryHelper.GetTopBrowserHover() != 0) // set item browser to active menu
+            // {
+            //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
+            //     await Task.Delay(travelSleep);
+            // }
+            
+            // set item browser to active menu
+            await NavigationHelper.MoveToTab(0);
 
             var currentObjectId = item.Key;
 
@@ -145,45 +151,55 @@ public static class Bot
             }
 
             //navigate to item with memory checks
-            while (MemoryHelper.GetGlobalHover() !=
-                   mapitem.ParentFolder.ParentCategory.CategoryOrder - 1) //Set cursor to correct cat
-            {
-                Log.Debug("Move To Cat currentHover:{Hover} , Required Hover: {Reqired}",
-                    MemoryHelper.GetGlobalHover(), mapitem.ParentFolder.ParentCategory.CategoryOrder - 1);
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
+            // while (MemoryHelper.GetGlobalHover() !=
+            //        mapitem.ParentFolder.ParentCategory.CategoryOrder - 1) //Set cursor to correct cat
+            // {
+            //     Log.Debug("Move To Cat currentHover:{Hover} , Required Hover: {Reqired}",
+            //         MemoryHelper.GetGlobalHover(), mapitem.ParentFolder.ParentCategory.CategoryOrder - 1);
+            //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
+            //
+            //     await Task.Delay(travelSleep);
+            // }
 
-                await Task.Delay(travelSleep);
-            }
+            await NavigationHelper.NavigateVertical(mapitem.ParentFolder.ParentCategory.CategoryOrder);
 
             await Task.Delay(200);
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // open the cat
             await Task.Delay(200);
 
 
-            while (MemoryHelper.GetGlobalHover() !=
-                   mapitem.ParentFolder.ParentCategory.CategoryOrder +
-                   mapitem.ParentFolder.FolderOffset - 1) // move cursor to sub cat
-            {
-                Log.Debug("Move To subCat currentHover:{Hover} , Required Hover: {Reqired}",
-                    MemoryHelper.GetGlobalHover(),
-                    mapitem.ParentFolder.ParentCategory.CategoryOrder +
-                    mapitem.ParentFolder.FolderOffset - 1);
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
+            // while (MemoryHelper.GetGlobalHover() !=
+            //        mapitem.ParentFolder.ParentCategory.CategoryOrder +
+            //        mapitem.ParentFolder.FolderOffset - 1) // move cursor to sub cat
+            // {
+            //     Log.Debug("Move To subCat currentHover:{Hover} , Required Hover: {Reqired}",
+            //         MemoryHelper.GetGlobalHover(),
+            //         mapitem.ParentFolder.ParentCategory.CategoryOrder +
+            //         mapitem.ParentFolder.FolderOffset - 1);
+            //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_S);
+            //
+            //     await Task.Delay(travelSleep);
+            // }
 
-                await Task.Delay(travelSleep);
-            }
+            await NavigationHelper.NavigateVertical(mapitem.ParentFolder.ParentCategory.CategoryOrder +
+                                                    mapitem.ParentFolder.FolderOffset);
 
             await Task.Delay(200);
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // enter the sub cat
             await Task.Delay(200);
 
 
-            while (MemoryHelper.GetGlobalHover() != mapitem.ObjectOrder - 1) // hover item
-            {
-                Input.PressKey(VirtualKeyCode.VK_S);
-                await Task.Delay(travelSleep);
-            }
+            // while (MemoryHelper.GetGlobalHover() != mapitem.ObjectOrder - 1) // hover item
+            // {
+            //     Input.PressKey(VirtualKeyCode.VK_S);
+            //     await Task.Delay(travelSleep);
+            // }
 
+            await NavigationHelper.NavigateVertical(mapitem.ObjectOrder);
+            */
+            
+            ForgeUIObject _forgeObject;
+            ForgeObjectBrowser.FindItem(item.Key, out _forgeObject);
 
             foreach (var mapItem in item.Value) // the start of the item spawning loop
             {
@@ -196,11 +212,14 @@ public static class Bot
 
                 saveCount++;
                 await Task.Delay(200);
-                while (MemoryHelper.GetMenusVisible() == 1)
-                {
-                    Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // spawn the item?
-                    await Task.Delay(200);
-                }
+                
+                await NavigationHelper.SpawnItem(_forgeObject);
+                
+                // while (MemoryHelper.GetMenusVisible() == 1)
+                // {
+                //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN); // spawn the item?
+                //     await Task.Delay(200);
+                // }
 
                 await Task.Delay(200);
 
@@ -255,8 +274,9 @@ public static class Bot
             await Task.Delay(75);
             Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.BACK);
             await Task.Delay(100);
-
-            while (MemoryHelper.GetGlobalHover() != mapitem.ParentFolder.ParentCategory.CategoryOrder - 1)
+            
+            // while (MemoryHelper.GetGlobalHover() != mapitem.ParentFolder.ParentCategory.CategoryOrder - 1)
+            while (MemoryHelper.GetGlobalHover() != _forgeObject.ParentFolder.ParentCategory.CategoryOrder - 1)
             {
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
                 await Task.Delay(travelSleep);
@@ -272,8 +292,14 @@ public static class Bot
         }
     }
 
+    private static bool UILayoutBuilt = false;
+    /// <summary>
+    /// This needs changing to work with items that seem to be getting removed (like the last few antennas)
+    /// </summary>
     public static void BuildUILayout()
     {
+        if (UILayoutBuilt) return;
+        UILayoutBuilt = true;
         //Your cursed stuff is in here if you still need it, manually fixed the part of the file.
         //ConformForgeObjects.BuildUiLayout();
 
@@ -290,26 +316,6 @@ public static class Bot
                 ConformForgeObjects.FixCapital(objectData[1].ToLower()),
                 Enum.GetName((ObjectId)int.Parse(objectData[3])) ?? objectData[2], Enum.Parse<ObjectId>(objectData[3]));
         }
-    }
-
-
-    public static ForgeUIObject? GetItemByID(ObjectId id)
-    {
-        foreach (var category in ForgeObjectBrowser.Categories)
-        {
-            foreach (var subFolder in category.Value.CategoryFolders)
-            {
-                foreach (var obj in subFolder.Value.FolderObjects)
-                {
-                    if (obj.Value.ObjectId == id)
-                    {
-                        return obj.Value;
-                    }
-                }
-            }
-        }
-
-        return null;
     }
 
     private static Tuple<int, Dictionary<ObjectId, List<MapItem>>> GetRecoveryFiles()
