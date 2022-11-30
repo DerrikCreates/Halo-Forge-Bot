@@ -12,6 +12,7 @@ using BondReader.Schemas;
 using Halo_Forge_Bot.DataModels;
 using Halo_Forge_Bot.GameUI;
 using Halo_Forge_Bot.Utilities;
+using Halo_Forge_Bot.Windows;
 using Memory;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -129,6 +130,12 @@ namespace Halo_Forge_Bot
 
             //todo make the bot use blender rotation and not the forward/up
             await Bot.StartBot(items);
+        }
+
+        private static readonly DevUI DevWindow = new DevUI();
+        private void EnterDev_OnClick(object sender, RoutedEventArgs e)
+        {
+            DevWindow.Show();
         }
     }
 }

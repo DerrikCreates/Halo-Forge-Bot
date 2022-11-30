@@ -20,10 +20,11 @@
             <Button Height="50" FontSize="20" Click="StartBot_OnClick">START BOT</Button>
             <Button Height="50" FontSize="20" Click="ResumeBot_OnClick">Resume BOT</Button>
             <TextBlock Height="50" FontSize="15" TextWrapping="Wrap" TextAlignment="Center">press LEFT ARROW to stop!</TextBlock>
-            
+
             <Label FontSize="15">Object Range:</Label>
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="ItemRangeStart" Margin="5 0 0 0" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
+                <TextBox Name="ItemRangeStart" Margin="5 0 0 0" Width="50" Height="auto" FontSize="15"
+                         HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center">
                     0
                 </TextBox>
@@ -34,6 +35,10 @@
                 </TextBox>
             </StackPanel>
             <Label FontSize="10">keep range at 0 for entire map</Label>
+            <Button Name="EnterDev" Margin="0,30,0,0" Height="25" Width="140" FontSize="10"
+                    Click="EnterDev_OnClick">
+                Enter Dev View
+            </Button>
         </StackPanel>
 
         <Grid Grid.Column="1">
