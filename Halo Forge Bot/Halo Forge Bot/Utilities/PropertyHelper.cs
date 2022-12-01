@@ -16,6 +16,19 @@ namespace Halo_Forge_Bot.Utilities;
 public static class PropertyHelper
 {
     /// <summary>
+    /// Returns the data inside a property field
+    /// </summary>
+    /// <param name="index"> The index in the UI that this property is located </param>
+    public static async Task<string> GetProperty(int index)
+    {
+        await NavigationHelper.OpenEditUI(index);
+        await Task.Delay(25);
+        var ret = MemoryHelper.GetEditBoxText();
+        await NavigationHelper.CloseEditUI();
+        return ret;
+    }
+    
+    /// <summary>
     /// Handles setting a specific property field
     /// </summary>
     /// <param name="data"> The data to put into the field </param>
@@ -30,13 +43,6 @@ public static class PropertyHelper
 
         await NavigationHelper.OpenEditUI(index);
 
-
-        while (await ClipboardService.GetTextAsync() != data)
-        {
-            await ClipboardService.SetTextAsync(data);
-        }
-
-
         while (MemoryHelper.GetEditBoxText() != data)
         {
             await Task.Delay(25);
@@ -47,11 +53,10 @@ public static class PropertyHelper
             foreach (var c in toType)
             {
                 SendKeys.SendWait(c.ToString());
-                await Task.Delay(10);
+                await Task.Delay(20);
             }
 
-            //Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_V);
-            await Task.Delay(100);
+            await Task.Delay(200);
         }
 
         await NavigationHelper.CloseEditUI();
@@ -63,9 +68,9 @@ public static class PropertyHelper
     /// <param name="position"></param>
     public static async Task SetPositionProperty(Vector3 position, ForgeUIObjectModeEnum itemObjectMode)
     {
-        await SetProperty(position.X.ToString("F3"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
-        await SetProperty(position.Y.ToString("F3"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Horizontal, itemObjectMode));
-        await SetProperty(position.Z.ToString("F3"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
+        await SetProperty(Math.Round(position.X, 2).ToString("F2"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
+        await SetProperty(Math.Round(position.Y, 2).ToString("F2"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Horizontal, itemObjectMode));
+        await SetProperty(Math.Round(position.Z, 2).ToString("F2"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
     }
 
     /// <summary>
@@ -74,15 +79,18 @@ public static class PropertyHelper
     /// <param name="scale"></param>
     public static async Task SetScaleProperty(Vector3 scale, ForgeUIObjectModeEnum itemObjectMode)
     {
+        if (itemObjectMode is ForgeUIObjectModeEnum.DYNAMIC or ForgeUIObjectModeEnum.DYNAMIC_FIRST or ForgeUIObjectModeEnum.DYNAMIC_FIRST_VARIANT)
+            return;
+        
         var realScale = MemoryHelper.GetSelectedScale() * scale;
         
-        await SetProperty(realScale.X.ToString("F3"),
+        await SetProperty(Math.Round(realScale.X, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeX, itemObjectMode));
         
-        await SetProperty(realScale.Y.ToString("F3"),
+        await SetProperty(Math.Round(realScale.Y, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeY, itemObjectMode));
         
-        await SetProperty(realScale.Z.ToString("F3"),
+        await SetProperty(Math.Round(realScale.Z, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeZ, itemObjectMode));
     }
 
@@ -104,23 +112,21 @@ public static class PropertyHelper
             //newRot.Y = Utils.To90(newRot.Y);
             Log.Error("DEBUG ROT: {ROT}",newRot);
             // newRot.Y = -newRot.Y;
-            await SetProperty(newRot.Z.ToString("F3"),
+            await SetProperty(Math.Round(newRot.Z, 2).ToString("F2"),
                 ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
-            await SetProperty((-newRot.Y).ToString("F3"),
+            await SetProperty(Math.Round(-newRot.Y, 2).ToString("F2"),
                 ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Pitch, itemObjectMode));
-            await SetProperty((newRot.X).ToString("F3"),
+            await SetProperty(Math.Round(newRot.X, 2).ToString("F2"),
                 ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
-            await Task.Delay(50);
         }
         else
         {
-            await SetProperty(rotation.Z.ToString("F3"),
+            await SetProperty(Math.Round(rotation.Z, 2).ToString("F2"),
                 ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-            await SetProperty(rotation.X.ToString("F3"),
+            await SetProperty(Math.Round(rotation.X, 2).ToString("F2"),
                 ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
-            await SetProperty(rotation.Y.ToString("F3"),
+            await SetProperty(Math.Round(rotation.Y, 2).ToString("F2"),
                 ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
-            await Task.Delay(50);
         }
     }
 
