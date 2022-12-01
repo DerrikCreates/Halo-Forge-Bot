@@ -125,6 +125,20 @@ public static class NavigationHelper
         if (openToTab != null) 
             await MoveToTab((ContentBrowserTabs)openToTab);
     }
+    
+    /// <summary>
+    /// Close the UI
+    /// </summary>
+    public static async Task CloseUI()
+    {
+        //Ensure the UI menu is open
+        while (MemoryHelper.GetMenusVisible() != 0)
+        {
+            await Input.KeyPress(VirtualKeyCode.VK_R, 25, 100);
+        }
+
+        await Task.Delay(100);
+    }
 
     /// <summary>
     /// Tries to open up the edit menu on the requested UI selection
@@ -163,28 +177,33 @@ public static class NavigationHelper
 
         while (MemoryHelper.GetGlobalHover() != index)
         {
-            if (Math.Abs(MemoryHelper.GetGlobalHover() - index) > 1)
-            {
-                if (index == 0)
-                {
-                    MemoryHelper.SetGlobalHover(index + 1);
-                    await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep, 50);
-                }
-                else { 
-                    MemoryHelper.SetGlobalHover(index - 1);
-                    await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep, 50);
-                }
-                    
-                _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
-            }
-            else
-            {
-                await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
-                    ? VirtualKeyCode.VK_S
-                    : VirtualKeyCode.VK_W, _travelSleep);
+            await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
+                ? VirtualKeyCode.VK_S
+                : VirtualKeyCode.VK_W, _travelSleep);
 
-                _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
-            }
+            _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+            // if (Math.Abs(MemoryHelper.GetGlobalHover() - index) > 1)
+            // {
+            //     if (index == 0)
+            //     {
+            //         MemoryHelper.SetGlobalHover(index + 1);
+            //         await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep, 50);
+            //     }
+            //     else { 
+            //         MemoryHelper.SetGlobalHover(index - 1);
+            //         await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep, 50);
+            //     }
+            //         
+            //     _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+            // }
+            // else
+            // {
+            //     await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
+            //         ? VirtualKeyCode.VK_S
+            //         : VirtualKeyCode.VK_W, _travelSleep);
+            //
+            //     _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+            // }
         }
         
         _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
@@ -246,6 +265,7 @@ public static class NavigationHelper
             case NavigationState._ObjectBrowserState.ObjectBrowserDepth.None:
             case NavigationState._ObjectBrowserState.ObjectBrowserDepth.Category:
                 if (_navigationState.ObjectBrowserState.CurrentCategory == category) return;
+                await ReturnToTop();
                 break;
             
             //Recursively call this function until at the correct category
@@ -259,7 +279,7 @@ public static class NavigationHelper
         }
         
         await NavigateVertical(category.CategoryOrder - 1);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
+        await Input.KeyPress(VirtualKeyCode.RETURN, 500, 100);
         
         //Update State
         _navigationState.ObjectBrowserState.CurrentCategory = category;
@@ -296,7 +316,7 @@ public static class NavigationHelper
         }
         
         await NavigateVertical(folder.ParentCategory.CategoryOrder + folder.FolderOffset - 1);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
+        await Input.KeyPress(VirtualKeyCode.RETURN, 500, 100);
         
         //Update State
         _navigationState.ObjectBrowserState.CurrentFolder = folder;
