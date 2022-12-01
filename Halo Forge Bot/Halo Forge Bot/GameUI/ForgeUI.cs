@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Halo_Forge_Bot.Utilities;
-using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Properties;
 using Size = System.Drawing.Size;
 
@@ -92,37 +91,32 @@ public static class ForgeUI
         }
     }
 
-    public static ForgeUIObjectModeEnum GetDefaultObjectMode()
+    private static bool CompareArrow(Color color)
     {
-        using (var image = PixelReader.ScreenshotArea(Screen.PrimaryScreen.Bounds))
+        return color.R < 75 && color.G < 75 && color.B < 75;
+    }
+
+    public static ForgeUIObjectModeEnum GetDefaultObjectMode(int screen)
+    {
+        if (screen >= Screen.AllScreens.Length) throw new Exception("Screen index out of range");
+        using (var image = PixelReader.ScreenshotArea(Screen.AllScreens[screen].WorkingArea))
         {
-            var dynamicOnly = image.GetPixel(78, 400); 
-            if (dynamicOnly == Color.FromArgb(255, 57, 57, 57))
-            {
+            image.Save("lastScreenshot.png");
+            if (CompareArrow(image.GetPixel(77, 400)))
                 return ForgeUIObjectModeEnum.STATIC;
-                // Log.Information("static only");
-            }
             
-            var staticOnly = image.GetPixel(77, 296);
-            if (staticOnly == Color.FromArgb(255, 57, 57, 57))
-            {
-                return ForgeUIObjectModeEnum.DYNAMIC;
-                // Log.Information("dynamic only");
-            }
-            
-            var staticByDefault = image.GetPixel(77, 433);
-            if (staticByDefault == Color.FromArgb(255, 57, 57, 57))
-            {
+            if (CompareArrow(image.GetPixel(77, 434)))
                 return ForgeUIObjectModeEnum.STATIC_FIRST;
-                //  Log.Information("static by default");
-            }
-
-            var dynamicDefault = image.GetPixel(77, 331);
-            if (dynamicDefault == Color.FromArgb(255, 57, 57, 57))
-            {
+            
+            if (CompareArrow(image.GetPixel(77, 296)))
+                return ForgeUIObjectModeEnum.DYNAMIC;
+            
+            if (CompareArrow(image.GetPixel(77, 705)))
+                return ForgeUIObjectModeEnum.DYNAMIC_FIRST_VARIANT;
+            
+            if (CompareArrow(image.GetPixel(77, 331)))
                 return ForgeUIObjectModeEnum.DYNAMIC_FIRST;
-            }
-
+            
             throw new Exception("No Object Mode Detected");
         }
     }
