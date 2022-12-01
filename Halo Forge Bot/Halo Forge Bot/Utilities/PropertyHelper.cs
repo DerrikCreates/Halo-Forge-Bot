@@ -15,6 +15,11 @@ namespace Halo_Forge_Bot.Utilities;
 
 public static class PropertyHelper
 {
+    /// <summary>
+    /// Handles setting a specific property field
+    /// </summary>
+    /// <param name="data"> The data to put into the field </param>
+    /// <param name="index"> The index in the UI that this property is located </param>
     private static async Task SetProperty(string data, int index)
     {
         Log.Information("Setting property at Index:{Index} with value: {Value}", index, data);
@@ -24,21 +29,6 @@ public static class PropertyHelper
         }
 
         await NavigationHelper.OpenEditUI(index);
-        // while (MemoryHelper.GetGlobalHover() != index)
-        // {
-        //     Input.Simulate.Keyboard.KeyPress(key);
-        //     //MemoryHelper.SetGlobalHover(index);
-        //     await Task.Delay(Bot.travelSleep);
-        // }
-
-
-        //          var selectedPosition = MemoryHelper.GetSelectedPosition();
-
-        // while (MemoryHelper.GetEditMenuState() == 0)
-        // {
-        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-        //     await Task.Delay(200);
-        // }
 
 
         while (await ClipboardService.GetTextAsync() != data)
@@ -65,86 +55,61 @@ public static class PropertyHelper
         }
 
         await NavigationHelper.CloseEditUI();
-        // while (MemoryHelper.GetEditMenuState() != 0)
-        // {
-        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-        //     await Task.Delay(100);
-        // }
     }
 
-    public static async Task SetMainProperties(ForgeItem itemSchema, bool isBlender = false)
+    /// <summary>
+    /// Handles setting the forge item's position
+    /// </summary>
+    /// <param name="position"></param>
+    public static async Task SetPositionProperty(Vector3 position, ForgeUIObjectModeEnum itemObjectMode)
     {
-        await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
-        // while (MemoryHelper.GetMenusVisible() == 0)
-        // {
-        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
-        //     await Task.Delay(60);
-        // }
+        await SetProperty(position.X.ToString("F3"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
+        await SetProperty(position.Y.ToString("F3"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Horizontal, itemObjectMode));
+        await SetProperty(position.Z.ToString("F3"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
+    }
 
-        // while (MemoryHelper.GetTopBrowserHover() != 1)
-        // {
-        //     await Task.Delay(60);
-        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_E);
-        //     await Task.Delay(60);
-        // }
-
-        var defaultScale = MemoryHelper.GetSelectedScale();
-
-        var yScale = itemSchema.ScaleY;
-        var xScale = itemSchema.ScaleX;
-        var zScale = itemSchema.ScaleZ;
-
-        var itemScale = new Vector3(xScale, yScale, zScale);
-
-        var realScale = (itemScale * defaultScale); //Vector3.Multiply(itemScale, defaultScale) * 10;
-
+    /// <summary>
+    /// Handles setting the forge item's scale
+    /// </summary>
+    /// <param name="scale"></param>
+    public static async Task SetScaleProperty(Vector3 scale, ForgeUIObjectModeEnum itemObjectMode)
+    {
+        var realScale = MemoryHelper.GetSelectedScale() * scale;
+        
         await SetProperty(realScale.X.ToString("F3"),
-            ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX]);
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeX, itemObjectMode));
+        
         await SetProperty(realScale.Y.ToString("F3"),
-            ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeY]);
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeY, itemObjectMode));
+        
         await SetProperty(realScale.Z.ToString("F3"),
-            ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeZ]);
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeZ, itemObjectMode));
+    }
 
-        var xPos = itemSchema.PositionX * 10;
-        var yPos = itemSchema.PositionY * 10;
-        var zPos = itemSchema.PositionZ * 10;
-
-        await SetProperty(xPos.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Forward]);
-        await SetProperty(yPos.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Horizontal]);
-        await SetProperty(zPos.ToString("F3"), ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Vertical]);
-
-        var yForward = itemSchema.ForwardY;
-        var zForward = itemSchema.ForwardZ;
-        var xForward = itemSchema.ForwardX;
-
-        var yUp = itemSchema.UpY;
-        var xUp = itemSchema.UpX;
-        var zUp = itemSchema.UpZ;
-
-        var rotation =
-            Utils.DidFishSaveTheDay(new Vector3(xForward, yForward, zForward), new Vector3(xUp, yUp, zUp));
-
-
+    /// <summary>
+    /// Handles setting the forge item's rotation
+    /// </summary>
+    /// <param name="rotation"></param>
+    /// <param name="isBlender"> Changes how rotation is handled </param>
+    public static async Task SetRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode, bool isBlender = false)
+    {
         if (isBlender)
         {
-            var blenderRotation = new Vector3(itemSchema.RotationX, itemSchema.RotationY, itemSchema.RotationZ);
+            var test = Utils.ToQuaternionZ(rotation); //Utils.ToDegree(blenderRotation); //Utils.QuaternionToYXZ(quat);
 
-
-            var test = Utils.ToQuaternionZ(blenderRotation); //Utils.ToDegree(blenderRotation); //Utils.QuaternionToYXZ(quat);
-
-         var  newRot = Utils.ToEulerAnglesZ(test);
-         newRot = Utils.ToDegree(newRot);
+            var  newRot = Utils.ToEulerAnglesZ(test);
+            newRot = Utils.ToDegree(newRot);
             //newRot = Utils.To180(newRot);
 
             //newRot.Y = Utils.To90(newRot.Y);
             Log.Error("DEBUG ROT: {ROT}",newRot);
             // newRot.Y = -newRot.Y;
             await SetProperty(newRot.Z.ToString("F3"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
+                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
             await SetProperty((-newRot.Y).ToString("F3"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
+                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Pitch, itemObjectMode));
             await SetProperty((newRot.X).ToString("F3"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
+                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
             await Task.Delay(50);
         }
         else
@@ -157,19 +122,24 @@ public static class PropertyHelper
                 ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
             await Task.Delay(50);
         }
-
-
-        /*
-    while (MemoryHelper.GetGlobalHover() != ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.SizeX])
-    {
-        Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_W);
     }
-    */
 
-        // while (MemoryHelper.GetTopBrowserHover() != 0)
-        // {
-        //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_Q);
-        //     await Task.Delay(33);
-        // }
+    /// <summary>
+    /// Sets all of the properties of a forge item given the supplied itemSchema
+    /// </summary>
+    /// <param name="itemSchema"> The forge item data </param>
+    /// <param name="isBlender"> Changes how rotation is handled </param>
+    public static async Task SetMainProperties(ForgeItem itemSchema, ForgeUIObjectModeEnum itemObjectMode, bool isBlender = false)
+    {
+        await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
+        
+        await SetScaleProperty(new Vector3(itemSchema.ScaleX, itemSchema.ScaleY, itemSchema.ScaleZ), itemObjectMode);
+        
+        await SetPositionProperty(new Vector3(itemSchema.PositionX * 10, itemSchema.PositionY * 10,
+            itemSchema.PositionZ * 10), itemObjectMode);
+        
+        await SetRotationProperty(Utils.DidFishSaveTheDay(
+            new Vector3(itemSchema.ForwardX, itemSchema.ForwardY, itemSchema.ForwardZ),
+            new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ)), itemObjectMode);
     }
 }
