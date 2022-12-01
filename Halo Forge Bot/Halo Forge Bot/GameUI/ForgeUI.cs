@@ -96,18 +96,25 @@ public static class ForgeUI
     {
         using (var image = PixelReader.ScreenshotArea(Screen.PrimaryScreen.Bounds))
         {
+            var dynamicOnly = image.GetPixel(78, 400); 
+            if (dynamicOnly == Color.FromArgb(255, 57, 57, 57))
+            {
+                return ForgeUIObjectModeEnum.STATIC;
+                // Log.Information("static only");
+            }
+            
+            var staticOnly = image.GetPixel(77, 296);
+            if (staticOnly == Color.FromArgb(255, 57, 57, 57))
+            {
+                return ForgeUIObjectModeEnum.DYNAMIC;
+                // Log.Information("dynamic only");
+            }
+            
             var staticByDefault = image.GetPixel(77, 433);
             if (staticByDefault == Color.FromArgb(255, 57, 57, 57))
             {
                 return ForgeUIObjectModeEnum.STATIC_FIRST;
                 //  Log.Information("static by default");
-            }
-
-            var dynamicOnly = image.GetPixel(77, 296);
-            if (dynamicOnly == Color.FromArgb(255, 57, 57, 57))
-            {
-                return ForgeUIObjectModeEnum.DYNAMIC;
-                // Log.Information("dynamic only");
             }
 
             var dynamicDefault = image.GetPixel(77, 331);
@@ -117,7 +124,6 @@ public static class ForgeUI
             }
 
             throw new Exception("No Object Mode Detected");
-            //image.Save("z:/josh/fuckoff.png", ImageFormat.Png);
         }
     }
 }
