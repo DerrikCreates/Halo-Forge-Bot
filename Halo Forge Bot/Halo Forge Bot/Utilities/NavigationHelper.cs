@@ -117,7 +117,7 @@ public static class NavigationHelper
         //Ensure the UI menu is open
         while (MemoryHelper.GetMenusVisible() != 1)
         {
-            await Input.KeyPress(VirtualKeyCode.VK_R, 250, 250);
+            await Input.KeyPress(VirtualKeyCode.VK_R, 25, 100);
         }
 
         await Task.Delay(100);
@@ -137,8 +137,7 @@ public static class NavigationHelper
         await NavigateVertical(index);
         while (MemoryHelper.GetEditMenuState() == 0)
         {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(200);
+            await Input.KeyPress(VirtualKeyCode.RETURN, 200);
         }
     }
 
@@ -149,8 +148,7 @@ public static class NavigationHelper
     {
         while (MemoryHelper.GetEditMenuState() != 0)
         {
-            Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            await Task.Delay(200);
+            await Input.KeyPress(VirtualKeyCode.RETURN, 200);
         }
     }
 
@@ -218,6 +216,7 @@ public static class NavigationHelper
         
         while (MemoryHelper.GetTopBrowserHover() != (int)tabIndex)
         {
+            //Calculate the distance from the current index to the new index allowing for rap-around navigation
             var leftDistance = (int)tabIndex > MemoryHelper.GetTopBrowserHover()
                 ? MemoryHelper.GetTopBrowserHover() + (ContentBrowserTabsCount - (int)tabIndex)
                 : MemoryHelper.GetTopBrowserHover() - (int)tabIndex;
@@ -226,6 +225,7 @@ public static class NavigationHelper
                 ? ContentBrowserTabsCount - MemoryHelper.GetTopBrowserHover() + (int)tabIndex
                 : (int)tabIndex - MemoryHelper.GetTopBrowserHover();
             
+            //Press buttons based on above logic
             await Input.KeyPress(leftDistance < rightDistance ? VirtualKeyCode.VK_Q : VirtualKeyCode.VK_E, _travelSleep);
             _navigationState.CurrentTabSelection = MemoryHelper.GetTopBrowserHover();
         }
@@ -259,7 +259,7 @@ public static class NavigationHelper
         }
         
         await NavigateVertical(category.CategoryOrder - 1);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 200, 200);
+        await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
         
         //Update State
         _navigationState.ObjectBrowserState.CurrentCategory = category;
@@ -296,7 +296,7 @@ public static class NavigationHelper
         }
         
         await NavigateVertical(folder.ParentCategory.CategoryOrder + folder.FolderOffset - 1);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 200, 200);
+        await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
         
         //Update State
         _navigationState.ObjectBrowserState.CurrentFolder = folder;
@@ -321,9 +321,7 @@ public static class NavigationHelper
     public static async Task SpawnItem(ForgeUIObject item)
     {
         await NavigateToItem(item);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 500, 500);
-
-        //_navigationState.CurrentTabSelection = -1;
+        await Input.KeyPress(VirtualKeyCode.RETURN, 250, 100);
     }
     
     /// <summary>
@@ -350,7 +348,7 @@ public static class NavigationHelper
         {
             //Close current category
             await NavigateVertical(_navigationState.ObjectBrowserState.CurrentCategory.CategoryOrder - 1);
-            await Input.KeyPress(VirtualKeyCode.RETURN, 200, 200);
+            await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
 
             //Update navigation state
             _navigationState.ObjectBrowserState.CurrentCategory = null;
@@ -367,7 +365,7 @@ public static class NavigationHelper
         if (_navigationState.ObjectBrowserState.GetObjectBrowserDepth() ==
             NavigationState._ObjectBrowserState.ObjectBrowserDepth.Items)
         {
-            await Input.KeyPress(VirtualKeyCode.BACK, 100, 75);
+            await Input.KeyPress(VirtualKeyCode.BACK, 100, 100);
             
             //Update navigation state
             await EnsureVerticalState();
