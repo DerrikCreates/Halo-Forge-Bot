@@ -78,10 +78,7 @@ public static class Dev
                 
                 do
                 {
-                    while (Input.RequestedPaused)
-                    {
-                        await Task.Delay(100);
-                    }
+                    await Input.HandlePause();
                     
                     if (skipItems-- > 0)
                     {
@@ -104,12 +101,12 @@ public static class Dev
                     
                     var objectMode = ForgeUI.GetDefaultObjectMode(1);
                     var objectName = await PropertyHelper.GetProperty(ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.ObjectName, objectMode));
+                    var selectedScale = MemoryHelper.GetSelectedScale();
 
-                    sr.WriteLine($"{category.CategoryName}:{folder.FolderName}:{objectName}:{objectMode}:");
+                    sr.WriteLine($"{category.CategoryName}:{folder.FolderName}:{objectName}:{objectMode}:{selectedScale.X},{selectedScale.Y},{selectedScale.Z}:");
                     await Input.KeyPress(VirtualKeyCode.ESCAPE, 200, 200);
                     sr.Flush();
 
-                    var selectedScale = MemoryHelper.GetSelectedScale();
                     if (selectedScale.X > 100 || selectedScale.Y > 100 || selectedScale.Z > 100)
                     {
                         await PropertyHelper.SetScaleProperty(Vector3.One / 4, objectMode);

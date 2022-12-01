@@ -45,6 +45,7 @@ public static class PropertyHelper
 
         while (MemoryHelper.GetEditBoxText() != data)
         {
+            await Input.HandlePause();
             await Task.Delay(25);
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
             await Task.Delay(25);

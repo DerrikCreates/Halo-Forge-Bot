@@ -18,7 +18,7 @@ public static class Input
     public static readonly LowLevelMouseHook MouseHook = new LowLevelMouseHook();
     private static readonly Thread EnsureMainControlsThread = new Thread(new ThreadStart(HandleMainControlsThread));
     public static bool InputActive = false;
-    public static bool RequestedPaused = false;
+    public static bool RequestedPause = false;
 
     public static void InitInput()
     {
@@ -58,9 +58,9 @@ public static class Input
                 if (pauseKeyReleased)
                 {
                     pauseKeyReleased = false;
-                    RequestedPaused = !RequestedPaused;
+                    RequestedPause = !RequestedPause;
 
-                    if (!RequestedPaused)
+                    if (!RequestedPause)
                     {
                         ForgeUI.SetHaloProcess();
                     }
@@ -71,6 +71,17 @@ public static class Input
                 pauseKeyReleased = true;
             
             Thread.Sleep(1);
+        }
+    }
+
+    /// <summary>
+    /// Handles whenever the bot needs to pause
+    /// </summary>
+    public static async Task HandlePause()
+    {
+        while (RequestedPause)
+        {
+            await Task.Delay(100);
         }
     }
 

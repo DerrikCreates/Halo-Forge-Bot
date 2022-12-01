@@ -133,10 +133,7 @@ public static class Bot
 
             foreach (var mapItem in item.Value.Where(mapItem => mapItem.UniqueId >= startIndex || !resumeFromLast))
             {
-                while (Input.RequestedPaused)
-                {
-                    await Task.Delay(100);
-                }
+                await Input.HandlePause();
                 
                 WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
 
