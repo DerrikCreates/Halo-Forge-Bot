@@ -16,15 +16,16 @@ public static class Input
     public static InputSimulator Simulate = new InputSimulator();
 
     public static readonly LowLevelMouseHook MouseHook = new LowLevelMouseHook();
-    private static readonly Thread EnsureExitThread = new Thread(new ThreadStart(HandleExitThread));
-    public static bool InputActive;
+    private static readonly Thread EnsureMainControlsThread = new Thread(new ThreadStart(HandleMainControlsThread));
+    public static bool InputActive = false;
+    public static bool RequestedPaused = false;
 
     public static void InitInput()
     {
         if (InputActive) return;
         InputActive = true;
         
-        EnsureExitThread.Start();
+        EnsureMainControlsThread.Start();
     }
 
     //Added to remove laggy mouse hook from main input
@@ -36,12 +37,13 @@ public static class Input
     /// <summary>
     /// Ensure you can always exit the bot by using a specific key down event
     /// </summary>
-    private static void HandleExitThread()
+    private static void HandleMainControlsThread()
     {
         // var keyboardHook = new LowLevelKeyboardHook();
         // keyboardHook.StartHook();
         // keyboardHook.KeyIntercepted += InputHook;
         var exit = false;
+        var pauseKeyReleased = true;
 
         while (!exit)
         {
@@ -50,23 +52,26 @@ public static class Input
                 exit = true;
                 Process.GetCurrentProcess().Kill();
             }
+
+            if (Simulate.InputDeviceState.IsHardwareKeyDown(VirtualKeyCode.LSHIFT))
+            {
+                if (pauseKeyReleased)
+                {
+                    pauseKeyReleased = false;
+                    RequestedPaused = !RequestedPaused;
+
+                    if (!RequestedPaused)
+                    {
+                        ForgeUI.SetHaloProcess();
+                    }
+                }
+            }
+
+            if (Simulate.InputDeviceState.IsHardwareKeyUp(VirtualKeyCode.LSHIFT))
+                pauseKeyReleased = true;
+            
             Thread.Sleep(1);
         }
-
-        // void InputHook(int msg, int code, int scanCode, int flags, int time, IntPtr info, ref bool handled)
-        // {
-        //     if (code != (int)VirtualKeyCode.LEFT) return;
-        //     // KeyboardHook.KeyIntercepted -= InputHook;
-        //     // KeyboardHook.Unhook();
-        //     // MouseHook.Unhook();
-        //
-        //     MouseHook.Dispose();
-        //     keyboardHook.Dispose();
-        //
-        //     exit = true;
-        //     Process.GetCurrentProcess().Kill();
-        //     //throw new Exception($"Implement proper exit here");
-        // }
     }
 
     /// <summary>
