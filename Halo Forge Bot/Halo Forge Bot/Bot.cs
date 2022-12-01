@@ -133,8 +133,6 @@ public static class Bot
 
             foreach (var mapItem in item.Value.Where(mapItem => mapItem.UniqueId >= startIndex || !resumeFromLast))
             {
-                await Input.HandlePause();
-                
                 WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
 
                 saveCount++;
@@ -155,6 +153,8 @@ public static class Bot
 
                 await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
                 itemCountID++;
+                
+                await Input.HandlePause();
             }
         }
     }

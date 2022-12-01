@@ -78,8 +78,6 @@ public static class Dev
                 
                 do
                 {
-                    await Input.HandlePause();
-                    
                     if (skipItems-- > 0)
                     {
                         await Input.KeyPress(VirtualKeyCode.VK_S, 50, 50);
@@ -133,7 +131,9 @@ public static class Dev
                     
                     await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectBrowser);
                     await Input.KeyPress(VirtualKeyCode.VK_S, 50, 50);
+                    
                     await Task.Delay(200);
+                    await Input.HandlePause();
                 } 
                 while (MemoryHelper.GetGlobalHover() != 0);
 

@@ -117,8 +117,8 @@ public static class NavigationHelper
         //Ensure the UI menu is open
         while (MemoryHelper.GetMenusVisible() != 1)
         {
-            await Input.HandlePause();
             await Input.KeyPress(VirtualKeyCode.VK_R, 25, 100);
+            await Input.HandlePause();
         }
 
         await Task.Delay(100);
@@ -135,8 +135,8 @@ public static class NavigationHelper
         //Ensure the UI menu is open
         while (MemoryHelper.GetMenusVisible() != 0)
         {
-            await Input.HandlePause();
             await Input.KeyPress(VirtualKeyCode.VK_R, 25, 100);
+            await Input.HandlePause();
         }
 
         await Task.Delay(100);
@@ -153,8 +153,8 @@ public static class NavigationHelper
         await NavigateVertical(index);
         while (MemoryHelper.GetEditMenuState() == 0)
         {
-            await Input.HandlePause();
             await Input.KeyPress(VirtualKeyCode.RETURN, 200);
+            await Input.HandlePause();
         }
     }
 
@@ -165,8 +165,8 @@ public static class NavigationHelper
     {
         while (MemoryHelper.GetEditMenuState() != 0)
         {
-            await Input.HandlePause();
             await Input.KeyPress(VirtualKeyCode.RETURN, 200);
+            await Input.HandlePause();
         }
     }
 
@@ -181,12 +181,13 @@ public static class NavigationHelper
 
         while (MemoryHelper.GetGlobalHover() != index)
         {
-            await Input.HandlePause();
             await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
                 ? VirtualKeyCode.VK_S
                 : VirtualKeyCode.VK_W, _travelSleep);
 
             _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+            await Input.HandlePause();
+            
             // if (Math.Abs(MemoryHelper.GetGlobalHover() - index) > 1)
             // {
             //     if (index == 0)
@@ -240,7 +241,6 @@ public static class NavigationHelper
         
         while (MemoryHelper.GetTopBrowserHover() != (int)tabIndex)
         {
-            await Input.HandlePause();
             //Calculate the distance from the current index to the new index allowing for rap-around navigation
             var leftDistance = (int)tabIndex > MemoryHelper.GetTopBrowserHover()
                 ? MemoryHelper.GetTopBrowserHover() + (ContentBrowserTabsCount - (int)tabIndex)
@@ -253,6 +253,8 @@ public static class NavigationHelper
             //Press buttons based on above logic
             await Input.KeyPress(leftDistance < rightDistance ? VirtualKeyCode.VK_Q : VirtualKeyCode.VK_E, _travelSleep);
             _navigationState.CurrentTabSelection = MemoryHelper.GetTopBrowserHover();
+            
+            await Input.HandlePause();
         }
         
         _navigationState.CurrentTabSelection = MemoryHelper.GetTopBrowserHover();
