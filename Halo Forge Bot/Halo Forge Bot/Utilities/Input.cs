@@ -53,7 +53,7 @@ public static class Input
                 Process.GetCurrentProcess().Kill();
             }
 
-            if (Simulate.InputDeviceState.IsHardwareKeyDown(VirtualKeyCode.LSHIFT))
+            if (Simulate.InputDeviceState.IsHardwareKeyDown(VirtualKeyCode.RSHIFT))
             {
                 if (pauseKeyReleased)
                 {
@@ -67,7 +67,7 @@ public static class Input
                 }
             }
 
-            if (Simulate.InputDeviceState.IsHardwareKeyUp(VirtualKeyCode.LSHIFT))
+            if (Simulate.InputDeviceState.IsHardwareKeyUp(VirtualKeyCode.RSHIFT))
                 pauseKeyReleased = true;
             
             Thread.Sleep(1);
