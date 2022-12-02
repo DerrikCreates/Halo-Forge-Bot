@@ -11,19 +11,19 @@ namespace Halo_Forge_Bot.Utilities;
 public static class NavigationHelper
 {
     private static int _travelInitialSleep = 10;
-    private static int _travelAfterSleep = 10;
+    private static int _travelAfterSleep = 25;
     
-    private static int _travelTabInitialSleep = 50;
+    private static int _travelTabInitialSleep = 10;
     private static int _travelTabAfterSleep = 50;
     
     private static int _openUIInitialSleep = 50;
-    private static int _openUIAfterSleep = 150;
+    private static int _openUIAfterSleep = 300;
     
     private static int _closeUIInitialSleep = 50;
-    private static int _closeUIAfterSleep = 150;
+    private static int _closeUIAfterSleep = 300;
     
     private static int _enterUIInitialSleep = 50;
-    private static int _enterUIAfterSleep = 150;
+    private static int _enterUIAfterSleep = 300;
 
     /// <summary>
     /// Holds all data relating to the current UI navigation state
@@ -190,7 +190,7 @@ public static class NavigationHelper
         await ColdStart();
         
         //Ensure the UI menu is open
-        while (MemoryHelper.GetMenusVisible() == 0)
+        while (MemoryHelper.GetMenusVisible() != 1)
         {
             await Input.KeyPress(VirtualKeyCode.VK_R, _openUIAfterSleep, _openUIInitialSleep);
             await Input.HandlePause();
@@ -219,7 +219,7 @@ public static class NavigationHelper
     /// <param name="index"> The UI element to try to open </param>
     public static async Task OpenEditUI(int index)
     {
-        if (MemoryHelper.GetEditMenuState() == 1) throw new Exception("Trying to open edit UI when it is already open");
+        // if (MemoryHelper.GetEditMenuState() == 1) throw new Exception("Trying to open edit UI when it is already open");
         
         await NavigateVertical(index);
         while (MemoryHelper.GetEditMenuState() == 0)
@@ -232,12 +232,11 @@ public static class NavigationHelper
     /// <summary>
     /// Tries to close the edit menu if it is open
     /// </summary>
-    public static async Task CloseEditUI()
+    public static async Task CloseEditUI(bool escape = false)
     {
         while (MemoryHelper.GetEditMenuState() != 0)
         {
-            //Add check for 343's invalid name
-            if (MemoryHelper.GetEditBoxText().IndexOf("/") != -1)
+            if (escape)
             {
                 await Input.KeyPress(VirtualKeyCode.ESCAPE, _closeUIAfterSleep, _closeUIInitialSleep);
             }
@@ -260,6 +259,7 @@ public static class NavigationHelper
         var currentIndex = initialIndex;
 
         do {
+            await OpenUI();
             await Input.KeyPress(up ? VirtualKeyCode.VK_W : VirtualKeyCode.VK_S, _travelAfterSleep, _travelInitialSleep);
             await Input.HandlePause();
         } while ((currentIndex = await MemoryHelper.GetGlobalHoverVerbose()) == initialIndex);
@@ -291,6 +291,8 @@ public static class NavigationHelper
 
         do
         {
+            await OpenUI();
+            
             //Check if it would be faster to set the pointer (jump) instead
             if (Math.Abs(currentIndex - index) > 1)
             {
@@ -343,6 +345,8 @@ public static class NavigationHelper
         
         while (MemoryHelper.GetTopBrowserHover() != (int)tabIndex)
         {
+            await OpenUI();
+            
             //Calculate the distance from the current index to the new index allowing for rap-around navigation
             var leftDistance = (int)tabIndex > MemoryHelper.GetTopBrowserHover()
                 ? MemoryHelper.GetTopBrowserHover() + (ContentBrowserTabsCount - (int)tabIndex)
@@ -461,7 +465,7 @@ public static class NavigationHelper
     {
         await MoveToTab(ContentBrowserTabs.ObjectBrowser);
         await HomeObjectBrowserToCategoryLevel();
-        await NavigateVertical(0);
+        await ReturnToTop();
     }
 
     /// <summary>

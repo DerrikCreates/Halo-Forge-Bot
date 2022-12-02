@@ -1,0 +1,2427 @@
+Accent:Antennas:Booster Antenna:STATIC_FIRST:10.51,15.85,24.99:
+Accent:Antennas:Cellular Antenna:STATIC_FIRST:2.12,2.22,11.2:
+Accent:Antennas:Fixed Satellite Dish:STATIC_FIRST:12,16.61,15.42:
+Accent:Antennas:Large Satellite Dish:STATIC_FIRST:21.87,35.28,35.28:
+Accent:Antennas:Portable Satellite Dish:STATIC_FIRST:10.39,11.75,13.53:
+Accent:Antennas:Radar Ball:STATIC_FIRST:37.12,37.12,48.54:
+Accent:Antennas:Radar Tower Small:STATIC_FIRST:2.14,4.27,13.26:
+Accent:Antennas:Signal Antenna:STATIC_FIRST:3.26,3.48,14.38:
+Accent:Antennas:UHF Antenna:STATIC_FIRST:6.75,5.71,10.82:
+Accent:Antennas:UNSC Antenna Boom:STATIC_FIRST:9.88,15.88,9.95:
+Accent:Antennas:UNSC Radar Unit:STATIC_FIRST:23.48,24.46,21.15:
+Accent:Antennas:UNSC Satellite Dish Mounted:STATIC_FIRST:9.34,10.83,11.04:
+Accent:Antennas:UNSC Satellite Dish Portable:STATIC_FIRST:13.5,15.18,14.65:
+Accent:Antennas:UNSC Satellite Dish Trailer:STATIC_FIRST:21.14,13.22,41.08:
+Accent:Antennas_MP:Radar Ball MP:STATIC_FIRST:37.12,37.12,48.54:
+Accent:Antennas_MP:Radar Tower Small MP:STATIC_FIRST:2.14,4.27,13.26:
+Accent:Antennas_MP:UHF Antenna MP:STATIC_FIRST:6.7,5.71,10.8:
+Accent:Antennas_MP:UNSC Antenna Boom MP:STATIC_FIRST:9.88,15.92,9.95:
+Accent:Antennas_MP:UNSC Satellite Dish Mounted MP:STATIC_FIRST:9.37,11.47,11.27:
+Accent:Antennas_MP:UNSC Satellite Dish Portable:STATIC_FIRST:13.5,15.18,14.65:
+Accent:Arena:Arena Block A:STATIC_FIRST:12.05,7.98,14:
+Accent:Arena:Arena Column A:STATIC_FIRST:13.16,8.9,32:
+Accent:Arena:Arena Corner Cover:STATIC_FIRST:8.01,12.01,8:
+Accent:Arena:Arena Cover A:STATIC_FIRST:4.05,16.06,4.5:
+Accent:Arena:Arena Octagon Cover:STATIC_FIRST:12.01,12.01,8:
+Accent:Barrels:Barrel Closed:STATIC_FIRST:2.03,2.02,3:
+Accent:Barrels:Barrel Closed Rusty Striped:STATIC_FIRST:2.75,2.76,4.45:
+Accent:Barrels:Barrel Closed Striped:STATIC_FIRST:2.69,2.7,4.42:
+Accent:Barrels:Barrel Closed Worn:STATIC_FIRST:2.77,2.78,4.48:
+Accent:Barrels:Barrel Open:STATIC_FIRST:2.01,2.01,3:
+Accent:Barrels:UNSC Barrel:STATIC_FIRST:2.61,2.6,4.08:
+Accent:Barrels:Water Barrel:STATIC_FIRST:2.93,2.93,4.01:
+Accent:Barrels_MP:Barrel Closed Rusty Striped MP:STATIC_FIRST:2.65,2.65,4.42:
+Accent:Barrels_MP:Barrel Closed Striped MP:STATIC_FIRST:2.69,2.7,4.42:
+Accent:Barrels_MP:Barrel Closed Worn MP:STATIC_FIRST:2.65,2.66,4.44:
+Accent:Barrels_MP:UNSC Barrel MP:STATIC_FIRST:2.57,2.57,4.07:
+Accent:Bazaar:Books A:STATIC_FIRST:1,5.31,1.13:
+Accent:Bazaar:Dirty Bucket:DYNAMIC_FIRST:1.22,1.22,1.53:
+Accent:Bazaar:Tire Bald:STATIC_FIRST:2.69,2.72,0.96:
+Accent:Bazaar:Tire Bald w/Wheel:STATIC_FIRST:2.67,2.7,1.02:
+Accent:Bazaar:Tire w/Tread:STATIC_FIRST:2.71,2.69,0.97:
+Accent:Bazaar:Tire w/Wheel:STATIC_FIRST:2.67,2.71,1.03:
+Accent:Bazaar:Wheel:STATIC_FIRST:1.67,1.66,0.98:
+Accent:Bazaar_MP:Books A MP:STATIC_FIRST:1,5.31,1.13:
+Accent:Bazaar_MP:Dirty Bucket MP:DYNAMIC_FIRST:1.22,1.22,1.53:
+Accent:Bazaar_MP:Metallic Fuel Canister MP:STATIC_FIRST:1.57,0.82,2.13:
+Accent:Bazaar_MP:Plastic Fuel Canister MP:STATIC_FIRST:1.68,0.73,1.87:
+Accent:Bazaar_MP:Plastic Liquid Canister MP:STATIC_FIRST:1.35,1.08,1.43:
+Accent:Bazaar_MP:Shutter Doors MP:STATIC_FIRST:1.88,6.95,11.16:
+Accent:Bazaar_MP:Tire Bald MP:STATIC_FIRST:2.67,2.72,0.96:
+Accent:Bazaar_MP:Tire Bald w/Wheel MP:STATIC_FIRST:2.67,2.7,1.02:
+Accent:Bazaar_MP:Tire w/Tread MP:STATIC_FIRST:2.7,2.69,0.97:
+Accent:Bazaar_MP:UNSC Duffle Bag MP:STATIC_FIRST:2.56,4.27,1.62:
+Accent:Bazaar_MP:Wheel MP:STATIC_FIRST:1.67,1.66,0.98:
+Accent:Bodies:Brute Body A:STATIC_FIRST:9.95,7.9,2.91:
+Accent:Bodies:Brute Body B:STATIC_FIRST:5.75,8.22,3.2:
+Accent:Bodies:Brute Body C:STATIC_FIRST:6.82,9.88,3.32:
+Accent:Bodies:Brute Body D:STATIC_FIRST:5.93,8.91,4.29:
+Accent:Bodies:Brute Body E:STATIC_FIRST:9.75,5.12,2.86:
+Accent:Bodies:Brute Body F:STATIC_FIRST:8.75,11.4,2.93:
+Accent:Bodies:Brute Body G:STATIC_FIRST:6.73,8.7,5.44:
+Accent:Bodies:Brute Body H:STATIC_FIRST:8.42,10.61,3.68:
+Accent:Bodies:Elite Body A:STATIC_FIRST:8.25,6.16,3.2:
+Accent:Bodies:Elite Body A:STATIC_FIRST:8.25,6.16,3.2:
+Accent:Bodies:Elite Body B:STATIC_FIRST:8.86,6.44,2.77:
+Accent:Bodies:Elite Body D:STATIC_FIRST:9.79,4.57,2.5:
+Accent:Bodies:Elite Body E:STATIC_FIRST:7.94,6.02,4.54:
+Accent:Bodies:Grunt Body A:STATIC_FIRST:5.52,4.09,2.59:
+Accent:Bodies:Grunt Body B:STATIC_FIRST:6.58,6.85,2.5:
+Accent:Bodies:Grunt Body C:STATIC_FIRST:5.36,6.6,2.38:
+Accent:Bodies:Grunt Body C:STATIC_FIRST:5.36,6.6,2.38:
+Accent:Bodies:Grunt Body D:STATIC_FIRST:7.33,4.42,3.6:
+Accent:Bodies:Grunt Body E:STATIC_FIRST:6.44,5.46,3.03:
+Accent:Bodies:Jackal Body A:STATIC_FIRST:7.64,5.98,2.5:
+Accent:Bodies:Jackal Body B:STATIC_FIRST:8.84,7.44,2.17:
+Accent:Bodies:Jackal Body C:STATIC_FIRST:5.73,5.89,2.36:
+Accent:Bodies:Marine Body A:STATIC_FIRST:6.07,3.07,1.89:
+Accent:Bodies:Marine Body B:STATIC_FIRST:6.28,4.08,1.64:
+Accent:Bodies:Marine Body C:STATIC_FIRST:7.01,3.89,1.4:
+Accent:Bodies:Marine Body D:STATIC_FIRST:6.15,3.61,1.81:
+Accent:Bodies:Marine Body E:STATIC_FIRST:6.15,4,1.44:
+Accent:Bodies:Marine Body F:STATIC_FIRST:5.55,3.99,1.66:
+Accent:Bodies:Sentinel Wreckage A:STATIC_FIRST:13.81,12.36,3.76:
+Accent:Bodies:Sentinel Wreckage B:STATIC_FIRST:13.69,13.82,7.25:
+Accent:Bodies:Sentinel Wreckage C:STATIC_FIRST:16.72,11.81,5.48:
+Accent:City_Props:AC Unit Large:STATIC_FIRST:23.64,17.64,7.2:
+Accent:City_Props:Bench:STATIC_FIRST:2.92,6.23,2.23:
+Accent:City_Props:Billboard for Enlist in the UNSC:STATIC_FIRST:2.85,129.85,65.99:
+Accent:City_Props:Billboard for Gauss Soda:STATIC_FIRST:2.85,129.85,65.99:
+Accent:City_Props:Billboard for Holopuppy:STATIC_FIRST:2.85,129.85,65.99:
+Accent:City_Props:Billboard for Mister Chief Fragrance:STATIC_FIRST:3,130.01,66.08:
+Accent:City_Props:Billboard for Slipspace Burger:STATIC_FIRST:3,130.01,66.08:
+Accent:City_Props:Billboard for Transport Dynamics:STATIC_FIRST:2.85,129.85,65.99:
+Accent:City_Props:Chair:STATIC_FIRST:3.63,2.4,4.02:
+Accent:City_Props:Cloth Window Awning:STATIC_FIRST:3.04,8,2.43:
+Accent:City_Props:Concrete Bench:STATIC_FIRST:3.16,12.11,2.27:
+Accent:City_Props:Extendable Ladder:STATIC_FIRST:2.93,2.42,5.82:
+Accent:City_Props:Firehouse Mount:STATIC_FIRST:0.97,2.85,4.2:
+Accent:City_Props:Firehouse Mount:STATIC_FIRST:0.97,2.85,4.2:
+Accent:City_Props:Gauss Lemonade Can:STATIC_FIRST:0.74,0.74,1.28:
+Accent:City_Props:Gauss Soda Can:STATIC_FIRST:0.74,0.74,1.28:
+Accent:City_Props:Gauss Soda Vending Machine:STATIC_FIRST:3.94,5.27,9.39:
+Accent:City_Props:Hand Cart:STATIC_FIRST:1.93,2.25,5.23:
+Accent:City_Props:Locker:STATIC_FIRST:2.82,2,6.44:
+Accent:City_Props:Metal Pallet:STATIC_FIRST:6.12,6.12,0.68:
+Accent:City_Props:Mombasa Traffic Cone:STATIC_FIRST:1.46,1.46,2.77:
+Accent:City_Props:Mop:STATIC_FIRST:1.5,3.81,4.9:
+Accent:City_Props:Plastic Water Canister:STATIC_FIRST:0.65,1.41,1.86:
+Accent:City_Props:Round Traffic Cone:STATIC_FIRST:2.06,2.06,3.98:
+Accent:City_Props:Scissor Lift:STATIC_FIRST:5.71,3.98,4.56:
+Accent:City_Props:Shelves:STATIC_FIRST:3.7,9.59,11.77:
+Accent:City_Props:TV:STATIC_FIRST:0.67,12.06,8.06:
+Accent:City_Props:Tool Cart:STATIC_FIRST:3.8,8.62,4.06:
+Accent:City_Props:Traffic Pylon:STATIC_FIRST:1.99,1.99,7:
+Accent:City_Props:Triangle Traffic Cone:STATIC_FIRST:2.04,1.77,2.02:
+Accent:City_Props:Ventilation Unit Large:STATIC_FIRST:33.44,16.7,27.24:
+Accent:City_Props:Ventilation Unit Roof:STATIC_FIRST:4.44,4.94,0.67:
+Accent:City_Props:Ventilation Unit Wall:STATIC_FIRST:4.2,16.95,21.7:
+Accent:City_Props:Wall Air Machine:STATIC_FIRST:2.97,13.77,6.22:
+Accent:City_Props:Window Facade:STATIC_FIRST:8.23,1.1,6.18:
+Accent:City_Props_MP:AC Unit Large MP:STATIC_FIRST:23.61,17.55,7.18:
+Accent:Cover:Concrete Barrier Long:STATIC_FIRST:3,16.17,4.5:
+Accent:Cover:Concrete Barrier Short:STATIC_FIRST:3,8.17,4.5:
+Accent:Cover:Curved Half Cover:STATIC_FIRST:5.1,15.96,12.24:
+Accent:Cover:Gabion Rock Filled Tall:STATIC_FIRST:4.2,4.52,8.5:
+Accent:Cover:Gabion Sand Filled:STATIC_FIRST:4.2,4.52,4.16:
+Accent:Cover:Gabion Sand Filled Large:STATIC_FIRST:8.2,8.19,8.58:
+Accent:Cover:Gabion Sand Filled Tall:STATIC_FIRST:4.25,4.13,8.02:
+Accent:Cover:Plated Half Cover:STATIC_FIRST:6.92,11.85,4.08:
+Accent:Cover:Steel Concrete Barrier Long:STATIC_FIRST:3.04,16.43,4.5:
+Accent:Cover:Steel Concrete Barrier Short:STATIC_FIRST:3.04,8.09,4.5:
+Accent:Cover:UNSC Deployable Cover Large:DYNAMIC_FIRST:8.05,6.41,7.92:
+Accent:Cover:UNSC Deployable Cover Large:DYNAMIC_FIRST:8.05,6.41,7.92:
+Accent:Cover:UNSC Deployable Cover Small:DYNAMIC_FIRST:6.59,6.41,7.88:
+Accent:Cover:Concrete Barrier Long:STATIC_FIRST:3,16.17,4.5:
+Accent:Cover:Concrete Barrier Short:STATIC_FIRST:3,8.17,4.5:
+Accent:Cover:Curved Half Cover:STATIC_FIRST:5.1,15.96,12.24:
+Accent:Cover:Gabion Rock Filled Tall:STATIC_FIRST:4.2,4.52,8.5:
+Accent:Cover:Gabion Sand Filled:STATIC_FIRST:4.2,4.52,4.16:
+Accent:Cover:Gabion Sand Filled Large:STATIC_FIRST:8.2,8.19,8.58:
+Accent:Cover:Gabion Sand Filled Tall:STATIC_FIRST:4.25,4.13,8.02:
+Accent:Cover:Plated Half Cover:STATIC_FIRST:6.92,11.85,4.08:
+Accent:Cover:Steel Concrete Barrier Long:STATIC_FIRST:3.04,16.43,4.5:
+Accent:Cover:Steel Concrete Barrier Short:STATIC_FIRST:3.04,8.09,4.5:
+Accent:Cover:UNSC Deployable Cover Large:DYNAMIC_FIRST:8.05,6.41,7.92:
+Accent:Cover:UNSC Deployable Cover Small:DYNAMIC_FIRST:6.59,6.41,7.88:
+Accent:Cover_MP:Concrete Barrier Long MP:STATIC_FIRST:3,16.18,4.5:
+Accent:Cover_MP:Concrete Barrier Short MP:STATIC_FIRST:3,8.17,4.5:
+Accent:Cover_MP:Gabion Rock Filled Tall MP:STATIC_FIRST:4.2,4.52,8.5:
+Accent:Cover_MP:Gabion Sand Filled Large MP:STATIC_FIRST:8.17,8.18,8.3:
+Accent:Cover_MP:Gabion Sand Filled MP:STATIC_FIRST:4.2,4.52,4.16:
+Accent:Cover_MP:Gabion Sand Filled Tall MP:STATIC_FIRST:4.25,4.13,8.02:
+Accent:Cover_MP:Gabion Sand Filled Tall MP:STATIC_FIRST:4.25,4.13,8.02:
+Accent:Cover_MP:Steel Concrete Barrier Long MP:STATIC_FIRST:3.04,16.43,4.5:
+Accent:Cover_MP:Steel Concrete Barrier Short MP:STATIC_FIRST:3.04,8.09,4.5:
+Accent:Cover_MP:UNSC Deployable Cover Large MP:STATIC_FIRST:8.3,6.2,7.86:
+Accent:Cover_MP:UNSC Deployable Cover Small MP:STATIC_FIRST:6.48,6.2,7.86:
+Accent:Crates:Ammo Case:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates:Ammo Case Open:STATIC_FIRST:2.19,1.11,3.32:
+Accent:Crates:Crate Pallet:STATIC_FIRST:5,3.07,4.52:
+Accent:Crates:Crate Pallet:STATIC_FIRST:5,3.07,4.52:
+Accent:Crates:Crate Ruggedized:STATIC_FIRST:5,4.7,2.12:
+Accent:Crates:Crate Ruggedized:STATIC_FIRST:5,4.7,2.12:
+Accent:Crates:Hard Case No Handle:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates:Horizontal Hard Case:STATIC_FIRST:3.05,5.62,2.17:
+Accent:Crates:Lift Crate Double:STATIC_FIRST:8.02,16.02,8:
+Accent:Crates:Lift Crate Half:STATIC_FIRST:8.02,8.04,5.79:
+Accent:Crates:Lift Crate Quarter:STATIC_FIRST:8.02,4.06,5.79:
+Accent:Crates:Medical Workbox:STATIC_FIRST:2.62,4.64,2.14:
+Accent:Crates:Pallet Of Crates:STATIC_FIRST:8,3,8:
+Accent:Crates:Small Ammo Can:STATIC_FIRST:1.31,0.76,0.72:
+Accent:Crates:Small Hard Case:STATIC_FIRST:1.71,3.35,0.7:
+Accent:Crates:Square Hard Case:STATIC_FIRST:2.62,2.76,1.92:
+Accent:Crates:Square Hard Case Open:STATIC_FIRST:3.67,3.63,5.21:
+Accent:Crates:UNSC Cargo Crate:STATIC_FIRST:5.52,11.12,5.55:
+Accent:Crates:UNSC Toolbox:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates:UNSC Top Load Case:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates:Water Pallet:STATIC_FIRST:5.06,4,4.64:
+Accent:Crates:Weapon Crate:STATIC_FIRST:2.05,8.07,3:
+Accent:Crates_MP:Ammo Case MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Medic MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Military 01 MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Military 02 MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Open MP:STATIC_FIRST:2.19,1.11,3.32:
+Accent:Crates_MP:Ammo Case Pioneer MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case SpecOps MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Crate Pallet Tan MP:STATIC_FIRST:5,3.08,4.52:
+Accent:Crates_MP:Crate Ruggedized MP:STATIC_FIRST:4.98,4.6,2.12:
+Accent:Crates_MP:Hard Case No Handle MP:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates_MP:Hard Case No Handle MP Medic:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates_MP:Hard Case No Handle MP SpecOps:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates_MP:Horizontal Hard Case MP:STATIC_FIRST:3.05,5.62,2.17:
+Accent:Crates_MP:Horizontal Hard Case Medic MP:STATIC_FIRST:3.05,5.62,2.17:
+Accent:Crates_MP:Lift Crate Double MP:STATIC_FIRST:8.02,16.02,8:
+Accent:Crates_MP:Lift Crate Half MP:STATIC_FIRST:8.02,8.04,5.79:
+Accent:Crates_MP:Lift Crate Quarter MP:STATIC_FIRST:8.02,4.06,5.79:
+Accent:Crates_MP:Medical Workbox MP:STATIC_FIRST:2.62,4.64,2.14:
+Accent:Crates_MP:Pallet Of Crates MP:STATIC_FIRST:8,3,8:
+Accent:Crates_MP:Small Ammo Can MP:STATIC_FIRST:1.31,0.76,0.72:
+Accent:Crates_MP:Small Ammo Can MP:STATIC_FIRST:1.31,0.76,0.72:
+Accent:Crates_MP:Small Hard Case MP:STATIC_FIRST:1.71,3.35,0.7:
+Accent:Crates_MP:Small Hard Case MP SpecOps:STATIC_FIRST:1.71,3.35,0.7:
+Accent:Crates_MP:Square Hard Case MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case Medic MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case Military 01 MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case Open MP:STATIC_FIRST:3.67,3.63,5.21:
+Accent:Crates_MP:Square Hard Case Pioneer MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case SpecOps MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Tarp Covered Crates MP:STATIC_FIRST:5.62,8.83,4.61:
+Accent:Crates_MP:UNSC Cargo Crate MP:STATIC_FIRST:5.52,11.12,5.55:
+Accent:Crates_MP:UNSC Toolbox MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Toolbox Medic MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Toolbox Pioneer MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Toolbox SpecOps MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Top Load Case MP:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates_MP:UNSC Top Load Case Pioneer MP:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates_MP:UNSC Top Load Case SpecOps MP:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates_MP:Water Pallet MP:STATIC_FIRST:5.06,4,4.64:
+Accent:Crates_MP:Weapon Crate MP:STATIC_FIRST:2.05,8.07,3:
+Accent:Crates_MP:Ammo Case MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Medic MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Military 01 MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Military 02 MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case Open MP:STATIC_FIRST:2.19,1.11,3.32:
+Accent:Crates_MP:Ammo Case Pioneer MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Ammo Case SpecOps MP:STATIC_FIRST:1.7,1,1.65:
+Accent:Crates_MP:Crate Pallet Tan MP:STATIC_FIRST:5,3.08,4.52:
+Accent:Crates_MP:Crate Ruggedized MP:STATIC_FIRST:4.98,4.6,2.12:
+Accent:Crates_MP:Hard Case No Handle MP:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates_MP:Hard Case No Handle MP Medic:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates_MP:Hard Case No Handle MP SpecOps:STATIC_FIRST:1.7,2.49,1.02:
+Accent:Crates_MP:Horizontal Hard Case MP:STATIC_FIRST:3.05,5.62,2.17:
+Accent:Crates_MP:Horizontal Hard Case Medic MP:STATIC_FIRST:3.05,5.62,2.17:
+Accent:Crates_MP:Lift Crate Double MP:STATIC_FIRST:8.02,16.02,8:
+Accent:Crates_MP:Lift Crate Half MP:STATIC_FIRST:8.02,8.04,5.79:
+Accent:Crates_MP:Medical Workbox MP:STATIC_FIRST:2.62,4.64,2.14:
+Accent:Crates_MP:Pallet Of Crates MP:STATIC_FIRST:8,3,8:
+Accent:Crates_MP:Small Ammo Can MP:STATIC_FIRST:1.31,0.76,0.72:
+Accent:Crates_MP:Small Hard Case MP:STATIC_FIRST:1.71,3.35,0.7:
+Accent:Crates_MP:Small Hard Case MP SpecOps:STATIC_FIRST:1.71,3.35,0.7:
+Accent:Crates_MP:Square Hard Case MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case Medic MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case Military 01 MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case Open MP:STATIC_FIRST:3.67,3.63,5.21:
+Accent:Crates_MP:Square Hard Case Pioneer MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Square Hard Case SpecOps MP:STATIC_FIRST:2.74,2.87,1.95:
+Accent:Crates_MP:Tarp Covered Crates MP:STATIC_FIRST:5.62,8.83,4.61:
+Accent:Crates_MP:UNSC Cargo Crate MP:STATIC_FIRST:5.52,11.12,5.55:
+Accent:Crates_MP:UNSC Toolbox MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Toolbox Medic MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Toolbox Pioneer MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Toolbox SpecOps MP:STATIC_FIRST:1.71,3.07,1.52:
+Accent:Crates_MP:UNSC Top Load Case MP:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates_MP:UNSC Top Load Case Pioneer MP:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates_MP:UNSC Top Load Case SpecOps MP:STATIC_FIRST:2.69,1.32,1.96:
+Accent:Crates_MP:Water Pallet MP:STATIC_FIRST:5.06,4,4.64:
+Accent:Crates_MP:Weapon Crate MP:STATIC_FIRST:2.05,8.07,3:
+Accent:Destructibles:Cardboard Box B:DYNAMIC_FIRST:2.66,2,1.05:
+Accent:Destructibles:Clay Pot A:DYNAMIC_FIRST:2.58,2.52,2.28:
+Accent:Destructibles:Clay Pot B:DYNAMIC_FIRST:2.64,2.77,2.54:
+Accent:Destructibles:Clay Pot C w/Palm A:DYNAMIC_FIRST:2.64,2.77,6.81:
+Accent:Destructibles:Clay Pot C w/Palm B:DYNAMIC_FIRST:2.64,2.77,6.81:
+Accent:Destructibles:Clay Pot C w/Palm B:DYNAMIC_FIRST:2.64,2.77,6.81:
+Accent:Destructibles:Clay Pot C w/Palm C:DYNAMIC_FIRST:2.64,2.77,6.81:
+Accent:Destructibles:Conduit Computer:STATIC_FIRST:3.76,3.21,6.13:
+Accent:Destructibles:Creature Tank:STATIC_FIRST:21.12,11.66,8.15:
+Accent:Destructibles:Destructible Keypad A:DYNAMIC:0.42,1.03,1.79:
+Accent:Destructibles:Destructible Keypad B:DYNAMIC_FIRST:0.36,1.61,1.73:
+Accent:Destructibles:Destructible Keypad B - Closed:DYNAMIC_FIRST:0.36,1.61,1.73:
+Accent:Destructibles:Destructible Monitor A:DYNAMIC_FIRST:0.64,5.91,3.94:
+Accent:Destructibles:Destructible Monitor C:DYNAMIC_FIRST:0.64,2.42,3.55:
+Accent:Destructibles:Destructible Monitor D:DYNAMIC:0.3,1.11,2.15:
+Accent:Destructibles:Destructible Monitor D:DYNAMIC:0.3,1.11,2.15:
+Accent:Destructibles:Destructible Monitor G:DYNAMIC:1.17,10.91,6.54:
+Accent:Destructibles:Destructible Vent Cover:DYNAMIC:7.85,3.02,7.85:
+Accent:Destructibles:Electrical Box A:DYNAMIC_FIRST:2.83,0.65,2.72:
+Accent:Destructibles:Electrical Box C:STATIC_FIRST:0.68,2.54,7.27:
+Accent:Destructibles:Electrical Box D:DYNAMIC_FIRST:1.18,6.85,8.44:
+Accent:Destructibles:Electrical Box E:DYNAMIC:1.78,0.58,2.21:
+Accent:Destructibles:Electrical Box F:DYNAMIC_FIRST:2.69,0.62,2.57:
+Accent:Destructibles:Electrical Box G:DYNAMIC:1.27,2.6,5.32:
+Accent:Destructibles:Floating Platform:DYNAMIC_FIRST:14.59,13.11,12.99:
+Accent:Destructibles:Framed Picture A:DYNAMIC_FIRST:0.06,1.74,3.26:
+Accent:Destructibles:Framed Picture B:DYNAMIC_FIRST:0.06,2.5,1.68:
+Accent:Destructibles:Framed Picture C:DYNAMIC_FIRST:0.06,3.9,3.01:
+Accent:Destructibles:Framed Picture D:DYNAMIC_FIRST:0.1,6.66,4.07:
+Accent:Destructibles:Fuel Canister:STATIC_FIRST:2.84,2.56,5.61:
+Accent:Destructibles:Fuel Station:STATIC_FIRST:3.15,7.33,8.46:
+Accent:Destructibles:Landmine:DYNAMIC:2.54,2.54,0.65:
+Accent:Destructibles:Oxygen Tank:DYNAMIC_FIRST:0.98,1.02,3.91:
+Accent:Destructibles:Plastic Crate Empty:STATIC_FIRST:2.25,1.68,1.3:
+Accent:Destructibles:Potted Plant A:DYNAMIC_FIRST:1.39,1.58,2.2:
+Accent:Destructibles:Potted Plant B:DYNAMIC_FIRST:1.62,1.62,2.25:
+Accent:Destructibles:Soda Crate Empty:DYNAMIC_FIRST:2.27,1.69,1.31:
+Accent:Destructibles:Soda Crate w/Soda:DYNAMIC_FIRST:2.25,1.71,1.3:
+Accent:Destructibles:Soda Crate w/Soda:DYNAMIC_FIRST:2.25,1.71,1.3:
+Accent:Destructibles:Stackable Chair:STATIC_FIRST:2.19,2.92,4:
+Accent:Destructibles:Target Dummy Brute:DYNAMIC_FIRST:3.3,4.88,9.19:
+Accent:Destructibles:Target Dummy Grunt:DYNAMIC_FIRST:4.11,4.88,6.49:
+Accent:Destructibles:Wooden Bench:DYNAMIC_FIRST:2.21,7.16,3.38:
+Accent:Destructibles:Wooden Bookcase A:DYNAMIC_FIRST:2,5.75,11:
+Accent:Destructibles:Wooden Bookcase B:DYNAMIC_FIRST:2,5.75,11:
+Accent:Destructibles:Wooden Box Apple:DYNAMIC_FIRST:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Banana:DYNAMIC:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Carrot:DYNAMIC:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Empty:DYNAMIC_FIRST_VARIANT:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Mango:DYNAMIC:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Tomato:DYNAMIC:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Tomato:DYNAMIC:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Box Watermelon:DYNAMIC:2.56,3.75,1.67:
+Accent:Destructibles:Wooden Chair:DYNAMIC_FIRST:2.22,1.98,3.74:
+Accent:Destructibles:Wooden Column Round - Full:DYNAMIC_FIRST:0.58,16.03,20:
+Accent:Destructibles:Wooden Column Square:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles:Wooden Column Square:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles:Wooden Column Square Broken Railing A:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles:Wooden Column Square Broken Railing B:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles:Wooden Lattice:DYNAMIC_FIRST:0.26,8,10.61:
+Accent:Destructibles:Wooden Market Table:DYNAMIC_FIRST:8.03,4.48,4.92:
+Accent:Destructibles:Wooden Pallet A:DYNAMIC_FIRST:8.74,5.92,1.06:
+Accent:Destructibles:Wooden Pallet B:DYNAMIC_FIRST:8.86,5.99,1.11:
+Accent:Destructibles:Wooden Pallet C:DYNAMIC_FIRST:9.04,5.99,1.12:
+Accent:Destructibles:Wooden Railing:DYNAMIC_FIRST:0.51,7.98,3.78:
+Accent:Destructibles:Wooden Railing:DYNAMIC_FIRST:0.51,7.98,3.78:
+Accent:Destructibles:Wooden Railing Broken A:DYNAMIC:0.51,7.98,3.78:
+Accent:Destructibles:Wooden Railing Broken B:DYNAMIC:0.51,7.98,3.78:
+Accent:Destructibles:Wooden Railing Stairs:DYNAMIC_FIRST:0.35,7.17,6.57:
+Accent:Destructibles:Woven Basket:DYNAMIC_FIRST:2.18,2.18,1.94:
+Accent:Destructibles_MP:Cafe Stool MP:STATIC_FIRST:2.2,2.91,3.99:
+Accent:Destructibles_MP:Cardboard Box A Bluetape MP:STATIC_FIRST:2.35,1.54,1.53:
+Accent:Destructibles_MP:Cardboard Box A MP:DYNAMIC_FIRST:2.28,1.43,1.43:
+Accent:Destructibles_MP:Cardboard Box A White MP:STATIC_FIRST:2.35,1.54,1.53:
+Accent:Destructibles_MP:Cardboard Box B Bluetape MP:STATIC_FIRST:2.67,2,1.07:
+Accent:Destructibles_MP:Cardboard Box B MP:STATIC_FIRST:2.67,2,1.07:
+Accent:Destructibles_MP:Cardboard Box B MP White:STATIC_FIRST:2.67,2,1.07:
+Accent:Destructibles_MP:Cardboard Box C MP:DYNAMIC_FIRST:3.25,1.98,1.98:
+Accent:Destructibles_MP:Cardboard Box C MP White:STATIC_FIRST:3.41,2.05,2.06:
+Accent:Destructibles_MP:Cardboard Box Open MP:DYNAMIC_FIRST:3.85,4.05,2.18:
+Accent:Destructibles_MP:Clay Pot A MP:STATIC_FIRST:2.69,2.69,2.28:
+Accent:Destructibles_MP:Clay Pot B MP:STATIC_FIRST:2.65,2.78,2.57:
+Accent:Destructibles_MP:Clay Pot C MP:STATIC_FIRST:2.65,2.78,2.57:
+Accent:Destructibles_MP:Clay Pot C w/ Palm Tree A MP:STATIC_FIRST:2.65,2.78,6.35:
+Accent:Destructibles_MP:Clay Pot C w/ Palm Tree B MP:STATIC_FIRST:2.65,2.78,7.22:
+Accent:Destructibles_MP:Clay Pot C w/ Palm Tree C MP:STATIC_FIRST:2.65,2.78,4.43:
+Accent:Destructibles_MP:Conduit Computer MP:STATIC_FIRST:3.96,3.24,6.17:
+Accent:Destructibles_MP:Destructible Keypad B - Closed MP:STATIC_FIRST:0.42,1.66,1.74:
+Accent:Destructibles_MP:Destructible Monitor A MP:DYNAMIC_FIRST:0.64,5.91,3.94:
+Accent:Destructibles_MP:Destructible Monitor C MP:DYNAMIC_FIRST:0.64,2.42,3.55:
+Accent:Destructibles_MP:Destructible Monitor D MP:DYNAMIC:0.3,1.11,2.15:
+Accent:Destructibles_MP:Destructible potted plant A MP:STATIC_FIRST:1.64,1.64,2.41:
+Accent:Destructibles_MP:Destructible potted plant B MP:STATIC_FIRST:1.67,1.67,2.41:
+Accent:Destructibles_MP:Electrical Box A MP:DYNAMIC_FIRST:2.83,0.65,2.72:
+Accent:Destructibles_MP:Electrical Box B MP:DYNAMIC_FIRST:0.57,1.77,2.57:
+Accent:Destructibles_MP:Electrical Box C MP:DYNAMIC_FIRST:0.68,2.53,7.27:
+Accent:Destructibles_MP:Electrical Box E MP:DYNAMIC_FIRST:1.78,0.58,2.21:
+Accent:Destructibles_MP:Electrical Box F MP:DYNAMIC_FIRST:2.69,0.62,2.57:
+Accent:Destructibles_MP:Electrical Box G MP:DYNAMIC_FIRST:1.27,2.6,5.32:
+Accent:Destructibles_MP:Fire Extinguisher MP:DYNAMIC_FIRST:0.85,1.56,3.23:
+Accent:Destructibles_MP:Framed Picture A MP:STATIC_FIRST:0.06,1.74,3.26:
+Accent:Destructibles_MP:Framed Picture B MP:STATIC_FIRST:0.06,2.5,1.68:
+Accent:Destructibles_MP:Framed Picture C MP:STATIC_FIRST:0.06,3.9,3.01:
+Accent:Destructibles_MP:Framed Picture D MP:STATIC_FIRST:0.1,6.66,4.07:
+Accent:Destructibles_MP:Market Table A Fruits A MP:STATIC_FIRST:7.99,4.01,4.62:
+Accent:Destructibles_MP:Market Table A Fruits B MP:STATIC_FIRST:7.99,4.01,4.24:
+Accent:Destructibles_MP:Market Table A Fruits C MP:STATIC_FIRST:7.99,4.53,4.95:
+Accent:Destructibles_MP:Market Table A Fruits D MP:STATIC_FIRST:7.99,4.01,4.62:
+Accent:Destructibles_MP:Market Table A Fruits E MP:STATIC_FIRST:7.99,4.01,3.93:
+Accent:Destructibles_MP:Oxygen Tank MP:STATIC_FIRST:1.03,1.03,3.91:
+Accent:Destructibles_MP:Oxygen Tank MP:STATIC_FIRST:1.03,1.03,3.91:
+Accent:Destructibles_MP:Plastic Crate Empty MP:STATIC_FIRST:2.25,1.68,1.3:
+Accent:Destructibles_MP:Small wooden backless bench MP:DYNAMIC_FIRST:1,3.13,1.26:
+Accent:Destructibles_MP:Soda Crate Empty MP:DYNAMIC_FIRST:2.27,1.69,1.31:
+Accent:Destructibles_MP:Soda Crate w/Soda MP:DYNAMIC_FIRST:2.25,1.71,1.3:
+Accent:Destructibles_MP:Stack of books B MP:STATIC_FIRST:0.83,0.98,0:
+Accent:Destructibles_MP:Target Dummy Brute MP:STATIC_FIRST:0.65,1.34,1.68:
+Accent:Destructibles_MP:Target Dummy Grunt MP:DYNAMIC_FIRST:4.11,4.88,6.49:
+Accent:Destructibles_MP:Wet Floor MP:DYNAMIC_FIRST:1.44,1.4,2.87:
+Accent:Destructibles_MP:Wood Chair A MP:DYNAMIC_FIRST:2.22,1.98,3.74:
+Accent:Destructibles_MP:Wood Plank Pile MP:DYNAMIC_FIRST:4.04,18.1,0.48:
+Accent:Destructibles_MP:Wooden Bench MP:STATIC_FIRST:2.22,7.16,3.4:
+Accent:Destructibles_MP:Wooden Box Apple MP:STATIC_FIRST:2.56,3.75,1.07:
+Accent:Destructibles_MP:Wooden Box Banana MP:STATIC_FIRST:2.56,3.75,1.31:
+Accent:Destructibles_MP:Wooden Box Carrot MP:STATIC_FIRST:2.56,3.75,0.92:
+Accent:Destructibles_MP:Wooden Box Empty MP:STATIC_FIRST:2.56,3.75,0.78:
+Accent:Destructibles_MP:Wooden Box Mango MP:STATIC_FIRST:2.56,3.75,0.97:
+Accent:Destructibles_MP:Wooden Box Tomato MP:STATIC_FIRST:2.56,3.75,0.81:
+Accent:Destructibles_MP:Wooden Box Watermelon MP:STATIC_FIRST:2.56,3.75,1.76:
+Accent:Destructibles_MP:Wooden Column Square Broken Railing A MP:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles_MP:Wooden Column Square Broken Railing B MP:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles_MP:Wooden Column Square MP:DYNAMIC_FIRST:0.75,5.45,4.37:
+Accent:Destructibles_MP:Wooden Crate A MP:DYNAMIC_FIRST:3.16,2.31,1.85:
+Accent:Destructibles_MP:Wooden Crate B MP:DYNAMIC_FIRST:5.24,3.12,3.23:
+Accent:Destructibles_MP:Wooden Crate C MP:DYNAMIC_FIRST:1.98,3.12,1.64:
+Accent:Destructibles_MP:Wooden Lattice MP:STATIC_FIRST:0.25,8,10.61:
+Accent:Destructibles_MP:Wooden Market Table MP:STATIC_FIRST:7.99,4.01,3.74:
+Accent:Destructibles_MP:Wooden Pallet A MP:STATIC_FIRST:8.79,5.94,1.06:
+Accent:Destructibles_MP:Wooden Pallet B MP:STATIC_FIRST:8.89,5.99,1.11:
+Accent:Destructibles_MP:Wooden Pallet C MP:STATIC_FIRST:9.01,5.99,1.17:
+Accent:Destructibles_MP:Wooden Railing Broken A MP:STATIC_FIRST:0.63,7.99,3.75:
+Accent:Destructibles_MP:Wooden Railing Broken B MP:STATIC_FIRST:0.46,7.88,3.48:
+Accent:Destructibles_MP:Wooden Railing MP:STATIC_FIRST:0.48,7.9,3.5:
+Accent:Destructibles_MP:Wooden Railing Stairs MP:STATIC_FIRST:0.48,7.9,3.5:
+Accent:Destructibles_MP:Wooden Table MP:STATIC_FIRST:4.15,6.16,3.25:
+Accent:Destructibles_MP:Woven Basket MP:STATIC_FIRST:2.2,2.2,1.96:
+Accent:Ducts:Vent 15  Corner:STATIC_FIRST:8.57,9.45,7.49:
+Accent:Ducts:Vent 30  Corner:STATIC_FIRST:9.17,10.43,7.49:
+Accent:Ducts:Vent 45  Corner:STATIC_FIRST:9.67,10.71,7.49:
+Accent:Ducts:Vent 90  Corner:STATIC_FIRST:11.12,11.14,7.51:
+Accent:Ducts:Vent Cap:STATIC_FIRST:7.56,2.94,7.54:
+Accent:Ducts:Vent Cover:STATIC_FIRST:7.56,2.94,7.53:
+Accent:Ducts:Vent Height Change:STATIC_FIRST:7.53,19.23,12.07:
+Accent:Ducts:Vent Straight Section:STATIC_FIRST:7.55,7.52,10.05:
+Accent:Ducts:Vent Support:STATIC_FIRST:8.77,1.41,14.97:
+Accent:Ducts:Vent T Joint:STATIC_FIRST:14.32,10.76,7.49:
+Accent:Ducts:Vent X Joint:STATIC_FIRST:10.57,12.24,7.51:
+Accent:Fences:Chain link Fence:STATIC_FIRST:1.03,16.02,16.03:
+Accent:Fences:Chain link Fence Corner:STATIC_FIRST:6.5,6.5,16:
+Accent:Fences:Chain link Fence Gate:STATIC_FIRST:0.6,8.08,11.79:
+Accent:Fences:Chain link Fence Gateway:STATIC_FIRST:1,16,16:
+Accent:Fences:Fence Single:STATIC_FIRST:0.24,9.26,13.58:
+Accent:Fences_MP:Chain link Fence Corner MP:STATIC_FIRST:6.5,6.5,16:
+Accent:Fences_MP:Chain link Fence Gate MP:STATIC_FIRST:0.6,8.08,11.79:
+Accent:Fences_MP:Chain link Fence Gateway MP:STATIC_FIRST:1,16,16:
+Accent:Fences_MP:Fence Tall MP:STATIC_FIRST:0.26,17.59,13.55:
+Accent:Fences_MP:Gates Commercial District A MP:STATIC_FIRST:1,12.04,21.29:
+Accent:Fences_MP:Gates Commercial District B MP:STATIC_FIRST:0.82,10.32,20.79:
+Accent:Forerunner:Forerunner 24 x 60 x 24 Angled Support:STATIC_FIRST:30.04,22.56,60.03:
+Accent:Forerunner:Forerunner 8 x 36 x 32 Angled Support:STATIC_FIRST:33.94,10.07,36.69:
+Accent:Forerunner:Forerunner Angled Cover/Support:STATIC_FIRST:16.36,4.93,8.02:
+Accent:Forerunner:Forerunner Beam A:STATIC_FIRST:16.39,28.89,55.01:
+Accent:Forerunner:Forerunner Beam B:STATIC_FIRST:24.64,15.67,56.22:
+Accent:Forerunner:Forerunner Behemoth Door:STATIC_FIRST:3.37,32.18,21.55:
+Accent:Forerunner:Forerunner Behemoth Hatch w/Material Swa:STATIC_FIRST:23.88,22.6,1.97:
+Accent:Forerunner:Forerunner Catwalk A:STATIC_FIRST:7.03,21.09,2.19:
+Accent:Forerunner:Forerunner Catwalk B:STATIC_FIRST:22.46,28.8,2.14:
+Accent:Forerunner:Forerunner Catwalk Beam:STATIC_FIRST:11.33,4.01,18:
+Accent:Forerunner:Forerunner Catwalk C:STATIC_FIRST:16.76,12.98,2.15:
+Accent:Forerunner:Forerunner Catwalk D:STATIC_FIRST:14.27,16.46,2.13:
+Accent:Forerunner:Forerunner Catwalk E:STATIC_FIRST:28.95,46.08,5.2:
+Accent:Forerunner:Forerunner Catwalk Railing:STATIC_FIRST:2.47,8,5.59:
+Accent:Forerunner:Forerunner Control Point:STATIC_FIRST:52.15,61.31,39.94:
+Accent:Forerunner:Forerunner Cover Block:STATIC_FIRST:4.9,6.01,8.01:
+Accent:Forerunner:Forerunner Cover Full A:STATIC_FIRST:4.89,8.86,8.21:
+Accent:Forerunner:Forerunner Cover Full B:STATIC_FIRST:4.88,15.99,8.04:
+Accent:Forerunner:Forerunner Cover Full C:STATIC_FIRST:10.69,11.81,9.55:
+Accent:Forerunner:Forerunner Cover Full D:STATIC_FIRST:10.74,16.02,9.45:
+Accent:Forerunner:Forerunner Cover Half A:STATIC_FIRST:4.9,16,4.49:
+Accent:Forerunner:Forerunner Cover Half B:STATIC_FIRST:4.92,8.85,4.48:
+Accent:Forerunner:Forerunner Door Small:STATIC_FIRST:2.16,15.17,23.16:
+Accent:Forerunner:Forerunner Door Small Animated:DYNAMIC:2.14,15.17,23.16:
+Accent:Forerunner:Forerunner Hex Pillar 128 x 384:STATIC_FIRST:111.28,128.46,384.73:
+Accent:Forerunner:Forerunner Hex Pillar 16 x 08:STATIC_FIRST:13.86,16,8:
+Accent:Forerunner:Forerunner Hex Pillar 16 x 24:STATIC_FIRST:13.85,16.03,24.04:
+Accent:Forerunner:Forerunner Hex Pillar 16 x 384:STATIC_FIRST:13.82,15.96,384:
+Accent:Forerunner:Forerunner Hex Pillar 16 x 48:STATIC_FIRST:13.92,15.86,48.09:
+Accent:Forerunner:Forerunner Hex Pillar 32 x 96:STATIC_FIRST:27.72,32,96.04:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 120:STATIC_FIRST:55.69,64.31,120.58:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 A:STATIC_FIRST:21.99,24.94,167.93:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 B:STATIC_FIRST:24.54,29.1,167.93:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 C:STATIC_FIRST:21.34,15.53,168.13:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 D:STATIC_FIRST:9.52,10.92,167.97:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 E:STATIC_FIRST:10.87,9.11,167.9:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 F:STATIC_FIRST:16.54,22.36,168.1:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 G:STATIC_FIRST:7.84,12.45,167.92:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 H:STATIC_FIRST:9.1,11.02,167.95:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 I:STATIC_FIRST:1.21,1.92,167.94:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 J:STATIC_FIRST:4.54,8.73,167.93:
+Accent:Forerunner:Forerunner Hex Pillar 64 x 168 K:STATIC_FIRST:10.57,10.45,167.93:
+Accent:Forerunner:Forerunner Hub Cover:STATIC_FIRST:6.05,16.39,13.11:
+Accent:Forerunner:Forerunner Light Bridge Emitter:STATIC_FIRST:9.04,16.02,2.16:
+Accent:Forerunner:Forerunner Machinery Cover A:STATIC_FIRST:32.31,16.03,8.07:
+Accent:Forerunner:Forerunner Machinery Cover B:STATIC_FIRST:48.32,16.04,8.06:
+Accent:Forerunner:Forerunner Pedestal:STATIC_FIRST:10.72,10,5.57:
+Accent:Forerunner:Forerunner Pillar A:STATIC_FIRST:12.77,12.87,30.09:
+Accent:Forerunner:Forerunner Pillar B:STATIC_FIRST:28.34,10.08,120:
+Accent:Forerunner:Forerunner Pillar C:STATIC_FIRST:62,21.12,107:
+Accent:Forerunner:Forerunner Piston:STATIC_FIRST:35.89,35.89,169.05:
+Accent:Forerunner:Forerunner Platform 06 x 10 x 44:STATIC_FIRST:6,46.19,8.24:
+Accent:Forerunner:Forerunner Platform 10 x 06 x 48:STATIC_FIRST:10,48.64,4.74:
+Accent:Forerunner:Forerunner Platform 12 x 04 x 56:STATIC_FIRST:12,56.63,4:
+Accent:Forerunner:Forerunner Platform 12 x 10 x 42 A:STATIC_FIRST:12,26.97,6.14:
+Accent:Forerunner:Forerunner Platform 12 x 10 x 42 B:STATIC_FIRST:12.08,25.46,6.14:
+Accent:Forerunner:Forerunner Platform 16 x 08 x 42:STATIC_FIRST:16,41.28,7.49:
+Accent:Forerunner:Forerunner Platform 18 x 06 x 46 A:STATIC_FIRST:18,45.36,6.01:
+Accent:Forerunner:Forerunner Platform 18 x 06 x 46 B:STATIC_FIRST:18.03,45.03,6.55:
+Accent:Forerunner:Forerunner Plinth:STATIC_FIRST:32.21,12.04,34.01:
+Accent:Forerunner:Forerunner Podium Large A:STATIC_FIRST:59.38,17.47,25.49:
+Accent:Forerunner:Forerunner Podium Large B:STATIC_FIRST:59.35,15.76,25.47:
+Accent:Forerunner:Forerunner Ramp:STATIC_FIRST:17.15,32.3,7.32:
+Accent:Forerunner:Forerunner Ramp Cover:STATIC_FIRST:16.04,8.05,4.04:
+Accent:Forerunner:Forerunner Support A:STATIC_FIRST:27.1,9.2,72:
+Accent:Forerunner:Forerunner Support B:STATIC_FIRST:44.68,8.95,28.53:
+Accent:Forerunner:Forerunner Support C:STATIC_FIRST:32.01,16.74,96.05:
+Accent:Forerunner:Forerunner Support D:STATIC_FIRST:14.84,45.29,144.94:
+Accent:Forerunner:Forerunner Totem Ring A:STATIC_FIRST:7.01,72.6,72.61:
+Accent:Forerunner:Forerunner Totem Ring B:STATIC_FIRST:7.04,69.19,52.89:
+Accent:Forerunner:Forerunner Totem Ring C:STATIC_FIRST:7.24,69.25,69.35:
+Accent:Forerunner:Forerunner Totem Ring Chunk:STATIC_FIRST:6.49,15.5,6.78:
+Accent:Forerunner:Forerunner Totem Ring Debris:STATIC_FIRST:11.67,9.6,4.92:
+Accent:Forerunner_MP:Forerunner Beam A MP:STATIC_FIRST:16.33,28.84,54.9:
+Accent:Forerunner_MP:Forerunner Beam B MP:STATIC_FIRST:24.64,15.67,56.22:
+Accent:Forerunner_MP:Forerunner Behemoth Door MP:STATIC_FIRST:3.37,32.18,21.55:
+Accent:Forerunner_MP:Forerunner Behemoth Hatch MP:STATIC_FIRST:23.8,22.55,2:
+Accent:Forerunner_MP:Forerunner Catwalk A MP:STATIC_FIRST:7,21.02,2.14:
+Accent:Forerunner_MP:Forerunner Catwalk B MP:STATIC_FIRST:22.46,28.8,2.14:
+Accent:Forerunner_MP:Forerunner Catwalk Beam MP:STATIC_FIRST:11.33,4.01,18:
+Accent:Forerunner_MP:Forerunner Catwalk C MP:STATIC_FIRST:16.76,12.98,2.15:
+Accent:Forerunner_MP:Forerunner Catwalk D MP:STATIC_FIRST:14.3,16.51,2.14:
+Accent:Forerunner_MP:Forerunner Catwalk E MP:STATIC_FIRST:28.95,46.08,5.2:
+Accent:Forerunner_MP:Forerunner Catwalk Railing MP:STATIC_FIRST:2.47,8.01,5.59:
+Accent:Forerunner_MP:Forerunner Cover Block MP:STATIC_FIRST:4.89,6,8:
+Accent:Forerunner_MP:Forerunner Cover Full A MP:STATIC_FIRST:4.88,8.84,8.02:
+Accent:Forerunner_MP:Forerunner Cover Full B MP:STATIC_FIRST:4.88,15.99,8.04:
+Accent:Forerunner_MP:Forerunner Cover Full C MP:STATIC_FIRST:10.65,11.78,9.53:
+Accent:Forerunner_MP:Forerunner Cover Full D MP:STATIC_FIRST:10.65,16,9.57:
+Accent:Forerunner_MP:Forerunner Cover Half A MP:STATIC_FIRST:4.88,15.98,4.48:
+Accent:Forerunner_MP:Forerunner Cover Half B MP:STATIC_FIRST:4.92,8.85,4.48:
+Accent:Forerunner_MP:Forerunner Door Small MP:STATIC_FIRST:2.16,15.17,23.16:
+Accent:Forerunner_MP:Forerunner Hex Pillar 128 x 384 MP:STATIC_FIRST:110.87,128,384.01:
+Accent:Forerunner_MP:Forerunner Hex Pillar 16 x 08 MP:STATIC_FIRST:13.87,16,8.01:
+Accent:Forerunner_MP:Forerunner Hex Pillar 16 x 24 MP:STATIC_FIRST:13.85,15.96,24:
+Accent:Forerunner_MP:Forerunner Hex Pillar 16 x 384 MP:STATIC_FIRST:13.82,15.96,384:
+Accent:Forerunner_MP:Forerunner Hex Pillar 16 x 48 MP:STATIC_FIRST:13.86,16,48:
+Accent:Forerunner_MP:Forerunner Hex Pillar 32 x 96 MP:STATIC_FIRST:27.73,32,96.01:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 120 MP:STATIC_FIRST:55.43,64,120:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 A MP:STATIC_FIRST:21.99,24.94,167.93:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 B MP:STATIC_FIRST:24.54,29.1,167.93:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 C MP:STATIC_FIRST:21.34,15.53,168.13:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 D MP:STATIC_FIRST:9.52,10.92,167.97:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 E MP:STATIC_FIRST:10.87,9.11,167.9:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 F MP:STATIC_FIRST:16.28,22.09,167.94:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 G MP:STATIC_FIRST:7.84,12.45,167.92:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 H MP:STATIC_FIRST:9.1,11.02,167.95:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 I MP:STATIC_FIRST:1.21,1.92,167.94:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 J MP:STATIC_FIRST:4.54,8.73,167.93:
+Accent:Forerunner_MP:Forerunner Hex Pillar 64 x 168 K MP:STATIC_FIRST:10.57,10.45,167.93:
+Accent:Forerunner_MP:Forerunner Light Bridge Emitter MP:STATIC_FIRST:9.04,16,2.15:
+Accent:Forerunner_MP:Forerunner Pillar A MP:STATIC_FIRST:12.75,12.81,30.06:
+Accent:Forerunner_MP:Forerunner Pillar B MP:STATIC_FIRST:28.34,10.08,120:
+Accent:Forerunner_MP:Forerunner Pillar C MP:STATIC_FIRST:62.05,21.2,107.02:
+Accent:Forerunner_MP:Forerunner Piston MP:STATIC_FIRST:35.89,35.89,169.05:
+Accent:Forerunner_MP:Forerunner Platform 06 x 10 x 44 MP:STATIC_FIRST:6,46.19,8.24:
+Accent:Forerunner_MP:Forerunner Platform 10 x 06 x 48 MP:STATIC_FIRST:10,48.64,4.74:
+Accent:Forerunner_MP:Forerunner Platform 12 x 04 x 56 MP:STATIC_FIRST:12,56.63,4:
+Accent:Forerunner_MP:Forerunner Platform 12 x 10 x 42 A MP:STATIC_FIRST:12,26.97,6.46:
+Accent:Forerunner_MP:Forerunner Platform 12 x 10 x 42 B MP:STATIC_FIRST:12.08,25.46,6.14:
+Accent:Forerunner_MP:Forerunner Platform 16 x 08 x 42 MP:STATIC_FIRST:16,41.28,7.49:
+Accent:Forerunner_MP:Forerunner Platform 18 x 06 x 46 A MP:STATIC_FIRST:18,45.36,6.01:
+Accent:Forerunner_MP:Forerunner Platform 18 x 06 x 46 B MP:STATIC_FIRST:18,45.03,5.99:
+Accent:Forerunner_MP:Forerunner Support A MP:STATIC_FIRST:27.1,9.2,72:
+Accent:Forerunner_MP:Forerunner Support B MP:STATIC_FIRST:44.68,8.95,28.53:
+Accent:Forerunner_MP:Forerunner Support C MP:STATIC_FIRST:31.95,16.71,96:
+Accent:Forerunner_MP:Forerunner Totem Ring A MP:STATIC_FIRST:7.92,72.6,72.72:
+Accent:Forerunner_MP:Forerunner Totem Ring B MP:STATIC_FIRST:7.36,69.31,53.15:
+Accent:Forerunner_MP:Forerunner Totem Ring C MP:STATIC_FIRST:7.16,69.86,69.38:
+Accent:Forerunner_MP:Forerunner Totem Ring Chunk MP:STATIC_FIRST:6.48,15.51,6.8:
+Accent:Forerunner_MP:Forerunner Totem Ring Debris MP:STATIC_FIRST:11.66,9.65,4.94:
+Accent:Forerunner_MP:Hacking Terminal MP:STATIC_FIRST:1.87,3.34,4.31:
+Accent:Garbage:Bottle Glass:STATIC_FIRST:0.26,0.43,1.03:
+Accent:Garbage:Bottle Open:STATIC_FIRST:0.44,0.4,0.5:
+Accent:Garbage:Civilian Dumpster:STATIC_FIRST:6.28,10.33,6.07:
+Accent:Garbage:Dumpster:STATIC_FIRST:4.5,5.85,4.91:
+Accent:Garbage:Garbage Can:STATIC_FIRST:2.19,3.02,5.35:
+Accent:Garbage:Plastic Bottle:STATIC_FIRST:1.22,1.22,2.04:
+Accent:Garbage:Plastic Bottle Bent:STATIC_FIRST:1.25,1.37,1.65:
+Accent:Garbage:Recycle Bin:STATIC_FIRST:1.63,2.24,3.96:
+Accent:Garbage:To-Go Cup Open:STATIC_FIRST:0.43,0.43,0.56:
+Accent:Garbage:To-Go Cup Straw:STATIC_FIRST:0.51,0.51,0.72:
+Accent:Garbage:Trash Bin A:STATIC_FIRST:1.65,2.25,3.98:
+Accent:Garbage:Trash Can Closed:STATIC_FIRST:2.48,2.3,4.79:
+Accent:Garbage:Warthog Tire Flat:STATIC_FIRST:4.14,2.22,4.14:
+Accent:Garbage_MP:Bottle B Bottom Shard MP:STATIC_FIRST:0.27,0.32,0.41:
+Accent:Garbage_MP:Bottle B Top Shard MP:STATIC_FIRST:0.27,0.32,0.77:
+Accent:Garbage_MP:Civilian Dumpster MP:STATIC_FIRST:6.28,10.33,6.07:
+Accent:Garbage_MP:Clutter Pile A MP:STATIC_FIRST:7.9,7.9,0.15:
+Accent:Garbage_MP:Clutter Pile B MP:STATIC_FIRST:7.9,7.9,0.15:
+Accent:Garbage_MP:Clutter Pile C MP:STATIC_FIRST:7.9,7.9,0.15:
+Accent:Garbage_MP:Empty Water Bottle MP:STATIC_FIRST:0.36,0.34,1.1:
+Accent:Garbage_MP:Garbage Pile A MP:STATIC_FIRST:2.98,3.51,0.56:
+Accent:Garbage_MP:Garbage Pile B MP:STATIC_FIRST:2.46,2.22,1.15:
+Accent:Garbage_MP:Garbage Pile C MP:STATIC_FIRST:2.28,2.11,0.39:
+Accent:Garbage_MP:Garbage Pile D MP:STATIC_FIRST:3.45,3.94,1.08:
+Accent:Garbage_MP:Garbage Pile E MP:STATIC_FIRST:2.08,2.25,0.48:
+Accent:Garbage_MP:Garbage Pile F MP:STATIC_FIRST:2.19,1.96,0.64:
+Accent:Garbage_MP:Garbage Pile G MP:STATIC_FIRST:2.22,1.89,0.57:
+Accent:Garbage_MP:Garbage Pile H MP:STATIC_FIRST:3.45,3.94,1.08:
+Accent:Garbage_MP:Garbage Pile I MP:DYNAMIC_FIRST:10,3,0.68:
+Accent:Garbage_MP:Garbage Pile J MP:STATIC_FIRST:9.72,6.01,0.64:
+Accent:Garbage_MP:Plastic Bottle Bent MP:STATIC_FIRST:1.25,1.37,1.65:
+Accent:Garbage_MP:Plastic Bottle MP:STATIC_FIRST:1.22,1.22,2.04:
+Accent:Garbage_MP:Recycle Bin MP:STATIC_FIRST:1.63,2.24,3.96:
+Accent:Garbage_MP:Trash Bin A MP:STATIC_FIRST:1.63,2.24,3.96:
+Accent:Garbage_MP:Trash Can Closed MP:STATIC_FIRST:2.48,2.3,4.79:
+Accent:Garbage_MP:Trashbag A MP:STATIC_FIRST:1.91,2.77,2.43:
+Accent:Garbage_MP:Trashbag B MP:STATIC_FIRST:1.95,2.74,2.32:
+Accent:Garbage_MP:Warthog Tire Flat MP:STATIC_FIRST:4.14,2.22,4.14:
+Accent:Glass:Glass Transparent 10%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 20%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 30%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 40%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 50%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 60%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 70%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 80%:STATIC_FIRST:10,10,0.25:
+Accent:Glass:Glass Transparent 90%:STATIC_FIRST:10,10,0.25:
+Accent:Missiles:Missile Launcher Turret:STATIC_FIRST:46.7,23.45,20.12:
+Accent:Missiles:Missile Rack:STATIC_FIRST:8.84,4.94,3.55:
+Accent:Missiles:Sabre Missile:STATIC_FIRST:12.29,1.89,1.9:
+Accent:Missiles:Sabre Missile Rack:STATIC_FIRST:9.47,4.32,6.53:
+Accent:Missiles_MP:Sabre Missile MP:STATIC_FIRST:12.29,1.89,1.9:
+Accent:Missiles_MP:Sabre Missile Rack MP:STATIC_FIRST:9.47,4.3,6.53:
+Accent:Panels:Exposed Panel:STATIC_FIRST:0.62,16.1,4:
+Accent:Panels:Skeletal Panel:STATIC_FIRST:1.31,15.99,7.77:
+Accent:Panels:Tapered Panel:STATIC_FIRST:0.53,9.82,2.89:
+Accent:Panels:Tech Panel:STATIC_FIRST:0.75,3.98,8:
+Accent:Panels:Y Panel:STATIC_FIRST:1.06,3.99,4.07:
+Accent:Pipes:Pipe 15  Corner:STATIC_FIRST:16.65,16.92,15.43:
+Accent:Pipes:Pipe 45  Corner:STATIC_FIRST:19.32,18.55,16.68:
+Accent:Pipes:Pipe 90  Corner:STATIC_FIRST:20.19,19.42,15.71:
+Accent:Pipes:Pipe Cap:STATIC_FIRST:15.31,3.97,15.32:
+Accent:Pipes:Pipe Clamp:STATIC_FIRST:22.4,8.07,19.01:
+Accent:Pipes:Pipe Straight Section:STATIC_FIRST:15.33,15.32,19.71:
+Accent:Pipes:Pipe T Joint:STATIC_FIRST:24.26,17.31,15.36:
+Accent:Pipes:Pipe X Joint:STATIC_FIRST:24.2,19.53,15.52:
+Accent:Pipes:Pipe Y Joint:STATIC_FIRST:30.85,26.34,15.52:
+Accent:Railings:UNSC Railing A:STATIC_FIRST:0.74,1.97,4:
+Accent:Railings:UNSC Railing Angled A:STATIC_FIRST:2.51,2.58,4:
+Accent:Railings:UNSC Railing Angled B:STATIC_FIRST:4.51,4.49,4:
+Accent:Railings:UNSC Railing Angled C:STATIC_FIRST:8.48,8.49,4:
+Accent:Railings:UNSC Railing Corner Inner A:STATIC_FIRST:2.42,2.44,4:
+Accent:Railings:UNSC Railing Corner Inner B:STATIC_FIRST:4.43,4.43,4:
+Accent:Railings:UNSC Railing Corner Outer A:STATIC_FIRST:2.28,2.28,4:
+Accent:Railings:UNSC Railing Corner Outer B:STATIC_FIRST:4.31,4.31,4:
+Accent:Railings:UNSC Railing Covered A:STATIC_FIRST:0.94,2,4:
+Accent:Railings:UNSC Railing Covered Angled A:STATIC_FIRST:2.64,2.71,4:
+Accent:Railings:UNSC Railing Covered Angled B:STATIC_FIRST:4.64,4.62,4:
+Accent:Railings:UNSC Railing Covered Angled C:STATIC_FIRST:8.62,8.62,4:
+Accent:Railings:UNSC Railing Covered Corner A:STATIC_FIRST:8.45,8.5,4:
+Accent:Railings:UNSC Railing Covered Slanted A:STATIC_FIRST:2.75,4.29,4:
+Accent:Railings:UNSC Railing Covered Slanted B:STATIC_FIRST:4.72,8.28,4:
+Accent:Railings:UNSC Railing Slanted Inner A:STATIC_FIRST:1.62,2.29,4:
+Accent:Railings:UNSC Railing Slanted Inner B:STATIC_FIRST:2.62,4.29,4:
+Accent:Railings:UNSC Railing Slanted Inner C:STATIC_FIRST:4.61,8.28,4:
+Accent:Railings:UNSC Railing Slanted Outer A:STATIC_FIRST:1.6,2.22,4:
+Accent:Railings:UNSC Railing Slanted Outer B:STATIC_FIRST:2.61,3.7,4:
+Accent:Railings:UNSC Railing Slanted Outer C:STATIC_FIRST:4.59,7.69,4:
+Accent:Railings_MP:UNSC Railing A MP:STATIC_FIRST:0.74,1.97,4:
+Accent:Railings_MP:UNSC Railing Angled A MP:STATIC_FIRST:2.51,2.58,4:
+Accent:Railings_MP:UNSC Railing Angled B MP:STATIC_FIRST:4.51,4.49,4:
+Accent:Railings_MP:UNSC Railing Angled C MP:STATIC_FIRST:8.48,8.49,4:
+Accent:Railings_MP:UNSC Railing Corner Inner A MP:STATIC_FIRST:2.42,2.44,4:
+Accent:Railings_MP:UNSC Railing Corner Inner B MP:STATIC_FIRST:4.43,4.43,4:
+Accent:Railings_MP:UNSC Railing Corner Outer A MP:STATIC_FIRST:2.28,2.28,4:
+Accent:Railings_MP:UNSC Railing Corner Outer B MP:STATIC_FIRST:4.31,4.31,4:
+Accent:Railings_MP:UNSC Railing Covered A MP:STATIC_FIRST:0.94,1.99,4:
+Accent:Railings_MP:UNSC Railing Covered Angled A MP:STATIC_FIRST:2.64,2.71,4:
+Accent:Railings_MP:UNSC Railing Covered Angled B MP:STATIC_FIRST:4.64,4.62,4:
+Accent:Railings_MP:UNSC Railing Covered Angled C MP:STATIC_FIRST:8.62,8.62,4:
+Accent:Railings_MP:UNSC Railing Covered Corner A MP:STATIC_FIRST:8.45,8.5,4:
+Accent:Railings_MP:UNSC Railing Covered Slanted A MP:STATIC_FIRST:2.75,4.29,4:
+Accent:Railings_MP:UNSC Railing Covered Slanted B MP:STATIC_FIRST:4.72,8.28,4:
+Accent:Railings_MP:UNSC Railing Slanted Inner A MP:STATIC_FIRST:1.62,2.29,4:
+Accent:Railings_MP:UNSC Railing Slanted Inner B MP:STATIC_FIRST:2.62,4.29,4:
+Accent:Railings_MP:UNSC Railing Slanted Inner C MP:STATIC_FIRST:4.61,8.28,4:
+Accent:Railings_MP:UNSC Railing Slanted Outer A MP:STATIC_FIRST:1.6,2.22,4:
+Accent:Railings_MP:UNSC Railing Slanted Outer B MP:STATIC_FIRST:2.61,3.7,4:
+Accent:Railings_MP:UNSC Railing Slanted Outer C MP:STATIC_FIRST:4.59,7.69,4:
+Accent:Rubble:Rubble Pile A:STATIC_FIRST:10.79,5.17,0.65:
+Accent:Rubble:Rubble Pile B:STATIC_FIRST:18.82,4.39,0.65:
+Accent:Rubble:Rubble Pile C:STATIC_FIRST:7.61,1.66,0.37:
+Accent:Rubble:UNSC Rubble Pile Small:STATIC_FIRST:6.81,3.22,1.2:
+Accent:Sandbags:Sandbag:STATIC_FIRST:2.98,1.4,0.84:
+Accent:Sandbags:Sandbag Curve Large:STATIC_FIRST:34.96,35.33,5.6:
+Accent:Sandbags:Sandbag Curve Medium:STATIC_FIRST:19.39,18.88,5.57:
+Accent:Sandbags:Sandbag Curve Small:STATIC_FIRST:10.78,11.04,5.18:
+Accent:Sandbags:Sandbag Pallet Large:STATIC_FIRST:12.7,12.69,8.82:
+Accent:Sandbags:Sandbag Pallet Small:STATIC_FIRST:8.47,8.38,5.18:
+Accent:Sandbags:Sandbag Pile:STATIC_FIRST:7.87,8.26,4.39:
+Accent:Sandbags:Sandbag Pyramid Large:STATIC_FIRST:16.63,15.97,12.9:
+Accent:Sandbags:Sandbag Pyramid Medium:STATIC_FIRST:12.24,12.07,8.2:
+Accent:Sandbags:Sandbag Slope Large:STATIC_FIRST:31.76,4.35,5.1:
+Accent:Sandbags:Sandbag Slope Medium:STATIC_FIRST:16.1,4.21,5.2:
+Accent:Sandbags:Sandbag Slope Small:STATIC_FIRST:8.69,4.12,4.91:
+Accent:Sandbags:Sandbag Trio:STATIC_FIRST:2.94,3.35,1.41:
+Accent:Sandbags:Sandbag Wall - 16ft:STATIC_FIRST:17.48,4.36,5.09:
+Accent:Sandbags:Sandbag Wall - 32ft:STATIC_FIRST:33.92,4.5,5.19:
+Accent:Sandbags:Sandbag Wall - 4ft:STATIC_FIRST:4.34,4.23,4.83:
+Accent:Sandbags:Sandbag Wall - 64ft:STATIC_FIRST:65.19,4.64,5.32:
+Accent:Sandbags:Sandbag Wall - 8ft:STATIC_FIRST:9.14,4.39,5.12:
+Accent:Sandbags:UNSC Sandbag:STATIC_FIRST:2.2,3.35,0.83:
+Accent:Sandbags:UNSC Sandbag Halfcover:STATIC_FIRST:6.94,13.37,4.27:
+Accent:Sandbags_MP:Sandbag Curve Large MP:STATIC_FIRST:34.96,35.33,5.6:
+Accent:Sandbags_MP:Sandbag Curve Medium MP:STATIC_FIRST:19.39,18.88,5.57:
+Accent:Sandbags_MP:Sandbag Curve Small MP:STATIC_FIRST:10.8,11.04,5.18:
+Accent:Sandbags_MP:Sandbag MP:STATIC_FIRST:2.98,1.4,0.84:
+Accent:Sandbags_MP:Sandbag MP Green:STATIC_FIRST:2.98,1.4,0.84:
+Accent:Sandbags_MP:Sandbag Pallet Large MP:STATIC_FIRST:12.7,12.69,8.82:
+Accent:Sandbags_MP:Sandbag Pallet Small MP:STATIC_FIRST:8.47,8.38,5.18:
+Accent:Sandbags_MP:Sandbag Pile MP:STATIC_FIRST:7.87,8.26,4.39:
+Accent:Sandbags_MP:Sandbag Pyramid Large MP:STATIC_FIRST:16.63,15.97,12.9:
+Accent:Sandbags_MP:Sandbag Pyramid Medium MP:STATIC_FIRST:12.24,12.07,8.2:
+Accent:Sandbags_MP:Sandbag Slope Large MP:STATIC_FIRST:31.76,4.35,5.13:
+Accent:Sandbags_MP:Sandbag Slope Medium MP:STATIC_FIRST:16.1,4.21,5.2:
+Accent:Sandbags_MP:Sandbag Slope Small MP:STATIC_FIRST:8.69,4.12,4.91:
+Accent:Sandbags_MP:Sandbag Trio MP:STATIC_FIRST:2.94,3.35,1.41:
+Accent:Sandbags_MP:Sandbag Wall - 16ft MP:STATIC_FIRST:17.48,4.36,5.09:
+Accent:Sandbags_MP:Sandbag Wall - 32ft MP:STATIC_FIRST:33.92,4.5,5.19:
+Accent:Sandbags_MP:Sandbag Wall - 4ft MP:STATIC_FIRST:4.34,4.23,4.83:
+Accent:Sandbags_MP:Sandbag Wall - 64ft MP:STATIC_FIRST:65.19,4.64,5.32:
+Accent:Sandbags_MP:Sandbag Wall - 8ft MP:STATIC_FIRST:9.14,4.39,5.12:
+Accent:Sandbags_MP:UNSC Sandbag Halfcover MP:STATIC_FIRST:6.94,13.37,4.27:
+Accent:Sandbags_MP:UNSC Sandbag MP:STATIC_FIRST:2.2,3.35,0.83:
+Accent:Signs:Blank Sign:STATIC_FIRST:0.82,10,6.25:
+Accent:Signs:Cinema Sign:STATIC_FIRST:1.31,6.62,14.71:
+Accent:Signs:Exit Sign:STATIC_FIRST:0.82,10,6.25:
+Accent:Signs:Fronk's:STATIC_FIRST:2.56,14.9,11.49:
+Accent:Signs:Hospital Sign:STATIC_FIRST:2.35,8.78,8.78:
+Accent:Signs:Hotel Sign:STATIC_FIRST:1.34,15.72,5.13:
+Accent:Signs:Star Neon:STATIC_FIRST:1.21,3.14,3.01:
+Accent:Supports:Angled Boomerang:STATIC_FIRST:46.03,0.74,12.42:
+Accent:Supports:Bracket:STATIC_FIRST:16,2.13,6.6:
+Accent:Supports:Ceiling support:STATIC_FIRST:22.5,72.04,18.35:
+Accent:Supports:Double Sided Bracket:STATIC_FIRST:8,4.55,2:
+Accent:Supports:Double Sided Support:STATIC_FIRST:95.6,0.71,16:
+Accent:Supports:Double Skeletonized Bracket:STATIC_FIRST:48,4,20:
+Accent:Supports:Large Ceiling Support:STATIC_FIRST:16.35,65.24,13.06:
+Accent:Supports:Large Wall Bracket:STATIC_FIRST:38.02,9.87,48.14:
+Accent:Supports:Scaffolding A:STATIC_FIRST:1.52,26.06,16.29:
+Accent:Supports:Scaffolding B:STATIC_FIRST:4.51,15.16,16.21:
+Accent:Supports:Scaffolding C:STATIC_FIRST:28.93,8.21,41.36:
+Accent:Supports:Single Sided Bracket:STATIC_FIRST:9,2,2:
+Accent:Supports:Skeletonized Bracket:STATIC_FIRST:20.06,4,10.07:
+Accent:Supports:Skinny Support:STATIC_FIRST:8,0.55,1:
+Accent:Supports:Skinny Support H:STATIC_FIRST:16,0.55,2:
+Accent:Supports:Squared Truss:STATIC_FIRST:0.4,11.99,4:
+Accent:Supports:Support A:STATIC_FIRST:16,0.71,4:
+Accent:Supports:Support Beam:STATIC_FIRST:32.33,4.12,8.07:
+Accent:Supports:Support Bracket E:STATIC_FIRST:7.94,0.55,2:
+Accent:Supports:Support Bracket I:STATIC_FIRST:16,0.55,4:
+Accent:Supports:Support Bracket J:STATIC_FIRST:15.85,2.01,2:
+Accent:Supports:Support Scaffolding:STATIC_FIRST:0.23,16,2:
+Accent:Supports:Thick Wall Bracket:STATIC_FIRST:12.28,4.03,8.21:
+Accent:Supports:Y Beam Support:STATIC_FIRST:2.42,32.29,20:
+Accent:Tools_MP:Duct Tape Roll MP:STATIC_FIRST:0.51,0.51,0.25:
+Accent:Tools_MP:Tool - Angle Grinder MP:STATIC_FIRST:0.29,0.62,1.17:
+Accent:Tools_MP:Tool - Drill MP:STATIC_FIRST:0.09,1.32,0.09:
+Accent:Tools_MP:Tool - Hammer MP:STATIC_FIRST:0.1,0.25,0.8:
+Accent:Tools_MP:Tool - Impact Driver MP:STATIC_FIRST:0.2,1.05,0.76:
+Accent:Tools_MP:Tool - Multitool MP:STATIC_FIRST:0.05,0.11,0.6:
+Accent:Tools_MP:Tool - Pen MP:STATIC_FIRST:0.04,0.05,0.46:
+Accent:Tools_MP:Tool - Plasma Stapler MP:STATIC_FIRST:0.11,0.8,0.78:
+Accent:Tools_MP:Tool - Torch MP:STATIC_FIRST:0.13,1.96,0.51:
+Accent:Tools_MP:Tool - Torque Wrench MP:STATIC_FIRST:0.07,0.1,1.02:
+Accent:Tools_MP:Tool - Wrench MP:STATIC_FIRST:0.05,0.15,1.1:
+Accent:UNSC:Angled Wall Insert:STATIC_FIRST:40.9,16.99,34.14:
+Accent:UNSC:Angled Wire Fence:STATIC_FIRST:3.49,15.14,4.2:
+Accent:UNSC:Bridge Support Pillar:STATIC_FIRST:6.45,14.79,21.36:
+Accent:UNSC:Bulkhead:STATIC_FIRST:12.12,28.53,11.29:
+Accent:UNSC:Bullet Pile Large:STATIC_FIRST:4.66,4.66,0.33:
+Accent:UNSC:Bullet Pile Small:STATIC_FIRST:2.5,2.5,0.33:
+Accent:UNSC:Canvas Bag:STATIC_FIRST:1.91,2.5,2.36:
+Accent:UNSC:Ceiling Conduit:STATIC_FIRST:2.73,15.66,2.99:
+Accent:UNSC:Ceiling Corner Deco:STATIC_FIRST:11.9,21.43,9.52:
+Accent:UNSC:Chute Hatch:STATIC_FIRST:1.58,9.85,5.51:
+Accent:UNSC:Clip-on Light A:STATIC_FIRST:0.47,0.85,1.09:
+Accent:UNSC:Clip-on Light B:STATIC_FIRST:0.29,0.3,1.22:
+Accent:UNSC:Clip-on Light Clamp:STATIC_FIRST:0.24,0.54,4.3:
+Accent:UNSC:Concrete Block A:STATIC_FIRST:2,8,8:
+Accent:UNSC:Concrete Block B:STATIC_FIRST:1,8,22:
+Accent:UNSC:Concrete Block C:STATIC_FIRST:1,16,22:
+Accent:UNSC:Concrete Block D:STATIC_FIRST:4.71,4.71,22:
+Accent:UNSC:Concrete Block E:STATIC_FIRST:8.71,8.71,22:
+Accent:UNSC:Concrete Block F:STATIC_FIRST:1,4,22:
+Accent:UNSC:Concrete Column:STATIC_FIRST:8,8,22:
+Accent:UNSC:Conduit Cover:STATIC_FIRST:0.42,16,4:
+Accent:UNSC:Control Panel A:STATIC_FIRST:0.15,2.02,3.02:
+Accent:UNSC:Cooling Fin:STATIC_FIRST:10.14,4.78,27.73:
+Accent:UNSC:Crumpled Vent Panel:STATIC_FIRST:5.21,5.88,0.62:
+Accent:UNSC:Data Tower:STATIC_FIRST:8.26,8.26,20:
+Accent:UNSC:Dry Erase Board:STATIC_FIRST:0.16,3.54,2.04:
+Accent:UNSC:Dry Erase Marker:STATIC_FIRST:0.05,0.08,0.53:
+Accent:UNSC:Electrical Junction Boxes:STATIC_FIRST:2.67,20.16,13.83:
+Accent:UNSC:Finned Accent:STATIC_FIRST:5.19,48.5,32.79:
+Accent:UNSC:Floor Machine:STATIC_FIRST:4.75,8.88,6.38:
+Accent:UNSC:Floor Podium:STATIC_FIRST:15.73,12.49,15.99:
+Accent:UNSC:Floor Storage:STATIC_FIRST:5.53,7.09,10.28:
+Accent:UNSC:Floor Tower:STATIC_FIRST:19.23,14.62,24.43:
+Accent:UNSC:Folding Chair:STATIC_FIRST:1.53,1.39,1.9:
+Accent:UNSC:Gantry Crane:DYNAMIC_FIRST:95.93,30,50.41:
+Accent:UNSC:Generator Medium:STATIC_FIRST:10.36,24.41,17.07:
+Accent:UNSC:Generator Small:STATIC_FIRST:4.98,10.69,5.18:
+Accent:UNSC:Generator Standalone:STATIC_FIRST:11.25,6.12,6.9:
+Accent:UNSC:Gun Mount Flap A:STATIC_FIRST:38.52,8.33,2.86:
+Accent:UNSC:Gun Mount Flap B:STATIC_FIRST:7.16,25.4,1.35:
+Accent:UNSC:Gun Mount Girder A:STATIC_FIRST:16.33,46.3,1.35:
+Accent:UNSC:Gun Mount Panel A:STATIC_FIRST:8.58,44.68,2.04:
+Accent:UNSC:Gun Mount Support Girder A:STATIC_FIRST:10.33,72.99,4.33:
+Accent:UNSC:Hanging UNSC Monitor:STATIC_FIRST:2.36,5.69,4.19:
+Accent:UNSC:Jumbotron Monitors:STATIC_FIRST:15.72,14.89,11.89:
+Accent:UNSC:Large UNSC Pillar:STATIC_FIRST:12.64,12.35,40.78:
+Accent:UNSC:Large Wall Module:STATIC_FIRST:16.2,9.16,27.85:
+Accent:UNSC:Machine Large:STATIC_FIRST:17.63,25.25,12.4:
+Accent:UNSC:Metal Beam:STATIC_FIRST:1.03,2.02,18.03:
+Accent:UNSC:Metal Shutter:STATIC_FIRST:2,16,6:
+Accent:UNSC:Mounted Speaker:STATIC_FIRST:1.37,3.81,3.36:
+Accent:UNSC:Overhead Track:STATIC_FIRST:9.05,76.93,15.62:
+Accent:UNSC:Pallet Hydrogen Bottles:STATIC_FIRST:8.36,8.3,8.07:
+Accent:UNSC:Pallet Water Barrels:STATIC_FIRST:9.09,6.23,5.05:
+Accent:UNSC:Panel Cover:STATIC_FIRST:1.49,12.01,4:
+Accent:UNSC:Patch Kit:STATIC_FIRST:1,2.39,1.63:
+Accent:UNSC:Radio Reciever:STATIC_FIRST:1,0.63,1.43:
+Accent:UNSC:Rectangle Cover:STATIC_FIRST:0.47,15.98,4:
+Accent:UNSC:Rolling Chair:STATIC_FIRST:2.22,2.09,4.62:
+Accent:UNSC:Roof Exhaust:STATIC_FIRST:24.71,24.71,39.23:
+Accent:UNSC:Roof Hatch Vent:STATIC_FIRST:24.13,15.42,17.56:
+Accent:UNSC:Rooftop AC:STATIC_FIRST:10.15,10.16,4.1:
+Accent:UNSC:Round Platform:DYNAMIC_FIRST:24.87,24.87,31.6:
+Accent:UNSC:Sleeping Bag Packed:STATIC_FIRST:1.34,2.36,1.49:
+Accent:UNSC:Sleeping Bag Unrolled:STATIC_FIRST:10.9,4.84,1.42:
+Accent:UNSC:Target - Small:STATIC_FIRST:1.27,2,1.91:
+Accent:UNSC:Trim Beam A:STATIC_FIRST:3,8,6:
+Accent:UNSC:Trim Beam B:STATIC_FIRST:3,32,6:
+Accent:UNSC:Trim Beam Corner:STATIC_FIRST:8,8,6:
+Accent:UNSC:Truss/Girder:STATIC_FIRST:2.32,20.13,16.11:
+Accent:UNSC:UNSC Bot Separation Pen:STATIC_FIRST:67.42,67.51,9.1:
+Accent:UNSC:UNSC Catwalk Long:STATIC_FIRST:27.37,27.36,2.18:
+Accent:UNSC:UNSC Catwalk Short:STATIC_FIRST:19.34,19.35,2.17:
+Accent:UNSC:UNSC Crane Body A:STATIC_FIRST:44.93,36.09,136:
+Accent:UNSC:UNSC Crane Hook A:STATIC_FIRST:10.45,4.77,11.29:
+Accent:UNSC:UNSC Crane Top A:STATIC_FIRST:254.69,23.28,69.88:
+Accent:UNSC:UNSC Crane Trolley A:STATIC_FIRST:13.73,17.01,7.19:
+Accent:UNSC:UNSC Duffle Bag:DYNAMIC:2.56,4.31,1.67:
+Accent:UNSC:UNSC Generator:STATIC_FIRST:13.96,31.5,17.4:
+Accent:UNSC:UNSC Powercore:STATIC_FIRST:7.23,4.98,4.98:
+Accent:UNSC:UNSC Road:STATIC_FIRST:56.23,98.47,15.64:
+Accent:UNSC:UNSC Roof Panel Shield:STATIC_FIRST:10.71,9.14,17.4:
+Accent:UNSC:UNSC Wall Tech Extra Large A:STATIC_FIRST:1.05,16.01,18.08:
+Accent:UNSC:UNSC Wall Tech Extra Large B:STATIC_FIRST:2.09,16.08,18.09:
+Accent:UNSC:UNSC Wall Tech Extra Large C:STATIC_FIRST:5.26,16.14,18.04:
+Accent:UNSC:UNSC Wall Tech Extra Large D:STATIC_FIRST:1.17,16.11,18.06:
+Accent:UNSC:UNSC Wall Tech Large A:STATIC_FIRST:2.56,16.04,16.03:
+Accent:UNSC:UNSC Wall Tech Large C:STATIC_FIRST:1.74,16.05,16.1:
+Accent:UNSC:UNSC Wall Tech Med A:STATIC_FIRST:1.19,16,8:
+Accent:UNSC:UNSC Wall Tech Med B:STATIC_FIRST:2.15,16.03,8.03:
+Accent:UNSC:UNSC Wall Tech Med C:STATIC_FIRST:2.25,16.02,8.06:
+Accent:UNSC:UNSC Wall Tech Med D:STATIC_FIRST:2.13,16.02,8.04:
+Accent:UNSC:UNSC Wall Tech Med E:STATIC_FIRST:2.14,16.02,8.04:
+Accent:UNSC:UNSC Wall Tech Small A:STATIC_FIRST:1.06,16,4:
+Accent:UNSC:UNSC Wall Trim Straight A:STATIC_FIRST:2.02,8.01,4.01:
+Accent:UNSC:Wall Keypad:DYNAMIC_FIRST:0.6,2.08,2.88:
+Accent:UNSC:Wall Meter:STATIC_FIRST:2.68,3.95,9.32:
+Accent:UNSC:Wall Module:STATIC_FIRST:4.47,8.32,6.1:
+Accent:UNSC:Wreckage Hull Box A:STATIC_FIRST:28.24,71.9,12.28:
+Accent:UNSC:Wreckage Hull Panel A:STATIC_FIRST:6.75,8.2,0.6:
+Accent:UNSC:Wreckage Hull Panel A Large:STATIC_FIRST:7.71,19.35,0.53:
+Accent:UNSC:Wreckage Hull Panel B Large:STATIC_FIRST:3.76,15.5,0.28:
+Accent:UNSC:Wreckage Hull Support Beam B:STATIC_FIRST:52.97,2.43,12.81:
+Accent:UNSC:Wreckage Panel:STATIC_FIRST:6.7,47.38,16.72:
+Accent:UNSC:Wreckage Panel A:STATIC_FIRST:24.53,49.82,4.99:
+Accent:UNSC:Wreckage Panel B:STATIC_FIRST:16.89,28.75,2.44:
+Accent:UNSC:Wreckage Panel C:STATIC_FIRST:18.11,16.84,1.76:
+Accent:UNSC:Wreckage Panel D:STATIC_FIRST:3.84,40.91,25.99:
+Accent:UNSC_MP:Angled Wire Fence MP:STATIC_FIRST:3.49,15.14,4.2:
+Accent:UNSC_MP:Bridge Support Pillar MP:STATIC_FIRST:6.45,14.79,21.36:
+Accent:UNSC_MP:Canvas Bag MP:STATIC_FIRST:1.91,2.5,2.36:
+Accent:UNSC_MP:Clip-on Light A MP:STATIC_FIRST:0.47,0.85,1.09:
+Accent:UNSC_MP:Concrete Block A MP:STATIC_FIRST:2,8,8:
+Accent:UNSC_MP:Concrete Block B MP:STATIC_FIRST:1,8,22:
+Accent:UNSC_MP:Concrete Column MP:STATIC_FIRST:8,8,22:
+Accent:UNSC_MP:Concrete Doorway MP:STATIC_FIRST:2.5,28.62,13.75:
+Accent:UNSC_MP:Control Panel A MP:STATIC_FIRST:0.15,2.02,3.02:
+Accent:UNSC_MP:Crumpled Vent Panel MP:STATIC_FIRST:5.21,5.88,0.62:
+Accent:UNSC_MP:Electrical Box D MP:STATIC_FIRST:0.5,2,2.34:
+Accent:UNSC_MP:Folding Chair MP:STATIC_FIRST:1.53,1.39,1.9:
+Accent:UNSC_MP:Gantry Crane MP:STATIC_FIRST:95.93,30,50.51:
+Accent:UNSC_MP:Generator Medium MP:STATIC_FIRST:10.36,24.34,17:
+Accent:UNSC_MP:Generator Small MP:STATIC_FIRST:4.98,10.69,5.18:
+Accent:UNSC_MP:Generator Standalone MP:STATIC_FIRST:11.22,6.11,6.88:
+Accent:UNSC_MP:Gun Mount Flap A MP:STATIC_FIRST:38.52,8.33,2.86:
+Accent:UNSC_MP:Gun Mount Flap B MP:STATIC_FIRST:7.16,25.54,1.38:
+Accent:UNSC_MP:Gun Mount Girder A MP:STATIC_FIRST:16.18,46.18,1.26:
+Accent:UNSC_MP:Gun Mount Panel A MP:STATIC_FIRST:8.59,44.65,2.07:
+Accent:UNSC_MP:Gun Mount Support Girder A MP:STATIC_FIRST:10.33,72.99,4.33:
+Accent:UNSC_MP:Hanging UNSC Monitor MP:STATIC_FIRST:2.36,5.69,4.19:
+Accent:UNSC_MP:Large UNSC Pillar MP:STATIC_FIRST:12.64,12.35,40.78:
+Accent:UNSC_MP:Line of Shells MP:STATIC_FIRST:3.78,0.57,1.41:
+Accent:UNSC_MP:Machine Large MP:STATIC_FIRST:17.65,25.29,12.59:
+Accent:UNSC_MP:Metal Beam MP:STATIC_FIRST:1.03,2.02,18.03:
+Accent:UNSC_MP:Mounted Speaker MP:STATIC_FIRST:1.37,3.81,3.36:
+Accent:UNSC_MP:Pallet Hydrogen Bottles MP:STATIC_FIRST:8.36,8.3,8.07:
+Accent:UNSC_MP:Pallet Water Barrels MP:STATIC_FIRST:9.09,6.23,5.05:
+Accent:UNSC_MP:Patch Kit MP:STATIC_FIRST:1,2.39,1.63:
+Accent:UNSC_MP:Pelican Manual MP:STATIC_FIRST:1.89,1.39,0.1:
+Accent:UNSC_MP:Ready To Eat Meal A MP:STATIC_FIRST:0.27,1,1.57:
+Accent:UNSC_MP:Ready To Eat Meal B MP:STATIC_FIRST:0.23,1.1,1.7:
+Accent:UNSC_MP:Ready To Eat Meal C MP:STATIC_FIRST:0.15,0.83,1.1:
+Accent:UNSC_MP:Ready To Eat Meal D MP:STATIC_FIRST:0.16,0.8,1.07:
+Accent:UNSC_MP:Ready To Eat Meal E MP:STATIC_FIRST:0.09,0.33,0.84:
+Accent:UNSC_MP:Scissor Lift MP:STATIC_FIRST:5.71,3.98,4.56:
+Accent:UNSC_MP:Siren Light MP:DYNAMIC_FIRST:1.31,1.29,1.29:
+Accent:UNSC_MP:Sleeping Bag Packed MP:STATIC_FIRST:1.34,2.36,1.49:
+Accent:UNSC_MP:Sleeping Bag Unrolled MP:STATIC_FIRST:10.84,4.84,1.42:
+Accent:UNSC_MP:Target - Small MP:STATIC_FIRST:1.27,2,1.91:
+Accent:UNSC_MP:Truss/Girder MP:STATIC_FIRST:2.13,20,16:
+Accent:UNSC_MP:UNSC Breakfast Field Ration MP:STATIC_FIRST:0.77,0.53,0.59:
+Accent:UNSC_MP:UNSC Cargo Container Tan MP:STATIC_FIRST:8,10.21,8:
+Accent:UNSC_MP:UNSC Field Ration B-9 Unit MP:STATIC_FIRST:0.85,0.85,1.24:
+Accent:UNSC_MP:UNSC Field Ration Individual MP:STATIC_FIRST:1.16,1.8,0.59:
+Accent:UNSC_MP:UNSC Field Ration K-Unit MP:STATIC_FIRST:0.72,0.38,1.01:
+Accent:UNSC_MP:UNSC Field Ration Open B-9 Unit MP:STATIC_FIRST:0.94,0.87,1.94:
+Accent:UNSC_MP:UNSC Open Breakfast Field Ration MP:STATIC_FIRST:0.83,0.54,1.18:
+Accent:UNSC_MP:UNSC Open Pop-Top Field Ration MP:STATIC_FIRST:0.8,0.38,0.66:
+Accent:UNSC_MP:UNSC Pop-Top Field Ration MP:STATIC_FIRST:0.72,0.37,0.31:
+Accent:UNSC_MP:UNSC Wall Trim Straight A MP:STATIC_FIRST:2.02,8.01,4.01:
+Accent:UNSC_MP:Wall Keypad MP:DYNAMIC_FIRST:0.6,2.08,2.88:
+Accent:UNSC_MP:Wreckage Hull Box A MP:STATIC_FIRST:28.07,71.6,12.24:
+Accent:UNSC_MP:Wreckage Hull Panel A Large MP:STATIC_FIRST:7.71,19.35,0.53:
+Accent:UNSC_MP:Wreckage Hull Panel A MP:STATIC_FIRST:6.75,8.2,0.6:
+Accent:UNSC_MP:Wreckage Hull Panel B Large MP:STATIC_FIRST:3.76,15.5,0.28:
+Accent:UNSC_MP:Wreckage Hull Support Beam B MP:STATIC_FIRST:52.98,2.39,12.76:
+Accent:UNSC_MP:Wreckage Panel A MP:STATIC_FIRST:24.57,49.85,5.29:
+Accent:UNSC_MP:Wreckage Panel B MP:STATIC_FIRST:16.89,28.75,2.37:
+Accent:UNSC_MP:Wreckage Panel C MP:STATIC_FIRST:18.11,16.84,1.76:
+Accent:UNSC_MP:Wreckage Panel D MP:STATIC_FIRST:3.84,40.91,25.99:
+Accent:UNSC_MP:Wreckage Panel MP:STATIC_FIRST:6.69,47.36,16.69:
+Accent:Vehicles:Civilian Van:STATIC_FIRST:17.85,10.11,7.97:
+Accent:Vehicles:Forklift:STATIC_FIRST:16.88,6.8,10.42:
+Accent:Vehicles:UNSC Cargo Truck:STATIC_FIRST:32.32,16.66,14.31:
+Accent:Vehicles:UNSC Cart:STATIC_FIRST:6.28,9.6,5.32:
+Accent:Vehicles:UNSC Sabre:STATIC_FIRST:80.67,62.33,23.91:
+Accent:Vehicles:UNSC Submarine:STATIC_FIRST:15.88,56.91,19.44:
+Accent:Vehicles:UNSC Truck Wheel:STATIC_FIRST:5.57,1.94,5.58:
+Accent:Vehicles_MP:Forklift MP:STATIC_FIRST:16.88,6.8,10.42:
+Accent:Vehicles_MP:Tanker Truck MP:STATIC_FIRST:38.3,14.35,15:
+Accent:Vehicles_MP:UNSC Cargo Truck MP:STATIC_FIRST:32.32,16.66,14.31:
+Accent:Vehicles_MP:UNSC Sabre MP:STATIC_FIRST:80.82,62.17,23.98:
+Accent:Vehicles_MP:UNSC Truck Wheel MP:STATIC_FIRST:5.33,1.76,5.33:
+Accent:Wires:Cable:STATIC_FIRST:1.01,1.01,10:
+Accent:Wires:Cable Cap:STATIC_FIRST:1.03,0.47,1.03:
+Accent:Wires:Capped Cable:STATIC_FIRST:1.01,30.04,1.01:
+Accent:Wires:Curved Wires:STATIC_FIRST:11.57,11.62,1.09:
+Accent:Wires:UNSC Hanging Cables:STATIC_FIRST:2.77,10.21,4.84:
+Accent:Wires:UNSC Hanging Wires C:STATIC_FIRST:0.54,32.02,4.64:
+Accent:Wires:UNSC Hanging Wires D:STATIC_FIRST:0.54,32.01,2.05:
+Accent:Wires:UNSC Hanging Wires E:STATIC_FIRST:0.53,32.03,7.78:
+Accent:Wires_MP:Curved Wires MP:STATIC_FIRST:11.57,11.62,1.09:
+Accent:Wires_MP:UNSC Hanging Cables MP:STATIC_FIRST:2.42,9.89,4.44:
+Accent:Wires_MP:UNSC Hanging Wires C MP:STATIC_FIRST:0.54,32.02,4.64:
+Accent:Wires_MP:UNSC Hanging Wires D MP:STATIC_FIRST:0.54,32.01,2.05:
+Accent:Wires_MP:UNSC Hanging Wires E MP:STATIC_FIRST:0.52,32.02,2.61:
+Accent:Workstations:Holotable A:STATIC_FIRST:8.66,12.69,3.41:
+Accent:Workstations:Holotable B:STATIC_FIRST:10.12,13.05,3.39:
+Accent:Workstations:Workstation A:STATIC_FIRST:4.26,8.27,5.76:
+Accent:Workstations:Workstation B:STATIC_FIRST:3.75,8,4.26:
+Accent:Workstations:Workstation C:STATIC_FIRST:3.51,5.78,5.66:
+Accent:Workstations:Workstation D:STATIC_FIRST:8.22,8.19,5.76:
+Accent:Workstations:Workstation Partition:STATIC_FIRST:4.83,1.4,4.57:
+Accent:Workstations_MP:Holotable A MP:STATIC_FIRST:8.66,12.69,3.41:
+Accent:Workstations_MP:Holotable B MP:STATIC_FIRST:10.12,13.05,3.39:
+Accent:Workstations_MP:Rolling Chair MP:STATIC_FIRST:2.22,2.09,4.62:
+Accent:Workstations_MP:Workstation A MP:STATIC_FIRST:4.26,8.27,5.76:
+Accent:Workstations_MP:Workstation B MP:STATIC_FIRST:3.75,8,4.26:
+Accent:Workstations_MP:Workstation C MP:STATIC_FIRST:3.51,5.78,5.66:
+Accent:Workstations_MP:Workstation D MP:STATIC_FIRST:8.22,8.19,5.76:
+Accent:Workstations_MP:Workstation Partition MP:STATIC_FIRST:4.83,1.4,4.57:
+Biomes:Bushes:Alpine Bush A:STATIC_FIRST:12.76,12.76,3.44:
+Biomes:Bushes:Alpine Bush B:STATIC_FIRST:42.21,37.54,5.53:
+Biomes:Bushes:Leafy Bush A:STATIC_FIRST:5.98,5.98,2.59:
+Biomes:Bushes:Leafy Bush B:STATIC_FIRST:4.49,10.26,3.39:
+Biomes:Bushes:Leafy Bush C:STATIC_FIRST:7.4,6.81,3.15:
+Biomes:Bushes:Leafy Bush D:STATIC_FIRST:11.65,13.08,4.27:
+Biomes:Bushes:Pine Bush A:STATIC_FIRST:4.18,5.91,5.91:
+Biomes:Bushes:Pine Bush B:STATIC_FIRST:4.05,4.31,4.31:
+Biomes:Bushes:Pine Bush C:STATIC_FIRST:3.7,3.59,3.59:
+Biomes:Bushes:Pine Bush D:STATIC_FIRST:3.46,3.48,5.46:
+Biomes:Bushes:Pine Bush E:STATIC_FIRST:23.75,23.75,5.66:
+Biomes:Flora:Beargrass Flower Patch:STATIC_FIRST:1,1,2:
+Biomes:Flora:Beargrass Flower Patch 10x10:STATIC_FIRST:10,10,1.92:
+Biomes:Flora:Beargrass Flower Patch 5x5:STATIC_FIRST:5,5,1.81:
+Biomes:Flora:Brackenfern Large:STATIC_FIRST:4.75,5.26,1.94:
+Biomes:Flora:Brackenfern Small:STATIC_FIRST:2.37,2.63,0.97:
+Biomes:Flora:Braid Bulb Shrub:STATIC_FIRST:2.93,2.93,0.99:
+Biomes:Flora:Braid Bulb Shrubs 5x5:STATIC_FIRST:5.08,5.08,1.09:
+Biomes:Flora:Braid Shrub:STATIC_FIRST:2,2,1.82:
+Biomes:Flora:Braid Shrubs 5x5:STATIC_FIRST:5,5,1.59:
+Biomes:Flora:Cattails Large:STATIC_FIRST:5.06,6.06,6.8:
+Biomes:Flora:Cattails Small:STATIC_FIRST:3.37,4.04,4.53:
+Biomes:Flora:Cliff Paintbrush Flowers:STATIC_FIRST:1.62,1.62,1.5:
+Biomes:Flora:Cliff Paintbrush Flowers 5x5:STATIC_FIRST:5,5,2.14:
+Biomes:Flora:Desert Flower:STATIC_FIRST:1.56,1.07,1.17:
+Biomes:Flora:Desert Flower 10x10:STATIC_FIRST:10,10,1.29:
+Biomes:Flora:Desert Flower 30x30:STATIC_FIRST:30,30,1.38:
+Biomes:Flora:Desert Flower 5x5:STATIC_FIRST:5,5,1.31:
+Biomes:Flora:Elder Plant Large:STATIC_FIRST:5.79,5.79,1.52:
+Biomes:Flora:Elder Plant Small:STATIC_FIRST:2.98,2.98,1.68:
+Biomes:Flora:Elephant Ear:STATIC_FIRST:5.67,5.24,3.81:
+Biomes:Flora:Elephant Ear 5x5:STATIC_FIRST:9.05,9.05,4.1:
+Biomes:Flora:Grass Dry:STATIC_FIRST:2.06,2.27,1.03:
+Biomes:Flora:Grass Dry 10x10:STATIC_FIRST:10,10,1.1:
+Biomes:Flora:Grass Dry 30x30:STATIC_FIRST:30,30,1.23:
+Biomes:Flora:Grass Dry 5x5:STATIC_FIRST:5,5,1.1:
+Biomes:Flora:Grass Red:STATIC_FIRST:1.97,1.97,2.72:
+Biomes:Flora:Grass Red 10x10:STATIC_FIRST:10,10,3.09:
+Biomes:Flora:Grass Red 30x30:STATIC_FIRST:30,30,2.94:
+Biomes:Flora:Grass Red 5x5:STATIC_FIRST:5,5,2.97:
+Biomes:Flora:Horsetail Large:STATIC_FIRST:4.02,4.28,5.32:
+Biomes:Flora:Horsetail Small:STATIC_FIRST:2.68,2.86,3.55:
+Biomes:Flora:Hyacinth:STATIC_FIRST:2.4,2.4,2.88:
+Biomes:Flora:Hyacinth 5x5:STATIC_FIRST:5,5,3.33:
+Biomes:Flora:Hydnellum Mushroom:STATIC_FIRST:3.4,3.4,0.92:
+Biomes:Flora:Hydnellum Mushroom 5x5:STATIC_FIRST:7.91,7.91,1.08:
+Biomes:Flora:Inaka Shrub:STATIC_FIRST:3.7,3.7,2.92:
+Biomes:Flora:Inaka Shrub 10x10:STATIC_FIRST:10.86,10.93,4.32:
+Biomes:Flora:Inaka Shrub 5x5:STATIC_FIRST:5.1,6.4,4.38:
+Biomes:Flora:Ivy Patch:STATIC_FIRST:2.98,1.43,0.77:
+Biomes:Flora:Ivy Patch 10x5:STATIC_FIRST:5,10,1.3:
+Biomes:Flora:Ivy Patch 5x10:STATIC_FIRST:10,5.44,2.21:
+Biomes:Flora:Ivy Patch 5x5:STATIC_FIRST:5,5,1.63:
+Biomes:Flora:Lavender Flowers:STATIC_FIRST:2.25,2.25,3.01:
+Biomes:Flora:Lavender Flowers 10x10:STATIC_FIRST:10,10,4.52:
+Biomes:Flora:Lavender Flowers 5x5:STATIC_FIRST:5,5,4.52:
+Biomes:Flora:Maple Sapling Large A:STATIC_FIRST:3.68,3.68,4.5:
+Biomes:Flora:Maple Sapling Small A:STATIC_FIRST:1.73,1.73,3.21:
+Biomes:Flora:Maroon Flower:STATIC_FIRST:3.64,3.64,5.15:
+Biomes:Flora:Maroon Flowers 10x10:STATIC_FIRST:8.87,8.87,8.03:
+Biomes:Flora:Maroon Flowers 30x30:STATIC_FIRST:28.61,28.61,9.41:
+Biomes:Flora:Maroon Flowers 5x5:STATIC_FIRST:6.44,6.44,5.9:
+Biomes:Flora:Moss Patch Large:STATIC_FIRST:4.69,4.69,1.05:
+Biomes:Flora:Moss Patch Small:STATIC_FIRST:2.83,2.83,0.93:
+Biomes:Flora:Mushroom Patch Large:STATIC_FIRST:2.87,2.87,1.34:
+Biomes:Flora:Mushroom Patch Small:STATIC_FIRST:1.85,1.85,0.76:
+Biomes:Flora:Natural Grass:STATIC_FIRST:3.62,3.62,2.36:
+Biomes:Flora:Natural Grass 10x10:STATIC_FIRST:10,10,2.52:
+Biomes:Flora:Natural Grass 30x30:STATIC_FIRST:30,30,5.77:
+Biomes:Flora:Natural Grass 5x5:STATIC_FIRST:6.32,6.32,2.09:
+Biomes:Flora:Natural Grass Tall:STATIC_FIRST:2.33,2.33,4.68:
+Biomes:Flora:Natural Grass Tall 10x10:STATIC_FIRST:10.67,10.67,7.1:
+Biomes:Flora:Natural Grass Tall 30x30:STATIC_FIRST:30,30,5.75:
+Biomes:Flora:Natural Grass Tall 5x5:STATIC_FIRST:5.7,5.7,4.85:
+Biomes:Flora:Natural Shrub Leafy:STATIC_FIRST:2.89,2.89,2.87:
+Biomes:Flora:Natural Shrubs Leafy 10x10:STATIC_FIRST:10,10,3.24:
+Biomes:Flora:Natural Shrubs Leafy 5x5:STATIC_FIRST:5,5,3.24:
+Biomes:Flora:Needle Shrub:STATIC_FIRST:1.5,1.5,1.28:
+Biomes:Flora:Needle Shrubs 5x5:STATIC_FIRST:5,5,1.91:
+Biomes:Flora:Orange Flower:STATIC_FIRST:1.92,1.92,2.72:
+Biomes:Flora:Orange Flowers 10x10:STATIC_FIRST:10,10,3.51:
+Biomes:Flora:Orange Flowers 30x30:STATIC_FIRST:29.99,29.99,3.51:
+Biomes:Flora:Orange Flowers 5x5:STATIC_FIRST:4.14,4.14,3.45:
+Biomes:Flora:Phallales Mushroom:STATIC_FIRST:1.51,1.51,1.12:
+Biomes:Flora:Phallales Mushroom 5x5:STATIC_FIRST:3.75,3.75,2.05:
+Biomes:Flora:Red Ground Cover Plant:STATIC_FIRST:1,1,1.17:
+Biomes:Flora:Red Ground Cover Plants 5x5:STATIC_FIRST:5.08,5.08,2.15:
+Biomes:Flora:Reed Grass:STATIC_FIRST:2.57,2.91,1.69:
+Biomes:Flora:Reed Grass 10x10:STATIC_FIRST:10,10,2.21:
+Biomes:Flora:Reed Grass 30x30:STATIC_FIRST:29.7,29.7,2.28:
+Biomes:Flora:Reed Grass 5x5:STATIC_FIRST:5.52,5,2.22:
+Biomes:Flora:Short Natural Shrub:STATIC_FIRST:1,1,1.17:
+Biomes:Flora:Short Natural Shrub 5x5:STATIC_FIRST:5,5,1.31:
+Biomes:Flora:Silverweed Plant:STATIC_FIRST:1.91,1.91,1.92:
+Biomes:Flora:Silverweed Plant Patch:STATIC_FIRST:3.89,3.89,1.71:
+Biomes:Flora:Swordfern Large:STATIC_FIRST:9.71,10,3.96:
+Biomes:Flora:Swordfern Small:STATIC_FIRST:5.79,6.82,3.09:
+Biomes:Flora:Tall Pale Plant:STATIC_FIRST:1.97,1.97,3.31:
+Biomes:Flora:Tall Pale Plants 10x10:STATIC_FIRST:10,10,3.43:
+Biomes:Flora:Tall Pale Plants 30x30:STATIC_FIRST:30,30,4:
+Biomes:Flora:Tall Pale Plants 5x5:STATIC_FIRST:5,5,2.86:
+Biomes:Flora:Thistle:STATIC_FIRST:1.41,1.41,0.63:
+Biomes:Flora:Thistle 5x5:STATIC_FIRST:4.63,4.63,0.94:
+Biomes:Flora:Tomato Bush:STATIC_FIRST:1.9,1.9,3.76:
+Biomes:Flora:Tomato Bush 5x5:STATIC_FIRST:5,5,3.86:
+Biomes:Flora:Water Lily:STATIC_FIRST:3.44,2.54,3.29:
+Biomes:Flora:Water Lily 10x10:STATIC_FIRST:10,10,3.55:
+Biomes:Flora:Water Lily 5x5:STATIC_FIRST:5.14,5,3.51:
+Biomes:Flora:Waterleaf:STATIC_FIRST:5.11,5.11,1.95:
+Biomes:Flora:Waterleaf 5x5:STATIC_FIRST:8.11,8.11,2.25:
+Biomes:Flora:Weed Patch:STATIC_FIRST:2.05,2.05,3.72:
+Biomes:Flora:Weed Patch 10x10:STATIC_FIRST:10,10,3.36:
+Biomes:Flora:Weed Patch 30x30:STATIC_FIRST:30,30,3.84:
+Biomes:Flora:weed Patch 5x5:STATIC_FIRST:5,5,4.3:
+Biomes:Rocks_Alpine:Alpine Boulder:STATIC_FIRST:13.63,14.42,14.05:
+Biomes:Rocks_Alpine:Alpine Rock Arch:STATIC_FIRST:71.8,60.45,63.98:
+Biomes:Rocks_Alpine:Alpine Rock Chunk A:STATIC_FIRST:21.69,22.58,15.52:
+Biomes:Rocks_Alpine:Alpine Rock Chunk B:STATIC_FIRST:24.2,22.77,16.25:
+Biomes:Rocks_Alpine:Alpine Rock Chunk C:STATIC_FIRST:26.85,24.75,20.55:
+Biomes:Rocks_Alpine:Alpine Rock Chunk D:STATIC_FIRST:34.67,30.04,26.57:
+Biomes:Rocks_Alpine:Alpine Rock Chunk E:STATIC_FIRST:51.3,37.28,26.01:
+Biomes:Rocks_Alpine:Alpine Rock Chunk F:STATIC_FIRST:80.65,43.63,52.92:
+Biomes:Rocks_Alpine:Alpine Rock Chunk G:STATIC_FIRST:88.55,47.43,51.24:
+Biomes:Rocks_Alpine:Alpine Rock Chunk H:STATIC_FIRST:126.61,105.1,40.8:
+Biomes:Rocks_Alpine:Alpine Rock Chunk I:STATIC_FIRST:214.1,88.47,80.07:
+Biomes:Rocks_Alpine:Alpine Rock Chunk J:STATIC_FIRST:131.22,111.17,69.7:
+Biomes:Rocks_Alpine:Alpine Rock Chunk K:STATIC_FIRST:160.27,126.6,71.81:
+Biomes:Rocks_Alpine:Alpine Rock Chunk L:STATIC_FIRST:119.04,112.98,154.23:
+Biomes:Rocks_Alpine:Alpine Rock Chunk M:STATIC_FIRST:156.14,76.89,64.48:
+Biomes:Rocks_Alpine:Alpine Rock Chunk N:STATIC_FIRST:44.72,43.98,134.61:
+Biomes:Rocks_Alpine:Alpine Rock Chunk O:STATIC_FIRST:93.66,77.72,66.28:
+Biomes:Rocks_Alpine:Alpine Rock Chunk P:STATIC_FIRST:23.22,40.6,63.92:
+Biomes:Rocks_Alpine:Alpine Rock Cliff:STATIC_FIRST:30.28,117.82,81.16:
+Biomes:Rocks_Alpine:Alpine Rock Column:STATIC_FIRST:34.3,25.67,50.86:
+Biomes:Rocks_Alpine:Alpine Rock Flat:STATIC_FIRST:19.86,31.74,2.31:
+Biomes:Rocks_Alpine:Alpine Rock Group A:STATIC_FIRST:20.11,18.18,13.44:
+Biomes:Rocks_Alpine:Alpine Rock Group B:STATIC_FIRST:14.5,39.12,12.88:
+Biomes:Rocks_Alpine:Alpine Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Alpine:Alpine Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Alpine:Alpine Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Alpine:Alpine Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Alpine:Alpine Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Alpine:Alpine Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Boulder:STATIC_FIRST:13.6,14.39,14.05:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Arch:STATIC_FIRST:71.8,60.45,63.98:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk A:STATIC_FIRST:21.69,22.58,15.52:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk B:STATIC_FIRST:24.2,22.77,16.25:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk C:STATIC_FIRST:26.85,24.75,20.55:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk D:STATIC_FIRST:34.67,30.04,26.57:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk E:STATIC_FIRST:51.3,37.28,26.01:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk F:STATIC_FIRST:80.65,43.63,52.92:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk G:STATIC_FIRST:88.55,47.43,51.24:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk H:STATIC_FIRST:126.61,105.1,40.8:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk I:STATIC_FIRST:214.1,88.47,80.07:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk J:STATIC_FIRST:131.22,111.17,69.7:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk K:STATIC_FIRST:160.27,126.6,71.74:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk L:STATIC_FIRST:119.04,112.98,154.23:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk M:STATIC_FIRST:156.14,76.89,64.48:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk N:STATIC_FIRST:44.72,43.98,134.61:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk O:STATIC_FIRST:93.66,77.72,66.28:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Chunk P:STATIC_FIRST:23.22,40.6,63.92:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Cliff:STATIC_FIRST:30.28,117.82,81.16:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Column:STATIC_FIRST:34.3,25.67,50.86:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Flat:STATIC_FIRST:19.86,31.74,2.31:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Group A:STATIC_FIRST:20.11,18.18,13.44:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Rock Group B:STATIC_FIRST:14.5,39.12,12.88:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Burnt_Forest:Burnt Forest Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Rocks_Desert:Desert Boulder:STATIC_FIRST:13.27,14.42,13.84:
+Biomes:Rocks_Desert:Desert Rock Arch:STATIC_FIRST:70.53,58.62,63.8:
+Biomes:Rocks_Desert:Desert Rock Chunk A:STATIC_FIRST:21.77,22.4,15.3:
+Biomes:Rocks_Desert:Desert Rock Chunk B:STATIC_FIRST:23.71,22.38,15.91:
+Biomes:Rocks_Desert:Desert Rock Chunk C:STATIC_FIRST:26.74,24.28,20.28:
+Biomes:Rocks_Desert:Desert Rock Chunk D:STATIC_FIRST:34.55,28.57,26.32:
+Biomes:Rocks_Desert:Desert Rock Chunk E:STATIC_FIRST:50.74,36.94,24.69:
+Biomes:Rocks_Desert:Desert Rock Chunk F:STATIC_FIRST:78.72,42.08,51.54:
+Biomes:Rocks_Desert:Desert Rock Chunk G:STATIC_FIRST:87.32,45.4,49.69:
+Biomes:Rocks_Desert:Desert Rock Chunk H:STATIC_FIRST:125.64,104.23,38.73:
+Biomes:Rocks_Desert:Desert Rock Chunk I:STATIC_FIRST:212.99,88.28,78.55:
+Biomes:Rocks_Desert:Desert Rock Chunk J:STATIC_FIRST:130.6,109.01,69.41:
+Biomes:Rocks_Desert:Desert Rock Chunk K:STATIC_FIRST:158.6,125.21,70.24:
+Biomes:Rocks_Desert:Desert Rock Chunk L:STATIC_FIRST:114.92,109.91,153.1:
+Biomes:Rocks_Desert:Desert Rock Chunk M:STATIC_FIRST:153.3,75.34,63.23:
+Biomes:Rocks_Desert:Desert Rock Chunk N:STATIC_FIRST:44.84,43.99,134.07:
+Biomes:Rocks_Desert:Desert Rock Chunk O:STATIC_FIRST:92.69,77.32,65.63:
+Biomes:Rocks_Desert:Desert Rock Chunk P:STATIC_FIRST:22.61,40.4,63.33:
+Biomes:Rocks_Desert:Desert Rock Cliff:STATIC_FIRST:28.79,117.25,80.26:
+Biomes:Rocks_Desert:Desert Rock Column:STATIC_FIRST:34.28,24.63,50.39:
+Biomes:Rocks_Desert:Desert Rock Flat:STATIC_FIRST:19.88,31.82,1.92:
+Biomes:Rocks_Desert:Desert Rock Group A:STATIC_FIRST:20.04,18.21,13.63:
+Biomes:Rocks_Desert:Desert Rock Group B:STATIC_FIRST:13.91,39,12.32:
+Biomes:Rocks_Desert:Desert Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Desert:Desert Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Desert:Desert Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Desert:Desert Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Desert:Desert Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Desert:Desert Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Rocks_Glacier:Glacier Boulder:STATIC_FIRST:13.28,14.44,13.85:
+Biomes:Rocks_Glacier:Glacier Rock Arch:STATIC_FIRST:70.53,58.62,63.8:
+Biomes:Rocks_Glacier:Glacier Rock Chunk A:STATIC_FIRST:21.77,22.4,15.3:
+Biomes:Rocks_Glacier:Glacier Rock Chunk B:STATIC_FIRST:23.71,22.38,15.91:
+Biomes:Rocks_Glacier:Glacier Rock Chunk C:STATIC_FIRST:26.74,24.28,20.28:
+Biomes:Rocks_Glacier:Glacier Rock Chunk D:STATIC_FIRST:34.55,28.57,26.32:
+Biomes:Rocks_Glacier:Glacier Rock Chunk E:STATIC_FIRST:50.74,36.94,24.69:
+Biomes:Rocks_Glacier:Glacier Rock Chunk F:STATIC_FIRST:78.72,42.08,51.54:
+Biomes:Rocks_Glacier:Glacier Rock Chunk G:STATIC_FIRST:87.32,45.4,49.69:
+Biomes:Rocks_Glacier:Glacier Rock Chunk H:STATIC_FIRST:125.64,104.23,38.73:
+Biomes:Rocks_Glacier:Glacier Rock Chunk I:STATIC_FIRST:212.99,88.28,78.55:
+Biomes:Rocks_Glacier:Glacier Rock Chunk J:STATIC_FIRST:130.6,109.01,69.41:
+Biomes:Rocks_Glacier:Glacier Rock Chunk K:STATIC_FIRST:158.6,125.21,70.24:
+Biomes:Rocks_Glacier:Glacier Rock Chunk L:STATIC_FIRST:114.92,109.91,153.1:
+Biomes:Rocks_Glacier:Glacier Rock Chunk M:STATIC_FIRST:153.3,75.34,63.23:
+Biomes:Rocks_Glacier:Glacier Rock Chunk N:STATIC_FIRST:44.84,43.99,134.07:
+Biomes:Rocks_Glacier:Glacier Rock Chunk O:STATIC_FIRST:92.69,77.32,65.63:
+Biomes:Rocks_Glacier:Glacier Rock Chunk P:STATIC_FIRST:22.61,40.4,63.33:
+Biomes:Rocks_Glacier:Glacier Rock Cliff:STATIC_FIRST:28.79,117.25,80.26:
+Biomes:Rocks_Glacier:Glacier Rock Column:STATIC_FIRST:34.28,24.63,50.39:
+Biomes:Rocks_Glacier:Glacier Rock Flat:STATIC_FIRST:19.88,31.82,1.92:
+Biomes:Rocks_Glacier:Glacier Rock Group A:STATIC_FIRST:20.04,18.21,13.63:
+Biomes:Rocks_Glacier:Glacier Rock Group B:STATIC_FIRST:13.91,39,12.32:
+Biomes:Rocks_Glacier:Glacier Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Glacier:Glacier Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Glacier:Glacier Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Glacier:Glacier Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Glacier:Glacier Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Glacier:Glacier Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Rocks_Misc:Eroded Terrain Column A:STATIC_FIRST:22.3,20.55,78.8:
+Biomes:Rocks_Misc:Eroded Terrain Column B:STATIC_FIRST:22.34,24.07,89.86:
+Biomes:Rocks_Misc:Eroded Terrain D:STATIC_FIRST:22.48,20.95,14.99:
+Biomes:Rocks_Misc:Eroded Terrain E:STATIC_FIRST:21.65,18.88,8.61:
+Biomes:Rocks_Misc:Terrain Hex Granite A:STATIC_FIRST:49.99,43.24,80.62:
+Biomes:Rocks_Misc:Terrain Hex Granite C:STATIC_FIRST:15.45,18.67,79.99:
+Biomes:Rocks_Space:Space Boulder:STATIC_FIRST:13.67,14.34,14.04:
+Biomes:Rocks_Space:Space Rock Arch:STATIC_FIRST:72.16,58.98,64.63:
+Biomes:Rocks_Space:Space Rock Chunk A:STATIC_FIRST:21.88,22.54,15.49:
+Biomes:Rocks_Space:Space Rock Chunk B:STATIC_FIRST:23.69,22.4,16.05:
+Biomes:Rocks_Space:Space Rock Chunk C:STATIC_FIRST:26.89,24.7,20.41:
+Biomes:Rocks_Space:Space Rock Chunk D:STATIC_FIRST:34.34,29.33,26.58:
+Biomes:Rocks_Space:Space Rock Chunk E:STATIC_FIRST:50.74,37.13,26.34:
+Biomes:Rocks_Space:Space Rock Chunk F:STATIC_FIRST:79.21,42.56,52.49:
+Biomes:Rocks_Space:Space Rock Chunk G:STATIC_FIRST:87.92,46.67,50.02:
+Biomes:Rocks_Space:Space Rock Chunk H:STATIC_FIRST:126.62,105.29,40.9:
+Biomes:Rocks_Space:Space Rock Chunk I:STATIC_FIRST:213.97,88.82,80.16:
+Biomes:Rocks_Space:Space Rock Chunk J:STATIC_FIRST:130.92,109.74,68.82:
+Biomes:Rocks_Space:Space Rock Chunk K:STATIC_FIRST:159.23,125.48,72.48:
+Biomes:Rocks_Space:Space Rock Chunk L:STATIC_FIRST:115.69,114.82,155.58:
+Biomes:Rocks_Space:Space Rock Chunk M:STATIC_FIRST:154.67,75.81,64.5:
+Biomes:Rocks_Space:Space Rock Chunk N:STATIC_FIRST:45.31,43.47,134.55:
+Biomes:Rocks_Space:Space Rock Chunk O:STATIC_FIRST:93.01,77.28,65.98:
+Biomes:Rocks_Space:Space Rock Chunk P:STATIC_FIRST:23,40.52,63.52:
+Biomes:Rocks_Space:Space Rock Cliff:STATIC_FIRST:29.88,118.85,79.45:
+Biomes:Rocks_Space:Space Rock Column:STATIC_FIRST:34.03,24.83,50.48:
+Biomes:Rocks_Space:Space Rock Flat:STATIC_FIRST:19.84,31.79,2.16:
+Biomes:Rocks_Space:Space Rock Group A:STATIC_FIRST:20,18.09,13.46:
+Biomes:Rocks_Space:Space Rock Group B:STATIC_FIRST:14.06,38.95,12.96:
+Biomes:Rocks_Space:Space Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Space:Space Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Space:Space Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Space:Space Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Space:Space Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Space:Space Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Rocks_Tidal:Tidal Boulder:STATIC_FIRST:13.79,14.79,14.26:
+Biomes:Rocks_Tidal:Tidal Rock Arch:STATIC_FIRST:72.17,60.47,64.41:
+Biomes:Rocks_Tidal:Tidal Rock Chunk A:STATIC_FIRST:21.47,22.33,15.42:
+Biomes:Rocks_Tidal:Tidal Rock Chunk B:STATIC_FIRST:23.98,22.57,16.21:
+Biomes:Rocks_Tidal:Tidal Rock Chunk C:STATIC_FIRST:27.16,24.91,20.68:
+Biomes:Rocks_Tidal:Tidal Rock Chunk D:STATIC_FIRST:34.4,29.37,26.84:
+Biomes:Rocks_Tidal:Tidal Rock Chunk E:STATIC_FIRST:50.92,37.35,25.76:
+Biomes:Rocks_Tidal:Tidal Rock Chunk F:STATIC_FIRST:79.88,43.53,52.32:
+Biomes:Rocks_Tidal:Tidal Rock Chunk G:STATIC_FIRST:87.76,47.67,50.96:
+Biomes:Rocks_Tidal:Tidal Rock Chunk H:STATIC_FIRST:125.39,105.03,40.78:
+Biomes:Rocks_Tidal:Tidal Rock Chunk I:STATIC_FIRST:214.45,89.43,79.55:
+Biomes:Rocks_Tidal:Tidal Rock Chunk J:STATIC_FIRST:131.39,110.19,69.75:
+Biomes:Rocks_Tidal:Tidal Rock Chunk K:STATIC_FIRST:160.11,126.38,71.52:
+Biomes:Rocks_Tidal:Tidal Rock Chunk L:STATIC_FIRST:116.36,113.4,154.91:
+Biomes:Rocks_Tidal:Tidal Rock Chunk M:STATIC_FIRST:153.75,76.1,63.6:
+Biomes:Rocks_Tidal:Tidal Rock Chunk N:STATIC_FIRST:45.32,44.3,134.31:
+Biomes:Rocks_Tidal:Tidal Rock Chunk O:STATIC_FIRST:93.14,77.94,66.21:
+Biomes:Rocks_Tidal:Tidal Rock Chunk P:STATIC_FIRST:22.96,40.67,63.31:
+Biomes:Rocks_Tidal:Tidal Rock Cliff:STATIC_FIRST:29.26,117.85,80.46:
+Biomes:Rocks_Tidal:Tidal Rock Column:STATIC_FIRST:34.45,25.23,50.91:
+Biomes:Rocks_Tidal:Tidal Rock Flat:STATIC_FIRST:19.9,31.82,2.13:
+Biomes:Rocks_Tidal:Tidal Rock Group A:STATIC_FIRST:20.02,18.13,13.6:
+Biomes:Rocks_Tidal:Tidal Rock Group B:STATIC_FIRST:14.51,39.19,13.1:
+Biomes:Rocks_Tidal:Tidal Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Tidal:Tidal Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Tidal:Tidal Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Tidal:Tidal Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Tidal:Tidal Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Tidal:Tidal Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Rocks_Wetlands:Wetlands Boulder:STATIC_FIRST:13.64,14.47,14.1:
+Biomes:Rocks_Wetlands:Wetlands Rock Arch:STATIC_FIRST:72.29,60.31,65.83:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk A:STATIC_FIRST:21.96,22.56,15.69:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk B:STATIC_FIRST:23.99,22.82,16.31:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk C:STATIC_FIRST:27.02,24.81,20.87:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk D:STATIC_FIRST:35.1,29.59,27.2:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk E:STATIC_FIRST:51.26,36.98,26.07:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk F:STATIC_FIRST:80.27,43.42,54.26:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk G:STATIC_FIRST:88.72,47.4,51.05:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk H:STATIC_FIRST:126.94,105.93,41.66:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk I:STATIC_FIRST:215.24,90.31,80.21:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk J:STATIC_FIRST:131.21,110.91,69.6:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk K:STATIC_FIRST:161.44,127.31,72.94:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk L:STATIC_FIRST:119.12,113.73,155.94:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk M:STATIC_FIRST:155.83,77.02,64.98:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk N:STATIC_FIRST:44.84,43.83,134.4:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk O:STATIC_FIRST:93.2,77.35,66.43:
+Biomes:Rocks_Wetlands:Wetlands Rock Chunk P:STATIC_FIRST:23.31,40.98,64.09:
+Biomes:Rocks_Wetlands:Wetlands Rock Cliff:STATIC_FIRST:30.8,120.06,80.2:
+Biomes:Rocks_Wetlands:Wetlands Rock Column:STATIC_FIRST:34.28,25.32,51.14:
+Biomes:Rocks_Wetlands:Wetlands Rock Flat:STATIC_FIRST:19.82,31.77,2.35:
+Biomes:Rocks_Wetlands:Wetlands Rock Group A:STATIC_FIRST:20,18.08,13.71:
+Biomes:Rocks_Wetlands:Wetlands Rock Group B:STATIC_FIRST:14.37,39.39,12.98:
+Biomes:Rocks_Wetlands:Wetlands Stalactites A:STATIC_FIRST:1.53,3.62,3.16:
+Biomes:Rocks_Wetlands:Wetlands Stalactites B:STATIC_FIRST:1.19,2.81,7.16:
+Biomes:Rocks_Wetlands:Wetlands Stalactites C:STATIC_FIRST:1.96,5.61,8.99:
+Biomes:Rocks_Wetlands:Wetlands Stalactites D:STATIC_FIRST:2.09,5.64,9.74:
+Biomes:Rocks_Wetlands:Wetlands Stalactites E:STATIC_FIRST:2.38,7.48,9.15:
+Biomes:Rocks_Wetlands:Wetlands Stalactites F:STATIC_FIRST:2.47,7.36,13.62:
+Biomes:Stumps:Broken Stump A:STATIC_FIRST:8.88,7.86,8.42:
+Biomes:Stumps:Broken Stump B:STATIC_FIRST:8.18,9.15,11.39:
+Biomes:Stumps:Broken Stump C:STATIC_FIRST:7.38,7.57,21.86:
+Biomes:Terrain:Bank Full:STATIC_FIRST:159.92,106.53,27.99:
+Biomes:Terrain:Bank Full (TI):STATIC:319.84,213.05,55.99:
+Biomes:Terrain:Bank Half:STATIC_FIRST:258.15,213.15,56.79:
+Biomes:Terrain:Bank Half (TI):STATIC:258.15,213.15,56.79:
+Biomes:Terrain:Bowl/Hill:STATIC_FIRST:159.3,239.66,39.18:
+Biomes:Terrain:Bowl/Hill (TI):STATIC:159.3,239.66,39.18:
+Biomes:Terrain:Ramp:STATIC_FIRST:188.56,142.95,44.9:
+Biomes:Terrain:Ramp (TI):STATIC:188.56,142.95,44.9:
+Biomes:Terrain:Ramp Corner Exterior:STATIC_FIRST:224.28,224.48,44.63:
+Biomes:Terrain:Ramp Corner Exterior (TI):STATIC:224.29,224.48,44.62:
+Biomes:Terrain:Ramp Corner Interior:STATIC_FIRST:224.24,224.72,44.64:
+Biomes:Terrain:Ramp Corner Interior (TI):STATIC:224.24,224.72,44.64:
+Biomes:Terrain:Ramp Transition:STATIC_FIRST:216.14,142.96,46.75:
+Biomes:Terrain:Ramp Transition (TI):STATIC:216.14,142.96,46.75:
+Biomes:Terrain:Slope Helper 20 :STATIC_FIRST:182.24,233.67,59.13:
+Biomes:Terrain:Slope Helper 20  (TI):STATIC_FIRST:182.24,233.67,59.13:
+Biomes:Terrain:Slope Helper 40 :STATIC_FIRST:182.24,230.93,95.02:
+Biomes:Terrain:Slope Helper 40  (TI):STATIC:182.24,230.93,95.02:
+Biomes:Terrain:Slope Helper 60 :STATIC_FIRST:182.55,218.63,127.99:
+Biomes:Terrain:Slope Helper 60  (TI):STATIC:182.55,218.63,127.99:
+Biomes:Terrain:Sphere Terrain:STATIC_FIRST:128,128,128:
+Biomes:Terrain:Sphere Terrain (TI):STATIC:128,128,128:
+Biomes:Terrain:Terrace Terrain:STATIC_FIRST:57.21,57.21,8.31:
+Biomes:Terrain:Terrace Terrain (TI):STATIC:57.21,57.21,8.31:
+Biomes:Terrain:Terrain Flat:STATIC_FIRST:256,256,3.97:
+Biomes:Terrain:Terrain Flat (TI):STATIC:256,256,3.97:
+Biomes:Terrain:Terrain Rugged:STATIC_FIRST:540.15,506.16,99.71:
+Biomes:Terrain:Terrain Rugged (TI):STATIC:540.15,506.16,99.71:
+Biomes:Terrain:Trench Terrain:STATIC_FIRST:46.63,40.3,10.52:
+Biomes:Terrain:Trench Terrain (TI):STATIC:46.67,40.31,10.51:
+Biomes:Trees:Alpine Highlands Fir Medium B:STATIC_FIRST:3.71,3.75,55.56:
+Biomes:Trees:Alpine Highlands Fir Small A:STATIC_FIRST:2.47,2.85,14.92:
+Biomes:Trees:Alpine Highlands Fir Small B:STATIC_FIRST:2.82,2.85,30.46:
+Biomes:Trees:Alpine Highlands Fir Small C:STATIC_FIRST:4.58,3.85,40.6:
+Biomes:Trees:Date Palm Large A:STATIC_FIRST:4.85,4.76,35.21:
+Biomes:Trees:Date Palm Large B:STATIC_FIRST:3.83,3.36,25.28:
+Biomes:Trees:Date Palm Large Dead:STATIC_FIRST:18.71,30.34,6.44:
+Biomes:Trees:Date Palm Medium A:STATIC_FIRST:5.97,3.66,13.91:
+Biomes:Trees:Date Palm Medium B:STATIC_FIRST:2.14,2.43,7.34:
+Biomes:Trees:Date Palm Sprout A:STATIC_FIRST:5.55,3.87,8.92:
+Biomes:Trees:Date Palm Sprout B:STATIC_FIRST:5.88,4.86,8.73:
+Biomes:Trees:Dead Fir Medium A:STATIC_FIRST:5.8,5.8,101.93:
+Biomes:Trees:Dead Fir Medium B:STATIC_FIRST:4.66,5.44,75.03:
+Biomes:Trees:Larch Dead A:STATIC_FIRST:1.88,1.99,34.16:
+Biomes:Trees:Larch Dead B:STATIC_FIRST:5.91,4.83,57.26:
+Biomes:Trees:Larch Dead C:STATIC_FIRST:3.52,3.03,36.01:
+Biomes:Trees:Larch Large A:STATIC_FIRST:4.4,4.27,44.75:
+Biomes:Trees:Larch Large B:STATIC_FIRST:3.21,3.28,38.11:
+Biomes:Trees:Larch Large C:STATIC_FIRST:5.75,4.92,52.64:
+Biomes:Trees:Larch Medium A:STATIC_FIRST:3.48,3.53,27:
+Biomes:Trees:Larch Medium B:STATIC_FIRST:2.53,2.16,20.81:
+Biomes:Trees:Larch Small A:STATIC_FIRST:1.32,1.35,18.31:
+Biomes:Trees:Larch Small B:STATIC_FIRST:1.12,1.26,13.32:
+Biomes:Trees:Sub Alpine Fir Extra Small:STATIC_FIRST:0.17,0.21,6.47:
+Biomes:Trees:Sub Alpine Fir Large A:STATIC_FIRST:17.11,16.5,121.59:
+Biomes:Trees:Sub Alpine Fir Large B:STATIC_FIRST:7.84,7.02,114.55:
+Biomes:Trees:Sub Alpine Fir Medium A:STATIC_FIRST:6.68,6.68,59.28:
+Biomes:Trees:Sub Alpine Fir Medium B:STATIC_FIRST:8.79,9.44,70.48:
+Biomes:Trees:Sub Alpine Fir Medium C:STATIC_FIRST:10.02,9.62,71.52:
+Biomes:Trees:Sub Alpine Fir Medium D:STATIC_FIRST:8.88,8.69,55.11:
+Biomes:Trees:Sub Alpine Fir Medium E:STATIC_FIRST:9.84,10.66,68.56:
+Biomes:Trees:Sub Alpine Fir Medium F:STATIC_FIRST:8.11,8.43,91.84:
+Biomes:Trees:Sub Alpine Fir Small A:STATIC_FIRST:2.31,2.54,24.84:
+Biomes:Trees:Sub Alpine Fir Small B:STATIC_FIRST:4.32,4.99,35.2:
+Biomes:Trees:Sub Alpine Fir Small C:STATIC_FIRST:1.53,1.83,15.07:
+Biomes:Trees_Logs:Fallen Tree A:STATIC_FIRST:2.88,80.03,2.82:
+Biomes:Trees_Logs:Fallen Tree B:STATIC_FIRST:2.44,22.58,2.24:
+Biomes:Trees_Logs:Fallen Tree C:STATIC_FIRST:1.7,51.02,1.89:
+Biomes:Trees_Logs:Fallen Tree D:STATIC_FIRST:4.98,76.76,4.97:
+Biomes:Trees_Logs:Fallen Tree E:STATIC_FIRST:5.09,60.52,6.36:
+Biomes:Trees_Logs:Fallen Tree w/Roots:STATIC_FIRST:11.87,44.03,12.67:
+Biomes:Trees_Logs:Snagged Log A:STATIC_FIRST:7.92,7.94,69.06:
+Biomes:Trees_Logs:Snagged Log B:STATIC_FIRST:6.55,8.77,59.3:
+Biomes:Trees_Logs:Snagged Log C:STATIC_FIRST:7.32,7.05,44.65:
+Biomes:Trees_Logs:Snagged Log D:STATIC_FIRST:7.59,12.61,33.53:
+Biomes:Trees_Roots:Root Cluster:STATIC_FIRST:24.15,34.08,1.6:
+Biomes:Trees_Roots:Roots A:STATIC_FIRST:6.4,19.43,1.47:
+Biomes:Trees_Roots:Roots B:STATIC_FIRST:12.8,14.82,1.4:
+Biomes:Trees_Roots:Roots C:STATIC_FIRST:6.54,10.01,0.96:
+Biomes:Trees_Roots:Roots Hanging A:STATIC_FIRST:6.65,6.09,13.36:
+Biomes:Trees_Roots:Roots Hanging B:STATIC_FIRST:6.27,4.96,17.32:
+Blockers:One_Way_Blockers:One Way Blocker 128x128x128:DYNAMIC:128,128,128:
+Blockers:One_Way_Blockers:One Way Blocker 128x2x64:DYNAMIC:64,128,2:
+Blockers:One_Way_Blockers:One Way Blocker 128x32x32:DYNAMIC:32,128,32:
+Blockers:One_Way_Blockers:One Way Blocker 128x32x32:DYNAMIC:32,32,128:
+Blockers:One_Way_Blockers:One Way Blocker 128x32x64:DYNAMIC:64,128,32:
+Blockers:One_Way_Blockers:One Way Blocker 16x16x16:DYNAMIC:16,16,16:
+Blockers:One_Way_Blockers:One Way Blocker 16x2x8:DYNAMIC:8,16,2:
+Blockers:One_Way_Blockers:One Way Blocker 16x32x8:DYNAMIC:8,16,32:
+Blockers:One_Way_Blockers:One Way Blocker 16x4x4:DYNAMIC:4,4,16:
+Blockers:One_Way_Blockers:One Way Blocker 16x4x4:DYNAMIC:4,16,4:
+Blockers:One_Way_Blockers:One Way Blocker 1x1x1:DYNAMIC:1,1,1:
+Blockers:One_Way_Blockers:One Way Blocker 256x256x256:DYNAMIC:256,256,256:
+Blockers:One_Way_Blockers:One Way Blocker 256x2x128:DYNAMIC:64,256,2:
+Blockers:One_Way_Blockers:One Way Blocker 256x32x128:DYNAMIC:128,256,32:
+Blockers:One_Way_Blockers:One Way Blocker 256x64x64:DYNAMIC:64,64,256:
+Blockers:One_Way_Blockers:One Way Blocker 256x64x64:DYNAMIC:64,256,64:
+Blockers:One_Way_Blockers:One Way Blocker 2x2x2:DYNAMIC:2,2,2:
+Blockers:One_Way_Blockers:One Way Blocker 32x2x16:DYNAMIC:16,32,2:
+Blockers:One_Way_Blockers:One Way Blocker 32x32x16:DYNAMIC:16,32,32:
+Blockers:One_Way_Blockers:One Way Blocker 32x32x32:DYNAMIC:32,32,32:
+Blockers:One_Way_Blockers:One Way Blocker 32x8x8:DYNAMIC:8,8,32:
+Blockers:One_Way_Blockers:One Way Blocker 32x8x8:DYNAMIC:8,32,8:
+Blockers:One_Way_Blockers:One Way Blocker 4x4x4:DYNAMIC:4,4,4:
+Blockers:One_Way_Blockers:One Way Blocker 64x16x16:DYNAMIC:16,16,64:
+Blockers:One_Way_Blockers:One Way Blocker 64x16x16:DYNAMIC:16,64,16:
+Blockers:One_Way_Blockers:One Way Blocker 64x2x32:DYNAMIC:32,64,2:
+Blockers:One_Way_Blockers:One Way Blocker 64x32x32:DYNAMIC:32,64,32:
+Blockers:One_Way_Blockers:One Way Blocker 64x64x64:DYNAMIC:64,64,64:
+Blockers:One_Way_Blockers:One Way Blocker 8x2x2:DYNAMIC:2,2,8:
+Blockers:One_Way_Blockers:One Way Blocker 8x2x2:DYNAMIC:2,8,2:
+Blockers:One_Way_Blockers:One Way Blocker 8x2x4:DYNAMIC:4,8,2:
+Blockers:One_Way_Blockers:One Way Blocker 8x32x4:DYNAMIC:4,8,32:
+Blockers:One_Way_Blockers:One Way Blocker 8x8x8:DYNAMIC:8,8,8:
+Blockers:Player_Blockers:Player Blocker 128x128x128:DYNAMIC:128,128,128:
+Blockers:Player_Blockers:Player Blocker 128x2x64:DYNAMIC:64,128,2:
+Blockers:Player_Blockers:Player Blocker 128x32x32:DYNAMIC:32,32,128:
+Blockers:Player_Blockers:Player Blocker 128x32x32:DYNAMIC:32,32,128:
+Blockers:Player_Blockers:Player Blocker 128x32x64:DYNAMIC:64,128,32:
+Blockers:Player_Blockers:Player Blocker 16x16x16:DYNAMIC:16,16,16:
+Blockers:Player_Blockers:Player Blocker 16x32x8:DYNAMIC:8,16,32:
+Blockers:Player_Blockers:Player Blocker 16x4x4:DYNAMIC:4,4,16:
+Blockers:Player_Blockers:Player Blocker 16x4x4:DYNAMIC:4,4,16:
+Blockers:Player_Blockers:Player Blocker 1x1x1:DYNAMIC:1,1,1:
+Blockers:Player_Blockers:Player Blocker 256x256x256:DYNAMIC:256,256,256:
+Blockers:Player_Blockers:Player Blocker 256x2x64:DYNAMIC:64,256,2:
+Blockers:Player_Blockers:Player Blocker 256x32x128:DYNAMIC:128,256,32:
+Blockers:Player_Blockers:Player Blocker 256x64x64:DYNAMIC:64,64,256:
+Blockers:Player_Blockers:Player Blocker 256x64x64:DYNAMIC:64,64,256:
+Blockers:Player_Blockers:Player Blocker 2x2x2:DYNAMIC:2,2,2:
+Blockers:Player_Blockers:Player Blocker 32x2x16:DYNAMIC:16,32,2:
+Blockers:Player_Blockers:Player Blocker 32x32x16:DYNAMIC:16,32,32:
+Blockers:Player_Blockers:Player Blocker 32x32x32:DYNAMIC:32,32,32:
+Blockers:Player_Blockers:Player Blocker 32x8x8:DYNAMIC:8,8,32:
+Blockers:Player_Blockers:Player Blocker 32x8x8:DYNAMIC:8,8,32:
+Blockers:Player_Blockers:Player Blocker 4x4x4:DYNAMIC:4,4,4:
+Blockers:Player_Blockers:Player Blocker 64x16x16:DYNAMIC:16,16,64:
+Blockers:Player_Blockers:Player Blocker 64x16x16:DYNAMIC:16,16,64:
+Blockers:Player_Blockers:Player Blocker 64x2x32:DYNAMIC:32,64,2:
+Blockers:Player_Blockers:Player Blocker 64x32x32:DYNAMIC:32,64,32:
+Blockers:Player_Blockers:Player Blocker 64x64x64:DYNAMIC:64,64,64:
+Blockers:Player_Blockers:Player Blocker 8x2x2:DYNAMIC:2,2,8:
+Blockers:Player_Blockers:Player Blocker 8x2x2:DYNAMIC:2,2,8:
+Blockers:Player_Blockers:Player Blocker 8x2x4:DYNAMIC:4,8,2:
+Blockers:Player_Blockers:Player Blocker 8x32x4:DYNAMIC:4,8,32:
+Blockers:Player_Blockers:Player Blocker 8x8x8:DYNAMIC:8,8,8:
+Blockers:Projectile_Blockers:Projectile Blocker 128x128x128:DYNAMIC:128,128,128:
+Blockers:Projectile_Blockers:Projectile Blocker 128x2x64:DYNAMIC:64,128,2:
+Blockers:Projectile_Blockers:Projectile Blocker 128x32x32:DYNAMIC:32,128,32:
+Blockers:Projectile_Blockers:Projectile Blocker 128x32x32:DYNAMIC:32,32,128:
+Blockers:Projectile_Blockers:Projectile Blocker 128x32x64:DYNAMIC:64,128,32:
+Blockers:Projectile_Blockers:Projectile Blocker 16x16x16:DYNAMIC:16,16,16:
+Blockers:Projectile_Blockers:Projectile Blocker 16x2x8:DYNAMIC:8,16,2:
+Blockers:Projectile_Blockers:Projectile Blocker 16x32x8:DYNAMIC:8,16,32:
+Blockers:Projectile_Blockers:Projectile Blocker 16x4x4:DYNAMIC:4,16,4:
+Blockers:Projectile_Blockers:Projectile Blocker 16x4x4:DYNAMIC:4,4,16:
+Blockers:Projectile_Blockers:Projectile Blocker 1x1x1:DYNAMIC:1,1,1:
+Blockers:Projectile_Blockers:Projectile Blocker 256x256x256:DYNAMIC:256,256,256:
+Blockers:Projectile_Blockers:Projectile Blocker 256x2x128:DYNAMIC:64,256,2:
+Blockers:Projectile_Blockers:Projectile Blocker 256x32x128:DYNAMIC:128,256,32:
+Blockers:Projectile_Blockers:Projectile Blocker 256x64x64:DYNAMIC:64,256,64:
+Blockers:Projectile_Blockers:Projectile Blocker 256x64x64:DYNAMIC:64,64,256:
+Blockers:Projectile_Blockers:Projectile Blocker 2x2x2:DYNAMIC:2,2,2:
+Blockers:Projectile_Blockers:Projectile Blocker 32x2x16:DYNAMIC:16,32,2:
+Blockers:Projectile_Blockers:Projectile Blocker 32x32x16:DYNAMIC:16,32,32:
+Blockers:Projectile_Blockers:Projectile Blocker 32x32x32:DYNAMIC:32,32,32:
+Blockers:Projectile_Blockers:Projectile Blocker 32x8x8:DYNAMIC:8,32,8:
+Blockers:Projectile_Blockers:Projectile Blocker 32x8x8:DYNAMIC:8,8,32:
+Blockers:Projectile_Blockers:Projectile Blocker 4x4x4:DYNAMIC:4,4,4:
+Blockers:Projectile_Blockers:Projectile Blocker 64x16x16:DYNAMIC:16,16,64:
+Blockers:Projectile_Blockers:Projectile Blocker 64x16x16:DYNAMIC:16,64,16:
+Blockers:Projectile_Blockers:Projectile Blocker 64x2x32:DYNAMIC:32,64,2:
+Blockers:Projectile_Blockers:Projectile Blocker 64x32x32:DYNAMIC:32,64,32:
+Blockers:Projectile_Blockers:Projectile Blocker 64x64x64:DYNAMIC:64,64,64:
+Blockers:Projectile_Blockers:Projectile Blocker 8x2x2:DYNAMIC:2,8,2:
+Blockers:Projectile_Blockers:Projectile Blocker 8x2x2:DYNAMIC:2,2,8:
+Blockers:Projectile_Blockers:Projectile Blocker 8x2x4:DYNAMIC:4,8,2:
+Blockers:Projectile_Blockers:Projectile Blocker 8x32x4:DYNAMIC:4,8,32:
+Blockers:Projectile_Blockers:Projectile Blocker 8x8x8:DYNAMIC:8,8,8:
+Blockers:Team_Blockers:Team Blocker 128x128x128:DYNAMIC:128,128,128:
+Blockers:Team_Blockers:Team Blocker 128x2x64:DYNAMIC:64,128,2:
+Blockers:Team_Blockers:Team Blocker 128x32x32:DYNAMIC:32,128,32:
+Blockers:Team_Blockers:Team Blocker 128x32x32:DYNAMIC:32,32,128:
+Blockers:Team_Blockers:Team Blocker 128x32x64:DYNAMIC:64,128,32:
+Blockers:Team_Blockers:Team Blocker 16x16x16:DYNAMIC:16,16,16:
+Blockers:Team_Blockers:Team Blocker 16x2x8:DYNAMIC:8,16,2:
+Blockers:Team_Blockers:Team Blocker 16x32x8:DYNAMIC:8,16,32:
+Blockers:Team_Blockers:Team Blocker 16x4x4:DYNAMIC:4,16,0:
+Blockers:Team_Blockers:Team Blocker 1x1x1:DYNAMIC:1,1,1:
+Blockers:Team_Blockers:Team Blocker 256x256x256:DYNAMIC:256,256,256:
+Blockers:Team_Blockers:Team Blocker 256x2x128:DYNAMIC:64,256,2:
+Blockers:Team_Blockers:Team Blocker 256x32x128:DYNAMIC:128,256,32:
+Blockers:Team_Blockers:Team Blocker 256x64x64:DYNAMIC:64,64,256:
+Blockers:Team_Blockers:Team Blocker 256x64x64:DYNAMIC:64,256,64:
+Blockers:Team_Blockers:Team Blocker 2x2x2:DYNAMIC:2,2,2:
+Blockers:Team_Blockers:Team Blocker 32x2x16:DYNAMIC:16,32,2:
+Blockers:Team_Blockers:Team Blocker 32x32x16:DYNAMIC:16,32,32:
+Blockers:Team_Blockers:Team Blocker 32x32x32:DYNAMIC:32,32,32:
+Blockers:Team_Blockers:Team Blocker 32x8x8:DYNAMIC:8,8,32:
+Blockers:Team_Blockers:Team Blocker 32x8x8:DYNAMIC:8,32,8:
+Blockers:Team_Blockers:Team Blocker 4x4x4:DYNAMIC:4,4,4:
+Blockers:Team_Blockers:Team Blocker 64x16x16:DYNAMIC:16,16,64:
+Blockers:Team_Blockers:Team Blocker 64x16x16:DYNAMIC:16,64,16:
+Blockers:Team_Blockers:Team Blocker 64x2x32:DYNAMIC:32,64,2:
+Blockers:Team_Blockers:Team Blocker 64x32x32:DYNAMIC:32,64,32:
+Blockers:Team_Blockers:Team Blocker 64x64x64:DYNAMIC:64,64,64:
+Blockers:Team_Blockers:Team Blocker 8x2x2:DYNAMIC:2,2,8:
+Blockers:Team_Blockers:Team Blocker 8x2x2:DYNAMIC:2,8,2:
+Blockers:Team_Blockers:Team Blocker 8x2x4:DYNAMIC:4,8,2:
+Blockers:Team_Blockers:Team Blocker 8x32x4:DYNAMIC:4,8,32:
+Blockers:Team_Blockers:Team Blocker 8x8x8:DYNAMIC:8,8,8:
+Blockers:Vehicle_Blockers:Vehicle Blocker 128x128x128:DYNAMIC:128,128,128:
+Blockers:Vehicle_Blockers:Vehicle Blocker 128x2x64:DYNAMIC:64,128,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 128x32x32:DYNAMIC:32,128,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 128x32x32:DYNAMIC:32,32,128:
+Blockers:Vehicle_Blockers:Vehicle Blocker 128x32x64:DYNAMIC:64,128,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 16x16x16:DYNAMIC:16,16,16:
+Blockers:Vehicle_Blockers:Vehicle Blocker 16x2x8:DYNAMIC:8,16,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 16x32x8:DYNAMIC:8,16,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 16x4x4:DYNAMIC:4,4,16:
+Blockers:Vehicle_Blockers:Vehicle Blocker 1x1x1:DYNAMIC:1,1,1:
+Blockers:Vehicle_Blockers:Vehicle Blocker 1x1x1:DYNAMIC:1,1,1:
+Blockers:Vehicle_Blockers:Vehicle Blocker 256x256x256:DYNAMIC:256,256,256:
+Blockers:Vehicle_Blockers:Vehicle Blocker 256x2x128:DYNAMIC:64,256,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 256x32x128:DYNAMIC:128,256,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 256x64x64:DYNAMIC:64,64,256:
+Blockers:Vehicle_Blockers:Vehicle Blocker 256x64x64:DYNAMIC:64,256,64:
+Blockers:Vehicle_Blockers:Vehicle Blocker 2x2x2:DYNAMIC:2,2,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 32x2x16:DYNAMIC:16,32,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 32x32x16:DYNAMIC:16,32,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 32x32x32:DYNAMIC:32,32,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 32x8x8:DYNAMIC:8,8,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 32x8x8:DYNAMIC:8,32,8:
+Blockers:Vehicle_Blockers:Vehicle Blocker 4x4x4:DYNAMIC:4,4,4:
+Blockers:Vehicle_Blockers:Vehicle Blocker 64x16x16:DYNAMIC:16,16,64:
+Blockers:Vehicle_Blockers:Vehicle Blocker 64x16x16:DYNAMIC:16,64,16:
+Blockers:Vehicle_Blockers:Vehicle Blocker 64x2x32:DYNAMIC:32,64,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 64x32x32:DYNAMIC:32,64,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 64x64x64:DYNAMIC:64,64,64:
+Blockers:Vehicle_Blockers:Vehicle Blocker 8x2x2:DYNAMIC:2,2,8:
+Blockers:Vehicle_Blockers:Vehicle Blocker 8x2x2:DYNAMIC:2,8,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 8x2x4:DYNAMIC:4,8,2:
+Blockers:Vehicle_Blockers:Vehicle Blocker 8x32x4:DYNAMIC:4,8,32:
+Blockers:Vehicle_Blockers:Vehicle Blocker 8x8x8:DYNAMIC:8,8,8:
+Decals:Building_Signage:Armory:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Arrival:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Barracks:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Command Center:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Common:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Communication:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Departure:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Engineering:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Entrance:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Entrance Sign:STATIC_FIRST:0.07,2.11,0.5:
+Decals:Building_Signage:Entrance Sign - Green:STATIC_FIRST:0.07,2.11,0.5:
+Decals:Building_Signage:Entrance Sign - Striped:STATIC_FIRST:0.15,8,1:
+Decals:Building_Signage:Exit Sign - Red:STATIC_FIRST:0.06,1.32,0.5:
+Decals:Building_Signage:Exit Sign - Striped:STATIC_FIRST:0.15,8,1:
+Decals:Building_Signage:Exit Sign 1 - White:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Exit Sign 2 - White:STATIC_FIRST:0.06,1.32,0.5:
+Decals:Building_Signage:Launchsite:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Mac Storage:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Power Generator:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Storage:STATIC_FIRST:0.1,2,2:
+Decals:Building_Signage:Supply Depot:STATIC_FIRST:0.1,2,2:
+Decals:Letters:'A' Large:STATIC_FIRST:0.09,1,2:
+Decals:Letters:'A' Med:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'A' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'B' Large:STATIC_FIRST:0.09,1,2:
+Decals:Letters:'B' Med:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'B' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'C' Large:STATIC_FIRST:0.09,1,2:
+Decals:Letters:'C' Med:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'C' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'D' Large:STATIC_FIRST:0.09,1,2:
+Decals:Letters:'D' Med:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'D' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'E' Large:STATIC_FIRST:0.09,1,2:
+Decals:Letters:'E' Med:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'E' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'F' Large:STATIC_FIRST:0.09,1,2:
+Decals:Letters:'F' Med:STATIC_FIRST:0.09,1,1:
+Decals:Letters:'F' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbered_Symbols:Arrow '1':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '2':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '3':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '4':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '5':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '6':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '7':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '8':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Arrow '9':STATIC_FIRST:0.2,2,4:
+Decals:Numbered_Symbols:Square '1':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '2':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '3':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '4':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '5':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '6':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '7':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '8':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Square '9':STATIC_FIRST:0.13,2,2:
+Decals:Numbered_Symbols:Striped '1':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '2':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '3':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '4':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '5':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '6':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '7':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '8':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbered_Symbols:Striped '9':STATIC_FIRST:0.11,5.12,0.31:
+Decals:Numbers:'0' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'0' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'0' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'1' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'1' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'1' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'2' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'2' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'2' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'3' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'3' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'3' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'4' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'4' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'4' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'5' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'5' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'5' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'6' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'6' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'6' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'7' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'7' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'7' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'8' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'8' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'8' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'9' Large:STATIC_FIRST:0.09,1,2:
+Decals:Numbers:'9' Med:STATIC_FIRST:0.09,1,1:
+Decals:Numbers:'9' Med Variant:STATIC_FIRST:0.09,1,1:
+Decals:UNSC:'C' Symbol:STATIC_FIRST:0.09,0.88,0.72:
+Decals:UNSC:Arrow Downward Small:STATIC_FIRST:0.09,0.88,0.72:
+Decals:UNSC:Arrow Upward Small:STATIC_FIRST:0.09,0.88,0.72:
+Decals:UNSC:Black Handed Warning:STATIC_FIRST:0.08,1.17,1.15:
+Decals:UNSC:Black Striped Tape:STATIC_FIRST:0.05,1.43,0.26:
+Decals:UNSC:Black Yellow Plug Warning:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Bracketed Orange Hazard:STATIC_FIRST:0.07,1.43,0.72:
+Decals:UNSC:Bracketed Yellow Caution:STATIC_FIRST:0.07,1.43,0.72:
+Decals:UNSC:Bracketed White Caution:STATIC_FIRST:0.07,1.43,0.72:
+Decals:UNSC:Bracketed White Danger:STATIC_FIRST:0.07,1.43,0.72:
+Decals:UNSC:Bracketed Yellow Caution:STATIC_FIRST:0.07,1.43,0.72:
+Decals:UNSC:Breach of Security:STATIC_FIRST:0.08,2.78,0.59:
+Decals:UNSC:Caution Falling Hazard:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Caution High Voltage Area:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Danger Fire Risk:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Dashes:STATIC_FIRST:0.05,0.63,0.29:
+Decals:UNSC:Decorative Glyphs:STATIC_FIRST:0.04,1,0.47:
+Decals:UNSC:Decorative Paint A:STATIC_FIRST:0.09,4,2:
+Decals:UNSC:Decorative Paint B:STATIC_FIRST:0.09,4,2:
+Decals:UNSC:Decorative Paint C:STATIC_FIRST:0.09,4,2:
+Decals:UNSC:Decorative Paint D:STATIC_FIRST:0.1,2,2:
+Decals:UNSC:Decorative Paint E:STATIC_FIRST:0.1,2,2:
+Decals:UNSC:Emergency:STATIC_FIRST:0.08,1.37,1.34:
+Decals:UNSC:Entrance Caution:STATIC_FIRST:0.05,2.74,1.29:
+Decals:UNSC:Falling Hazard:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Falling Hazard:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Flammable Material:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Hash Marks Solid:STATIC_FIRST:0.1,1.89,0.81:
+Decals:UNSC:Hash Marks Transparent:STATIC_FIRST:0.1,1.89,0.81:
+Decals:UNSC:Hazard Radiation:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Hazardous Gas:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:High Voltage Bolt:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Hot Surface:STATIC_FIRST:0.05,1.35,0.66:
+Decals:UNSC:Inhalation Hazard:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Keep Area Clear:STATIC_FIRST:0.04,2.87,2.38:
+Decals:UNSC:Large Red Warning:STATIC_FIRST:0.03,2.66,0.79:
+Decals:UNSC:Laser Hazard:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:Laser warning:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Multi Plug:STATIC_FIRST:0.06,1.41,1.25:
+Decals:UNSC:Notched Triangle:STATIC_FIRST:0.09,2,1.22:
+Decals:UNSC:Plug Warning:STATIC_FIRST:0.09,1.24,2.35:
+Decals:UNSC:Radioactive Warning:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Red Black Diamond:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Red Caution Tape Bracket:STATIC_FIRST:0.04,2.7,0.37:
+Decals:UNSC:Red Handed Warning:STATIC_FIRST:0.08,1.17,1.15:
+Decals:UNSC:Red Inset Triangle:STATIC_FIRST:0.09,2,1.22:
+Decals:UNSC:Red Striped Tape:STATIC_FIRST:0.05,1.43,0.26:
+Decals:UNSC:Red Triangle:STATIC_FIRST:0.07,0.94,0.64:
+Decals:UNSC:Red White Diamond:STATIC_FIRST:0.1,1.26,1.26:
+Decals:UNSC:Red White Plug:STATIC_FIRST:0.06,0.78,1.24:
+Decals:UNSC:Restricted Area:STATIC_FIRST:0.05,0.96,0.91:
+Decals:UNSC:Security:STATIC_FIRST:0.04,1.36,0.66:
+Decals:UNSC:Small Red Danger:STATIC_FIRST:0.03,0.9,0.21:
+Decals:UNSC:Small White Caution:STATIC_FIRST:0.04,0.88,0.21:
+Decals:UNSC:Small White Danger:STATIC_FIRST:0.03,0.9,0.21:
+Decals:UNSC:Small White Hazard:STATIC_FIRST:0.03,0.88,0.21:
+Decals:UNSC:Small Yellow Caution:STATIC_FIRST:0.03,0.9,0.21:
+Decals:UNSC:Small Yellow Hazard:STATIC_FIRST:0.03,0.88,0.21:
+Decals:UNSC:Square Caution Tape:STATIC_FIRST:0.08,2.55,2.88:
+Decals:UNSC:Steam Warning:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Steam Warning:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Striped Black Handed Warning:STATIC_FIRST:0.08,1.17,1.15:
+Decals:UNSC:Tiling White Caution:STATIC_FIRST:0.09,12,0.49:
+Decals:UNSC:Tiling White Strip:STATIC_FIRST:0.05,12,0.17:
+Decals:UNSC:Tiling Yellow Caution:STATIC_FIRST:0.08,12,0.52:
+Decals:UNSC:Tiling Yellow Strip:STATIC_FIRST:0.02,12,0.18:
+Decals:UNSC:Triangle Symbol:STATIC_FIRST:0.09,0.88,0.72:
+Decals:UNSC:UNSC Logo:STATIC_FIRST:10,0.46,14.88:
+Decals:UNSC:Unauthorized Presence:STATIC_FIRST:0.08,2.77,0.6:
+Decals:UNSC:Underground Cables:STATIC_FIRST:0.05,1.36,0.64:
+Decals:UNSC:V Symbol:STATIC_FIRST:0.09,0.88,0.72:
+Decals:UNSC:Warning List:STATIC_FIRST:0.05,1.45,0.97:
+Decals:UNSC:White Handed Warning:STATIC_FIRST:0.08,1.17,1.15:
+Decals:UNSC:White Hash Diamond:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:White Plug:STATIC_FIRST:0.06,0.78,1.24:
+Decals:UNSC:White Striped Tape:STATIC_FIRST:0.05,1.43,0.26:
+Decals:UNSC:White Striped Tape:STATIC_FIRST:0.05,1.43,0.26:
+Decals:UNSC:Yellow Black Diamond:STATIC_FIRST:0.11,1.44,1.44:
+Decals:UNSC:Yellow Striped Tape:STATIC_FIRST:0.05,1.44,0.25:
+Decals:UNSC:Yellow Triangle:STATIC_FIRST:0.07,0.94,0.64:
+FX:Ambient_Life:FX Birds Distant Continuous:DYNAMIC:1.08,1.03,1.83:
+FX:Ambient_Life:FX Birds Distant Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Ambient_Life:FX Butterflies Small:DYNAMIC:1.08,1.03,1.83:
+FX:Ambient_Life:FX Firefly Swarm Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Ambient_Life:FX Forerunner Insect Swarm Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Ambient_Life:FX Gnats Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Ambient_Life:FX Gnats Small:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Devil 16x16:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Devil 2x2:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Devil 4x4:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 2x16:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 2x2:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 2x32:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 2x4:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 2x8:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 4x32:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 4x4:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Drifts Small:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Hanging Large:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Dust Hanging Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Falling Large:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Falling Large Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Fill:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Fill Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Jet Burst Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Jet Burst Medium Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Jet Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Jet Medium Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Low Crawling:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Rise Large:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Rise Large Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Rise Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Rise Small:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Rise Small Unlit:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Vent Falling Large:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Vent Falling Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Vent Falling Small:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Vent Rising Large:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Vent Rising Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Atmospherics:FX Steam Vent Rising Small:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Covenant Energy Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Energy Glow 4x4:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Energy Glow 8x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Bamf Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 16x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 16x18:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 18x64:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 26x12:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 32x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 32x64:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 36x28:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 46x28:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 8x12:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Barrier 8x18:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Spiral In:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Forerunner Energy Spiral Out:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Fade 4x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Fade 8x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 4x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 4x32:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 8x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 8x32:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 8x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Light Beam Full 8x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Fade 4x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Fade 4x32:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Fade 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Fade 8x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Fade 8x32:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Fade 8x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Full 4x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Full 4x32:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Full 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Full 8x16:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Full 8x32:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Beam Full 8x8:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Large:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Small:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Sphere Large:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Sphere Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Sphere Small:DYNAMIC:1.08,1.03,1.83:
+FX:Energy:FX Plasma Energy Tiny:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX Covenant Air Explosion Huge:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX Covenant Air Explosion Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX Covenant Explosion Huge:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX Covenant Explosion Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX UNSC Air Explosion 01 Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX UNSC Air Explosion 02 Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX UNSC Air Explosion Huge:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX UNSC Air Explosion Multiple Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX UNSC Explosion Huge:DYNAMIC:1.08,1.03,1.83:
+FX:Explosions:FX UNSC Explosion Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX Covenant Fire Extra Small:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX Covenant Fire Extra Small No Smoke:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX Covenant Thrusters:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX Pelican Thruster Main:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Fire Extra Small:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Fire Extra Small No Smoke:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Fire Jet Extra Small:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Fire Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Fire Medium No Smoke:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Fire Pyre Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Ground Fire Extra Wide:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Ground Fire Narrow:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Ground Fire Narrow No Smoke:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Ground Fire Wide:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Ground Fire Wide No Smoke:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Jet Fire Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Pyre Fire Extra Small:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Thruster Huge:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Thrusters:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Wreckage Fire Heavy Smoke Small:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Wreckage Fire Small:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Wreckage Fire Small Light:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Wreckage Fire Small Light No Smo:DYNAMIC:1.08,1.03,1.83:
+FX:Fire:FX UNSC Wreckage Fire Small No Smoke:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Blinking Mine:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Circle Blinking:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Circle Line:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Circle Solid:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Data Pad 01:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Data Pad 02:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Data Pad 03:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Dot Square:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Dot Square Blinking:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Dot Square Blinking:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Forerunner Lens Flare Medium:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Grunt Birthday 01:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Grunt Birthday 02:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Lightning Distant Medium:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Lightning Distant Small:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Lightning Strike Large:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Plus Blinking:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Plus Line:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Plus Solid:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Slipspace Close:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Slipspace Idle:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Slipspace Open:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Square Blinking:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Square Line:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Square Solid:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Triangle Blinking:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Triangle Line:DYNAMIC:1.08,1.03,1.83:
+FX:General:FX Triangle Solid:DYNAMIC:1.08,1.03,1.83:
+FX:Holograms:FX Covenant Galaxy Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Holograms:FX Covenant Swirl Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Holograms:FX Forerunner Terminal Small:DYNAMIC:1.08,1.03,1.83:
+FX:Holograms:FX Starfield Large:DYNAMIC:1.08,1.03,1.83:
+FX:Holograms:FX UNSC Cortana Orb:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Aerial 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 2x16:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 2x2:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 2x32:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 2x4:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 2x8:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 4x16:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 4x32:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 4x4:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Bubbles Rising 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Heavy Large:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Heavy Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Heavy Small:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Light Large:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Light Small:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Minimal Large:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Drips Minimal Small:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Splashes Turbulent:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Splashes Turbulent 2x16:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Splashes Turbulent 2x2:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Splashes Turbulent 2x8:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Splashes Turbulent 4x16:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:FX Water Splashes Turbulent 4x4:DYNAMIC:1.08,1.03,1.83:
+FX:Liquids:Water Splashes Turbulent 4x8:DYNAMIC:1.08,1.03,1.83:
+FX:Smoke:FX Covenant Smoke Large:DYNAMIC:1.08,1.03,0:
+FX:Smoke:FX Covenant Smoke Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Smoke:FX UNSC Smoke Burning Embers Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Smoke:FX UNSC Smoke Glowing Embers Medium:DYNAMIC:1.08,1.03,1.83:
+FX:Smoke:FX UNSC Smoke Large:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Electric Arc:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Electric Ball:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Electric Beam:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Electric Floor:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Electric Panel:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Electric Shock:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Sparks Electrical Small:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Sparks Electrical Small Intermittent:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Sparks Electrical Tiny:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Sparks Electrical Tiny Intermittent:DYNAMIC:1.08,1.03,1.83:
+FX:Sparks:FX Sparks Welding Small:DYNAMIC:1.08,1.03,1.83:
+Gameplay:Equipment:Classic Equipment Spawn:DYNAMIC:3.71,3.54,1.5:
+Gameplay:Equipment:Classic Grenade Spawn:DYNAMIC:1,1,1.45:
+Gameplay:Equipment:Dynamo Grenade:DYNAMIC:0.56,0.54,1.48:
+Gameplay:Equipment:Equipment Dispenser:DYNAMIC:3.71,3.54,0.5:
+Gameplay:Equipment:Equipment Pod:DYNAMIC:2.43,2.43,8.01:
+Gameplay:Equipment:Grenade Dispenser:DYNAMIC:3.55,4.08,0.45:
+Gameplay:Equipment:M9 Frag Grenade:DYNAMIC:0.62,0.62,0.91:
+Gameplay:Equipment:Plasma Grenade:DYNAMIC:0.64,0.64,0.64:
+Gameplay:Equipment:Power Equipment Pad:DYNAMIC:4.79,4.79,0.45:
+Gameplay:Game_Modes:Attrition Dodgeball Overtime Zone:DYNAMIC:1.2,6.02,7.02:
+Gameplay:Game_Modes:Ball Stand:DYNAMIC:4.33,4.33,0.66:
+Gameplay:Game_Modes:Flag Delivery Plate:DYNAMIC:4.66,4.26,0.37:
+Gameplay:Game_Modes:Flag Spawn:DYNAMIC:2.51,2.51,0.28:
+Gameplay:Game_Modes:KOTH Capture Zone:DYNAMIC:1.37,8,8.99:
+Gameplay:Game_Modes:Power Seed Spawn:DYNAMIC:1.2,6.02,7.02:
+Gameplay:Game_Modes:Power Socket Forerunner:DYNAMIC:5.01,6.22,4.85:
+Gameplay:Game_Modes:Power Socket UNSC:DYNAMIC:5.01,6.22,4.85:
+Gameplay:Game_Modes:Shrinking Zone:DYNAMIC:2.79,2.79,2.79:
+Gameplay:Game_Modes:Stronghold / KOTH Capture Plate:DYNAMIC:4.97,4.98,0.31:
+Gameplay:Launchers_Lifts:Gravity Lift Banished:DYNAMIC:17,17,35.02:
+Gameplay:Launchers_Lifts:Kinetic Launcher Banished:DYNAMIC:23.01,21.88,18.9:
+Gameplay:Launchers_Lifts:Kinetic Launcher Forerunner:DYNAMIC:23.01,21.88,18.9:
+Gameplay:Launchers_Lifts:Kinetic Launcher UNSC:DYNAMIC:23.01,21.88,18.9:
+Gameplay:Match_Flow:Map Intro Camera:DYNAMIC:2.79,0.62,2.43:
+Gameplay:Match_Flow:Team Intro Arrow Front:DYNAMIC:6.16,6,2.43:
+Gameplay:Match_Flow:Team Intro Line Left:DYNAMIC:6.16,6,2.43:
+Gameplay:Match_Flow:Team Intro Line Right:DYNAMIC:6.16,6,2.43:
+Gameplay:Match_Flow:Winning Team Outro:DYNAMIC:5.56,4.79,2.43:
+Gameplay:Nav_Mesh:Bot Crouch One Way:DYNAMIC:7.97,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Crouch Two Way:DYNAMIC:7.94,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Jump Hint One Way:DYNAMIC:7.97,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Jump Hint Two Way:DYNAMIC:7.94,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Movement One Way:DYNAMIC:7.97,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Movement Two Way:DYNAMIC:7.94,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Nav Marker:DYNAMIC:0.71,2.45,4.6:
+Gameplay:Nav_Mesh:Bot Walk One Way:DYNAMIC:7.97,3.81,4.6:
+Gameplay:Nav_Mesh:Bot Walk Two Way:DYNAMIC:7.94,3.81,4.6:
+Gameplay:Nav_Mesh:Nav Cutter:DYNAMIC:0.71,2.44,4.58:
+Gameplay:Nav_Mesh:Nav Seed Point:DYNAMIC:0.71,2.44,4.58:
+Gameplay:Player_Spawning:Spawn Point [Backup]:DYNAMIC:4.79,4.79,0.66:
+Gameplay:Player_Spawning:Spawn Point [Initial]:DYNAMIC:6,6,0.35:
+Gameplay:Player_Spawning:Spawn Point [Respawn]:DYNAMIC:4.79,4.79,0.66:
+Gameplay:Player_Spawning:Spawn Volume [Respawn]:DYNAMIC:5.62,8,8.05:
+Gameplay:Sandbox:Ammo Crate:DYNAMIC:3.3,3.29,4.05:
+Gameplay:Sandbox:Auto Turret:DYNAMIC:12.48,12.16,5.5:
+Gameplay:Sandbox:Fusion Coil Hardlight:DYNAMIC:2.3,2.3,4.42:
+Gameplay:Sandbox:Fusion Coil Hardlight - Large:DYNAMIC:6.22,6.28,8.12:
+Gameplay:Sandbox:Fusion Coil Kinetic:DYNAMIC:2.3,2.3,4.42:
+Gameplay:Sandbox:Fusion Coil Kinetic - Large:DYNAMIC:6.22,6.28,8.12:
+Gameplay:Sandbox:Fusion Coil Plasma:DYNAMIC:2.3,2.3,4.42:
+Gameplay:Sandbox:Fusion Coil Plasma - Large:DYNAMIC:6.22,6.28,8.12:
+Gameplay:Sandbox:Fusion Coil Shock:DYNAMIC:2.3,2.3,4.42:
+Gameplay:Sandbox:Fusion Coil Shock - Large:DYNAMIC:6.22,6.28,8.12:
+Gameplay:Sandbox:Hacking Terminal:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Sandbox:Shield Emitter:DYNAMIC:13.46,12.39,9.72:
+Gameplay:Scripting:Pointer:DYNAMIC:12.68,3.85,3.85:
+Gameplay:Scripting:Script Brain:DYNAMIC:2.9,0.45,4.22:
+Gameplay:Scripting:Scriptable Switch (Invisible):DYNAMIC:9.67,6.96,6.63:
+Gameplay:Scripting:Scriptable Switch Banished Terminal:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Scripting:Scriptable Switch Banished Touchpanel:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Scripting:Scriptable Switch Banished Touchpanel Wa:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Scripting:Scriptable Switch Forerunner Terminal:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Scripting:Scriptable Switch Forerunner Terminal Wo:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Scripting:Scriptable Switch UNSC Console:DYNAMIC:9.67,6.96,6.63:
+Gameplay:Teleporters:Teleporter:DYNAMIC:4,4,10:
+Gameplay:Teleporters:Teleporter (Invisible):DYNAMIC:4.93,4.93,11.98:
+Gameplay:Vehicles:Banshee:DYNAMIC:24.49,23.27,10.75:
+Gameplay:Vehicles:Chieftain Chopper:DYNAMIC:21.84,9.57,11.59:
+Gameplay:Vehicles:Chopper:DYNAMIC:21.84,9.57,11.59:
+Gameplay:Vehicles:Classic Vehicle Spawn:DYNAMIC:11.67,6.79,6.72:
+Gameplay:Vehicles:Ghost:DYNAMIC:15.99,12.58,5.62:
+Gameplay:Vehicles:Gungoose:DYNAMIC:11.56,5.69,3.89:
+Gameplay:Vehicles:Mongoose:DYNAMIC:11.56,5.69,3.89:
+Gameplay:Vehicles:Razorback:DYNAMIC:20.2,8.59,6.32:
+Gameplay:Vehicles:Rockethog:DYNAMIC:20.2,8.59,6.32:
+Gameplay:Vehicles:Scorpion:DYNAMIC:33.42,25.28,13.46:
+Gameplay:Vehicles:Shade Turret:DYNAMIC:12.5,11.52,4.45:
+Gameplay:Vehicles:Vehicle Pad:DYNAMIC:6.24,4.03,0.69:
+Gameplay:Vehicles:Warthog:DYNAMIC:20.2,8.59,6.32:
+Gameplay:Vehicles:Wasp:DYNAMIC:23.92,21.31,7.68:
+Gameplay:Vehicles:Wraith:DYNAMIC:31.34,29.87,12.97:
+Gameplay:Volumes:Kill Ball (Invisible):DYNAMIC:8.51,8.42,8.51:
+Gameplay:Volumes:Kill Ball Classic:DYNAMIC:8.51,8.42,8.51:
+Gameplay:Volumes:Kill Ball Electro:DYNAMIC:8.51,8.42,8.51:
+Gameplay:Volumes:Kill Ball Jr. (Invisible):DYNAMIC:4.02,4,4.11:
+Gameplay:Volumes:Kill Ball Jr. Classic:DYNAMIC:4.02,4,4.11:
+Gameplay:Volumes:Kill Ball Jr. Electro:DYNAMIC:4.02,4,4.11:
+Gameplay:Volumes:Kill Volume:DYNAMIC:2.79,2.79,2.79:
+Gameplay:Volumes:Named Location Volume:DYNAMIC:4,4,4:
+Gameplay:Volumes:Safe Volume:DYNAMIC:0.6,5.98,5.98:
+Gameplay:Volumes:Soft Kill Safe Volume:DYNAMIC:0.6,5.98,5.98:
+Gameplay:Volumes:Soft Kill Volume:DYNAMIC:0.7,4.33,4.33:
+Gameplay:Weapon_Spawners:Weapon Pad:DYNAMIC:3.63,6.76,0.56:
+Gameplay:Weapon_Spawners:Weapon Pod:DYNAMIC:1,1,1:
+Gameplay:Weapon_Spawners:Weapon Rack:DYNAMIC:1.65,2.65,4.49:
+Gameplay:Weapon_Spawners:Weapon Rack Back Plate - Base:STATIC_FIRST:1.25,6.66,2.66:
+Gameplay:Weapon_Spawners:Weapon Rack Back Plate - Full:STATIC_FIRST:1.27,6.58,8.55:
+Gameplay:Weapon_Spawners:Weapon Rack Back Plate - Top:STATIC_FIRST:0.81,6.55,6.83:
+Gameplay:Weapon_Spawners:Weapon Trunk:DYNAMIC:4.1,8.32,4.16:
+Gameplay:Weapons:Arcane Sentinel Beam:DYNAMIC:3.41,1.58,1.81:
+Gameplay:Weapons:BR75 Battle Rifle:DYNAMIC:4.1,0.29,1.5:
+Gameplay:Weapons:BR75 Breacher:DYNAMIC:4.1,0.29,1.5:
+Gameplay:Weapons:Backdraft Cindershot:DYNAMIC:4.8,0.56,1.37:
+Gameplay:Weapons:CQS48 Bulldog:DYNAMIC:4.21,0.52,1.52:
+Gameplay:Weapons:Calcine Disruptor:DYNAMIC:2.86,0.52,1.26:
+Gameplay:Weapons:Cindershot:DYNAMIC:4.8,0.56,1.37:
+Gameplay:Weapons:Convergence Bulldog:DYNAMIC:4.21,0.52,1.52:
+Gameplay:Weapons:Diminisher of Hope:DYNAMIC:2.68,1.48,9.18:
+Gameplay:Weapons:Disruptor:DYNAMIC:2.86,0.52,1.26:
+Gameplay:Weapons:Duelist Energy Sword:DYNAMIC:5.61,0.41,2.56:
+Gameplay:Weapons:Elite Bloodblade:DYNAMIC:5.61,0.41,2.56:
+Gameplay:Weapons:Energy Sword:DYNAMIC:5.61,0.41,2.56:
+Gameplay:Weapons:Gravity Hammer:DYNAMIC:2.68,1.48,9.18:
+Gameplay:Weapons:Heatwave:DYNAMIC:4.42,0.85,1.17:
+Gameplay:Weapons:Impact Commando:DYNAMIC:4.78,0.27,1.31:
+Gameplay:Weapons:M247 HMG:DYNAMIC:5.37,2,1.98:
+Gameplay:Weapons:M247 HMG Turret:DYNAMIC:5.37,5.01,5.23:
+Gameplay:Weapons:M41 Rocket Launcher:DYNAMIC:6.12,1.19,1.95:
+Gameplay:Weapons:M41 Tracker:DYNAMIC:6.12,1.19,1.95:
+Gameplay:Weapons:MA40 Assault Rifle:DYNAMIC:4.26,0.38,1.27:
+Gameplay:Weapons:MLRS-2 Hydra:DYNAMIC:3.97,0.51,1.66:
+Gameplay:Weapons:Mangler:DYNAMIC:2.42,0.86,2.15:
+Gameplay:Weapons:Mk50 Sidekick:DYNAMIC:1.43,0.26,1.2:
+Gameplay:Weapons:Needler:DYNAMIC:3.14,0.48,1.92:
+Gameplay:Weapons:Pinpoint Needler:DYNAMIC:3.14,0.48,1.92:
+Gameplay:Weapons:Plasma Cannon:DYNAMIC:5.44,1.4,2.06:
+Gameplay:Weapons:Plasma Cannon Turret:DYNAMIC:4.46,1.89,4.71:
+Gameplay:Weapons:Plasma Pistol:DYNAMIC:1.31,0.32,0.94:
+Gameplay:Weapons:Pulse Carbine:DYNAMIC:3.99,0.44,1.35:
+Gameplay:Weapons:Purging Shock Rifle:DYNAMIC:6.5,1.09,2.29:
+Gameplay:Weapons:Pursuit Hydra:DYNAMIC:3.97,0.51,1.66:
+Gameplay:Weapons:Rapidfire Pulse Carbine:DYNAMIC:3.99,0.44,1.35:
+Gameplay:Weapons:Ravager:DYNAMIC:4.9,0.47,1.79:
+Gameplay:Weapons:Ravager Rebound:DYNAMIC:4.9,0.47,1.79:
+Gameplay:Weapons:Riven Mangler:DYNAMIC:2.42,0.86,2.15:
+Gameplay:Weapons:Rushdown Hammer:DYNAMIC:2.68,1.48,9.18:
+Gameplay:Weapons:S7 Flexfire Sniper:DYNAMIC:6.92,0.89,1.72:
+Gameplay:Weapons:S7 Sniper Rifle:DYNAMIC:6.92,0.89,1.72:
+Gameplay:Weapons:Scatterbound Heatwave:DYNAMIC:4.42,0.85,1.17:
+Gameplay:Weapons:Scorpion Tail:DYNAMIC:5.4,1.36,1.49:
+Gameplay:Weapons:Scrap Cannon:DYNAMIC:5.4,1.36,1.49:
+Gameplay:Weapons:Scrap Cannon Turret:DYNAMIC:2.38,4.01,4.11:
+Gameplay:Weapons:Sentinel Beam:DYNAMIC:3.41,1.58,1.81:
+Gameplay:Weapons:Shock Rifle:DYNAMIC:6.5,1.09,2.29:
+Gameplay:Weapons:Skewer:DYNAMIC:7.16,0.8,2.14:
+Gameplay:Weapons:Stalker Rifle:DYNAMIC:5.03,0.43,1.2:
+Gameplay:Weapons:Stalker Rifle Ultra:DYNAMIC:5.03,0.43,1.2:
+Gameplay:Weapons:Striker Sidekick:DYNAMIC:1.43,0.26,1.2:
+Gameplay:Weapons:Unbound Plasma Pistol:DYNAMIC:1.31,0.32,0.94:
+Gameplay:Weapons:VK78 Commando Rifle:DYNAMIC:4.78,0.27,1.31:
+Gameplay:Weapons:Volatile Skewer:DYNAMIC:7.16,0.8,2.14:
+Halo_Design_Set:Columns:2x2 Round Column C:STATIC_FIRST:2,2,22:
+Halo_Design_Set:Columns:2x2 Round Column D:STATIC_FIRST:2,2,18:
+Halo_Design_Set:Columns:2x2 Square Column A:STATIC_FIRST:2,2,22:
+Halo_Design_Set:Columns:2x2 Square Column B:STATIC_FIRST:2,2,18:
+Halo_Design_Set:Columns:4x4 Round Column C:STATIC_FIRST:4,4,22:
+Halo_Design_Set:Columns:4x4 Round Column D:STATIC_FIRST:4,4,18:
+Halo_Design_Set:Columns:4x4 Square Column A:STATIC_FIRST:4,4,22:
+Halo_Design_Set:Columns:4x4 Square Column B:STATIC_FIRST:4,4,18:
+Halo_Design_Set:Columns:6x6 Round Column C:STATIC_FIRST:6,6,22:
+Halo_Design_Set:Columns:6x6 Square Column A:STATIC_FIRST:6,6,22:
+Halo_Design_Set:Columns:6x6 Square Column B:STATIC_FIRST:6,6,18:
+Halo_Design_Set:Columns_MP:2x2 Round Column C MP:STATIC_FIRST:2,2,22:
+Halo_Design_Set:Columns_MP:2x2 Round Column D MP:STATIC_FIRST:2,2,18:
+Halo_Design_Set:Columns_MP:2x2 Square Column A MP:STATIC_FIRST:2,2,22:
+Halo_Design_Set:Columns_MP:2x2 Square Column B MP:STATIC_FIRST:2,2,18:
+Halo_Design_Set:Columns_MP:4x4 Round Column C MP:STATIC_FIRST:4,4,22:
+Halo_Design_Set:Columns_MP:4x4 Round Column D MP:STATIC_FIRST:4,4,18:
+Halo_Design_Set:Columns_MP:4x4 Square Column A MP:STATIC_FIRST:4,4,22:
+Halo_Design_Set:Columns_MP:4x4 Square Column B MP:STATIC_FIRST:4,4,18:
+Halo_Design_Set:Columns_MP:6x6 Round Column C MP:STATIC_FIRST:6,6,22:
+Halo_Design_Set:Columns_MP:6x6 Round Column D MP:STATIC_FIRST:6,6,18:
+Halo_Design_Set:Columns_MP:6x6 Square Column A MP:STATIC_FIRST:6,6,22:
+Halo_Design_Set:Columns_MP:6x6 Square Column B MP:STATIC_FIRST:6,6,18:
+Halo_Design_Set:Cover:Ankle Cover Half Size:STATIC_FIRST:1,8,1.5:
+Halo_Design_Set:Cover:Ankle Cover Quarter Size:STATIC_FIRST:1,4,1.5:
+Halo_Design_Set:Cover:Full Cover Half Size:STATIC_FIRST:1,8,8:
+Halo_Design_Set:Cover:Full Cover Standard Size:STATIC_FIRST:1,16,8:
+Halo_Design_Set:Cover:Half Cover Half Size:STATIC_FIRST:1,8,4.5:
+Halo_Design_Set:Cover:Half Cover Standard Size:STATIC_FIRST:1,16,4.5:
+Halo_Design_Set:Cover:Rock Half Cover A:STATIC_FIRST:5.99,8.31,5.72:
+Halo_Design_Set:Cover:Rock Half Cover B:STATIC_FIRST:5.83,5.05,13.58:
+Halo_Design_Set:Cover_MP:Ankle Cover Half Size MP:STATIC_FIRST:1,8,1.5:
+Halo_Design_Set:Cover_MP:Ankle Cover Quarter Size MP:STATIC_FIRST:1,4,1.5:
+Halo_Design_Set:Cover_MP:Full Cover Half Size MP:STATIC_FIRST:0,8,8:
+Halo_Design_Set:Cover_MP:Full Cover Standard Size MP:STATIC_FIRST:1,16,8:
+Halo_Design_Set:Cover_MP:Half Cover Half Size MP:STATIC_FIRST:1,8,4.5:
+Halo_Design_Set:Cover_MP:Half Cover Standard Size MP:STATIC_FIRST:1,16,4.5:
+Halo_Design_Set:Cover_MP:Rock Half Cover A MP:STATIC_FIRST:5.99,8.31,5.72:
+Halo_Design_Set:Cover_MP:Rock Half Cover B MP:STATIC_FIRST:5.83,5.05,13.58:
+Halo_Design_Set:Crates:4.5x8 Crate:STATIC_FIRST:4,8,4.5:
+Halo_Design_Set:Crates:4x4 Crate:STATIC_FIRST:4,4,4:
+Halo_Design_Set:Crates:4x8 Crate:STATIC_FIRST:4,8,4:
+Halo_Design_Set:Crates:8x16 Crate:STATIC_FIRST:8,16,8:
+Halo_Design_Set:Crates:8x8 Crate:STATIC_FIRST:8,8,8:
+Halo_Design_Set:Crates_MP:4.5x8 Crate MP:STATIC_FIRST:4,8,4.5:
+Halo_Design_Set:Crates_MP:4x4 Crate MP:STATIC_FIRST:4,4,4:
+Halo_Design_Set:Crates_MP:4x8 Crate MP:STATIC_FIRST:4,8,4:
+Halo_Design_Set:Crates_MP:8x16 Crate MP:STATIC_FIRST:8,16,8:
+Halo_Design_Set:Crates_MP:8x8 Crate MP:STATIC_FIRST:8,8,8:
+Halo_Design_Set:Doorways:Angled Double Doorway:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Doorways:Angled Single Doorway:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Doorways:Curved Double Doorway:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Doorways:Curved Double Doorway:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Doorways:Double Doorway:STATIC_FIRST:4,32,22:
+Halo_Design_Set:Doorways:Forerunner Doorway:STATIC_FIRST:4.06,16.05,24.08:
+Halo_Design_Set:Doorways:Forerunner Doorway Wide:STATIC_FIRST:4,32,25:
+Halo_Design_Set:Doorways:Single Doorway A:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Doorways:Single Doorway B:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Doorways_MP:Angled Double Doorway MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Doorways_MP:Angled Single Doorway MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Doorways_MP:Curved Double Doorway MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Doorways_MP:Double Doorway MP:STATIC_FIRST:4,32,22:
+Halo_Design_Set:Doorways_MP:Forerunner Doorway MP:STATIC_FIRST:4.06,16.05,24.08:
+Halo_Design_Set:Doorways_MP:Forerunner Doorway Wide MP:STATIC_FIRST:4,32,25:
+Halo_Design_Set:Doorways_MP:Single Doorway A MP:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Doorways_MP:Single Doorway B MP:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Floors:Floor Angled Standard A:STATIC_FIRST:16,16,4:
+Halo_Design_Set:Floors:Floor Angled Standard B:STATIC_FIRST:16,16,4:
+Halo_Design_Set:Floors:Floor Half A:STATIC_FIRST:16,8,4:
+Halo_Design_Set:Floors:Floor Half B:STATIC_FIRST:8,8,4:
+Halo_Design_Set:Floors:Floor Quadruple Size:STATIC_FIRST:64,64,4:
+Halo_Design_Set:Floors:Floor Standard:STATIC_FIRST:16,16,4:
+Halo_Design_Set:Floors_MP:Floor Angled Standard A MP:STATIC_FIRST:16,16,4:
+Halo_Design_Set:Floors_MP:Floor Angled Standard B MP:STATIC_FIRST:16,16,4:
+Halo_Design_Set:Floors_MP:Floor Half A MP:STATIC_FIRST:16,8,4:
+Halo_Design_Set:Floors_MP:Floor Half B MP:STATIC_FIRST:8,8,4:
+Halo_Design_Set:Floors_MP:Floor Quadruple Size MP:STATIC_FIRST:64,64,4:
+Halo_Design_Set:Floors_MP:Floor Standard MP:STATIC_FIRST:16,16,4:
+Halo_Design_Set:Railings:Curved Railing Half Size:STATIC_FIRST:3.95,3.95,4.3:
+Halo_Design_Set:Railings:Curved Railing Standard Size:STATIC_FIRST:7.96,7.95,4.3:
+Halo_Design_Set:Railings:Railing Half Size:STATIC_FIRST:0.45,7.95,4.3:
+Halo_Design_Set:Railings:Railing Standard Size:STATIC_FIRST:0.45,15.95,4.3:
+Halo_Design_Set:Railings_MP:Curved Railing Half Size MP:STATIC_FIRST:3.95,3.95,4.3:
+Halo_Design_Set:Railings_MP:Curved Railing Standard Size MP:STATIC_FIRST:7.96,7.95,4.3:
+Halo_Design_Set:Railings_MP:Railing Half Size MP:STATIC_FIRST:0.45,7.95,4.3:
+Halo_Design_Set:Railings_MP:Railing Standard Size MP:STATIC_FIRST:0.45,15.95,4.3:
+Halo_Design_Set:Ramps:1 over 3 Ramp Eighth A:STATIC_FIRST:16,12,8:
+Halo_Design_Set:Ramps:1 over 3 Ramp Eighth B:STATIC_FIRST:16,8,8:
+Halo_Design_Set:Ramps:1 over 3 Ramp Half A:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps:1 over 3 Ramp Half B:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps:1 over 3 Ramp Half C:STATIC_FIRST:16,24,15:
+Halo_Design_Set:Ramps:1 over 3 Ramp Quarter:STATIC_FIRST:16,16,10:
+Halo_Design_Set:Ramps:1 over 3 Ramp Sixteenth:STATIC_FIRST:16,8,6:
+Halo_Design_Set:Ramps:1 over 3 Ramp Standard A:STATIC_FIRST:16,48,26:
+Halo_Design_Set:Ramps:1 over 3 Ramp Standard B:STATIC_FIRST:16,48,26:
+Halo_Design_Set:Ramps:1 over 4 Ramp Half A:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps:1 over 4 Ramp Half B:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps:Corner Ramp Eighth A:STATIC_FIRST:8,8,8:
+Halo_Design_Set:Ramps:Corner Ramp Eighth B:STATIC_FIRST:8,8,8:
+Halo_Design_Set:Ramps:Curved Ramp Standard - Left:STATIC_FIRST:32.31,48.52,26:
+Halo_Design_Set:Ramps:Curved Ramp Standard - Right:STATIC_FIRST:32.31,48.52,26:
+Halo_Design_Set:Ramps:Four Way Ramp Eighth:STATIC_FIRST:32,32,4:
+Halo_Design_Set:Ramps:Four Way Ramp Eighth:STATIC_FIRST:32,32,4:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Eighth A MP:STATIC_FIRST:16,12,8:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Eighth B MP:STATIC_FIRST:16,8,8:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Half A MP:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Half B MP:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Half C MP:STATIC_FIRST:16,24,15:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Quarter MP:STATIC_FIRST:16,16,10:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Sixteenth MP:STATIC_FIRST:16,8,6:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Standard A MP:STATIC_FIRST:16,48,26:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Standard A MP:STATIC_FIRST:16,48,26:
+Halo_Design_Set:Ramps_MP:1 over 3 Ramp Standard B MP:STATIC_FIRST:16,48,26:
+Halo_Design_Set:Ramps_MP:1 over 4 Ramp Half A MP:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps_MP:1 over 4 Ramp Half B MP:STATIC_FIRST:16,32,15:
+Halo_Design_Set:Ramps_MP:Corner Ramp Eighth A MP:STATIC_FIRST:8,8,8:
+Halo_Design_Set:Ramps_MP:Corner Ramp Eighth B MP:STATIC_FIRST:8,8,8:
+Halo_Design_Set:Ramps_MP:Curved Ramp Standard - Right MP:STATIC_FIRST:32.31,48.52,26:
+Halo_Design_Set:Ramps_MP:Four Way Ramp Eighth MP:STATIC_FIRST:32,32,4:
+Halo_Design_Set:Scale_Objects:Player Scale Object:STATIC_FIRST:2.86,5.52,7.09:
+Halo_Design_Set:Walls:Angle Wall Half:STATIC_FIRST:8,8,22:
+Halo_Design_Set:Walls:Angled Corner Wall Standard:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Angled Wall Double Window A:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls:Angled Wall Double Window B:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls:Angled Wall Double Window C:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls:Angled Wall Standard A:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Angled Wall Standard B:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Angled Wall Window A:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Angled Wall Window B:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Angled Wall Window C:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Corner Wall Standard:STATIC_FIRST:4,4,22:
+Halo_Design_Set:Walls:Curved Double Window Wall A:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls:Curved Double Window Wall B:STATIC_FIRST:36,36,22:
+Halo_Design_Set:Walls:Curved Wall Double:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls:Curved Wall Standard:STATIC_FIRST:20,20,22:
+Halo_Design_Set:Walls:Curved Wall Triple:STATIC_FIRST:52,52,18:
+Halo_Design_Set:Walls:Wall Cube Angled:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Wall Cube Corner Angled:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Wall Cube Standard:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls:Wall Double Window A:STATIC_FIRST:4,32,22:
+Halo_Design_Set:Walls:Wall Double Window B:STATIC_FIRST:4,32,22:
+Halo_Design_Set:Walls:Wall Half:STATIC_FIRST:4,8,22:
+Halo_Design_Set:Walls:Wall Standard A:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Walls:Wall Standard B:STATIC_FIRST:8,16,22:
+Halo_Design_Set:Walls:Wall Window A:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Walls:Wall Window B:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Walls_MP:Angle Wall Half MP:STATIC_FIRST:8,8,22:
+Halo_Design_Set:Walls_MP:Angled Corner Wall Standard MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Angled Wall Double Window A MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls_MP:Angled Wall Double Window B MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls_MP:Angled Wall Double Window C MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls_MP:Angled Wall Standard A MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Angled Wall Standard B MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Angled Wall Window A MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Angled Wall Window B MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Angled Wall Window C MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Corner Wall Standard MP:STATIC_FIRST:4,4,22:
+Halo_Design_Set:Walls_MP:Curved Double Window Wall A MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls_MP:Curved Double Window Wall B MP:STATIC_FIRST:36,36,22:
+Halo_Design_Set:Walls_MP:Curved Wall Double MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls_MP:Curved Wall Double MP:STATIC_FIRST:32,32,22:
+Halo_Design_Set:Walls_MP:Curved Wall Standard MP:STATIC_FIRST:20,20,22:
+Halo_Design_Set:Walls_MP:Curved Wall Triple MP:STATIC_FIRST:52,52,18:
+Halo_Design_Set:Walls_MP:Curved Wall Triple MP:STATIC_FIRST:52,52,18:
+Halo_Design_Set:Walls_MP:Wall Cube Angled MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Wall Cube Corner Angled MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Wall Cube Standard MP:STATIC_FIRST:16,16,22:
+Halo_Design_Set:Walls_MP:Wall Double Window A MP:STATIC_FIRST:4,32,22:
+Halo_Design_Set:Walls_MP:Wall Double Window B MP:STATIC_FIRST:4,32,22:
+Halo_Design_Set:Walls_MP:Wall Half MP:STATIC_FIRST:4,8,22:
+Halo_Design_Set:Walls_MP:Wall Standard A MP:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Walls_MP:Wall Standard B MP:STATIC_FIRST:8,16,22:
+Halo_Design_Set:Walls_MP:Wall Window A MP:STATIC_FIRST:4,16,22:
+Halo_Design_Set:Walls_MP:Wall Window B MP:STATIC_FIRST:4,16,22:
+Lights:Forerunner_Light:Forerunner Block Light w/Light:DYNAMIC_FIRST:5.63,13.95,28.64:
+Lights:Forerunner_Light:Forerunner Floor Trim Light w/Light:DYNAMIC_FIRST:22.47,1.22,0.91:
+Lights:Forerunner_Light:Forerunner Gravlift Receiver w/Light:DYNAMIC_FIRST:68.73,55.52,24.57:
+Lights:Forerunner_Light:Forerunner Ledge w/Light:DYNAMIC_FIRST:8.41,9.33,25.52:
+Lights:Forerunner_Light:Forerunner Light A w/Light:DYNAMIC_FIRST:1.45,0.35,5.13:
+Lights:Forerunner_Light:Forerunner Light B w/Light:DYNAMIC_FIRST:4.75,1.63,3.09:
+Lights:Forerunner_Light:Forerunner Light C w/Light:DYNAMIC_FIRST:1.59,0.7,2.48:
+Lights:Forerunner_Light:Forerunner Light C w/Light:DYNAMIC_FIRST:1.59,0.7,2.48:
+Lights:Forerunner_Light:Forerunner Light E w/Light:DYNAMIC_FIRST:15.28,22.16,4.81:
+Lights:Forerunner_Light:Forerunner Light F w/Light:DYNAMIC_FIRST:6.86,3.99,11.01:
+Lights:Forerunner_Light:Forerunner Light H w/Light:DYNAMIC_FIRST:4,4,2.25:
+Lights:Forerunner_Light:Forerunner Support Pillar w/Light:DYNAMIC_FIRST:14.2,6.01,19.92:
+Lights:Forerunner_Light:Forerunner Weapon Post A w/Light:DYNAMIC_FIRST:6.02,7.4,14.76:
+Lights:Forerunner_Light_MP:Forerunner Block Light w/Light MP:DYNAMIC_FIRST:5.63,13.95,28.64:
+Lights:Forerunner_Light_MP:Forerunner Floor Trim Light w/Light:DYNAMIC_FIRST:22.47,1.22,0.91:
+Lights:Forerunner_Light_MP:Forerunner Floor Trim Light w/Light MP:DYNAMIC_FIRST:22.47,1.22,0.91:
+Lights:Forerunner_Light_MP:Forerunner Ledge w/Light MP:STATIC_FIRST:8.38,9.47,25.54:
+Lights:Forerunner_Light_MP:Forerunner Light A w/Light MP:DYNAMIC_FIRST:1.45,0.35,5.13:
+Lights:Forerunner_Light_MP:Forerunner Light B w/Light MP:DYNAMIC_FIRST:4.75,1.63,3.09:
+Lights:Forerunner_Light_MP:Forerunner Light C w/Light MP:DYNAMIC_FIRST:1.59,0.7,2.48:
+Lights:Forerunner_Light_MP:Forerunner Light D w/Light MP:DYNAMIC_FIRST:1.67,1.67,1.05:
+Lights:Forerunner_Light_MP:Forerunner Light E w/Light MP:DYNAMIC_FIRST:15.28,22.16,4.81:
+Lights:Forerunner_Light_MP:Forerunner Light F w/Light MP:DYNAMIC_FIRST:6.86,3.99,11.01:
+Lights:Forerunner_Light_MP:Forerunner Light G w/Light MP:DYNAMIC_FIRST:9.27,4,5.95:
+Lights:Forerunner_Light_MP:Forerunner Light H w/Light MP:DYNAMIC_FIRST:4,4,2.25:
+Lights:Forerunner_Light_MP:Forerunner Support Pillar w/Light:DYNAMIC_FIRST:14.2,6.01,19.92:
+Lights:Forerunner_No_Light:Forerunner Block Light:STATIC_FIRST:5.57,13.94,28.62:
+Lights:Forerunner_No_Light:Forerunner Floor Trim Light:STATIC_FIRST:22.48,1.17,0.91:
+Lights:Forerunner_No_Light:Forerunner Gravlift Receiver:STATIC_FIRST:68.83,55.48,24.7:
+Lights:Forerunner_No_Light:Forerunner Ledge:STATIC_FIRST:8.39,9.24,25.56:
+Lights:Forerunner_No_Light:Forerunner Light A:STATIC_FIRST:1.56,0.36,5.24:
+Lights:Forerunner_No_Light:Forerunner Light B:STATIC_FIRST:4.77,1.63,3.1:
+Lights:Forerunner_No_Light:Forerunner Light C:STATIC_FIRST:1.57,0.68,2.47:
+Lights:Forerunner_No_Light:Forerunner Light D:STATIC_FIRST:1.67,1.67,1.06:
+Lights:Forerunner_No_Light:Forerunner Light E:STATIC_FIRST:15.37,22.16,4.84:
+Lights:Forerunner_No_Light:Forerunner Light F:STATIC_FIRST:6.89,4,11.02:
+Lights:Forerunner_No_Light:Forerunner Light G:STATIC_FIRST:9.39,4,5.95:
+Lights:Forerunner_No_Light:Forerunner Light H:STATIC_FIRST:4,4,2.25:
+Lights:Forerunner_No_Light:Forerunner Support Light:STATIC_FIRST:6,12.72,15:
+Lights:Forerunner_No_Light:Forerunner Support Light w/Light:STATIC_FIRST:6,12.72,15:
+Lights:Forerunner_No_Light:Forerunner Support Pillar:STATIC_FIRST:14.21,6.07,19.94:
+Lights:Forerunner_No_Light:Forerunner Weapon Post A:STATIC_FIRST:6.04,7.42,14.74:
+Lights:Forerunner_No_Light_MP:Forerunner Block Light MP:STATIC_FIRST:5.6,14.01,28.69:
+Lights:Forerunner_No_Light_MP:Forerunner Ledge MP:STATIC_FIRST:8.38,9.47,25.54:
+Lights:Forerunner_No_Light_MP:Forerunner Light A MP:STATIC_FIRST:1.56,0.36,5.24:
+Lights:Forerunner_No_Light_MP:Forerunner Light B MP:STATIC_FIRST:4.77,1.63,3.1:
+Lights:Forerunner_No_Light_MP:Forerunner Light C MP:STATIC_FIRST:1.68,0.69,2.48:
+Lights:Forerunner_No_Light_MP:Forerunner Light D MP:STATIC_FIRST:1.67,1.67,1.06:
+Lights:Forerunner_No_Light_MP:Forerunner Light E MP:STATIC_FIRST:15.19,22.14,4.8:
+Lights:Forerunner_No_Light_MP:Forerunner Light F MP:STATIC_FIRST:6.88,3.99,11.01:
+Lights:Forerunner_No_Light_MP:Forerunner Light G MP:STATIC_FIRST:9.37,3.97,5.94:
+Lights:Forerunner_No_Light_MP:Forerunner Light H MP:STATIC_FIRST:4,4,2.25:
+Lights:Forerunner_No_Light_MP:Forerunner Support Pillar MP:STATIC_FIRST:14.21,6.07,19.96:
+Lights:Generic_Light_Objects:Light:DYNAMIC:1.48,1.48,1.17:
+Lights:Generic_Light_Objects:Light probe marker:DYNAMIC:0.4,3.84,3.94:
+Lights:Generic_Light_Objects:Reflection Volume:DYNAMIC:4.07,4.09,4.2:
+Lights:UNSC_Light:Exterior Wall w/Light:DYNAMIC:13.06,1.67,9.06:
+Lights:UNSC_Light:Flood Short w/Light:DYNAMIC:2.33,5.88,7.82:
+Lights:UNSC_Light:Flood Tall w/Light:DYNAMIC:2.03,7.9,27.99:
+Lights:UNSC_Light:Fluorescent Covered Small w/Light:DYNAMIC_FIRST:1.35,2,0.31:
+Lights:UNSC_Light:Fluorescent Covered Trim Small w/Light:DYNAMIC:1.51,1.71,0.15:
+Lights:UNSC_Light:Fluorescent Covered Trim w/Light:DYNAMIC:1.49,7.67,0.15:
+Lights:UNSC_Light:Fluorescent Covered w/Light:DYNAMIC:1.49,7.67,0.09:
+Lights:UNSC_Light:Fluorescent Exposed Extra Large w/Light:DYNAMIC:0.58,16.32,0.37:
+Lights:UNSC_Light:Fluorescent Exposed Large w/Light:DYNAMIC:0.58,5.17,0.36:
+Lights:UNSC_Light:Fluorescent Exposed Med w/Light:DYNAMIC:0.58,8.16,0.37:
+Lights:UNSC_Light:Fluorescent Exposed Small w/Light:DYNAMIC:0.6,2.07,0.37:
+Lights:UNSC_Light:Fluorescent Exposed w/Light:DYNAMIC_FIRST:1.92,5.42,0.44:
+Lights:UNSC_Light:Flush Fluorescent Covered Extra Large w/:DYNAMIC:0.58,15.97,0.08:
+Lights:UNSC_Light:Flush Fluorescent Covered Large w/Light:DYNAMIC:0.58,7.97,0.08:
+Lights:UNSC_Light:Flush Fluorescent Covered Med w/Light:DYNAMIC:0.58,3.83,0.08:
+Lights:UNSC_Light:Interior Wall Covered w/Light:DYNAMIC:1.2,3.99,2.67:
+Lights:UNSC_Light:Interior Wall Exposed w/Light:DYNAMIC:0.48,1.68,0.53:
+Lights:UNSC_Light:Multibulb Three Bulb Grill w/Light:DYNAMIC:0.51,1.7,1.33:
+Lights:UNSC_Light:Multibulb Three Bulb w/Light:DYNAMIC_FIRST:0.51,1.7,1.33:
+Lights:UNSC_Light:Multibulb Two Bulb Grill w/Light:DYNAMIC:0.51,1.7,0.78:
+Lights:UNSC_Light:Multibulb Two Bulb w/Light:DYNAMIC:0.51,1.7,0.78:
+Lights:UNSC_Light:Overhead Round Large w/Light:DYNAMIC:6.07,6.07,3.58:
+Lights:UNSC_Light:Panel Flush Large w/Light:DYNAMIC:9.5,12.11,0.22:
+Lights:UNSC_Light:Panel Flush Small w/Light:DYNAMIC:2.72,12.11,0.22:
+Lights:UNSC_Light:Panel Large w/Light:DYNAMIC:10.46,13.31,1.05:
+Lights:UNSC_Light:Panel Small w/Light:DYNAMIC:4.54,13.31,1.05:
+Lights:UNSC_Light:Puck Round Small w/Light:DYNAMIC:0.81,0.51,0.16:
+Lights:UNSC_Light:Puck Round w/Light:DYNAMIC:1.52,1.6,0.18:
+Lights:UNSC_Light:Spot Round Straight w/Light:DYNAMIC:0.94,1.16,1.86:
+Lights:UNSC_Light:Street Light w/Light:DYNAMIC:6.82,2.63,31.01:
+Lights:UNSC_Light:Work Light Grill w/Light:DYNAMIC:1.29,2.23,0.99:
+Lights:UNSC_Light_MP:Exterior Wall w/Light MP:DYNAMIC:13.06,1.67,9.06:
+Lights:UNSC_Light_MP:Flood Short w/Light MP:DYNAMIC:2.33,5.88,7.82:
+Lights:UNSC_Light_MP:Flood Tall w/Light MP:DYNAMIC:2.03,7.9,27.99:
+Lights:UNSC_Light_MP:Fluorescent Covered Small w/Light MP:DYNAMIC:1.35,2,0.31:
+Lights:UNSC_Light_MP:Fluorescent Covered Trim Small w/Light M:DYNAMIC:1.51,1.71,0.15:
+Lights:UNSC_Light_MP:Fluorescent Covered Trim w/Light MP:DYNAMIC:1.49,7.67,0.15:
+Lights:UNSC_Light_MP:Fluorescent Covered w/Light MP:DYNAMIC:1.49,7.67,0.09:
+Lights:UNSC_Light_MP:Fluorescent Exposed Extra Large w/Light :DYNAMIC:0.58,16.32,0.37:
+Lights:UNSC_Light_MP:Fluorescent Exposed Large w/Light MP:DYNAMIC:0.58,5.17,0.36:
+Lights:UNSC_Light_MP:Fluorescent Exposed Med w/Light MP:DYNAMIC:0.58,8.16,0.37:
+Lights:UNSC_Light_MP:Fluorescent Exposed Small w/Light MP:DYNAMIC:0.6,2.07,0.37:
+Lights:UNSC_Light_MP:Fluorescent Exposed w/Light MP:DYNAMIC:1.92,5.42,0.44:
+Lights:UNSC_Light_MP:Flush Fluorescent Covered Extra Large w/:DYNAMIC:0.58,15.97,0.08:
+Lights:UNSC_Light_MP:Flush Fluorescent Covered Large w/Light :DYNAMIC:0.58,7.97,0.08:
+Lights:UNSC_Light_MP:Flush Fluorescent Covered Med w/Light MP:DYNAMIC:0.58,3.83,0.08:
+Lights:UNSC_Light_MP:Interior Wall Covered w/Light MP:DYNAMIC:1.2,3.99,2.67:
+Lights:UNSC_Light_MP:Multibulb Three Bulb Grill w/Light MP:DYNAMIC:0.51,1.7,1.33:
+Lights:UNSC_Light_MP:Multibulb Three Bulb w/Light MP:DYNAMIC:0.51,1.7,1.33:
+Lights:UNSC_Light_MP:Multibulb Two Bulb Grill w/Light:DYNAMIC:0.51,1.7,0.78:
+Lights:UNSC_Light_MP:Multibulb Two Bulb Grill w/Light:DYNAMIC:0.51,1.7,0.78:
+Lights:UNSC_Light_MP:Multibulb Two Bulb w/Light MP:DYNAMIC:0.51,1.7,0.78:
+Lights:UNSC_Light_MP:Overhead Round Large w/Light MP:DYNAMIC:6.07,6.07,3.58:
+Lights:UNSC_Light_MP:Panel Flush Large w/Light MP:DYNAMIC:9.5,12.11,0.22:
+Lights:UNSC_Light_MP:Panel Flush Small w/Light MP:DYNAMIC:2.72,12.11,0.22:
+Lights:UNSC_Light_MP:Panel Large w/Light MP:DYNAMIC:10.46,13.31,1.05:
+Lights:UNSC_Light_MP:Panel Small w/Light MP:DYNAMIC:4.54,13.31,1.05:
+Lights:UNSC_Light_MP:Puck Round Small w/Light MP:DYNAMIC:0.81,0.51,0.16:
+Lights:UNSC_Light_MP:Puck Round w/Light:DYNAMIC:1.52,1.6,0.18:
+Lights:UNSC_Light_MP:Spot Round Straight w/Light MP:DYNAMIC:0.94,1.16,1.86:
+Lights:UNSC_Light_MP:Street Light w/Light MP:DYNAMIC:6.82,2.63,31.01:
+Lights:UNSC_Light_MP:Work Light Grill w/Light MP:DYNAMIC:1.29,2.23,0.99:
+Lights:UNSC_Light_MP:Work Light w/Light MP:DYNAMIC:1.32,2.53,2.16:
+Lights:UNSC_No_Light:Exterior Wall w/o Light:STATIC_FIRST:13.12,1.77,9.08:
+Lights:UNSC_No_Light:Flood Short w/o Light:STATIC_FIRST:2.34,5.88,7.82:
+Lights:UNSC_No_Light:Flood Tall w/o Light:STATIC_FIRST:2.08,7.97,28.01:
+Lights:UNSC_No_Light:Fluorescent Covered Trim Dynamic w/o Lig:STATIC_FIRST:1.56,2,0.31:
+Lights:UNSC_No_Light:Fluorescent Covered Trim Small w/o Light:STATIC_FIRST:1.86,1.81,0.16:
+Lights:UNSC_No_Light:Fluorescent Covered Trim w/o Light:STATIC_FIRST:1.86,7.8,0.16:
+Lights:UNSC_No_Light:Fluorescent Covered w/o Light:STATIC_FIRST:1.86,7.8,0.1:
+Lights:UNSC_No_Light:Fluorescent Exposed Extra Large w/o Ligh:STATIC_FIRST:0.6,16.33,0.38:
+Lights:UNSC_No_Light:Fluorescent Exposed Large w/o Light:STATIC_FIRST:0.6,5.33,0.41:
+Lights:UNSC_No_Light:Fluorescent Exposed Med w/o Light:STATIC_FIRST:0.61,8.24,0.41:
+Lights:UNSC_No_Light:Fluorescent Exposed Small w/o Light:STATIC_FIRST:0.6,2.16,0.38:
+Lights:UNSC_No_Light:Fluorescent Exposed w/o Light:STATIC_FIRST:1.92,5.43,0.48:
+Lights:UNSC_No_Light:Flush Fluorescent Covered Extra Large w/:STATIC_FIRST:0.64,16,0.08:
+Lights:UNSC_No_Light:Flush Fluorescent Covered Large w/o Ligh:STATIC_FIRST:0.64,8,0.08:
+Lights:UNSC_No_Light:Flush Fluorescent Covered Med w/o Light:STATIC_FIRST:0.64,3.86,0.08:
+Lights:UNSC_No_Light:Interior Wall Covered w/o Light:STATIC_FIRST:1.2,3.99,2.67:
+Lights:UNSC_No_Light:Interior Wall Exposed w/o Light:STATIC_FIRST:0.48,1.68,0.6:
+Lights:UNSC_No_Light:Multibulb Three Bulb Grill w/o Light:STATIC_FIRST:0.51,1.7,1.33:
+Lights:UNSC_No_Light:Multibulb Three Bulb w/o Light:STATIC_FIRST:0.51,1.7,1.33:
+Lights:UNSC_No_Light:Multibulb Two Bulb Grill w/o Light:STATIC_FIRST:0.51,1.7,0.78:
+Lights:UNSC_No_Light:Multibulb Two Bulb w/o Light:STATIC_FIRST:0.51,1.7,0.78:
+Lights:UNSC_No_Light:Overhead Mount Double:STATIC_FIRST:4.12,12.83,31.29:
+Lights:UNSC_No_Light:Overhead Mount Quad:STATIC_FIRST:9.52,12.83,31.29:
+Lights:UNSC_No_Light:Overhead Mount Single:STATIC_FIRST:1.65,1.65,19:
+Lights:UNSC_No_Light:Overhead Round Large w/o Light:STATIC_FIRST:6.07,6.07,3.58:
+Lights:UNSC_No_Light:Panel Flush Large w/o Light:STATIC_FIRST:9.5,12.39,0.27:
+Lights:UNSC_No_Light:Panel Flush Small w/o Light:STATIC_FIRST:2.72,12.39,0.27:
+Lights:UNSC_No_Light:Panel Large w/o Light:STATIC_FIRST:10.46,13.31,1.63:
+Lights:UNSC_No_Light:Panel Small w/o Light:STATIC_FIRST:4.54,13.31,1.63:
+Lights:UNSC_No_Light:Puck Round Small w/o Light:STATIC_FIRST:0.81,0.53,0.16:
+Lights:UNSC_No_Light:Puck Round w/o Light:STATIC_FIRST:1.58,1.6,0.18:
+Lights:UNSC_No_Light:Spot Round Straight w/o Light:STATIC_FIRST:0.99,1.22,1.91:
+Lights:UNSC_No_Light:Street Light w/o Light:STATIC_FIRST:6.82,2.64,31.01:
+Lights:UNSC_No_Light:Traffic Lights:STATIC_FIRST:3.4,29.3,33.92:
+Lights:UNSC_No_Light:Work Light Grill w/o Light:STATIC_FIRST:1.37,2.23,1.07:
+Lights:UNSC_No_Light:Work Light Mount Large:STATIC_FIRST:0.47,2.67,1.21:
+Lights:UNSC_No_Light:Work Light Mount Small:STATIC_FIRST:2.02,2.74,2.37:
+Lights:UNSC_No_Light:Work Light Mount Tripod:STATIC_FIRST:7.03,8.11,13.61:
+Lights:UNSC_No_Light:Work Light Mount Wall:STATIC_FIRST:0.51,2.86,1.1:
+Lights:UNSC_No_Light:Work Light Trailer:STATIC_FIRST:12.34,7.27,18.4:
+Lights:UNSC_No_Light:Work Light w/o Light:STATIC_FIRST:1.38,2.53,2.18:
+Lights:UNSC_No_Light_MP:Exterior Wall w/o Light MP:STATIC_FIRST:13.12,1.77,9.08:
+Lights:UNSC_No_Light_MP:Flood Short w/o Light MP:STATIC_FIRST:2.34,5.88,7.82:
+Lights:UNSC_No_Light_MP:Flood Tall w/o Light MP:STATIC_FIRST:2.08,7.91,28.01:
+Lights:UNSC_No_Light_MP:Fluorescent Covered Trim Small w/o Light:STATIC_FIRST:1.86,1.81,0.16:
+Lights:UNSC_No_Light_MP:Fluorescent Covered Trim w/o Light MP:STATIC_FIRST:1.86,7.8,0.16:
+Lights:UNSC_No_Light_MP:Fluorescent Covered w/o Light MP:STATIC_FIRST:1.86,7.8,0.1:
+Lights:UNSC_No_Light_MP:Fluorescent Exposed Extra Large w/o Ligh:STATIC_FIRST:0.6,16.33,0.38:
+Lights:UNSC_No_Light_MP:Fluorescent Exposed Large w/o Light MP:STATIC_FIRST:0.6,5.3,0.39:
+Lights:UNSC_No_Light_MP:Fluorescent Exposed Med w/o Light MP:STATIC_FIRST:0.6,8.17,0.38:
+Lights:UNSC_No_Light_MP:Fluorescent Exposed Small w/o Light MP:STATIC_FIRST:0.6,2.16,0.38:
+Lights:UNSC_No_Light_MP:Fluorescent Exposed w/o Light MP:STATIC_FIRST:1.92,5.43,0.48:
+Lights:UNSC_No_Light_MP:Flush Fluorescent Covered Extra Large w/:STATIC_FIRST:0.64,16,0.08:
+Lights:UNSC_No_Light_MP:Flush Fluorescent Covered Large w/o Ligh:STATIC_FIRST:0.64,8,0.08:
+Lights:UNSC_No_Light_MP:Flush Fluorescent Covered Med w/o Light :STATIC_FIRST:0.64,3.86,0.08:
+Lights:UNSC_No_Light_MP:Interior Wall Covered w/o Light MP:STATIC_FIRST:1.2,3.99,2.67:
+Lights:UNSC_No_Light_MP:Interior Wall Exposed w/o Light MP:STATIC_FIRST:0.48,1.68,0.6:
+Lights:UNSC_No_Light_MP:Multibulb Three Bulb Grill w/o Light MP:STATIC_FIRST:0.51,1.7,1.33:
+Lights:UNSC_No_Light_MP:Multibulb Three Bulb w/o Light MP:STATIC_FIRST:0.51,1.7,1.33:
+Lights:UNSC_No_Light_MP:Multibulb Two Bulb w/o Light MP:STATIC_FIRST:0.51,1.7,0.78:
+Lights:UNSC_No_Light_MP:Overhead Mount Double MP:STATIC_FIRST:4.12,12.83,31.29:
+Lights:UNSC_No_Light_MP:Overhead Mount Quad MP:STATIC_FIRST:9.52,12.83,31.29:
+Lights:UNSC_No_Light_MP:Overhead Mount Single MP:STATIC_FIRST:1.65,1.65,19:
+Lights:UNSC_No_Light_MP:Overhead Round Large w/o Light MP:STATIC_FIRST:6.07,6.07,3.57:
+Lights:UNSC_No_Light_MP:Panel Flush Large w/o Light MP:STATIC_FIRST:9.5,12.39,0.27:
+Lights:UNSC_No_Light_MP:Panel Flush Small w/o Light MP:STATIC_FIRST:2.72,12.39,0.27:
+Lights:UNSC_No_Light_MP:Panel Large w/o Light MP:STATIC_FIRST:10.46,13.31,1.63:
+Lights:UNSC_No_Light_MP:Panel Small w/o Light MP:STATIC_FIRST:4.54,13.31,1.63:
+Lights:UNSC_No_Light_MP:Puck Round Small w/o Light MP:STATIC_FIRST:0.81,0.53,0.16:
+Lights:UNSC_No_Light_MP:Puck Round w/o Light MP:STATIC_FIRST:1.58,1.6,0.18:
+Lights:UNSC_No_Light_MP:Spot Round Straight w/o Light MP:STATIC_FIRST:0.99,1.22,1.91:
+Lights:UNSC_No_Light_MP:Street Light w/o Light MP:STATIC_FIRST:6.82,2.64,31.01:
+Lights:UNSC_No_Light_MP:Work Light Grill w/o Light MP:STATIC_FIRST:1.37,2.23,1.14:
+Lights:UNSC_No_Light_MP:Work Light Mount Large MP:STATIC_FIRST:0.47,2.67,1.21:
+Lights:UNSC_No_Light_MP:Work Light Mount Small MP:STATIC_FIRST:2.02,2.74,2.37:
+Lights:UNSC_No_Light_MP:Work Light Mount Tripod MP:STATIC_FIRST:7.03,8.11,13.61:
+Lights:UNSC_No_Light_MP:Work Light Mount Wall MP:STATIC_FIRST:0.51,2.86,1.1:
+Lights:UNSC_No_Light_MP:Work Light Trailer MP:STATIC_FIRST:12.34,7.27,18.4:
+Lights:UNSC_No_Light_MP:Work Light w/o Light MP:STATIC_FIRST:1.38,2.53,2.18:

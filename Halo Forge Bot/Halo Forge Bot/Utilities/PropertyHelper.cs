@@ -23,7 +23,7 @@ public static class PropertyHelper
     {
         await NavigationHelper.OpenEditUI(index);
         var ret = MemoryHelper.GetEditBoxText();
-        await NavigationHelper.CloseEditUI();
+        await NavigationHelper.CloseEditUI(true);
         return ret;
     }
     

@@ -46,15 +46,22 @@ public static class Dev
         
         Thread.Sleep(1000);
         
-        Vector3 currentPosition = Vector3.One with {X = -1, Y = -1} * 500;
+        Vector3 currentPosition = new Vector3(-1500, -1500, 500) ;
 
         var sr = new StreamWriter("./config/AllForgeObjects.txt");
 
+        int skipCategories = 8;
         int skipFolders = 0;
         int skipItems = 0;
+        currentPosition = new Vector3(-1100, 500, 500);
         
         foreach (var category in ForgeObjectBrowser.Categories.Values)
         {
+            if (skipCategories-- > 0)
+            {
+                continue;
+            }
+            
             await NavigationHelper.NavigateToCategory(category);
             foreach (var folder in category.CategoryFolders.Values)
             {
@@ -71,7 +78,7 @@ public static class Dev
                 {
                     if (skipItems-- <= 0)
                     {
-                        await Input.KeyPress(VirtualKeyCode.RETURN, 100, 50);
+                        await Input.KeyPress(VirtualKeyCode.RETURN, 150, 100);
                         await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
                         await NavigationHelper.ReturnToTop();
                         await Task.Delay(100);
@@ -83,7 +90,7 @@ public static class Dev
 
                         sr.WriteLine(
                             $"{category.CategoryName}:{folder.FolderName}:{objectName}:{objectMode}:{selectedScale.X},{selectedScale.Y},{selectedScale.Z}:");
-                        await Input.KeyPress(VirtualKeyCode.ESCAPE, 100, 50);
+                        await Input.KeyPress(VirtualKeyCode.ESCAPE, 150, 100);
                         sr.Flush();
                         
                         //Scale object to be within a 50x50x50 grid
