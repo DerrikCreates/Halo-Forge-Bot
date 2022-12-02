@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Numerics;
 using System.Threading;
+using System.Threading.Tasks;
 using Halo_Forge_Bot.GameUI;
 using Memory;
 using Newtonsoft.Json;
@@ -67,9 +68,46 @@ public static class MemoryHelper
         Memory.WriteMemory(address, memoryType, data.ToString());
     }
 
-    public static int GetGlobalHover()
+    /// <summary>
+    /// Grabs the current UI vertical index and handles any weird pointer issues
+    /// </summary>
+    /// <returns></returns>
+    private static async Task<int> GetGlobalHover()
     {
-        return Memory.ReadMemory<int>(HaloPointers.GlobalHover);
+        //Todo get better pointer so we don't have to ignore high values
+        var ret = Memory.ReadMemory<int>(HaloPointers.GlobalHover);
+        while (ret > 10000)
+        {
+            await Task.Delay(10);
+            ret = Memory.ReadMemory<int>(HaloPointers.GlobalHover);
+            await Input.HandlePause();
+        }
+        return ret;
+    }
+    
+    /// <summary>
+    /// Sometimes GlobalHover can be set to 0 before its actually at 0, this checks that the value is actually 0
+    /// </summary>
+    /// <returns> The actual hover value </returns>
+    public static async Task<int> GetGlobalHoverVerbose()
+    {
+        //If the first value isn't 0 then it hasn't been reset
+        var firstResult = await GetGlobalHover();
+        if (firstResult != 0) return firstResult;
+        
+        //If the first value is 0 then check again after a delay to make sure that it is actually 0
+        await Task.Delay(10);
+        var ret = await GetGlobalHover();
+        
+        while (ret != firstResult)
+        {
+            firstResult = await GetGlobalHover();
+            await Task.Delay(10);
+            ret = await GetGlobalHover();
+            await Input.HandlePause();
+        }
+
+        return ret;
     }
 
     public static string GetEditBoxText()
