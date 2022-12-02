@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Halo_Forge_Bot.GameUI;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using Memory;
@@ -9,7 +10,20 @@ namespace Halo_Forge_Bot.Utilities;
 
 public static class NavigationHelper
 {
-    private static int _travelSleep = 10;
+    private static int _travelInitialSleep = 10;
+    private static int _travelAfterSleep = 10;
+    
+    private static int _travelTabInitialSleep = 50;
+    private static int _travelTabAfterSleep = 50;
+    
+    private static int _openUIInitialSleep = 50;
+    private static int _openUIAfterSleep = 150;
+    
+    private static int _closeUIInitialSleep = 50;
+    private static int _closeUIAfterSleep = 150;
+    
+    private static int _enterUIInitialSleep = 50;
+    private static int _enterUIAfterSleep = 150;
 
     /// <summary>
     /// Holds all data relating to the current UI navigation state
@@ -90,7 +104,7 @@ public static class NavigationHelper
 
     private static NavigationState _navigationState = new NavigationState();
 
-    private static int ContentBrowserTabsCount = Enum.GetNames(typeof(ContentBrowserTabs)).Length;
+    private static readonly int ContentBrowserTabsCount = Enum.GetNames(typeof(ContentBrowserTabs)).Length;
     public enum ContentBrowserTabs
     {
         ObjectBrowser = 0,
@@ -109,19 +123,78 @@ public static class NavigationHelper
     }
 
     /// <summary>
-    /// Opens the UI onto any tab requested
+    /// Used to ensure cold open function doesn't get called during cold open setup
+    /// </summary>
+    private static bool _isInColdOpen = false;
+
+    /// <summary>
+    /// Sets up the menu from a cold start to ensure the bot doesn't break
+    /// </summary>
+    private static async Task ColdStart()
+    {
+        if (_navigationState.CurrentTabSelection == -1 && !_isInColdOpen)
+        {
+            _isInColdOpen = true;
+            await MoveToTab(ContentBrowserTabs.ObjectBrowser);
+            
+            //Escape any folders
+            while (MemoryHelper.GetMenusVisible() != 0)
+            {
+                await Input.KeyPress(VirtualKeyCode.ESCAPE, _closeUIAfterSleep, _closeUIInitialSleep);
+                await Input.HandlePause();
+            }
+            
+            //Open up the content browser and navigate to the bottom element
+            await Input.KeyPress(VirtualKeyCode.VK_R, _openUIAfterSleep, _openUIInitialSleep);
+            await ReturnToTop();
+            await NavigateVerticalOneStep(true);
+            
+            var previousWasFolder = false;
+            
+            //Go up the menu closing all categories until you reach index 1 (prefabs)
+            while (MemoryHelper.GetMenusVisible() != 0 && await MemoryHelper.GetGlobalHoverVerbose() != 1)
+            {
+                //Open folder or category then back out 1 level of the UI
+                await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
+                await Input.KeyPress(VirtualKeyCode.ESCAPE, _closeUIAfterSleep, _closeUIInitialSleep);
+
+                //If on category then the UI should close. open UI and close category
+                if (MemoryHelper.GetMenusVisible() == 0)
+                {
+                    await Input.KeyPress(VirtualKeyCode.VK_R, _openUIAfterSleep, _openUIInitialSleep);
+                    
+                    if (!previousWasFolder) 
+                        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
+                    
+                    previousWasFolder = false;
+                }
+                else
+                {
+                    previousWasFolder = true;
+                }
+
+                await NavigateVerticalOneStep(true);
+                await Input.HandlePause();
+            }
+
+            _isInColdOpen = false;
+        }
+    }
+
+    /// <summary>
+    /// Opens the UI onto any tab requested (can setup UI from cold start)
     /// </summary>
     /// <param name="openToTab"> The tab to open up </param>
     public static async Task OpenUI(ContentBrowserTabs? openToTab = null)
     {
+        await ColdStart();
+        
         //Ensure the UI menu is open
-        while (MemoryHelper.GetMenusVisible() != 1)
+        while (MemoryHelper.GetMenusVisible() == 0)
         {
-            await Input.KeyPress(VirtualKeyCode.VK_R, 25, 100);
+            await Input.KeyPress(VirtualKeyCode.VK_R, _openUIAfterSleep, _openUIInitialSleep);
             await Input.HandlePause();
         }
-
-        await Task.Delay(100);
 
         if (openToTab != null) 
             await MoveToTab((ContentBrowserTabs)openToTab);
@@ -135,11 +208,9 @@ public static class NavigationHelper
         //Ensure the UI menu is open
         while (MemoryHelper.GetMenusVisible() != 0)
         {
-            await Input.KeyPress(VirtualKeyCode.VK_R, 25, 100);
+            await Input.KeyPress(VirtualKeyCode.VK_R, _closeUIAfterSleep, _closeUIInitialSleep);
             await Input.HandlePause();
         }
-
-        await Task.Delay(100);
     }
 
     /// <summary>
@@ -153,7 +224,7 @@ public static class NavigationHelper
         await NavigateVertical(index);
         while (MemoryHelper.GetEditMenuState() == 0)
         {
-            await Input.KeyPress(VirtualKeyCode.RETURN, 200);
+            await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
             await Input.HandlePause();
         }
     }
@@ -165,9 +236,47 @@ public static class NavigationHelper
     {
         while (MemoryHelper.GetEditMenuState() != 0)
         {
-            await Input.KeyPress(VirtualKeyCode.RETURN, 200);
+            //Add check for 343's invalid name
+            if (MemoryHelper.GetEditBoxText().IndexOf("/") != -1)
+            {
+                await Input.KeyPress(VirtualKeyCode.ESCAPE, _closeUIAfterSleep, _closeUIInitialSleep);
+            }
+            else
+            {
+                await Input.KeyPress(VirtualKeyCode.RETURN, _closeUIAfterSleep, _closeUIInitialSleep);
+            }
+
             await Input.HandlePause();
         }
+    }
+    
+    /// <summary>
+    /// Navigates up and down the UI to by one step
+    /// </summary>
+    public static async Task NavigateVerticalOneStep(bool up)
+    {
+        await OpenUI();
+        var initialIndex = await MemoryHelper.GetGlobalHoverVerbose();
+        var currentIndex = initialIndex;
+
+        do {
+            await Input.KeyPress(up ? VirtualKeyCode.VK_W : VirtualKeyCode.VK_S, _travelAfterSleep, _travelInitialSleep);
+            await Input.HandlePause();
+        } while ((currentIndex = await MemoryHelper.GetGlobalHoverVerbose()) == initialIndex);
+        
+        _navigationState.UpdateVerticalState(await MemoryHelper.GetGlobalHoverVerbose());
+
+        //Logic below seems flawed
+        // //UI should move a lot with this logic
+        // if ((initialIndex == 0 && up) || (currentIndex == 0 && initialIndex != 0 && !up))
+        //     return;
+        //
+        // //If the UI moved too much, UI messages probably messed up the pointers
+        // if (Math.Abs(await MemoryHelper.GetGlobalHoverVerbose() - initialIndex) > 1)
+        // {
+        //     await NavigateVertical(initialIndex);
+        //     await NavigateVerticalOneStep(up);
+        // }
     }
 
     /// <summary>
@@ -177,42 +286,35 @@ public static class NavigationHelper
     public static async Task NavigateVertical(int index)
     {
         await OpenUI();
-        if (MemoryHelper.GetGlobalHover() == index) return;
+        var currentIndex = await MemoryHelper.GetGlobalHoverVerbose();
+        if (currentIndex == index) return;
 
-        while (MemoryHelper.GetGlobalHover() != index)
+        do
         {
-            await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
-                ? VirtualKeyCode.VK_S
-                : VirtualKeyCode.VK_W, _travelSleep);
-
-            _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
-            await Input.HandlePause();
+            //Check if it would be faster to set the pointer (jump) instead
+            if (Math.Abs(currentIndex - index) > 1)
+            {
+                //Make sure pointer is valid before setting it
+                await MemoryHelper.GetGlobalHoverVerbose();
+                if (index == 0)
+                {
+                    MemoryHelper.SetGlobalHover(index + 1);
+                    await Input.KeyPress(VirtualKeyCode.VK_W, _travelAfterSleep, _travelInitialSleep);
+                }
+                else { 
+                    MemoryHelper.SetGlobalHover(index - 1);
+                    await Input.KeyPress(VirtualKeyCode.VK_S, _travelAfterSleep, _travelInitialSleep);
+                }
+            }
+            else
+            {
+                await NavigateVerticalOneStep(currentIndex > index);
+            }
             
-            // if (Math.Abs(MemoryHelper.GetGlobalHover() - index) > 1)
-            // {
-            //     if (index == 0)
-            //     {
-            //         MemoryHelper.SetGlobalHover(index + 1);
-            //         await Input.KeyPress(VirtualKeyCode.VK_W, _travelSleep, 50);
-            //     }
-            //     else { 
-            //         MemoryHelper.SetGlobalHover(index - 1);
-            //         await Input.KeyPress(VirtualKeyCode.VK_S, _travelSleep, 50);
-            //     }
-            //         
-            //     _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
-            // }
-            // else
-            // {
-            //     await Input.KeyPress(index > MemoryHelper.GetGlobalHover()
-            //         ? VirtualKeyCode.VK_S
-            //         : VirtualKeyCode.VK_W, _travelSleep);
-            //
-            //     _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
-            // }
-        }
+            await Input.HandlePause();
+        } while ((currentIndex = await MemoryHelper.GetGlobalHoverVerbose()) != index);
         
-        _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+        _navigationState.UpdateVerticalState(await MemoryHelper.GetGlobalHoverVerbose());
     }
 
     /// <summary>
@@ -220,7 +322,7 @@ public static class NavigationHelper
     /// </summary>
     private static async Task EnsureVerticalState()
     {
-        _navigationState.UpdateVerticalState(MemoryHelper.GetGlobalHover());
+        _navigationState.UpdateVerticalState(await MemoryHelper.GetGlobalHoverVerbose());
     }
     
     /// <summary>
@@ -251,7 +353,7 @@ public static class NavigationHelper
                 : (int)tabIndex - MemoryHelper.GetTopBrowserHover();
             
             //Press buttons based on above logic
-            await Input.KeyPress(leftDistance < rightDistance ? VirtualKeyCode.VK_Q : VirtualKeyCode.VK_E, _travelSleep);
+            await Input.KeyPress(leftDistance < rightDistance ? VirtualKeyCode.VK_Q : VirtualKeyCode.VK_E, _travelTabAfterSleep, _travelTabInitialSleep);
             _navigationState.CurrentTabSelection = MemoryHelper.GetTopBrowserHover();
             
             await Input.HandlePause();
@@ -287,7 +389,7 @@ public static class NavigationHelper
         }
         
         await NavigateVertical(category.CategoryOrder - 1);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 500, 100);
+        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
         
         //Update State
         _navigationState.ObjectBrowserState.CurrentCategory = category;
@@ -324,7 +426,7 @@ public static class NavigationHelper
         }
         
         await NavigateVertical(folder.ParentCategory.CategoryOrder + folder.FolderOffset - 1);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 500, 100);
+        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
         
         //Update State
         _navigationState.ObjectBrowserState.CurrentFolder = folder;
@@ -349,7 +451,7 @@ public static class NavigationHelper
     public static async Task SpawnItem(ForgeUIObject item)
     {
         await NavigateToItem(item);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 250, 100);
+        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
     }
     
     /// <summary>
@@ -376,7 +478,7 @@ public static class NavigationHelper
         {
             //Close current category
             await NavigateVertical(_navigationState.ObjectBrowserState.CurrentCategory.CategoryOrder - 1);
-            await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
+            await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
 
             //Update navigation state
             _navigationState.ObjectBrowserState.CurrentCategory = null;
@@ -393,7 +495,7 @@ public static class NavigationHelper
         if (_navigationState.ObjectBrowserState.GetObjectBrowserDepth() ==
             NavigationState._ObjectBrowserState.ObjectBrowserDepth.Items)
         {
-            await Input.KeyPress(VirtualKeyCode.BACK, 100, 100);
+            await Input.KeyPress(VirtualKeyCode.BACK, _closeUIAfterSleep, _closeUIInitialSleep);
             
             //Update navigation state
             await EnsureVerticalState();
