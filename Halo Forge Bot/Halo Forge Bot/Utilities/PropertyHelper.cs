@@ -22,7 +22,6 @@ public static class PropertyHelper
     public static async Task<string> GetProperty(int index)
     {
         await NavigationHelper.OpenEditUI(index);
-        await Task.Delay(25);
         var ret = MemoryHelper.GetEditBoxText();
         await NavigationHelper.CloseEditUI();
         return ret;
@@ -40,23 +39,41 @@ public static class PropertyHelper
         {
             data = "0";
         }
+        
+        //Setup data to type
+        var optimizedLength = data.Length;
+            
+        //Optimize buffer to remove unnecessary 0s
+        if (data[^3] == '.' && data[^1] == '0' && data != "0")
+        {
+            //Data is number, check if can optimize last digits
+            if (data[^2] == '0')
+            {
+                optimizedLength -= 3;
+            }
+            else
+            {
+                optimizedLength -= 1;
+            }
+        }
+
+        var buffer = data[..optimizedLength].ToCharArray();
+        var optimizedData = new string(buffer);
 
         await NavigationHelper.OpenEditUI(index);
 
-        while (MemoryHelper.GetEditBoxText() != data)
+        while (MemoryHelper.GetEditBoxText() != optimizedData)
         {
             await Task.Delay(25);
             Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_A);
-            await Task.Delay(25);
 
-            var toType = data.ToCharArray();
-            foreach (var c in toType)
+            foreach (var c in buffer)
             {
+                await Task.Delay(25);
                 SendKeys.SendWait(c.ToString());
-                await Task.Delay(20);
             }
-
-            await Task.Delay(200);
+            
+            await Task.Delay(25);
             await Input.HandlePause();
         }
 
