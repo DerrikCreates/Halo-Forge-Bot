@@ -36,15 +36,6 @@ public static class Dev
         
         ForgeObjectBrowser.FindItem(ObjectId.RECYCLE_BIN, out randomObjectToFind);
         await NavigationHelper.NavigateToItem(randomObjectToFind);
-        // await Input.KeyPress(VirtualKeyCode.DELETE, 500, 500);
-        //
-        // Thread.Sleep(1000);
-
-        // ForgeObjectBrowser.FindItem(ObjectId.WHEEL_MP, out randomObjectToFind);
-        // await NavigationHelper.SpawnItem(randomObjectToFind);
-        //
-        // ForgeObjectBrowser.FindItem(ObjectId.CABLE_CAP, out randomObjectToFind);
-        // await NavigationHelper.SpawnItem(randomObjectToFind);
     }
 
     public static async void GetAllObjectTypeData()
@@ -55,7 +46,7 @@ public static class Dev
         
         Thread.Sleep(1000);
         
-        Vector3 currentPosition = (Vector3.One with {X = -1, Y = -1}) * 500;
+        Vector3 currentPosition = Vector3.One with {X = -1, Y = -1} * 500;
 
         var sr = new StreamWriter("./config/AllForgeObjects.txt");
 
@@ -78,44 +69,41 @@ public static class Dev
                 
                 do
                 {
-                    if (skipItems-- > 0)
+                    if (skipItems-- <= 0)
                     {
-                        await Input.KeyPress(VirtualKeyCode.VK_S, 50, 50);
-                        await Task.Delay(200);
-                        continue;
+                        await Input.KeyPress(VirtualKeyCode.RETURN, 100, 50);
+                        await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
+                        await NavigationHelper.ReturnToTop();
+                        await Task.Delay(100);
+
+                        var objectMode = ForgeUI.GetDefaultObjectMode(1);
+                        var objectName = await PropertyHelper.GetProperty(
+                            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.ObjectName, objectMode));
+                        var selectedScale = MemoryHelper.GetSelectedScale();
+
+                        sr.WriteLine(
+                            $"{category.CategoryName}:{folder.FolderName}:{objectName}:{objectMode}:{selectedScale.X},{selectedScale.Y},{selectedScale.Z}:");
+                        await Input.KeyPress(VirtualKeyCode.ESCAPE, 100, 50);
+                        sr.Flush();
+                        
+                        //Scale object to be within a 50x50x50 grid
+                        if (selectedScale.X > 200 || selectedScale.Y > 200 || selectedScale.Z > 200)
+                        {
+                            await PropertyHelper.SetScaleProperty(Vector3.One / 8, objectMode);
+                        }
+                        else if (selectedScale.X > 100 || selectedScale.Y > 100 || selectedScale.Z > 100)
+                        {
+                            await PropertyHelper.SetScaleProperty(Vector3.One / 4, objectMode);
+                        }
+                        else if (selectedScale.X > 50 || selectedScale.Y > 50 || selectedScale.Z > 50)
+                        {
+                            await PropertyHelper.SetScaleProperty(Vector3.One / 2, objectMode);
+                        }
+
+                        await PropertyHelper.SetPositionProperty(currentPosition, objectMode);
+                        await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectBrowser);
                     }
                     
-                    await Input.KeyPress(VirtualKeyCode.RETURN, 200, 100);
-                    await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
-                    await NavigationHelper.ReturnToTop();
-                    await Task.Delay(100);
-                    
-                    await NavigationHelper.ReturnToTop();
-                    await Task.Delay(100);
-                    
-                    await NavigationHelper.ReturnToTop();
-
-                    await Task.Delay(500);
-                    
-                    var objectMode = ForgeUI.GetDefaultObjectMode(1);
-                    var objectName = await PropertyHelper.GetProperty(ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.ObjectName, objectMode));
-                    var selectedScale = MemoryHelper.GetSelectedScale();
-
-                    sr.WriteLine($"{category.CategoryName}:{folder.FolderName}:{objectName}:{objectMode}:{selectedScale.X},{selectedScale.Y},{selectedScale.Z}:");
-                    await Input.KeyPress(VirtualKeyCode.ESCAPE, 200, 200);
-                    sr.Flush();
-
-                    if (selectedScale.X > 100 || selectedScale.Y > 100 || selectedScale.Z > 100)
-                    {
-                        await PropertyHelper.SetScaleProperty(Vector3.One / 4, objectMode);
-                    }
-                    else if (selectedScale.X > 50 || selectedScale.Y > 50 || selectedScale.Z > 50)
-                    {
-                        await PropertyHelper.SetScaleProperty(Vector3.One / 2, objectMode);
-                    }
-
-                    await PropertyHelper.SetPositionProperty(currentPosition, objectMode);
-
                     currentPosition.X += 50;
                     if (currentPosition.X > 1500)
                     {
@@ -128,24 +116,22 @@ public static class Dev
                             currentPosition.Y = -1500;
                         }
                     }
-                    
-                    await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectBrowser);
-                    await Input.KeyPress(VirtualKeyCode.VK_S, 50, 50);
-                    
-                    await Task.Delay(200);
+
+                    await NavigationHelper.NavigateVerticalOneStep(false);
                     await Input.HandlePause();
                 } 
-                while (MemoryHelper.GetGlobalHover() != 0);
-
-                await NavigationHelper.CloseUI();
-                await Task.Delay(100);
-                Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                await Task.Delay(100);
-                Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                await Task.Delay(100);
-                Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                await Task.Delay(100);
-                await Task.Delay(10000);
+                while (await MemoryHelper.GetGlobalHoverVerbose() != 0);
+                
+                if (skipItems <= 0 && skipFolders <= 0)
+                {
+                    await NavigationHelper.CloseUI();
+                    await Task.Delay(100);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                    await Task.Delay(100);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                    await Task.Delay(100);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                }
             }
         }
         
