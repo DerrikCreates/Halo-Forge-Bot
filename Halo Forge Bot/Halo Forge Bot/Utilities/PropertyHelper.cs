@@ -26,7 +26,7 @@ public static class PropertyHelper
         await NavigationHelper.CloseEditUI(true);
         return ret;
     }
-    
+
     /// <summary>
     /// Handles setting a specific property field
     /// </summary>
@@ -39,21 +39,24 @@ public static class PropertyHelper
         {
             data = "0";
         }
-        
+
         //Setup data to type
         var optimizedLength = data.Length;
-            
+
         //Optimize buffer to remove unnecessary 0s
-        if (data[^3] == '.' && data[^1] == '0' && data != "0")
+        if (data.Length > 4)
         {
-            //Data is number, check if can optimize last digits
-            if (data[^2] == '0')
+            if (data[^3] == '.' && data[^1] == '0' && data != "0")
             {
-                optimizedLength -= 3;
-            }
-            else
-            {
-                optimizedLength -= 1;
+                //Data is number, check if can optimize last digits
+                if (data[^2] == '0')
+                {
+                    optimizedLength -= 3;
+                }
+                else
+                {
+                    optimizedLength -= 1;
+                }
             }
         }
 
@@ -72,7 +75,7 @@ public static class PropertyHelper
                 await Task.Delay(25);
                 SendKeys.SendWait(c.ToString());
             }
-            
+
             await Task.Delay(25);
             await Input.HandlePause();
         }
@@ -86,9 +89,12 @@ public static class PropertyHelper
     /// <param name="position"></param>
     public static async Task SetPositionProperty(Vector3 position, ForgeUIObjectModeEnum itemObjectMode)
     {
-        await SetProperty(Math.Round(position.X, 2).ToString("F2"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
-        await SetProperty(Math.Round(position.Y, 2).ToString("F2"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Horizontal, itemObjectMode));
-        await SetProperty(Math.Round(position.Z, 2).ToString("F2"), ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
+        await SetProperty(Math.Round(position.X, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
+        await SetProperty(Math.Round(position.Y, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Horizontal, itemObjectMode));
+        await SetProperty(Math.Round(position.Z, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
     }
 
     /// <summary>
@@ -97,17 +103,18 @@ public static class PropertyHelper
     /// <param name="scale"></param>
     public static async Task SetScaleProperty(Vector3 scale, ForgeUIObjectModeEnum itemObjectMode)
     {
-        if (itemObjectMode is ForgeUIObjectModeEnum.DYNAMIC or ForgeUIObjectModeEnum.DYNAMIC_FIRST or ForgeUIObjectModeEnum.DYNAMIC_FIRST_VARIANT)
+        if (itemObjectMode is ForgeUIObjectModeEnum.DYNAMIC or ForgeUIObjectModeEnum.DYNAMIC_FIRST
+            or ForgeUIObjectModeEnum.DYNAMIC_FIRST_VARIANT)
             return;
-        
+
         var realScale = MemoryHelper.GetSelectedScale() * scale;
-        
+
         await SetProperty(Math.Round(realScale.X, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeX, itemObjectMode));
-        
+
         await SetProperty(Math.Round(realScale.Y, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeY, itemObjectMode));
-        
+
         await SetProperty(Math.Round(realScale.Z, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.SizeZ, itemObjectMode));
     }
@@ -117,25 +124,33 @@ public static class PropertyHelper
     /// </summary>
     /// <param name="rotation"></param>
     /// <param name="isBlender"> Changes how rotation is handled </param>
-    public static async Task SetRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode, bool isBlender = false)
+    public static async Task SetRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode,
+        bool isBlender)
     {
         if (isBlender)
         {
             var test = Utils.ToQuaternionZ(rotation); //Utils.ToDegree(blenderRotation); //Utils.QuaternionToYXZ(quat);
 
-            var  newRot = Utils.ToEulerAnglesZ(test);
+            var newRot = Utils.ToEulerAnglesZ(test);
             newRot = Utils.ToDegree(newRot);
             //newRot = Utils.To180(newRot);
 
             //newRot.Y = Utils.To90(newRot.Y);
-            Log.Error("DEBUG ROT: {ROT}",newRot);
+            Log.Error("DEBUG ROT: {ROT}", newRot);
             // newRot.Y = -newRot.Y;
+            
+            await SetProperty("0",
+                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
+            
+            
+            await SetProperty(Math.Round(newRot.X, 2).ToString("F2"),
+                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
             await SetProperty(Math.Round(newRot.Z, 2).ToString("F2"),
                 ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
             await SetProperty(Math.Round(-newRot.Y, 2).ToString("F2"),
                 ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Pitch, itemObjectMode));
-            await SetProperty(Math.Round(newRot.X, 2).ToString("F2"),
-                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
+            
+           
         }
         else
         {
@@ -153,17 +168,18 @@ public static class PropertyHelper
     /// </summary>
     /// <param name="itemSchema"> The forge item data </param>
     /// <param name="isBlender"> Changes how rotation is handled </param>
-    public static async Task SetMainProperties(ForgeItem itemSchema, ForgeUIObjectModeEnum itemObjectMode, bool isBlender = false)
+    public static async Task SetMainProperties(ForgeItem itemSchema, ForgeUIObjectModeEnum itemObjectMode,
+        bool isBlender = false)
     {
         await NavigationHelper.OpenUI(NavigationHelper.ContentBrowserTabs.ObjectProperties);
-        
+
         await SetScaleProperty(new Vector3(itemSchema.ScaleX, itemSchema.ScaleY, itemSchema.ScaleZ), itemObjectMode);
-        
+
         await SetPositionProperty(new Vector3(itemSchema.PositionX * 10, itemSchema.PositionY * 10,
             itemSchema.PositionZ * 10), itemObjectMode);
-        
+
         await SetRotationProperty(Utils.DidFishSaveTheDay(
             new Vector3(itemSchema.ForwardX, itemSchema.ForwardY, itemSchema.ForwardZ),
-            new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ)), itemObjectMode);
+            new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ)), itemObjectMode, isBlender);
     }
 }
