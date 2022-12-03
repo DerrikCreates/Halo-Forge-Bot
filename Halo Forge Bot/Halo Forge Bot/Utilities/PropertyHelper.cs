@@ -124,43 +124,34 @@ public static class PropertyHelper
     /// </summary>
     /// <param name="rotation"></param>
     /// <param name="isBlender"> Changes how rotation is handled </param>
-    public static async Task SetRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode,
-        bool isBlender)
+    public static async Task SetRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode)
     {
-        if (isBlender)
-        {
-            var test = Utils.ToQuaternionZ(rotation); //Utils.ToDegree(blenderRotation); //Utils.QuaternionToYXZ(quat);
+        await SetProperty(Math.Round(rotation.Z, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
 
-            var newRot = Utils.ToEulerAnglesZ(test);
-            newRot = Utils.ToDegree(newRot);
-            //newRot = Utils.To180(newRot);
+        await SetProperty(Math.Round(rotation.X, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Pitch, itemObjectMode));
 
-            //newRot.Y = Utils.To90(newRot.Y);
-            Log.Error("DEBUG ROT: {ROT}", newRot);
-            // newRot.Y = -newRot.Y;
-            
-            await SetProperty("0",
-                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
-            
-            
-            await SetProperty(Math.Round(newRot.X, 2).ToString("F2"),
-                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
-            await SetProperty(Math.Round(newRot.Z, 2).ToString("F2"),
-                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
-            await SetProperty(Math.Round(-newRot.Y, 2).ToString("F2"),
-                ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Pitch, itemObjectMode));
-            
-           
-        }
-        else
-        {
-            await SetProperty(Math.Round(rotation.Z, 2).ToString("F2"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Roll]);
-            await SetProperty(Math.Round(rotation.X, 2).ToString("F2"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Pitch]);
-            await SetProperty(Math.Round(rotation.Y, 2).ToString("F2"),
-                ObjectPropertiesOptions.StaticByDefault[ObjectPropertyName.Yaw]);
-        }
+        await SetProperty(Math.Round(rotation.Y, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
+    }
+
+    public static async Task SetBlenderRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode)
+    {
+        //todo make sure all axis are within the halo infinite YPR range -180/180 -90/90 this should fix most of the rotation flipping issues
+        var rot = rotation;// Utils.ToDegree(Utils.ToEulerAnglesZ(Utils.ToQuaternionZ(rotation)));
+
+        await SetProperty(Math.Round(rot.X, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
+
+        await SetProperty(Math.Round(-rot.Y, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Pitch, itemObjectMode));
+
+        await SetProperty(Math.Round(rot.Z, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Yaw, itemObjectMode));
+
+        await SetProperty(Math.Round(rot.X, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
     }
 
     /// <summary>
@@ -178,8 +169,17 @@ public static class PropertyHelper
         await SetPositionProperty(new Vector3(itemSchema.PositionX * 10, itemSchema.PositionY * 10,
             itemSchema.PositionZ * 10), itemObjectMode);
 
-        await SetRotationProperty(Utils.DidFishSaveTheDay(
-            new Vector3(itemSchema.ForwardX, itemSchema.ForwardY, itemSchema.ForwardZ),
-            new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ)), itemObjectMode, isBlender);
+
+        if (isBlender)
+        {
+            var rot = Utils.ToDegree(new Vector3(itemSchema.RotationX, itemSchema.RotationY, itemSchema.RotationZ));
+            await SetBlenderRotationProperty(rot, itemObjectMode);
+        }
+        else
+        {
+            await SetRotationProperty(Utils.DidFishSaveTheDay(
+                new Vector3(itemSchema.ForwardX, itemSchema.ForwardY, itemSchema.ForwardZ),
+                new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ)), itemObjectMode);
+        }
     }
 }
