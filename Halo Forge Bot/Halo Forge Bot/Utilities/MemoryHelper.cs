@@ -20,7 +20,7 @@ public static class MemoryHelper
 
     public static T ReadMemory<T>(string address)
     {
-        Log.Debug("Reading Memory of type: {Type} at address {Address}", typeof(T).ToString(), address);
+       // Log.Debug("Reading Memory of type: {Type} at address {Address}", typeof(T).ToString(), address);
         return Memory.ReadMemory<T>(address);
     }
 
@@ -82,9 +82,10 @@ public static class MemoryHelper
             ret = Memory.ReadMemory<int>(HaloPointers.GlobalHover);
             await Input.HandlePause();
         }
+
         return ret;
     }
-    
+
     /// <summary>
     /// Sometimes GlobalHover can be set to 0 before its actually at 0, this checks that the value is actually 0
     /// </summary>
@@ -94,11 +95,11 @@ public static class MemoryHelper
         //If the first value isn't 0 then it hasn't been reset
         var firstResult = await GetGlobalHover();
         if (firstResult != 0) return firstResult;
-        
+
         //If the first value is 0 then check again after a delay to make sure that it is actually 0
         await Task.Delay(10);
         var ret = await GetGlobalHover();
-        
+
         while (ret != firstResult)
         {
             firstResult = await GetGlobalHover();
@@ -181,25 +182,29 @@ public static class MemoryHelper
         return i;
     }
 
-   [Obsolete] public static int GetBrowserHover()
+    [Obsolete]
+    public static int GetBrowserHover()
     {
         Log.Verbose("Getting browser hover");
         return ReadMemory<int>(HaloPointers.RootBrowserHover);
     }
 
-   [Obsolete] public static int GetSubBrowserHover()
+    [Obsolete]
+    public static int GetSubBrowserHover()
     {
         Log.Verbose("Getting sub browser hover");
         return ReadMemory<int>(HaloPointers.SubBrowserHover);
     }
 
-   [Obsolete] public static void SetBrowserHover(int data)
+    [Obsolete]
+    public static void SetBrowserHover(int data)
     {
         Log.Debug("Setting Browser Hover with Data: {Data}", data);
         WriteMemory(HaloPointers.RootBrowserHover, data);
     }
 
-   [Obsolete]public static void SetSubBrowserHover(int data)
+    [Obsolete]
+    public static void SetSubBrowserHover(int data)
     {
         Log.Debug("Setting Browser Hover with Data: {Data}", data);
         WriteMemory(HaloPointers.SubBrowserHover, data);
@@ -223,5 +228,31 @@ public static class MemoryHelper
     public static int GetMenusVisible()
     {
         return ReadMemory<int>(HaloPointers.UiMenuVisible);
+    }
+
+    public static int GetItemCount()
+    {
+        return ReadMemory<int>(HaloPointers.ItemCount);
+    }
+
+    /// <summary>
+    /// Sets the scale of an item in memory. 
+    /// </summary>
+    /// <param name="scale"></param>
+    public static void SetItemScale(int itemIndex, Vector3 scale)
+    {
+        var ptr = Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+
+
+        int itemScaleSize = 0x1E0;
+
+
+        ptr += itemScaleSize * itemIndex + 0xb0;
+        
+        WriteMemory(ptr.ToString("x8"), scale.X);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), scale.Y);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), scale.Y);
     }
 }
