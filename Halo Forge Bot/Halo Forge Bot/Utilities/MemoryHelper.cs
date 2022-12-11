@@ -236,7 +236,7 @@ public static class MemoryHelper
     }
 
     /// <summary>
-    /// Sets the scale of an item in memory. 
+    /// Sets the scale of an item in memory. Does not apply instantly. Need to select and deselect the item changed
     /// </summary>
     /// <param name="scale"></param>
     public static void SetItemScale(int itemIndex, Vector3 scale)
