@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,12 +24,20 @@ public partial class DevUI : Window
 
     private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-       // var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
-       Error errorWindow = new Error();
-       errorWindow.ErrorTextBox.Text = "TESTSETSTSTESTT THIS IS A TEST";
-       errorWindow.Show();
+        MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
+        var i = MemoryHelper.GetItemCount();
 
-       // await Task.Run(Bot.DevTesting);
+       Task.Run( Overlay.Setup);
+
+        MemoryHelper.SetItemScale(0, Vector3.One * 0.1f);
+        MemoryHelper.SetItemScale(1, Vector3.One * 0.1f);
+        MemoryHelper.SetItemScale(2, Vector3.One * 0.1f);
+        // var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+        // Error errorWindow = new Error();
+        // errorWindow.ErrorTextBox.Text = "TESTSETSTSTESTT THIS IS A TEST";
+        // errorWindow.Show();
+
+        // await Task.Run(Bot.DevTesting);
     }
 
 
@@ -72,17 +81,17 @@ public partial class DevUI : Window
     {
         MemoryHelper.Memory.OpenProcess(ForgeUI.HaloProcess.Id);
     }
-    
+
     private void GetHaloObjects_OnClick(object sender, RoutedEventArgs e)
     {
         Dev.GetAllObjectTypeData();
     }
-    
+
     private void GetHaloObjects2_OnClick(object sender, RoutedEventArgs e)
     {
         Dev.GetAllObjectTypeData2();
     }
-    
+
     private void ResetState_OnClick(object sender, RoutedEventArgs e)
     {
         NavigationHelper.ResetNavigationState();
