@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using GameOverlay.Drawing;
 using GameOverlay.Windows;
 using Halo_Forge_Bot.GameUI;
@@ -50,33 +51,39 @@ public static class Overlay
 
     private static int i = 0;
 
-    private static void _window_DrawGraphics(object sender, DrawGraphicsEventArgs e)
+    private static async void _window_DrawGraphics(object sender, DrawGraphicsEventArgs e)
     {
         var gfx = e.Graphics;
 
 
         gfx.ClearScene();
-
+       
         gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
             gfx.CreateSolidBrush(0, 0, 0), 50, 50,
             $"ItemCount: {MemoryHelper.GetItemCount()}");
 
-
-        var ptr = MemoryHelper.Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
-        ptr += +0xb0;
-
-        var t = MemoryHelper.Memory.ReadBytes(ptr.ToString("x8"), 4);
-       // t = t.Reverse().ToArray();
-        var scaleX = BitConverter.ToSingle(t);
-
-        var value = MemoryHelper.ReadMemory<float>(ptr.ToUInt64().ToString("x8"));
-        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
+        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
             gfx.CreateSolidBrush(0, 0, 0), 50, 100,
-            $"First X Scale: {scaleX}");
+            $"Global Hover: { MemoryHelper.GetGlobalHover().Result }");
 
-        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
-            gfx.CreateSolidBrush(0, 0, 0), 50, 150,
-            $"X Scale Address: {ptr.ToString("x8")}");
+        
+        //  var ptr = MemoryHelper.Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+        //  ptr += +0xb0;
+
+        // var t = MemoryHelper.Memory.ReadBytes(ptr.ToString("x8"), 4);
+        // t = t.Reverse().ToArray();
+        /*  var scaleX = BitConverter.ToSingle(t);
+  
+          var value = MemoryHelper.ReadMemory<float>(ptr.ToUInt64().ToString("x8"));
+          gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
+              gfx.CreateSolidBrush(0, 0, 0), 50, 100,
+              $"First X Scale: {scaleX}");
+  
+          gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
+              gfx.CreateSolidBrush(0, 0, 0), 50, 150,
+              $"X Scale Address: {ptr.ToString("x8")}");
+              
+              */
     }
 
     private static void _window_DestroyGraphics(object sender, DestroyGraphicsEventArgs e)

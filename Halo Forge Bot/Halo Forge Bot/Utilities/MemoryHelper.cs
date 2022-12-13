@@ -20,7 +20,7 @@ public static class MemoryHelper
 
     public static T ReadMemory<T>(string address)
     {
-       // Log.Debug("Reading Memory of type: {Type} at address {Address}", typeof(T).ToString(), address);
+        // Log.Debug("Reading Memory of type: {Type} at address {Address}", typeof(T).ToString(), address);
         return Memory.ReadMemory<T>(address);
     }
 
@@ -72,7 +72,7 @@ public static class MemoryHelper
     /// Grabs the current UI vertical index and handles any weird pointer issues
     /// </summary>
     /// <returns></returns>
-    private static async Task<int> GetGlobalHover()
+    public static async Task<int> GetGlobalHover()
     {
         //Todo get better pointer so we don't have to ignore high values
         var ret = Memory.ReadMemory<int>(HaloPointers.GlobalHover);
@@ -247,12 +247,66 @@ public static class MemoryHelper
         int itemScaleSize = 0x1E0;
 
 
-        ptr += itemScaleSize * itemIndex + 0xb0;
-        
+        ptr += itemScaleSize * itemIndex + 0xB0;
+
         WriteMemory(ptr.ToString("x8"), scale.X);
         ptr += 4;
         WriteMemory(ptr.ToString("x8"), scale.Y);
         ptr += 4;
-        WriteMemory(ptr.ToString("x8"), scale.Y);
+        WriteMemory(ptr.ToString("x8"), scale.Z);
+    }
+
+    public static void SetItemPosition(int itemIndex, Vector3 pos)
+    {
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+
+        ptr += itemScaleSize * itemIndex + 0x8C;
+
+        WriteMemory(ptr.ToString("x8"), pos.X);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), pos.Y);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), pos.Z + 50);
+    }
+
+    public static void SetItemRotation(int itemIndex, Vector3 forward, Vector3 up)
+    {
+        forward = Vector3.Normalize(forward);
+        up = Vector3.Normalize(up);
+
+        var left = Vector3.Cross(forward, up);
+        left = Vector3.Normalize(left);
+        
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+        ptr += itemScaleSize * itemIndex + 0x68;
+
+        WriteMemory(ptr.ToString("x8"), forward.X);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), forward.Y);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), forward.Z);
+        ptr += 4;
+
+        WriteMemory(ptr.ToString("x8"), left.X);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), left.Y);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), left.Z);
+        ptr += 4;
+
+        WriteMemory(ptr.ToString("x8"), up.X);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), up.Y);
+        ptr += 4;
+        WriteMemory(ptr.ToString("x8"), up.Z);
+    }
+
+    public static float GetFolderHover()
+    {
+        return ReadMemory<short>(HaloPointers.FolderHover);
     }
 }

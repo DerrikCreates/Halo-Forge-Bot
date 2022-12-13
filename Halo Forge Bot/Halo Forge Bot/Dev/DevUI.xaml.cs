@@ -27,11 +27,22 @@ public partial class DevUI : Window
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
         var i = MemoryHelper.GetItemCount();
 
-       Task.Run( Overlay.Setup);
+        
 
-        MemoryHelper.SetItemScale(0, Vector3.One * 0.1f);
-        MemoryHelper.SetItemScale(1, Vector3.One * 0.1f);
-        MemoryHelper.SetItemScale(2, Vector3.One * 0.1f);
+        // MemoryHelper.SetItemScale(0, Vector3.One * 0.1f);
+        // MemoryHelper.SetItemScale(1, Vector3.One * 0.1f);
+        //  MemoryHelper.SetItemScale(2, Vector3.One * 0.1f);
+
+        var pos = new Vector3(1, 0, 150);
+        for (int j = 0; j < 9; j++)
+        {
+            pos.X += 10;
+            MemoryHelper.SetItemPosition(j, pos);
+        }
+
+        
+
+
         // var scheduler = TaskScheduler.FromCurrentSynchronizationContext();
         // Error errorWindow = new Error();
         // errorWindow.ErrorTextBox.Text = "TESTSETSTSTESTT THIS IS A TEST";

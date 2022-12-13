@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
+using Halo_Forge_Bot.GameUI;
 
 namespace Halo_Forge_Bot.Utilities;
 
@@ -11,16 +12,19 @@ public class HaloPointers
         RootBrowserHover =
             "HaloInfinite.exe+0x482B178,0xB8,0x950"; //todo find the pointer that tracks both root and sub hover
 
-    public static readonly string SetScaleItemArray = "HaloInfinite.exe+4632F08,0";
+    public static readonly string SetScaleItemArray = "HaloInfinite.exe+4632F08,0x0";
+    public static readonly string SetSetPositionItemArray = "HaloInfinite.exe+4905198,0x10,0x0";
+    public static readonly string FolderHover = "HaloInfinite.exe+42BF168,0x48,0x68";
+
     public static readonly string ItemCount = "HaloInfinite.exe+4905198,0x78";
 
     public static readonly string GlobalHover = "HaloInfinite.exe+42F0B30,0xBB0,0x950"; //updated
     public static readonly string SubBrowserHover = "HaloInfinite.exe+0x42CCE70,0xBB0,0x950";
     public static readonly string TopBrowserHover = "HaloInfinite.exe+0x49DDD10,0x1A8"; //updated
     public static readonly string BrowserScroll = "HaloInfinite.exe+0x482B108,0xB8,0x934";
-    public static readonly string EditPropertyBool = "HaloInfinite.exe+0x00000482B1F8,0xB5";
-    public static readonly string EditNameBox = "HaloInfinite.exe+0x0000042CC760,0xA8,0x774"; // updated
-    public static readonly string UiMenuVisible = "HaloInfinite.exe+00000425EB28,0x0,0x28";
+    public static readonly string EditPropertyBool = "HaloInfinite.exe+0x482B1F8,0xB5";
+    public static readonly string EditNameBox = "HaloInfinite.exe+0x42CC760,0xA8,0x774"; // updated
+    public static readonly string UiMenuVisible = "HaloInfinite.exe+4282728,0x0,0x28";
 
 
     public static readonly string TransformPointer = "HaloInfinite.exe+0x42CCE48,0x80";

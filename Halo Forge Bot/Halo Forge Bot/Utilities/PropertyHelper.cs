@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BondReader.Schemas.Items;
 using InfiniteForgeConstants.Forge_UI.Object_Properties;
+using Memory;
 using Microsoft.VisualBasic.Logging;
 using TextCopy;
 using WindowsInput.Native;
@@ -139,7 +140,7 @@ public static class PropertyHelper
     public static async Task SetBlenderRotationProperty(Vector3 rotation, ForgeUIObjectModeEnum itemObjectMode)
     {
         //todo make sure all axis are within the halo infinite YPR range -180/180 -90/90 this should fix most of the rotation flipping issues
-        var rot = rotation;// Utils.ToDegree(Utils.ToEulerAnglesZ(Utils.ToQuaternionZ(rotation)));
+        var rot = rotation; // Utils.ToDegree(Utils.ToEulerAnglesZ(Utils.ToQuaternionZ(rotation)));
 
         await SetProperty(Math.Round(rot.X, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Roll, itemObjectMode));
@@ -181,5 +182,17 @@ public static class PropertyHelper
                 new Vector3(itemSchema.ForwardX, itemSchema.ForwardY, itemSchema.ForwardZ),
                 new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ)), itemObjectMode);
         }
+    }
+
+    public static async Task SetPropertiesFromMemory(ForgeItem itemSchema, int itemIndex)
+    {
+        MemoryHelper.SetItemPosition(itemIndex,
+            new Vector3(itemSchema.PositionX, itemSchema.PositionY, itemSchema.PositionZ));
+
+        MemoryHelper.SetItemRotation(itemIndex,
+            new Vector3(itemSchema.ForwardX, itemSchema.ForwardY, itemSchema.ForwardZ),
+            new Vector3(itemSchema.UpX, itemSchema.UpY, itemSchema.UpZ));
+
+        MemoryHelper.SetItemScale(itemIndex, new Vector3(itemSchema.ScaleX, itemSchema.ScaleY, itemSchema.ScaleZ));
     }
 }

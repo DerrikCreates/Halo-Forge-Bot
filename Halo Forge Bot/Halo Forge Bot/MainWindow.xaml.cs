@@ -50,6 +50,8 @@ namespace Halo_Forge_Bot
             InitializeComponent();
             Input.InitInput();
 
+            MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
+            Task.Run(Overlay.Setup);
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
               foreach (var field in staticFields)

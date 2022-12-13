@@ -36,9 +36,9 @@ public static class Bot
 {
     public static int WhenToSave = 15;
     //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
-    
+
     public static async Task StartBot(List<ForgeItem> map, int itemStart = 0, int itemEnd = 0,
-        bool resumeFromLast = false , bool isBlender = false)
+        bool resumeFromLast = false, bool isBlender = false)
     {
         //todo create a class for both blender and .mvar files, maybe use the blender file json
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
@@ -49,8 +49,11 @@ public static class Bot
 
         // LoadItemData();
         BuildUILayout();
-        
         BotSetup(map, out startIndex, itemStart, itemEnd, resumeFromLast, ref items);
+
+        // Dictionary<ObjectId, List<MapItem>> temp = new();
+        // temp.Add(ObjectId.PRIMITIVE_BLOCK, items[ObjectId.PRIMITIVE_BLOCK]);
+
         await BotLoop(items, startIndex, resumeFromLast, isBlender);
     }
 
@@ -75,7 +78,7 @@ public static class Bot
             var tempArray =
                 map.OrderBy(item => item.ItemId)
                     .ToList(); // temp to an array to i know now for sure its in the correct order. might be unnecessary 
-            
+
             if (itemEnd == 0)
             {
                 itemEnd = tempArray.Count();
@@ -120,42 +123,90 @@ public static class Bot
         }
     }
 
-    private static async Task BotLoop(Dictionary<ObjectId, List<MapItem>> items, int startIndex, bool resumeFromLast, bool isBlender)
-    {
+    private static async Task BotLoop(Dictionary<ObjectId, List<MapItem>> items, int startIndex, bool resumeFromLast,
+        bool isBlender)
+    { //todo check if the scale array always has the same number of items as the item array
+        void NewFunction(MapItem item, int i)
+        {
+            var current = item;
+            MemoryHelper.SetItemPosition(i, new Vector3(current.item.PositionX,
+                current.item.PositionY,
+                current.item.PositionZ));
+
+            MemoryHelper.SetItemScale(i, new Vector3(current.item.ScaleX,
+                current.item.ScaleY,
+                current.item.ScaleZ));
+
+
+            var forward = new Vector3(current.item.ForwardX, current.item.ForwardY, current.item.ForwardZ);
+            var up = new Vector3(current.item.UpX, current.item.UpY, current.item.UpZ);
+
+
+            MemoryHelper.SetItemRotation(i, forward, up);
+        }
+
         ForgeUI.SetHaloProcess();
         int itemCountID = 0;
         int saveCount = 0;
 
+        int itemIndex = 0;
         foreach (var item in items)
         {
             ForgeUIObject _forgeObject;
             ForgeObjectBrowser.FindItem(item.Key, out _forgeObject);
 
-            foreach (var mapItem in item.Value.Where(mapItem => mapItem.UniqueId >= startIndex || !resumeFromLast))
+
+            //WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
+
+
+            saveCount++;
+            await Task.Delay(200);
+
+
+            await NavigationHelper.SpawnItem(_forgeObject);
+            var ItemCount = MemoryHelper.GetItemCount();
+
+
+            foreach (var mapItem in item.Value)
             {
-                WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
-
-                saveCount++;
-                await Task.Delay(200);
-
-                await NavigationHelper.SpawnItem(_forgeObject);
-
-                await Task.Delay(200);
-
-                if (saveCount == WhenToSave)
-                {
-                    //todo add a save count setting to the ui
-                    await Task.Delay(100);
-                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                    saveCount = 0;
-                    await Task.Delay(100);
-                }
-
-                await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
-                itemCountID++;
-                
-                await Input.HandlePause();
+                ItemCount++;
+                Input.PressKey(VirtualKeyCode.VK_D, 10, VirtualKeyCode.CONTROL);
+                await Task.Delay(25);
+                NewFunction(mapItem, ItemCount);
             }
+
+
+            await Task.Delay(200);
+
+
+            // if (saveCount == WhenToSave)
+            // {
+            //     //todo add a save count setting to the ui
+            //     await Task.Delay(100);
+            //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+            //     saveCount = 0;
+            //     await Task.Delay(100);
+            // }
+
+            //await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
+            //  await PropertyHelper.SetPropertiesFromMemory(mapItem.item, itemCountID);
+
+            await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.Folders);
+            Input.PressKey(VirtualKeyCode.VK_F, 50);
+            Input.PressKey(VirtualKeyCode.VK_S, 50);
+            itemCountID++;
+            int itemCount = MemoryHelper.GetItemCount();
+
+
+            for (int i = 0; i < itemCount; i++)
+            {
+                Input.PressKey(VirtualKeyCode.VK_S, 25);
+                Input.PressKey(VirtualKeyCode.VK_F, 25);
+                await Task.Delay(25);
+                Input.PressKey(VirtualKeyCode.VK_F, 25);
+            }
+
+            await Input.HandlePause();
         }
     }
 
@@ -163,7 +214,7 @@ public static class Bot
     /// Ensures the UI layout is only built once
     /// </summary>
     private static bool UILayoutBuilt = false;
-    
+
     /// <summary>
     /// This needs changing to work with items that seem to be getting removed (like the last few antennas)
     /// </summary>
@@ -185,7 +236,8 @@ public static class Bot
 
             ForgeObjectBrowser.AddItem(ConformForgeObjects.FixCapital(objectData[0].ToLower()),
                 ConformForgeObjects.FixCapital(objectData[1].ToLower()),
-                Enum.GetName((ObjectId)int.Parse(objectData[3])) ?? objectData[2], Enum.Parse<ObjectId>(objectData[3]), ForgeUIObjectModeEnum.STATIC_FIRST);
+                Enum.GetName((ObjectId)int.Parse(objectData[3])) ?? objectData[2], Enum.Parse<ObjectId>(objectData[3]),
+                ForgeUIObjectModeEnum.STATIC_FIRST);
         }
     }
 
