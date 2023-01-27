@@ -276,7 +276,7 @@ public static class MemoryHelper
         forward = Vector3.Normalize(forward);
         up = Vector3.Normalize(up);
 
-        var left = Vector3.Cross(forward, up);
+        var left = Vector3.Cross(up,forward);
         left = Vector3.Normalize(left);
         
         var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
