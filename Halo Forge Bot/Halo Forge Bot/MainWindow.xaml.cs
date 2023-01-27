@@ -151,7 +151,8 @@ namespace Halo_Forge_Bot
 
             try
             {
-                await Bot.StartBot(items, isBlender: true);
+                await Bot.StartBot(items, isBlender: true, itemStart: int.Parse(ItemRangeStart.Text),
+                    itemEnd: int.Parse(ItemRangeEnd.Text));
             }
             catch (Exception exception)
             {
@@ -166,6 +167,11 @@ namespace Halo_Forge_Bot
         private void EnterDev_OnClick(object sender, RoutedEventArgs e)
         {
             DevWindow.Show();
+        }
+
+        private void Next_OnClick(object sender, RoutedEventArgs e)
+        {
+            Bot.next = true;
         }
     }
 }

@@ -1,9 +1,17 @@
 using System;
+using System.Buffers.Binary;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using Bond;
 using GameOverlay.Drawing;
 using GameOverlay.Windows;
 using Halo_Forge_Bot.GameUI;
+using Marshal = System.Runtime.InteropServices.Marshal;
 
 namespace Halo_Forge_Bot.Utilities;
 
@@ -11,6 +19,8 @@ public static class Overlay
 {
     private static StickyWindow window;
     private static Font _font;
+    private static Font _largeFont;
+
 
     public static void Setup()
     {
@@ -47,29 +57,81 @@ public static class Overlay
     {
         var gfx = e.Graphics;
         _font = gfx.CreateFont("Arial", 12);
+        _largeFont = gfx.CreateFont("Arial", 24);
     }
 
     private static int i = 0;
 
+    private static string ReverseString(string s)
+    {
+        var array = s.ToCharArray();
+        Array.Reverse(array);
+        return new string(array);
+    }
+
     private static async void _window_DrawGraphics(object sender, DrawGraphicsEventArgs e)
     {
+        var addr = ReverseString("D1 AB 7E 90"); //90 7E AB D1
+
+        //7FF7C86C0000 + 6486 706A
         var gfx = e.Graphics;
-
-
-        gfx.ClearScene();
        
-        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
-            gfx.CreateSolidBrush(0, 0, 0), 50, 50,
-            $"ItemCount: {MemoryHelper.GetItemCount()}");
-
-        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
-            gfx.CreateSolidBrush(0, 0, 0), 50, 100,
-            $"Global Hover: { MemoryHelper.GetGlobalHover().Result }");
 
         
+        gfx.BeginScene();
+        gfx.ClearScene();
+        
+        
+        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
+            gfx.CreateSolidBrush(0, 0, 0), 50, 50,
+            $"SPAWN IN MORE THAN {Bot.ConesToSpawn} CONES!!! Then click next");
+        
+        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
+            gfx.CreateSolidBrush(0, 0, 0), 50, 100,
+            $"Item Count List1: {MemoryHelper.GetItemCount()}");
+
+       
+
+       // gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
+       //     gfx.CreateSolidBrush(0, 0, 0), 50, 150,
+     //       $"Global Hover: {MemoryHelper.GetGlobalHover().Result}");
+
+
+        var bytes = MemoryHelper.Memory.ReadBytes("HaloInfinite.exe+4905198,0", 124);
+            //var test = MemoryHelper.ReinterpretObject<ForgeItems>(bytes);
+        //var size = (long)test.LastItemSpawnedEnd - (long)test.ItemArrayStart;
+       // var itemCount = size / 0x310;
+
+       // gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
+     //       gfx.CreateSolidBrush(0, 0, 0), 50, 200,
+    //        $"Item Count From Mem: {itemCount}");
+
+
+        List<string> hex = new();
+        foreach (var b in bytes)
+        {
+            hex.Add(b.ToString("X"));
+        }
+
+
+        /*
+        for (int j = 0; j < 15; j++)
+        {
+            gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
+                gfx.CreateSolidBrush(0, 0, 0), 600, 100 + (j * 25),
+                $"Scale index {j + MemoryHelper.GetItemCount()}: {MemoryHelper.GetItemScale(j + MemoryHelper.GetItemCount())}");
+        }
+  
+        
+        for (int j = 0; j < 15; j++)
+        {
+            gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
+                gfx.CreateSolidBrush(0, 0, 0), 600, 500 + (j * 25),
+                $"Scale index {j }: {MemoryHelper.GetItemScale(j)}");
+        }
         //  var ptr = MemoryHelper.Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
         //  ptr += +0xb0;
-
+       */
         // var t = MemoryHelper.Memory.ReadBytes(ptr.ToString("x8"), 4);
         // t = t.Reverse().ToArray();
         /*  var scaleX = BitConverter.ToSingle(t);
@@ -89,4 +151,36 @@ public static class Overlay
     private static void _window_DestroyGraphics(object sender, DestroyGraphicsEventArgs e)
     {
     }
+
+
+    public static T fromBytes<T>(byte[] arr) where T : struct
+    {
+        T str = new();
+
+        int size = Marshal.SizeOf(str);
+        IntPtr ptr = IntPtr.Zero;
+        try
+        {
+            ptr = Marshal.AllocHGlobal(size);
+
+            Marshal.Copy(arr, 0, ptr, size);
+
+            str = (T)Marshal.PtrToStructure(ptr, str.GetType());
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(ptr);
+        }
+
+        return str;
+    }
+}
+
+[StructLayout(LayoutKind.Explicit)]
+public struct ForgeItems // This is the item array that sets rot pos but NOT scale
+{
+    [FieldOffset(0x10)] public readonly IntPtr ItemArrayStart;
+    [FieldOffset(0x18)] public readonly IntPtr LastItemSpawnedEnd;
+    [FieldOffset(0x20)] public readonly IntPtr ItemArrayMaxAllocated;
+    [FieldOffset(0x78)] public readonly int ItemCount;
 }

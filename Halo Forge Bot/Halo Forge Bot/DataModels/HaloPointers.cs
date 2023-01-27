@@ -17,13 +17,14 @@ public class HaloPointers
     public static readonly string FolderHover = "HaloInfinite.exe+42BF168,0x48,0x68";
 
     public static readonly string ItemCount = "HaloInfinite.exe+4905198,0x78";
-
+    public static readonly string ItemCountScaleArray = "HaloInfinite.exe+4905198,0x78";
+    
     public static readonly string GlobalHover = "HaloInfinite.exe+42F0B30,0xBB0,0x950"; //updated
     public static readonly string SubBrowserHover = "HaloInfinite.exe+0x42CCE70,0xBB0,0x950";
     public static readonly string TopBrowserHover = "HaloInfinite.exe+0x49DDD10,0x1A8"; //updated
     public static readonly string BrowserScroll = "HaloInfinite.exe+0x482B108,0xB8,0x934";
-    public static readonly string EditPropertyBool = "HaloInfinite.exe+0x482B1F8,0xB5";
-    public static readonly string EditNameBox = "HaloInfinite.exe+0x42CC760,0xA8,0x774"; // updated
+    public static readonly string EditPropertyBool = "HaloInfinite.exe+0x42F01C0,0x160";
+    public static readonly string EditNameBox = "HaloInfinite.exe+0x42F0320,0xB98,0x774"; // updated
     public static readonly string UiMenuVisible = "HaloInfinite.exe+4282728,0x0,0x28";
 
 

@@ -97,6 +97,13 @@ public static class PropertyHelper
         await SetProperty(Math.Round(position.Z, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
     }
+    
+    public static async Task SetForwardProperty(float value, ForgeUIObjectModeEnum itemObjectMode)
+    {
+        await SetProperty(Math.Round(value, 2).ToString("F2"),
+            ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
+        
+    }
 
     /// <summary>
     /// Handles setting the forge item's scale

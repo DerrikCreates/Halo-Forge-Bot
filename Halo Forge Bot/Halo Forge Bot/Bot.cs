@@ -37,6 +37,10 @@ public static class Bot
     public static int WhenToSave = 15;
     //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
 
+    public static int ConesToSpawn;
+    public static bool next = false; //todo change this dog shit
+
+
     public static async Task StartBot(List<ForgeItem> map, int itemStart = 0, int itemEnd = 0,
         bool resumeFromLast = false, bool isBlender = false)
     {
@@ -54,7 +58,22 @@ public static class Bot
         // Dictionary<ObjectId, List<MapItem>> temp = new();
         // temp.Add(ObjectId.PRIMITIVE_BLOCK, items[ObjectId.PRIMITIVE_BLOCK]);
 
+
         await BotLoop(items, startIndex, resumeFromLast, isBlender);
+
+        /*
+        await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.Folders);
+        Input.PressKey(VirtualKeyCode.VK_S, 50);
+        Input.PressKey(VirtualKeyCode.VK_F, 50);
+        Input.PressKey(VirtualKeyCode.VK_S, 50);
+        for (int i = 0; i < MemoryHelper.GetItemCount(); i++)
+        {
+            Input.PressKey(VirtualKeyCode.VK_S, 25);
+            Input.PressKey(VirtualKeyCode.VK_F, 25);
+            await Task.Delay(25);
+            Input.PressKey(VirtualKeyCode.VK_F, 25);
+        }
+        */
     }
 
     private static void BotSetup(List<ForgeItem> map, out int startIndex, int itemStart, int itemEnd,
@@ -123,56 +142,76 @@ public static class Bot
         }
     }
 
+    private static void SetDataMemory(MapItem item, int i)
+    {
+        var current = item;
+        MemoryHelper.SetItemPosition(i, new Vector3(current.item.PositionX,
+            current.item.PositionY,
+            current.item.PositionZ));
+
+        MemoryHelper.SetItemScale(i, new Vector3(current.item.ScaleX,
+            current.item.ScaleY,
+            current.item.ScaleZ));
+
+
+        var forward = new Vector3(current.item.ForwardX, current.item.ForwardY, current.item.ForwardZ);
+        var up = new Vector3(current.item.UpX, current.item.UpY, current.item.UpZ);
+
+
+        MemoryHelper.SetItemRotation(i, forward, up);
+    }
+
     private static async Task BotLoop(Dictionary<ObjectId, List<MapItem>> items, int startIndex, bool resumeFromLast,
         bool isBlender)
-    { //todo check if the scale array always has the same number of items as the item array
-        void NewFunction(MapItem item, int i)
-        {
-            var current = item;
-            MemoryHelper.SetItemPosition(i, new Vector3(current.item.PositionX,
-                current.item.PositionY,
-                current.item.PositionZ));
+    {
+        //todo check if the scale array always has the same number of items as the item array
+        var sorted = items.OrderByDescending(x => x.Value.Count).ToList();
 
-            MemoryHelper.SetItemScale(i, new Vector3(current.item.ScaleX,
-                current.item.ScaleY,
-                current.item.ScaleZ));
-
-
-            var forward = new Vector3(current.item.ForwardX, current.item.ForwardY, current.item.ForwardZ);
-            var up = new Vector3(current.item.UpX, current.item.UpY, current.item.UpZ);
-
-
-            MemoryHelper.SetItemRotation(i, forward, up);
-        }
 
         ForgeUI.SetHaloProcess();
-        int itemCountID = 0;
+
         int saveCount = 0;
 
         int itemIndex = 0;
-        foreach (var item in items)
+        foreach (var item in sorted)
         {
+            int itemCountID = MemoryHelper.GetItemCount();
             ForgeUIObject _forgeObject;
             ForgeObjectBrowser.FindItem(item.Key, out _forgeObject);
 
-
             //WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
-
 
             saveCount++;
             await Task.Delay(200);
 
+            if (item.Key == ObjectId.PLAYER_SCALE_OBJECT)
+            {
+                continue;
+            }
 
-            await NavigationHelper.SpawnItem(_forgeObject);
-            var ItemCount = MemoryHelper.GetItemCount();
-
+            int spawnCounter = 0;
 
             foreach (var mapItem in item.Value)
             {
-                ItemCount++;
-                Input.PressKey(VirtualKeyCode.VK_D, 10, VirtualKeyCode.CONTROL);
-                await Task.Delay(25);
-                NewFunction(mapItem, ItemCount);
+                await NavigationHelper.SpawnItem(_forgeObject);
+                await Task.Delay(10);
+                SetDataMemory(mapItem, itemCountID);
+                await Task.Delay(50);
+                await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectProperties);
+                //Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                //  Thread.Sleep(10);
+                // Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_D);
+                await NavigationHelper.NavigateVertical(
+                    ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward,
+                        ForgeUIObjectModeEnum.STATIC_FIRST));
+                await Task.Delay(10);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                await Task.Delay(10);
+                await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10, ForgeUIObjectModeEnum.STATIC_FIRST);
+
+
+                spawnCounter++;
+                itemCountID++;
             }
 
 
@@ -191,20 +230,6 @@ public static class Bot
             //await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
             //  await PropertyHelper.SetPropertiesFromMemory(mapItem.item, itemCountID);
 
-            await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.Folders);
-            Input.PressKey(VirtualKeyCode.VK_F, 50);
-            Input.PressKey(VirtualKeyCode.VK_S, 50);
-            itemCountID++;
-            int itemCount = MemoryHelper.GetItemCount();
-
-
-            for (int i = 0; i < itemCount; i++)
-            {
-                Input.PressKey(VirtualKeyCode.VK_S, 25);
-                Input.PressKey(VirtualKeyCode.VK_F, 25);
-                await Task.Delay(25);
-                Input.PressKey(VirtualKeyCode.VK_F, 25);
-            }
 
             await Input.HandlePause();
         }
