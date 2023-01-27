@@ -135,9 +135,9 @@ namespace Halo_Forge_Bot
 
         private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
         {
-            List<ForgeItem> items = new();
+            List<ForgeItem> items = new();  
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "json files (*.json)|*.json|All files (*.*)|*.*";
+            openFileDialog.Filter = "DCjson files (*.dcjson)|*.dcjson|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 items = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText(openFileDialog.FileName)).ItemList;
