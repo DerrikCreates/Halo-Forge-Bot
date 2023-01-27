@@ -48,6 +48,7 @@ public static class Bot
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
             .Id); // todo add checks to the ui to stop the starting of the bot without halo being open / crash detection
 
+        Task.Run(Overlay.Setup);
         int startIndex = itemStart;
         Dictionary<ObjectId, List<MapItem>> items = new();
 
@@ -181,7 +182,7 @@ public static class Bot
 
             //WriteObjectRecoveryIndexToFile(mapItem.UniqueId);
 
-            saveCount++;
+
             await Task.Delay(200);
 
             if (item.Key == ObjectId.PLAYER_SCALE_OBJECT)
@@ -193,6 +194,7 @@ public static class Bot
 
             foreach (var mapItem in item.Value)
             {
+                saveCount++;
                 await NavigationHelper.SpawnItem(_forgeObject);
                 await Task.Delay(10);
                 SetDataMemory(mapItem, itemCountID);
@@ -207,25 +209,28 @@ public static class Bot
                 await Task.Delay(10);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 await Task.Delay(10);
-                await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10, ForgeUIObjectModeEnum.STATIC_FIRST);
+                await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10,
+                    ForgeUIObjectModeEnum.STATIC_FIRST);
 
 
                 spawnCounter++;
                 itemCountID++;
+
+                if (saveCount == WhenToSave)
+                {
+                    await NavigationHelper.CloseUI();
+                    //todo add a save count setting to the ui
+                    await Task.Delay(100);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                    saveCount = 0;
+                    await Task.Delay(100);
+                }
             }
 
 
             await Task.Delay(200);
 
-
-            // if (saveCount == WhenToSave)
-            // {
-            //     //todo add a save count setting to the ui
-            //     await Task.Delay(100);
-            //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-            //     saveCount = 0;
-            //     await Task.Delay(100);
-            // }
 
             //await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
             //  await PropertyHelper.SetPropertiesFromMemory(mapItem.item, itemCountID);

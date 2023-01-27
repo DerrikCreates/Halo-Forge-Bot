@@ -50,8 +50,8 @@ namespace Halo_Forge_Bot
             InitializeComponent();
             Input.InitInput();
 
-            MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
-            Task.Run(Overlay.Setup);
+            
+            
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
               foreach (var field in staticFields)
@@ -65,65 +65,101 @@ namespace Halo_Forge_Bot
               */
         }
 
-        private BondSchema? _selectedMap;
-        public static string? SelecteMapPath;
+        private List<ForgeItem>? _itemsToSpawn;
+        public static string? selectedMapPath;
 
-        private void LoadMvar_OnClick(object sender, RoutedEventArgs e)
+        private void LoadMap_OnClick(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "mvar files (*.mvar)|*.mvar|All files (*.*)|*.*";
+            openFileDialog.Filter = "MapFiles (*.mvar;*.dcjson;*.json)|*.mvar;*.dcjson;*.json";
             if (openFileDialog.ShowDialog() == true)
             {
-                _selectedMap = BondHelper.ProcessFile<BondSchema>(openFileDialog.FileName);
-                SelecteMapPath = Path.GetDirectoryName(openFileDialog.FileName);
-                MapItemCount.Content = _selectedMap.Items.Count;
-                string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
+                FileInfo info = new FileInfo(openFileDialog.FileName);
+
+                var extension = info.Extension.ToLower();
+                if (extension == ".dcjson" || extension == ".json")
+                {
+                    //PROCESS THE BLENDER DATA
+
+                    _itemsToSpawn = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText(openFileDialog.FileName))
+                        .ItemList;
+                }
+
+                if (extension == ".mvar")
+                {
+                    //PROCESS THE MVAR DATA
+
+                    var mvar = BondHelper.ProcessFile<BondSchema>(openFileDialog.FileName);
+                    _itemsToSpawn = Utils.SchemaToItemList(mvar);
+                }
+
+                if (_itemsToSpawn == null)
+                {
+                    return;
+                }
+
+                selectedMapPath = Path.GetDirectoryName(openFileDialog.FileName);
+                MapItemCount.Content = _itemsToSpawn.Count;
+                string estimate = $"{Math.Round(TimeSpan.FromSeconds(_itemsToSpawn.Count * 4).TotalHours, 2)}h";
                 EstimatedTime.Content = estimate;
             }
         }
 
         private async void StartBot_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_selectedMap == null)
+            try
             {
-                Log.Error("Selected map is null, select a map first");
-                return;
-            }
+                if (_itemsToSpawn == null)
+                {
+                    ShowErrorPage("Either no map has been selected or the data is bad");
+                    Log.Error("Selected map is null, select a map first");
+                    return;
+                }
 
-            Log.Information("-----STARTING BOT-----");
-            await Bot.StartBot(Utils.SchemaToItemList(_selectedMap), int.Parse(ItemRangeStart.Text),
-                int.Parse(ItemRangeEnd.Text));
-            Log.Information("-----STOPPING BOT-----");
+                Log.Information("-----STARTING BOT-----");
+                await Bot.StartBot(_itemsToSpawn, int.Parse(ItemRangeStart.Text),
+                    int.Parse(ItemRangeEnd.Text));
+                Log.Information("-----STOPPING BOT-----");
+                
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                ShowErrorPage(exception);
+                throw;
+            }
         }
 
         private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_selectedMap == null)
-            {
-                Log.Error("Selected map is null, select a map first");
-                return;
-            }
-
-            if (!File.Exists(Utils.ExePath + "/recovery/ObjectRecoveryData.json"))
-            {
-                Log.Error("No recovery data found.");
-                return;
-            }
-
-            Log.Information("-----STARTING BOT-----");
-            try
-            {
-                await Bot.StartBot(Utils.SchemaToItemList(_selectedMap), int.Parse(ItemRangeStart.Text),
-                    int.Parse(ItemRangeEnd.Text), true);
-                Log.Information("-----STOPPING BOT-----");
-            }
-            catch (Exception exception)
-            {
-                ShowErrorPage(exception);
-
-                Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
-                    exception.StackTrace);
-            }
+            /*
+                        if (_itemsToSpawn == null)
+                        {
+                            Log.Error("Selected map is null, select a map first");
+                            return;
+                        }
+            
+                        if (!File.Exists(Utils.ExePath + "/recovery/ObjectRecoveryData.json"))
+                        {
+                            Log.Error("No recovery data found.");
+                            return;
+                        }
+            
+                        Log.Information("-----STARTING BOT-----");
+                        try
+                        {
+                            await Bot.StartBot(Utils.SchemaToItemList(_itemsToSpawn), int.Parse(ItemRangeStart.Text),
+                                int.Parse(ItemRangeEnd.Text), true);
+                            Log.Information("-----STOPPING BOT-----");
+                        }
+                        catch (Exception exception)
+                        {
+                            ShowErrorPage(exception);
+            
+                            Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                                exception.StackTrace);
+                        }
+                        */
         }
 
         private void ShowErrorPage(Exception exception)
@@ -132,10 +168,16 @@ namespace Halo_Forge_Bot
             error.ErrorTextBox.Text = exception.Message + Environment.NewLine + exception.StackTrace;
             error.Show();
         }
+        private void ShowErrorPage(string exception)
+        {
+            Error error = new Error();
+            error.ErrorTextBox.Text = exception;
+            error.Show();
+        }
 
         private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
         {
-            List<ForgeItem> items = new();  
+            List<ForgeItem> items = new();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "DCjson files (*.dcjson)|*.dcjson|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
