@@ -97,7 +97,7 @@ public static class Overlay
      //       $"Global Hover: {MemoryHelper.GetGlobalHover().Result}");
 
 
-        var bytes = MemoryHelper.Memory.ReadBytes("HaloInfinite.exe+4905198,0", 124);
+       
             //var test = MemoryHelper.ReinterpretObject<ForgeItems>(bytes);
         //var size = (long)test.LastItemSpawnedEnd - (long)test.ItemArrayStart;
        // var itemCount = size / 0x310;
@@ -107,11 +107,7 @@ public static class Overlay
     //        $"Item Count From Mem: {itemCount}");
 
 
-        List<string> hex = new();
-        foreach (var b in bytes)
-        {
-            hex.Add(b.ToString("X"));
-        }
+        
 
 
         /*
