@@ -268,7 +268,7 @@ public static class MemoryHelper
         ptr += 4;
         WriteMemory(ptr.ToString("x8"), pos.Y);
         ptr += 4;
-        WriteMemory(ptr.ToString("x8"), pos.Z + 50);
+        WriteMemory(ptr.ToString("x8"), pos.Z);
     }
 
     public static void SetItemRotation(int itemIndex, Vector3 forward, Vector3 up)
