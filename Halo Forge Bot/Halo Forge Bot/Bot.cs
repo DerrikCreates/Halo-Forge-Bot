@@ -217,8 +217,8 @@ public static class Bot
                     ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward,
                         ForgeUIObjectModeEnum.STATIC_FIRST));
                 await Task.Delay(10);
-                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
-                await Task.Delay(10);
+              //  Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+              //  await Task.Delay(10);
                 await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10,
                     ForgeUIObjectModeEnum.STATIC_FIRST);
 
