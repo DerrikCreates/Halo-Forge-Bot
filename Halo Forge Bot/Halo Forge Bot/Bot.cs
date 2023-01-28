@@ -34,14 +34,14 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
-    public static int WhenToSave = 15;
+    public static int WhenToSave = 3;
     //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
 
     public static int ConesToSpawn;
     public static bool next = false; //todo change this dog shit
 
 
-    public static async Task StartBot(List<ForgeItem> map, int itemStart = 0, int itemEnd = 0,
+    public static async Task StartBot(List<ForgeItem> map, int saveAmmount, int itemStart = 0, int itemEnd = 0,
         bool resumeFromLast = false, bool isBlender = false)
     {
         //todo create a class for both blender and .mvar files, maybe use the blender file json
@@ -60,7 +60,7 @@ public static class Bot
         // temp.Add(ObjectId.PRIMITIVE_BLOCK, items[ObjectId.PRIMITIVE_BLOCK]);
 
 
-        await BotLoop(items, startIndex, resumeFromLast, isBlender);
+        await BotLoop(items, startIndex, resumeFromLast, isBlender, saveAmmount);
 
         /*
         await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.Folders);
@@ -163,7 +163,7 @@ public static class Bot
     }
 
     private static async Task BotLoop(Dictionary<ObjectId, List<MapItem>> items, int startIndex, bool resumeFromLast,
-        bool isBlender)
+        bool isBlender, int saveAmmount)
     {
         //todo check if the scale array always has the same number of items as the item array
         var sorted = items.OrderByDescending(x => x.Value.Count).ToList();
@@ -171,7 +171,7 @@ public static class Bot
 
         ForgeUI.SetHaloProcess();
 
-        int saveCount = 0;
+        int saveCount = saveAmmount;
 
         int itemIndex = 0;
         foreach (var item in sorted)
@@ -197,7 +197,17 @@ public static class Bot
                 saveCount++;
                 await NavigationHelper.SpawnItem(_forgeObject);
                 await Task.Delay(10);
+
+                // if (saveCount == WhenToSave) //todo fix saving
+                // {
+                //     
+                //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                //     await Task.Delay(1000);
+                //     saveCount = 0;
+                // }
+
                 SetDataMemory(mapItem, itemCountID);
+
                 await Task.Delay(50);
                 await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectProperties);
                 //Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
@@ -216,16 +226,19 @@ public static class Bot
                 spawnCounter++;
                 itemCountID++;
 
-                if (saveCount == WhenToSave)
-                {
-                    await NavigationHelper.CloseUI();
-                    //todo add a save count setting to the ui
-                    await Task.Delay(100);
-                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                    Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                    saveCount = 0;
-                    await Task.Delay(100);
-                }
+
+                // if (saveCount == WhenToSave)
+                // {
+                //     // await NavigationHelper.CloseUI();
+                //     await Task.Delay(100);
+                //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
+                //     await Task.Delay(100);
+                //     //todo add a save count setting to the ui
+                //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+                //     saveCount = 0;
+                //     await Task.Delay(100);
+                // }
             }
 
 
