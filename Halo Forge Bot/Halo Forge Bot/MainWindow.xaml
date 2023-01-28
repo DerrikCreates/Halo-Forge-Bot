@@ -37,6 +37,12 @@
                 </TextBox>
             </StackPanel>
             <Label FontSize="10">keep range at 0 for entire map</Label>
+            <Label FontSize="12">Save Item Count</Label>
+            <TextBox Name="SaveItemCount" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center">
+                200
+            </TextBox>
+            
             <Button Name="EnterDev" Margin="0,30,0,0" Height="25" Width="140" FontSize="10"
                     Click="EnterDev_OnClick">
                 Enter Dev View

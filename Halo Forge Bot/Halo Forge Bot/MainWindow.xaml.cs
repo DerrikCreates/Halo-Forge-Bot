@@ -50,8 +50,6 @@ namespace Halo_Forge_Bot
             InitializeComponent();
             Input.InitInput();
 
-            
-            
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
               foreach (var field in staticFields)
@@ -116,11 +114,11 @@ namespace Halo_Forge_Bot
                     return;
                 }
 
+                var saveAmmount = int.Parse(SaveItemCount.Text);
                 Log.Information("-----STARTING BOT-----");
-                await Bot.StartBot(_itemsToSpawn, int.Parse(ItemRangeStart.Text),
+                await Bot.StartBot(_itemsToSpawn, saveAmmount, int.Parse(ItemRangeStart.Text),
                     int.Parse(ItemRangeEnd.Text));
                 Log.Information("-----STOPPING BOT-----");
-                
             }
             catch (Exception exception)
             {
@@ -168,6 +166,7 @@ namespace Halo_Forge_Bot
             error.ErrorTextBox.Text = exception.Message + Environment.NewLine + exception.StackTrace;
             error.Show();
         }
+
         private void ShowErrorPage(string exception)
         {
             Error error = new Error();
@@ -193,8 +192,9 @@ namespace Halo_Forge_Bot
 
             try
             {
+                var saveAmmount = int.Parse(SaveItemCount.Text);
                 await Bot.StartBot(items, isBlender: true, itemStart: int.Parse(ItemRangeStart.Text),
-                    itemEnd: int.Parse(ItemRangeEnd.Text));
+                    itemEnd: int.Parse(ItemRangeEnd.Text), saveAmmount: saveAmmount);
             }
             catch (Exception exception)
             {

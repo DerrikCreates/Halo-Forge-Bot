@@ -82,13 +82,11 @@ public static class Overlay
         gfx.ClearScene();
         
         
-        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
-            gfx.CreateSolidBrush(0, 0, 0), 50, 50,
-            $"SPAWN IN MORE THAN {Bot.ConesToSpawn} CONES!!! Then click next");
+       
         
-        gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
+        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
             gfx.CreateSolidBrush(0, 0, 0), 50, 100,
-            $"Item Count List1: {MemoryHelper.GetItemCount()}");
+            $"Item Count: {MemoryHelper.GetItemCount()}");
 
        
 
