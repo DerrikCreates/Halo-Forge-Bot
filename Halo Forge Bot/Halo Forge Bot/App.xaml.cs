@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Halo_Forge_Bot.Windows;
 
 namespace Halo_Forge_Bot
 {
@@ -7,5 +8,6 @@ namespace Halo_Forge_Bot
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

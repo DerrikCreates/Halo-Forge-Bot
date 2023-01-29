@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Numerics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BondReader.Schemas.Items;
@@ -65,7 +66,7 @@ public static class PropertyHelper
         var optimizedData = new string(buffer);
 
         await NavigationHelper.OpenEditUI(index);
-
+        await Task.Delay(15);
         while (MemoryHelper.GetEditBoxText() != optimizedData)
         {
             await Task.Delay(25);
@@ -97,12 +98,11 @@ public static class PropertyHelper
         await SetProperty(Math.Round(position.Z, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Vertical, itemObjectMode));
     }
-    
+
     public static async Task SetForwardProperty(float value, ForgeUIObjectModeEnum itemObjectMode)
     {
         await SetProperty(Math.Round(value, 2).ToString("F2"),
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
-        
     }
 
     /// <summary>

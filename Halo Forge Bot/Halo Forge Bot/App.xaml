@@ -4,6 +4,42 @@
              xmlns:local="clr-namespace:Halo_Forge_Bot"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="TextColor">White</SolidColorBrush>
+        <SolidColorBrush x:Key="Base1"> #2E2E2F</SolidColorBrush>
+        <SolidColorBrush x:Key="Base2">#252426</SolidColorBrush>
+        <SolidColorBrush x:Key="BrandAccentColor">#e23946</SolidColorBrush>
+        
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            
+        </Style>
+        
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Base1}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource BrandAccentColor}"></Setter>
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                           <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource BrandAccentColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+            <Setter Property="Background" Value="{StaticResource Base1}"/>
+            
+        </Style>
     </Application.Resources>
 </Application>

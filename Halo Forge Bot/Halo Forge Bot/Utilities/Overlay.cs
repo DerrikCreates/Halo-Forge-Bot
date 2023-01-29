@@ -7,7 +7,9 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Bond;
+using BondReader.Schemas.Generic;
 using GameOverlay.Drawing;
 using GameOverlay.Windows;
 using Halo_Forge_Bot.GameUI;
@@ -75,71 +77,28 @@ public static class Overlay
 
         //7FF7C86C0000 + 6486 706A
         var gfx = e.Graphics;
-       
 
-        
+
         gfx.BeginScene();
         gfx.ClearScene();
-        
-        
-       
-        
-        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
+
+
+        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(0, 255, 0),
+            gfx.CreateSolidBrush(0, 0, 0), 50, 50,
+            $"Version: {Bot.Version}");
+
+
+        gfx.DrawTextWithBackground(_largeFont, 16, gfx.CreateSolidBrush(255, 0, 0),
             gfx.CreateSolidBrush(0, 0, 0), 50, 100,
             $"Item Count: {MemoryHelper.GetItemCount()}");
 
-       
 
-       // gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
-       //     gfx.CreateSolidBrush(0, 0, 0), 50, 150,
-     //       $"Global Hover: {MemoryHelper.GetGlobalHover().Result}");
-
-
-       
-            //var test = MemoryHelper.ReinterpretObject<ForgeItems>(bytes);
-        //var size = (long)test.LastItemSpawnedEnd - (long)test.ItemArrayStart;
-       // var itemCount = size / 0x310;
-
-       // gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
-     //       gfx.CreateSolidBrush(0, 0, 0), 50, 200,
-    //        $"Item Count From Mem: {itemCount}");
-
-
-        
-
-
-        /*
-        for (int j = 0; j < 15; j++)
-        {
-            gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
-                gfx.CreateSolidBrush(0, 0, 0), 600, 100 + (j * 25),
-                $"Scale index {j + MemoryHelper.GetItemCount()}: {MemoryHelper.GetItemScale(j + MemoryHelper.GetItemCount())}");
-        }
-  
-        
-        for (int j = 0; j < 15; j++)
-        {
-            gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(0, 255, 0),
-                gfx.CreateSolidBrush(0, 0, 0), 600, 500 + (j * 25),
-                $"Scale index {j }: {MemoryHelper.GetItemScale(j)}");
-        }
-        //  var ptr = MemoryHelper.Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
-        //  ptr += +0xb0;
-       */
-        // var t = MemoryHelper.Memory.ReadBytes(ptr.ToString("x8"), 4);
-        // t = t.Reverse().ToArray();
-        /*  var scaleX = BitConverter.ToSingle(t);
-  
-          var value = MemoryHelper.ReadMemory<float>(ptr.ToUInt64().ToString("x8"));
-          gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
-              gfx.CreateSolidBrush(0, 0, 0), 50, 100,
-              $"First X Scale: {scaleX}");
-  
-          gfx.DrawTextWithBackground(_font, 12, gfx.CreateSolidBrush(255, 0, 0),
-              gfx.CreateSolidBrush(0, 0, 0), 50, 150,
-              $"X Scale Address: {ptr.ToString("x8")}");
-              
-              */
+        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
+            gfx.CreateSolidBrush(0, 0, 0), 50, 150,
+            $"Potentially Failed Item Count: {Bot.FailedItems}");
+        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
+            gfx.CreateSolidBrush(0, 0, 0), 50, 200,
+            Bot.posLogString);
     }
 
     private static void _window_DestroyGraphics(object sender, DestroyGraphicsEventArgs e)

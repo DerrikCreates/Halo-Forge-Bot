@@ -109,10 +109,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Windows" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Page Update="Dev\DevUI.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>

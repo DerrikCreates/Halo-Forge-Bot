@@ -5,22 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Halo_Forge_Bot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinWidth="800" MinHeight="450">
+        Title="Derrik's Forge Bot" Height="450" Width="800" MinWidth="800" MinHeight="450">
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False" Background="{StaticResource Base2}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel>
-            <Button Name="LoadMvar" Height="50" FontSize="20" Click="LoadMap_OnClick">Load Map</Button>
+        <StackPanel Background="{StaticResource Base1}">
+            <UniformGrid Rows="1" HorizontalAlignment="Left">
+                <Label>Version: </Label>
+                <Label Name="BotVersionLabel"  HorizontalAlignment="Left" Foreground="{StaticResource BrandAccentColor}">v0.0.0</Label>
+                
+            </UniformGrid>
+            <Button Name="LoadMapButton" Height="50" FontSize="20" Click="LoadMap_OnClick">Load Map</Button>
             <!-- <Button Name="LoadBlender" Height="50" FontSize="20" Click="LoadBlender_OnClick">Load blender</Button> -->
-            
-            <Button Height="50" FontSize="20" Click="StartBot_OnClick">START BOT</Button>
+
+            <Button Name="StartBotButton" Height="50" FontSize="20" Click="StartBot_OnClick" Visibility="Collapsed">START BOT</Button>
             <!-- <Button Height="50" FontSize="20" Click="ResumeBot_OnClick">Resume BOT</Button> -->
-            <TextBlock Height="50" FontSize="15" TextWrapping="Wrap" TextAlignment="Center">press LEFT ARROW to stop!</TextBlock>
+            <TextBlock Foreground="{StaticResource BrandAccentColor}" Height="50" FontSize="15" TextWrapping="Wrap"
+                       TextAlignment="Center">
+                press LEFT ARROW to stop!
+            </TextBlock>
             <!-- <TextBlock Height="50" FontSize="15" TextWrapping="Wrap" TextAlignment="Center">press RIGHT SHIFT to pause!</TextBlock> -->
 
             <Label FontSize="15">Object Range:</Label>
@@ -37,22 +45,29 @@
                 </TextBox>
             </StackPanel>
             <Label FontSize="10">keep range at 0 for entire map</Label>
-            <Label FontSize="12">Save Item Count</Label>
-            <TextBox Name="SaveItemCount" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
+
+
+            <Label FontSize="12" Visibility="Collapsed">Save Item Count</Label>
+            <TextBox Name="SaveItemCount" Visibility="Collapsed" Width="50" Height="auto" FontSize="15"
+                     HorizontalContentAlignment="Center"
                      VerticalContentAlignment="Center">
                 200
             </TextBox>
-            
+
             <Button Name="EnterDev" Margin="0,30,0,0" Height="25" Width="140" FontSize="10"
                     Click="EnterDev_OnClick">
                 Enter Dev View
             </Button>
         </StackPanel>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" ShowGridLines="False" Background="{StaticResource Base2}">
             <!-- <Button Height="50" FontSize="20" Click="Next_OnClick">NEXT!</Button> -->
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
             <StackPanel Name="MapInfoStackPanel">
-                <Grid ShowGridLines="True">
+                <Grid ShowGridLines="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"></ColumnDefinition>
                         <ColumnDefinition Width="50"></ColumnDefinition>
@@ -69,6 +84,14 @@
 
 
                 </Grid>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Background="{StaticResource Base1}">
+                <UniformGrid Rows="1">
+                    <TextBlock  Foreground="{StaticResource BrandAccentColor}"> For help join the <Hyperlink RequestNavigate="Hyperlink_OnRequestNavigate" NavigateUri="https://derrikcreates.com/" > Discord </Hyperlink></TextBlock>
+                    
+                </UniformGrid>
+                <Label></Label>
             </StackPanel>
 
 

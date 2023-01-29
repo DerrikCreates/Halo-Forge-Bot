@@ -1,0 +1,52 @@
+<Window x:Class="Halo_Forge_Bot.Windows.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Halo_Forge_Bot.Windows"
+        mc:Ignorable="d"
+        Title="Settings" Height="450" Width="800">
+
+
+    <Window.Resources>
+
+    </Window.Resources>
+
+
+    <Grid ShowGridLines="False" Background="{StaticResource Base1}">
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="{StaticResource Base1}">
+
+            <UniformGrid Margin="5" Rows="1" HorizontalAlignment="Center">
+                <Label Foreground="{StaticResource TextColor}">Version: </Label>
+                <Label Foreground="{StaticResource BrandAccentColor}" Name="AppVersionLabel">v0.0.0a</Label>
+            </UniformGrid>
+            <StackPanel Orientation="Horizontal">
+
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1" Background="{StaticResource Base2}">
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Background="{StaticResource Base2}">
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Background="{StaticResource Base2}">
+
+        </StackPanel>
+
+    </Grid>
+</Window>

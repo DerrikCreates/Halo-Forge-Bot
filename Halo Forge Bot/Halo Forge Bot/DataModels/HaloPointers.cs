@@ -19,12 +19,18 @@ public class HaloPointers
     public static readonly string ItemCount = "HaloInfinite.exe+4905198,0x78";
     public static readonly string ItemCountScaleArray = "HaloInfinite.exe+4905198,0x78";
     
-    public static readonly string GlobalHover = "HaloInfinite.exe+42F0B30,0xBB0,0x950"; //updated
+    /// <summary>
+    /// the black selector when navigating menus. This is its index in the ui. Working for both the item browser and the edit properties tab
+    /// </summary>
+    public static readonly string GlobalHover = "HaloInfinite.exe+42F0B30,0xBB0,0x950"; 
     public static readonly string SubBrowserHover = "HaloInfinite.exe+0x42CCE70,0xBB0,0x950";
-    public static readonly string TopBrowserHover = "HaloInfinite.exe+0x49DDD10,0x1A8"; //updated
+    public static readonly string TopBrowserHover = "HaloInfinite.exe+0x49DDD10,0x1A8"; 
     public static readonly string BrowserScroll = "HaloInfinite.exe+0x482B108,0xB8,0x934";
     public static readonly string EditPropertyBool = "HaloInfinite.exe+0x42F01C0,0x160";
-    public static readonly string EditNameBox = "HaloInfinite.exe+0x42F0320,0xB98,0x774"; // updated
+    /// <summary>
+    /// this is the edit property input textbox string
+    /// </summary>
+    public static readonly string EditNameBox = "HaloInfinite.exe+0x42F0320,0xB98,0x774";
     public static readonly string UiMenuVisible = "HaloInfinite.exe+4282728,0x0,0x28";
 
 

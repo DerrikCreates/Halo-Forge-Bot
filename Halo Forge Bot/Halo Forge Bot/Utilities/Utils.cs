@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -7,17 +8,25 @@ using System.Net.Http;
 using System.Numerics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 using BondReader.Schemas;
 using Newtonsoft.Json;
 using Serilog;
 
 namespace Halo_Forge_Bot.Utilities;
 
+//todo place all the methods into a more logical location
 public static class Utils
 {
     private static string dllPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
     public static string ExePath = Path.GetDirectoryName(dllPath);
 
+
+    public static void HyperlinkRequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri){UseShellExecute = true});
+        e.Handled = true;
+    }
     public static Rectangle ConvertRectToRectangle(Rect rect)
     {
         //TODO create a property in the forge ui rect to auto convert;

@@ -256,6 +256,40 @@ public static class MemoryHelper
         WriteMemory(ptr.ToString("x8"), scale.Z);
     }
 
+    public static void FreezeItemScale(int itemIndex, Vector3 scale)
+    {
+        var ptr = Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+
+
+        int itemScaleSize = 0x1E0;
+
+
+        ptr += itemScaleSize * itemIndex + 0xB0;
+
+        Memory.FreezeValue(ptr.ToString("x8"), "float", scale.X.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", scale.Y.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", scale.Z.ToString());
+    }
+
+    public static void UnFreezeItemScale(int itemIndex)
+    {
+        var ptr = Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+
+
+        int itemScaleSize = 0x1E0;
+
+
+        ptr += itemScaleSize * itemIndex + 0xB0;
+
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+    }
+
     public static void SetItemPosition(int itemIndex, Vector3 pos)
     {
         var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
@@ -271,14 +305,63 @@ public static class MemoryHelper
         WriteMemory(ptr.ToString("x8"), pos.Z);
     }
 
+
+    public static void FreezeItemPosition(int itemIndex, Vector3 pos)
+    {
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+
+        ptr += itemScaleSize * itemIndex + 0x8C;
+
+        Memory.FreezeValue(ptr.ToString("x8"), "float", pos.X.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", pos.Y.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", pos.Z.ToString());
+    }
+
+    public static void UnFreezeItemPosition(int itemIndex)
+    {
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+
+        ptr += itemScaleSize * itemIndex + 0x8C;
+
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+    }
+
+
+    public static Vector3 ReadItemPosition(int itemIndex)
+    {
+        var vector = new Vector3();
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+
+        ptr += itemScaleSize * itemIndex + 0x8C;
+
+        vector.X = (float)ReadMemory<decimal>(ptr.ToString("x8"));
+        ptr += 4;
+        vector.Y = (float)ReadMemory<decimal>(ptr.ToString("x8"));
+        ptr += 4;
+        vector.Z = (float)ReadMemory<decimal>(ptr.ToString("x8"));
+        return vector;
+    }
+
     public static void SetItemRotation(int itemIndex, Vector3 forward, Vector3 up)
     {
         forward = Vector3.Normalize(forward);
         up = Vector3.Normalize(up);
 
-        var left = Vector3.Cross(up,forward);
+        var left = Vector3.Cross(up, forward);
         left = Vector3.Normalize(left);
-        
+
         var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
@@ -303,6 +386,70 @@ public static class MemoryHelper
         WriteMemory(ptr.ToString("x8"), up.Y);
         ptr += 4;
         WriteMemory(ptr.ToString("x8"), up.Z);
+    }
+
+    public static void FreezeItemRotation(int itemIndex, Vector3 forward, Vector3 up)
+    {
+        forward = Vector3.Normalize(forward);
+        up = Vector3.Normalize(up);
+
+        var left = Vector3.Cross(up, forward);
+        left = Vector3.Normalize(left);
+
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+        ptr += itemScaleSize * itemIndex + 0x68;
+
+        Memory.FreezeValue(ptr.ToString("x8"), "float", forward.X.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", forward.Y.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", forward.Z.ToString());
+        ptr += 4;
+
+        Memory.FreezeValue(ptr.ToString("x8"), "float", left.X.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", left.Y.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", left.Z.ToString());
+        ptr += 4;
+
+        Memory.FreezeValue(ptr.ToString("x8"), "float", up.X.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", up.Y.ToString());
+        ptr += 4;
+        Memory.FreezeValue(ptr.ToString("x8"), "float", up.Z.ToString());
+    }
+
+    public static void UnFreezeItemRotation(int itemIndex)
+    {
+       
+
+        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+
+        int itemScaleSize = 0x310;
+        ptr += itemScaleSize * itemIndex + 0x68;
+
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
+        ptr += 4;
+        Memory.UnfreezeValue(ptr.ToString("x8"));
     }
 
     public static float GetFolderHover()

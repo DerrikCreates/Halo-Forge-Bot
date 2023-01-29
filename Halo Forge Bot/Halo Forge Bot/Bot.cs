@@ -34,6 +34,10 @@ namespace Halo_Forge_Bot;
 
 public static class Bot
 {
+    public static string Version = "0.2.4n";
+    public static string posLogString = "";
+    public static int FailedItems = 0;
+
     public static int WhenToSave = 3;
     //todo extract all NON BOT LOGIC for start bot, it should only be for starting / ending the bot
 
@@ -44,37 +48,17 @@ public static class Bot
     public static async Task StartBot(List<ForgeItem> map, int saveAmmount, int itemStart = 0, int itemEnd = 0,
         bool resumeFromLast = false, bool isBlender = false)
     {
+        FailedItems = 0;
         //todo create a class for both blender and .mvar files, maybe use the blender file json
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
             .Id); // todo add checks to the ui to stop the starting of the bot without halo being open / crash detection
 
         Task.Run(Overlay.Setup);
-        int startIndex = itemStart;
+
         Dictionary<ObjectId, List<MapItem>> items = new();
-
-        // LoadItemData();
         BuildUILayout();
-        BotSetup(map, out startIndex, itemStart, itemEnd, resumeFromLast, ref items);
-
-        // Dictionary<ObjectId, List<MapItem>> temp = new();
-        // temp.Add(ObjectId.PRIMITIVE_BLOCK, items[ObjectId.PRIMITIVE_BLOCK]);
-
-
-        await BotLoop(items, startIndex, resumeFromLast, isBlender, saveAmmount);
-
-        /*
-        await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.Folders);
-        Input.PressKey(VirtualKeyCode.VK_S, 50);
-        Input.PressKey(VirtualKeyCode.VK_F, 50);
-        Input.PressKey(VirtualKeyCode.VK_S, 50);
-        for (int i = 0; i < MemoryHelper.GetItemCount(); i++)
-        {
-            Input.PressKey(VirtualKeyCode.VK_S, 25);
-            Input.PressKey(VirtualKeyCode.VK_F, 25);
-            await Task.Delay(25);
-            Input.PressKey(VirtualKeyCode.VK_F, 25);
-        }
-        */
+        BotSetup(map, out itemStart, itemStart, itemEnd, resumeFromLast, ref items);
+        await BotLoop(items, itemStart, resumeFromLast, isBlender, saveAmmount);
     }
 
     private static void BotSetup(List<ForgeItem> map, out int startIndex, int itemStart, int itemEnd,
@@ -146,6 +130,9 @@ public static class Bot
     private static void SetDataMemory(MapItem item, int i)
     {
         var current = item;
+        // MemoryHelper.SetItemPosition(i, new Vector3(current.item.PositionX,
+        //     current.item.PositionY,
+        //     current.item.PositionZ));
         MemoryHelper.SetItemPosition(i, new Vector3(current.item.PositionX,
             current.item.PositionY,
             current.item.PositionZ));
@@ -195,8 +182,11 @@ public static class Bot
             foreach (var mapItem in item.Value)
             {
                 saveCount++;
+                SetDataMemory(mapItem, itemCountID);
                 await NavigationHelper.SpawnItem(_forgeObject);
-                await Task.Delay(10);
+                await Task.Delay(250);
+                SetDataMemory(mapItem, itemCountID);
+
 
                 // if (saveCount == WhenToSave) //todo fix saving
                 // {
@@ -206,52 +196,97 @@ public static class Bot
                 //     saveCount = 0;
                 // }
 
-                SetDataMemory(mapItem, itemCountID);
 
-                await Task.Delay(50);
                 await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectProperties);
+                SetDataMemory(mapItem, itemCountID);
                 //Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 //  Thread.Sleep(10);
                 // Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_D);
                 await NavigationHelper.NavigateVertical(
                     ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward,
                         ForgeUIObjectModeEnum.STATIC_FIRST));
+                SetDataMemory(mapItem, itemCountID);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 await Task.Delay(10);
-              //  Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
-              //  await Task.Delay(10);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                await Task.Delay(10);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                await Task.Delay(50);
                 await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10,
                     ForgeUIObjectModeEnum.STATIC_FIRST);
+                SetDataMemory(mapItem, itemCountID);
+                await Task.Delay(50);
 
+                await NavigationHelper.CloseEditUI();
+
+
+                // MemoryHelper.UnFreezeItemPosition(itemCountID);
+                //  MemoryHelper.UnFreezeItemRotation(itemCountID);
+                // MemoryHelper.UnFreezeItemScale(itemCountID);
+                // Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_D);
+                // await Task.Delay(10);
+
+
+                // await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10,
+                //      ForgeUIObjectModeEnum.STATIC_FIRST);
+
+                await Task.Delay(10);
+
+                var currentPos = MemoryHelper.ReadItemPosition(itemCountID);
+                var expectedPos = new Vector3(mapItem.item.PositionX, mapItem.item.PositionY, mapItem.item.PositionZ);
+
+                currentPos.X = MathF.Round(currentPos.X, 1);
+                currentPos.Y = MathF.Round(currentPos.Y, 1);
+                currentPos.Z = MathF.Round(currentPos.Z, 1);
+
+                expectedPos.X = MathF.Round(expectedPos.X, 1);
+                expectedPos.Y = MathF.Round(expectedPos.Y, 1);
+                expectedPos.Z = MathF.Round(expectedPos.Z, 1);
+
+                Log.Information("Item {ItemID} has been spawned, {ItemCountID} , {ExpectedPosition}, {CurrentPosition}",
+                    _forgeObject.ObjectId, itemCountID,
+                    new Vector3(mapItem.item.PositionX, mapItem.item.PositionY, mapItem.item.PositionZ),
+                    MemoryHelper.ReadItemPosition(itemCountID));
+                if ((expectedPos - currentPos).Length() > 0.5)
+                {
+                    // this item is broken
+                    FailedItems++;
+                    posLogString = $"Last Error-- ExpectedPos: {expectedPos}, CurrentPos: {currentPos}";
+                    Log.Error(
+                        "Item position not correct! current rounded position:{CurrentRoundedPosition} , Expected rounded position {ExpectedRoundedPosition}",
+                        currentPos, expectedPos);
+                }
 
                 spawnCounter++;
                 itemCountID++;
-
-
-                // if (saveCount == WhenToSave)
-                // {
-                //     // await NavigationHelper.CloseUI();
-                //     await Task.Delay(100);
-                //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
-                //     await Task.Delay(100);
-                //     //todo add a save count setting to the ui
-                //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
-                //     saveCount = 0;
-                //     await Task.Delay(100);
-                // }
             }
 
 
-            await Task.Delay(200);
-
-
-            //await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
-            //  await PropertyHelper.SetPropertiesFromMemory(mapItem.item, itemCountID);
-
-
-            await Input.HandlePause();
+            // if (saveCount == WhenToSave)
+            // {
+            //     // await NavigationHelper.CloseUI();
+            //     await Task.Delay(100);
+            //     Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_R);
+            //     await Task.Delay(100);
+            //     //todo add a save count setting to the ui
+            //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+            //     Input.Simulate.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_S);
+            //     saveCount = 0;
+            //     await Task.Delay(100);
+            // }
         }
+
+
+        await Task.Delay(200);
+
+
+        //await PropertyHelper.SetMainProperties(mapItem.item, _forgeObject.DefaultObjectMode == ForgeUIObjectModeEnum.NONE ? ForgeUIObjectModeEnum.STATIC_FIRST : _forgeObject.DefaultObjectMode, isBlender);
+        //  await PropertyHelper.SetPropertiesFromMemory(mapItem.item, itemCountID);
+
+
+        await Input.HandlePause();
     }
+
 
     /// <summary>
     /// Ensures the UI layout is only built once

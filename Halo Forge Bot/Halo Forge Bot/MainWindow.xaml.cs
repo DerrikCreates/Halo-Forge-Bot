@@ -6,7 +6,10 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Navigation;
 using BondReader;
 using BondReader.Schemas;
 using Halo_Forge_Bot.DataModels;
@@ -45,11 +48,13 @@ namespace Halo_Forge_Bot
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
 
-            Directory.CreateDirectory(Utils.ExePath + "/images/");
-
+            // Directory.CreateDirectory(Utils.ExePath + "/images/");
+            
             InitializeComponent();
+            BotVersionLabel.Content = Bot.Version;
             Input.InitInput();
 
+            
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
               foreach (var field in staticFields)
@@ -65,6 +70,7 @@ namespace Halo_Forge_Bot
 
         private List<ForgeItem>? _itemsToSpawn;
         public static string? selectedMapPath;
+
 
         private void LoadMap_OnClick(object sender, RoutedEventArgs e)
         {
@@ -98,9 +104,15 @@ namespace Halo_Forge_Bot
 
                 selectedMapPath = Path.GetDirectoryName(openFileDialog.FileName);
                 MapItemCount.Content = _itemsToSpawn.Count;
-                string estimate = $"{Math.Round(TimeSpan.FromSeconds(_itemsToSpawn.Count * 4).TotalHours, 2)}h";
-                EstimatedTime.Content = estimate;
+                
+                var timeSpan = TimeSpan.FromSeconds(_itemsToSpawn.Count * 4);
+                
+                EstimatedTime.Content = new DateTime(timeSpan.Ticks).ToString("HH:mm");
             }
+
+            StartBotButton.Visibility = Visibility.Visible;
+
+            this.InvalidateVisual();
         }
 
         private async void StartBot_OnClick(object sender, RoutedEventArgs e)
@@ -127,6 +139,7 @@ namespace Halo_Forge_Bot
                 throw;
             }
         }
+
 
         private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
         {
@@ -214,6 +227,11 @@ namespace Halo_Forge_Bot
         private void Next_OnClick(object sender, RoutedEventArgs e)
         {
             Bot.next = true;
+        }
+
+        private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Utils.HyperlinkRequestNavigate(sender, e);
         }
     }
 }
