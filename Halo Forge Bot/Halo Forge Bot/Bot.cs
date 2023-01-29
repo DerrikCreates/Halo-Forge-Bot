@@ -207,9 +207,17 @@ public static class Bot
                         ForgeUIObjectModeEnum.STATIC_FIRST));
                 SetDataMemory(mapItem, itemCountID);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
-                await Task.Delay(10);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
-                await Task.Delay(10);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                await Task.Delay(50);
+                SetDataMemory(mapItem, itemCountID);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                await Task.Delay(50);
+                SetDataMemory(mapItem, itemCountID);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
+                Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 await Task.Delay(50);
                 await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10,
