@@ -19,6 +19,7 @@
     <ItemGroup>
       <PackageReference Include="Bond.CSharp" Version="10.0.0" />
       <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
       <PackageReference Include="InputSimulatorPlus" Version="1.0.7" />
       <PackageReference Include="LiteDB" Version="5.0.12" />
       <PackageReference Include="mwinapi" Version="0.3.0.5" />
@@ -69,10 +70,6 @@
       <None Update="Data\ForgeObjects.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="C:\Users\Derrik\.nuget\packages\mwinapi\0.3.0.5\build\ManagedWinapiNativeHelper.dll">
-        <Link>dlls\ManagedWinapiNativeHelper.dll</Link>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="Temp\Beaver Creek.mvar">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
@@ -106,10 +103,24 @@
       <None Update="dlls\Memory.dll">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="C:\Users\Derrik\.nuget\packages\mwinapi\0.3.0.5\build\ManagedWinapiNativeHelper.dll">
+        <Link>dlls\ManagedWinapiNativeHelper.dll</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Dev\DevUI.xaml">
+      <Page Update="Windows\DevUI.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Windows\Error.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Windows\MainWindow.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>

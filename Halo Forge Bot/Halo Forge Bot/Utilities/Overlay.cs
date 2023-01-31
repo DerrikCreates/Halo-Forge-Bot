@@ -1,37 +1,45 @@
-using System;
-using System.Buffers.Binary;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using Bond;
-using BondReader.Schemas.Generic;
 using GameOverlay.Drawing;
 using GameOverlay.Windows;
-using Halo_Forge_Bot.GameUI;
-using Marshal = System.Runtime.InteropServices.Marshal;
+using Halo_Forge_Bot.Core;
 
 namespace Halo_Forge_Bot.Utilities;
 
 public static class Overlay
 {
-    private static StickyWindow window;
-    private static Font _font;
-    private static Font _largeFont;
+    private static StickyWindow? _window;
+    private static Font? _font;
+    private static Font? _largeFont;
 
+    private static Graphics? _gfx;
 
-    public static void Setup()
+    private static BotState? _botState;
+    private static BotSettings? _botSettings;
+
+    public static Task Setup(BotSettings botSettings, BotState botState)
     {
-        var gfx = new Graphics()
+        _botState = botState;
+        _botSettings = botSettings;
+
+        _gfx = new Graphics()
         {
             MeasureFPS = true,
         };
 
-        window = new StickyWindow(ForgeUI.SetHaloProcess().MainWindowHandle, gfx)
+        if (ForgeUI.SetHaloProcess() == null)
+        {
+        }
+
+        var process = ForgeUI.SetHaloProcess();
+        if (process == null)
+        {
+            var errorPage = new Error("Overlay UI cannot find the HaloInfinite.exe Process");
+            errorPage.Show();
+            return Task.CompletedTask;
+        }
+
+        _window = new StickyWindow(process.MainWindowHandle, _gfx)
         {
             FPS = 60,
             IsTopmost = true,
@@ -45,37 +53,37 @@ public static class Overlay
         //     IsVisible = true
         // };
 
-        window.DestroyGraphics += _window_DestroyGraphics;
-        window.DrawGraphics += _window_DrawGraphics;
-        window.SetupGraphics += _window_SetupGraphics;
+        _window.DestroyGraphics += DestroyGraphics;
+        _window.DrawGraphics += DrawGraphics;
+        _window.SetupGraphics += SetupGraphics;
 
 
-        window.Create();
-        window.Join();
+        _window.Create();
+        _window.Join();
+
+        return Task.CompletedTask;
     }
 
 
-    public static void _window_SetupGraphics(object sender, SetupGraphicsEventArgs e)
+    private static void SetupGraphics(object? sender, SetupGraphicsEventArgs e)
     {
         var gfx = e.Graphics;
         _font = gfx.CreateFont("Arial", 12);
         _largeFont = gfx.CreateFont("Arial", 24);
     }
 
-    private static int i = 0;
 
-    private static string ReverseString(string s)
+    private static void DrawGraphics(object? sender, DrawGraphicsEventArgs e)
     {
-        var array = s.ToCharArray();
-        Array.Reverse(array);
-        return new string(array);
-    }
+        if (_botState == null)
+        {
+            _gfx.Dispose();
+            _window.Dispose();
+            _font.Dispose();
+            _largeFont.Dispose();
+            return;
+        }
 
-    private static async void _window_DrawGraphics(object sender, DrawGraphicsEventArgs e)
-    {
-        var addr = ReverseString("D1 AB 7E 90"); //90 7E AB D1
-
-        //7FF7C86C0000 + 6486 706A
         var gfx = e.Graphics;
 
 
@@ -95,45 +103,17 @@ public static class Overlay
 
         gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
             gfx.CreateSolidBrush(0, 0, 0), 50, 150,
-            $"Potentially Failed Item Count: {Bot.FailedItems}");
+            $"Potentially Failed Item Count: {_botState.FailedItems}");
         gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
             gfx.CreateSolidBrush(0, 0, 0), 50, 200,
-            Bot.posLogString);
+            Bot.PosLogString);
     }
 
-    private static void _window_DestroyGraphics(object sender, DestroyGraphicsEventArgs e)
+    private static void DestroyGraphics(object? sender, DestroyGraphicsEventArgs e)
     {
+        e.Graphics.Dispose();
     }
 
 
-    public static T fromBytes<T>(byte[] arr) where T : struct
-    {
-        T str = new();
-
-        int size = Marshal.SizeOf(str);
-        IntPtr ptr = IntPtr.Zero;
-        try
-        {
-            ptr = Marshal.AllocHGlobal(size);
-
-            Marshal.Copy(arr, 0, ptr, size);
-
-            str = (T)Marshal.PtrToStructure(ptr, str.GetType());
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(ptr);
-        }
-
-        return str;
-    }
-}
-
-[StructLayout(LayoutKind.Explicit)]
-public struct ForgeItems // This is the item array that sets rot pos but NOT scale
-{
-    [FieldOffset(0x10)] public readonly IntPtr ItemArrayStart;
-    [FieldOffset(0x18)] public readonly IntPtr LastItemSpawnedEnd;
-    [FieldOffset(0x20)] public readonly IntPtr ItemArrayMaxAllocated;
-    [FieldOffset(0x78)] public readonly int ItemCount;
+    
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,8 +14,8 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using BondReader;
 using BondReader.Schemas;
+using Halo_Forge_Bot.Core;
 using Halo_Forge_Bot.DataModels;
-using Halo_Forge_Bot.GameUI;
 using Halo_Forge_Bot.Utilities;
 using Halo_Forge_Bot.Windows;
 using Memory;
@@ -30,6 +32,9 @@ namespace Halo_Forge_Bot
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BotSettings _botSettings = new();
+        private BotState _botState = new();
+
         public MainWindow()
         {
             Log.Logger = new LoggerConfiguration()
@@ -49,12 +54,11 @@ namespace Halo_Forge_Bot
             string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
 
             // Directory.CreateDirectory(Utils.ExePath + "/images/");
-            
+
             InitializeComponent();
             BotVersionLabel.Content = Bot.Version;
             Input.InitInput();
 
-            
 
             /*  var staticFields = typeof(HaloPointers).GetFields();
               foreach (var field in staticFields)
@@ -102,11 +106,17 @@ namespace Halo_Forge_Bot
                     return;
                 }
 
+                _botState = new BotState()
+                {
+                    MapName = Path.GetFileNameWithoutExtension(openFileDialog.FileName)
+                };
+                
+
                 selectedMapPath = Path.GetDirectoryName(openFileDialog.FileName);
                 MapItemCount.Content = _itemsToSpawn.Count;
-                
+
                 var timeSpan = TimeSpan.FromSeconds(_itemsToSpawn.Count * 4);
-                
+
                 EstimatedTime.Content = new DateTime(timeSpan.Ticks).ToString("HH:mm");
             }
 
@@ -117,6 +127,14 @@ namespace Halo_Forge_Bot
 
         private async void StartBot_OnClick(object sender, RoutedEventArgs e)
         {
+            _botSettings.ItemStartIndex = int.Parse(ItemRangeStart.Text);
+            _botSettings.ItemEndIndex = int.Parse(ItemRangeEnd.Text);
+            _botSettings.Scale = float.Parse(Scale.Text);
+            _botSettings.Offset = new Vector3(float.Parse(OffsetX.Text), float.Parse(OffsetY.Text),
+                float.Parse(OffsetZ.Text));
+
+            _botSettings.SaveFrequency = 100;
+            
             try
             {
                 if (_itemsToSpawn == null)
@@ -126,10 +144,9 @@ namespace Halo_Forge_Bot
                     return;
                 }
 
-                var saveAmmount = int.Parse(SaveItemCount.Text);
+                var saveAmount = int.Parse(SaveItemCount.Text);
                 Log.Information("-----STARTING BOT-----");
-                await Bot.StartBot(_itemsToSpawn, saveAmmount, int.Parse(ItemRangeStart.Text),
-                    int.Parse(ItemRangeEnd.Text));
+                await Bot.StartBot(_itemsToSpawn, _botSettings, _botState);
                 Log.Information("-----STOPPING BOT-----");
             }
             catch (Exception exception)
@@ -139,83 +156,91 @@ namespace Halo_Forge_Bot
                 throw;
             }
         }
-
-
-        private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
+    
+        
+        protected override void OnClosed(EventArgs e)
         {
-            /*
-                        if (_itemsToSpawn == null)
-                        {
-                            Log.Error("Selected map is null, select a map first");
-                            return;
-                        }
-            
-                        if (!File.Exists(Utils.ExePath + "/recovery/ObjectRecoveryData.json"))
-                        {
-                            Log.Error("No recovery data found.");
-                            return;
-                        }
-            
-                        Log.Information("-----STARTING BOT-----");
-                        try
-                        {
-                            await Bot.StartBot(Utils.SchemaToItemList(_itemsToSpawn), int.Parse(ItemRangeStart.Text),
-                                int.Parse(ItemRangeEnd.Text), true);
-                            Log.Information("-----STOPPING BOT-----");
-                        }
-                        catch (Exception exception)
-                        {
-                            ShowErrorPage(exception);
-            
-                            Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
-                                exception.StackTrace);
-                        }
-                        */
+            base.OnClosed(e);
+             var process =  Process.GetCurrentProcess();
+             process.Close();
         }
+        /* private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
+         {
+             
+                         if (_itemsToSpawn == null)
+                         {
+                             Log.Error("Selected map is null, select a map first");
+                             return;
+                         }
+             
+                         if (!File.Exists(Utils.ExePath + "/recovery/ObjectRecoveryData.json"))
+                         {
+                             Log.Error("No recovery data found.");
+                             return;
+                         }
+             
+                         Log.Information("-----STARTING BOT-----");
+                         try
+                         {
+                             await Bot.StartBot(Utils.SchemaToItemList(_itemsToSpawn), int.Parse(ItemRangeStart.Text),
+                                 int.Parse(ItemRangeEnd.Text), true);
+                             Log.Information("-----STOPPING BOT-----");
+                         }
+                         catch (Exception exception)
+                         {
+                             ShowErrorPage(exception);
+             
+                             Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                                 exception.StackTrace);
+                         }
+                         
+        }*/
 
         private void ShowErrorPage(Exception exception)
         {
-            Error error = new Error();
+            Error error = new Error(exception);
             error.ErrorTextBox.Text = exception.Message + Environment.NewLine + exception.StackTrace;
             error.Show();
         }
 
         private void ShowErrorPage(string exception)
         {
-            Error error = new Error();
-            error.ErrorTextBox.Text = exception;
+            Error error = new Error(exception);
             error.Show();
         }
 
-        private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
-        {
-            List<ForgeItem> items = new();
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "DCjson files (*.dcjson)|*.dcjson|All files (*.*)|*.*";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                items = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText(openFileDialog.FileName)).ItemList;
-
-                // MapItemCount.Content = _selectedMap.Items.Count;
-                // string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
-                // EstimatedTime.Content = estimate;
-            }
-
-            //todo make the bot use blender rotation and not the forward/up
-
-            try
-            {
-                var saveAmmount = int.Parse(SaveItemCount.Text);
-                await Bot.StartBot(items, isBlender: true, itemStart: int.Parse(ItemRangeStart.Text),
-                    itemEnd: int.Parse(ItemRangeEnd.Text), saveAmmount: saveAmmount);
-            }
-            catch (Exception exception)
-            {
-                ShowErrorPage(exception);
-                Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
-                    exception.StackTrace);
-            }
-        }
+        /* private async void LoadBlender_OnClick(object sender, RoutedEventArgs e)
+         {
+             List<ForgeItem> items = new();
+             OpenFileDialog openFileDialog = new OpenFileDialog();
+             openFileDialog.Filter = "DCjson files (*.dcjson)|*.dcjson|All files (*.*)|*.*";
+             if (openFileDialog.ShowDialog() == true)
+             {
+                 items = JsonConvert.DeserializeObject<BlenderMap>(File.ReadAllText(openFileDialog.FileName)).ItemList;
+ 
+                 // MapItemCount.Content = _selectedMap.Items.Count;
+                 // string estimate = $"{Math.Round(TimeSpan.FromSeconds(_selectedMap.Items.Count * 7).TotalHours, 2)}h";
+                 // EstimatedTime.Content = estimate;
+             }
+ 
+             
+ 
+             try
+             {
+                 
+                 
+                 var saveAmmount = int.Parse(SaveItemCount.Text);
+                 await Bot.StartBot(items, itemStart: int.Parse(ItemRangeStart.Text),
+                     itemEnd: int.Parse(ItemRangeEnd.Text), saveAmount: saveAmmount);
+             }
+             catch (Exception exception)
+             {
+                 ShowErrorPage(exception);
+                 Log.Fatal("Exception: {ExceptionMessage} , StackTrace: {Trace}", exception.Message,
+                     exception.StackTrace);
+             }
+         }
+         */
 
         private static readonly DevUI DevWindow = new DevUI();
 
@@ -224,10 +249,6 @@ namespace Halo_Forge_Bot
             DevWindow.Show();
         }
 
-        private void Next_OnClick(object sender, RoutedEventArgs e)
-        {
-            Bot.next = true;
-        }
 
         private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {

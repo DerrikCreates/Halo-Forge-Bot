@@ -5,7 +5,7 @@ using System.IO;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
-using Halo_Forge_Bot.GameUI;
+using Halo_Forge_Bot.Core;
 using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
@@ -22,7 +22,7 @@ public static class Dev
 {
     public static async void GetAllObjectTypeData2()
     {        
-        Bot.BuildUILayout();
+        Bot.BuildUiLayout();
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
             .Id);
         
@@ -40,7 +40,7 @@ public static class Dev
 
     public static async void GetAllObjectTypeData()
     {
-        Bot.BuildUILayout();
+        Bot.BuildUiLayout();
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess()
             .Id);
         

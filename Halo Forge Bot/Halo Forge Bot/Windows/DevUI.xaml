@@ -33,7 +33,16 @@
             </Button>
             <TextBox Name="FileShareLinkTextBox" Grid.Row="1" Grid.Column="0" Height="20" Width="100"> FileShare Link</TextBox>
 
-            <Button Grid.Row="3" Grid.Column="2" Height="20" Width="100" Click="ButtonBase_OnClick">Dev Testing</Button>
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <Button  Height="20" Width="100" Click="ButtonBase_OnClick">Dev Testing</Button>
+               <!--  
+                <Button  Height="20" Width="100" Click="DownloadAllMvars_OnClick">Download ALL mvars</Button>
+              -->
+               
+                <Button  Height="20" Width="100" Click="GenerateStats_OnClick">Generate Stats</Button>
+                
+            </StackPanel>
+            
             <TextBox Name="ForgeDataPathTextBox" Grid.Row="0" Grid.Column="0" Height="20" Width="100"> ForgeDataPath</TextBox>
             <TextBox Name="MemoryTestUI" Grid.Row="1" Grid.Column="1" Height="20" Width="100">Memory TestUI</TextBox>
 

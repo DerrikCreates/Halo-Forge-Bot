@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
-using Halo_Forge_Bot.GameUI;
+using Halo_Forge_Bot.Core;
 using ManagedWinapi.Hooks;
 using Serilog;
 using WindowsInput;
@@ -206,6 +206,7 @@ public static class Input
 
     public static async Task KeyPress(VirtualKeyCode key, int sleepTime, int initialDelay = 0)
     {
+        Log.Information("Pressing Key! {keyPressed} {initialDelay} {sleepTime}", key,initialDelay,sleepTime);
         await Task.Delay(initialDelay);
         Simulate.Keyboard.KeyPress(key);
         await Task.Delay(sleepTime);

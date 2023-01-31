@@ -1,6 +1,5 @@
 using System;
 using System.Text.Json.Serialization;
-using Halo_Forge_Bot.GameUI;
 
 namespace Halo_Forge_Bot.Utilities;
 

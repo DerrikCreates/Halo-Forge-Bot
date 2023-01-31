@@ -7,7 +7,7 @@ using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI.Object_Properties;
 using Size = System.Drawing.Size;
 
-namespace Halo_Forge_Bot.GameUI;
+namespace Halo_Forge_Bot.Core;
 
 public static class ForgeUI
 {
@@ -23,7 +23,7 @@ public static class ForgeUI
     public static Rectangle TransformHUD =
         new Rectangle(new System.Drawing.Point(556, 846), new Size(803, 206));
 
-    public static Process SetHaloProcess()
+    public static Process? SetHaloProcess()
     {
         if (!Input.InputActive) Input.InitInput();
         Process[] haloProcesses = Process.GetProcessesByName("HaloInfinite");

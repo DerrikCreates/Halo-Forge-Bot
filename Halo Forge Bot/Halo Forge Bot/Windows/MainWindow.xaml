@@ -17,8 +17,8 @@
         <StackPanel Background="{StaticResource Base1}">
             <UniformGrid Rows="1" HorizontalAlignment="Left">
                 <Label>Version: </Label>
-                <Label Name="BotVersionLabel"  HorizontalAlignment="Left" Foreground="{StaticResource BrandAccentColor}">v0.0.0</Label>
-                
+                <Label Name="BotVersionLabel" HorizontalAlignment="Left" Foreground="{StaticResource BrandAccentColor}">v0.0.0</Label>
+
             </UniformGrid>
             <Button Name="LoadMapButton" Height="50" FontSize="20" Click="LoadMap_OnClick">Load Map</Button>
             <!-- <Button Name="LoadBlender" Height="50" FontSize="20" Click="LoadBlender_OnClick">Load blender</Button> -->
@@ -54,10 +54,47 @@
                 200
             </TextBox>
 
+           
+
+            <Label FontSize="15" HorizontalAlignment=" Center">Scale</Label>
+            <TextBox Name="Scale" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center">
+                1
+            </TextBox>
+            <Label FontSize="15" HorizontalAlignment="Center">Offset</Label>
+            <StackPanel>
+                <UniformGrid Rows="1" HorizontalAlignment="Center">
+                    <Label>X</Label>
+                    <TextBox Name="OffsetX" HorizontalAlignment="Left" Width="50" Height="auto" FontSize="15"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </UniformGrid>
+
+                <UniformGrid Rows="1" HorizontalAlignment="Center">
+                    <Label>Y</Label>
+                    <TextBox Name="OffsetY" HorizontalAlignment="Left" Width="50" Height="auto" FontSize="15"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </UniformGrid>
+                <UniformGrid Rows="1" HorizontalAlignment="Center">
+                    <Label>Z</Label>
+                    <TextBox Name="OffsetZ" HorizontalAlignment="Left" Width="50" Height="auto" FontSize="15"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </UniformGrid>
+            </StackPanel>
+            
             <Button Name="EnterDev" Margin="0,30,0,0" Height="25" Width="140" FontSize="10"
                     Click="EnterDev_OnClick">
                 Enter Dev View
             </Button>
+
         </StackPanel>
 
         <Grid Grid.Column="1" ShowGridLines="False" Background="{StaticResource Base2}">
@@ -85,11 +122,17 @@
 
                 </Grid>
             </StackPanel>
-            
+
             <StackPanel Grid.Row="1" Background="{StaticResource Base1}">
                 <UniformGrid Rows="1">
-                    <TextBlock  Foreground="{StaticResource BrandAccentColor}"> For help join the <Hyperlink RequestNavigate="Hyperlink_OnRequestNavigate" NavigateUri="https://derrikcreates.com/" > Discord </Hyperlink></TextBlock>
-                    
+                    <TextBlock Foreground="{StaticResource BrandAccentColor}">
+                        For help join the
+                        <Hyperlink RequestNavigate="Hyperlink_OnRequestNavigate"
+                                   NavigateUri="https://derrikcreates.com/">
+                            Discord
+                        </Hyperlink>
+                    </TextBlock>
+
                 </UniformGrid>
                 <Label></Label>
             </StackPanel>
