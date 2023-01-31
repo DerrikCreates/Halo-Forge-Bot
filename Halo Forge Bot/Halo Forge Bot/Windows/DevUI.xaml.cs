@@ -13,6 +13,7 @@ using BondReader.Schemas;
 using Halo_Forge_Bot.Core;
 using Halo_Forge_Bot.Utilities;
 using HtmlAgilityPack;
+using InfiniteForgeConstants.MapSettings;
 using InfiniteForgeConstants.ObjectSettings;
 
 namespace Halo_Forge_Bot.Windows;
@@ -164,8 +165,32 @@ public partial class DevUI : Window
 
     private void GenerateStats_OnClick(object sender, RoutedEventArgs e)
     {
+        var canvasPath = @"Z:\maps\canvasIds";
+
+        var f = Directory.GetFiles(canvasPath);
+
+        List<string> mapIds = new();
+        foreach (var fi in f)
+        {
+           var m = BondHelper.ProcessFile<BondSchema>(fi);
+           FileInfo info = new FileInfo(fi);
+           mapIds.Add($"{info.Name}: {m.MapIdContainer.MapId.Int}"); 
+           
+        }
+
+
+        
+        var joinedNames = mapIds.Aggregate((a, b) => a + ", " + b);
+        
+        new Error(joinedNames).Show();
+        
+
         int failedItems = 0;
         Dictionary<ObjectId, int> itemCount = new();
+        Dictionary<MapId, int> variantCount = new();
+
+        Dictionary<string, int> totalItemCountPerFile = new();
+        Dictionary<string, long> fileSize = new();
         var files = Directory.GetFiles(@"Z:\maps\HaloInfinite");
 
         foreach (var file in files)
@@ -179,8 +204,22 @@ public partial class DevUI : Window
             {
                 failedItems++;
                 continue;
-            }  
+            }
 
+
+            if (variantCount.ContainsKey((MapId)map.MapIdContainer.MapId.Int))
+            {
+                variantCount[(MapId)map.MapIdContainer.MapId.Int] += 1;
+            }
+            else
+            {
+                variantCount.Add((MapId)map.MapIdContainer.MapId.Int, 1);
+            }
+
+            totalItemCountPerFile.Add(file, map.Items.Count);
+
+            FileInfo fileInfo = new FileInfo(file);
+            fileSize.Add(file, fileInfo.Length);
 
             foreach (var item in map.Items)
             {
@@ -190,23 +229,49 @@ public partial class DevUI : Window
                     continue;
                 }
 
+
                 ObjectId id = (ObjectId)item.ItemId.Int;
                 itemCount[id] += 1;
             }
         }
 
 
-        List<string> data = new();
-
-        var max = itemCount.OrderBy(x => x.Value).ToList();
-
-        foreach (var item in max)
+        var sortedItemCount = itemCount.OrderByDescending(x => x.Value).ToList();
+        var sortedVariantCount = variantCount.OrderByDescending(x => x.Value).ToList();
+        //var sortedItemCountPerFile = totalItemCountPerFile.OrderByDescending(x => x.Value).ToList();
+        var sortedTotalItemCountPerFile = totalItemCountPerFile.OrderByDescending(x => x.Value).ToList();
+        var sortedFileSize = fileSize.OrderByDescending(x => x.Value).ToList();
+        List<string> output = new();
+        foreach (var item in sortedItemCount)
         {
-            data.Add($"{item.Key.ToString()}: {item.Value}");
+            output.Add($"{item.Key.ToString()}: {item.Value}");
         }
-        
 
-        File.WriteAllLines(@"Z:\maps\MostUsedItems.txt", data);
+        File.WriteAllLines(@"Z:\maps\MostUsedItems.txt", output);
+        output = new();
+        foreach (var vC in sortedVariantCount)
+        {
+            output.Add($"{vC.Key.ToString()}: {vC.Value} ");
+        }
+
+        File.WriteAllLines(@"Z:\maps\MostUsedMap.txt", output);
+        output = new();
+
+        foreach (var v in sortedTotalItemCountPerFile)
+        {
+            output.Add($"{v.Key.ToString()}: {v.Value} ");
+        }
+
+        File.WriteAllLines(@"Z:\maps\LargestMapByItems.txt", output);
+        output = new();
+        foreach (var v in sortedFileSize)
+        {
+            output.Add($"{v.Key.ToString()}: {v.Value} ");
+        }
+
+        File.WriteAllLines(@"Z:\maps\LargestMapByFileSize.txt", output);
+        output = new();
+
 
         new Error($"There where {failedItems} failed items!").Show();
     }
