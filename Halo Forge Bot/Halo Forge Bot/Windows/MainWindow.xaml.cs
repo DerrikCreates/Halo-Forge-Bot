@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -75,6 +76,11 @@ namespace Halo_Forge_Bot
         private List<ForgeItem>? _itemsToSpawn;
         public static string? selectedMapPath;
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            Process.GetCurrentProcess().Kill();
+        }
 
         private void LoadMap_OnClick(object sender, RoutedEventArgs e)
         {
