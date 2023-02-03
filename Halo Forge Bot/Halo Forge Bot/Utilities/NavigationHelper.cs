@@ -458,6 +458,11 @@ public static class NavigationHelper
         Log.Information("Navigating to item {Item}", item.ObjectId.ToString());
         await MoveToTab(ContentBrowserTabs.ObjectBrowser);
         await NavigateToFolder(item.ParentFolder);
+
+        if (item.ParentFolder.FolderObjects.Count == 1)
+        {
+            return;
+        }
         await NavigateVertical(item.ObjectOrder - 1);
     }
 

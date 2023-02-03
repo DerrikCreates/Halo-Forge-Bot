@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Halo_Forge_Bot"
         mc:Ignorable="d"
-        Title="Derrik's Forge Bot" Height="450" Width="800" MinWidth="800" MinHeight="450">
+        Title="Derrik's Forge Bot" Height="500" Width="800" MinWidth="800" MinHeight="525">
 
     <Grid ShowGridLines="False" Background="{StaticResource Base2}">
         <Grid.ColumnDefinitions>
@@ -14,13 +14,13 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel Background="{StaticResource Base1}">
+        <StackPanel Background="{StaticResource Base3}">
             <UniformGrid Rows="1" HorizontalAlignment="Left">
                 <Label>Version: </Label>
                 <Label Name="BotVersionLabel" HorizontalAlignment="Left" Foreground="{StaticResource BrandAccentColor}">v0.0.0</Label>
 
             </UniformGrid>
-            <Button Name="LoadMapButton" Height="50" FontSize="20" Click="LoadMap_OnClick">Load Map</Button>
+            <Button Name="LoadMapButton" Height="50" FontSize="20" Margin="5" Click="LoadMap_OnClick">Load Map</Button>
             <!-- <Button Name="LoadBlender" Height="50" FontSize="20" Click="LoadBlender_OnClick">Load blender</Button> -->
 
             <Button Name="StartBotButton" Height="50" FontSize="20" Click="StartBot_OnClick" Visibility="Collapsed">START BOT</Button>
@@ -90,7 +90,8 @@
                 </UniformGrid>
             </StackPanel>
             
-            <Button Name="EnterDev" Margin="0,30,0,0" Height="25" Width="140" FontSize="10"
+            <Button Name="BotNavigateWindowButton" Click="BotNavigateWindowButton_OnClick" Margin="0,30,0,0"  Height="25" Width="140" FontSize="15">Navigation</Button>
+            <Button Name="EnterDev" Margin="0,15,0,0" Height="25" Width="140" FontSize="10"
                     Click="EnterDev_OnClick">
                 Enter Dev View
             </Button>

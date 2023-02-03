@@ -275,4 +275,14 @@ public partial class DevUI : Window
 
         new Error($"There where {failedItems} failed items!").Show();
     }
+
+    private void MapForgeUiButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        //NavigationHelper
+    }
+
+    private void ShowForgeUI_OnClick(object sender, RoutedEventArgs e)
+    {
+        new ForgeNavigation().Show();
+    }
 }

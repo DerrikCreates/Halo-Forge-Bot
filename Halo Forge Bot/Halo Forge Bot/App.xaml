@@ -7,6 +7,7 @@
         <SolidColorBrush x:Key="TextColor">White</SolidColorBrush>
         <SolidColorBrush x:Key="Base1"> #2E2E2F</SolidColorBrush>
         <SolidColorBrush x:Key="Base2">#252426</SolidColorBrush>
+        <SolidColorBrush x:Key="Base3">#111012</SolidColorBrush>
         <SolidColorBrush x:Key="BrandAccentColor">#e23946</SolidColorBrush>
         
         <Style TargetType="Label">

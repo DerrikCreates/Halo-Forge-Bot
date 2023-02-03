@@ -20,7 +20,7 @@ namespace Halo_Forge_Bot.Core;
 
 public static class Bot
 {
-    public static string Version = "0.2.5n";
+    public static string Version = "0.2.7n";
     public static string PosLogString = "";
 
 
@@ -32,8 +32,8 @@ public static class Bot
 
     public static async Task StartBot(List<ForgeItem> map, BotSettings botSettings, BotState botState)
     {
-        OnItemStart += BotTracker.TrackItemSpawnTime;
-        OnItemDone += BotTracker.TrackItemSpawnTime;
+       // OnItemStart += BotTracker.TrackItemSpawnTime;
+       // OnItemDone += BotTracker.TrackItemSpawnTime;
 
 
         var process = ForgeUI.SetHaloProcess();
@@ -131,6 +131,20 @@ public static class Bot
         }
 
 
+        foreach (var kvp in items)
+        {
+            foreach (var mapItem in kvp.Value)
+            {
+                mapItem.item.PositionX *= botSettings.Scale;
+                mapItem.item.PositionY *= botSettings.Scale;
+                mapItem.item.PositionZ *= botSettings.Scale;
+                mapItem.item.ScaleX *= botSettings.Scale;
+                mapItem.item.ScaleY *= botSettings.Scale;
+                mapItem.item.ScaleZ *= botSettings.Scale;
+            }
+        }
+
+
         var Xlow = temp.MinBy(x => x.item.PositionX);
         var Xhigh = temp.MaxBy(x => x.item.PositionX);
 
@@ -141,10 +155,14 @@ public static class Bot
         var Zhigh = temp.MaxBy(x => x.item.PositionZ);
 
 
-        botState.BoundingBox.topLeft = new Vector3(Xhigh.item.PositionX, Ylow.item.PositionY, Zhigh.item.PositionZ) * botSettings.Scale;
-        botState.BoundingBox.bottomLeft = new Vector3(Xhigh.item.PositionX, Ylow.item.PositionY, Zlow.item.PositionZ)* botSettings.Scale;
-        botState.BoundingBox.bottomRight = new Vector3(Xhigh.item.PositionX, Yhigh.item.PositionY, Zlow.item.PositionZ)* botSettings.Scale;
-        botState.BoundingBox.backLeft = new Vector3(Xlow.item.PositionX, Ylow.item.PositionY, Zlow.item.PositionZ)* botSettings.Scale;
+        botState.BoundingBox.topLeft = new Vector3(Xhigh.item.PositionX, Ylow.item.PositionY, Zhigh.item.PositionZ) *
+                                       botSettings.Scale;
+        botState.BoundingBox.bottomLeft = new Vector3(Xhigh.item.PositionX, Ylow.item.PositionY, Zlow.item.PositionZ) *
+                                          botSettings.Scale;
+        botState.BoundingBox.bottomRight =
+            new Vector3(Xhigh.item.PositionX, Yhigh.item.PositionY, Zlow.item.PositionZ) * botSettings.Scale;
+        botState.BoundingBox.backLeft = new Vector3(Xlow.item.PositionX, Ylow.item.PositionY, Zlow.item.PositionZ) *
+                                        botSettings.Scale;
 
         botState.BoundingBox.bottomCenter = (botState.BoundingBox.bottomRight - botState.BoundingBox.bottomLeft) / 2 +
                                             botState.BoundingBox.bottomLeft;
@@ -215,28 +233,29 @@ public static class Bot
 
             foreach (var mapItem in item.Value)
             {
-                mapItem.item.PositionX *= settings.Scale;
-                mapItem.item.PositionY *= settings.Scale;
-                mapItem.item.PositionZ *= settings.Scale;
-
+                
                 if (settings.Scale != 1)
                     settings.RecenterMap = true; //todo add a ui check bot to recenter maps
-                var basePos = new Vector3(mapItem.item.PositionX, mapItem.item.PositionY, mapItem.item.PositionZ) ;
-                var itemOffset = new Vector3(mapItem.item.PositionX, mapItem.item.PositionY, mapItem.item.PositionZ) - botState.BoundingBox.bottomCenter;
-
-                Vector3 newCenter = new Vector3(0, 0, 60);
-
-                Vector3 centerOffset = botState.BoundingBox.bottomCenter - newCenter ;
-
-                Vector3 newPosition = centerOffset - basePos -itemOffset ;
-                mapItem.item.PositionX = newPosition.X;
-                mapItem.item.PositionY = newPosition.Y;
-                mapItem.item.PositionZ = newPosition.Z;
                 
+                var basePos = new Vector3(mapItem.item.PositionX, mapItem.item.PositionY, mapItem.item.PositionZ);
+                var itemOffset = new Vector3(mapItem.item.PositionX, mapItem.item.PositionY, mapItem.item.PositionZ) -
+                                 botState.BoundingBox.bottomCenter;
+
+                if (settings.RecenterMap)
+                {
+                   
+
+                    Vector3 centerOffset = botState.BoundingBox.bottomCenter - settings.NewCenter;
+
+                    Vector3 newPosition = centerOffset - basePos - itemOffset;
+                    mapItem.item.PositionX = newPosition.X;
+                    mapItem.item.PositionY = newPosition.Y;
+                    mapItem.item.PositionZ = newPosition.Z;
+                }
+               
+
+
                 
-                mapItem.item.ScaleX *= settings.Scale;
-                mapItem.item.ScaleY *= settings.Scale;
-                mapItem.item.ScaleZ *= settings.Scale;
 
                 // Start of item spawning
                 // there are many redundant memory sets. this is to make sure the data is correct when we force the server update by editing the property
@@ -306,7 +325,6 @@ public static class Bot
                 }
 
 
-               
                 OnItemDone.Invoke(null, itemCountId);
 
                 itemCountId++;

@@ -1,0 +1,36 @@
+<Window x:Class="Halo_Forge_Bot.Windows.ForgeNavigation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Halo_Forge_Bot.Windows"
+        xmlns:controls="clr-namespace:Halo_Forge_Bot.Windows.UserControls"
+        mc:Ignorable="d"
+        Title="ForgeUi" Height="450" Width="800">
+    <Grid ShowGridLines="False"  Background="{StaticResource Base3}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="225"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        
+        <Grid Background="{StaticResource Base1}">
+            
+            <controls:ListViewer Margin="10" Title="Categories"   x:Name="Categories" Grid.Column="0"    />
+        </Grid>
+        
+        <Grid Grid.Column="1" Background="{StaticResource Base2}">
+            <controls:ListViewer Margin="10" Title="SubCategories"  x:Name="SubCategories" Grid.Column="1"  />
+
+        </Grid>
+
+        
+        <Grid Grid.Column="2">
+            <controls:ListViewer Margin="10" Width="300" HorizontalAlignment="Left"  Title="Items" Background="{StaticResource Base3}" x:Name="Items" Grid.Column="2" />
+
+        </Grid>
+
+
+    </Grid>
+</Window>

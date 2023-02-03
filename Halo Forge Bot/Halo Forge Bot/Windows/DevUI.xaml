@@ -39,8 +39,9 @@
                 <Button  Height="20" Width="100" Click="DownloadAllMvars_OnClick">Download ALL mvars</Button>
               -->
                
-                <Button  Height="20" Width="100" Click="GenerateStats_OnClick">Generate Stats</Button>
-                
+               <!--  <Button  Height="20" Width="100" Click="GenerateStats_OnClick">Generate Stats</Button>-->
+               <Button Name="MapForgeUiButton" Click="MapForgeUiButton_OnClick" >Map Forge UI</Button>
+               <Button Name="ShowForgeUI" Click="ShowForgeUI_OnClick" >Show Forge UI</Button>
             </StackPanel>
             
             <TextBox Name="ForgeDataPathTextBox" Grid.Row="0" Grid.Column="0" Height="20" Width="100"> ForgeDataPath</TextBox>

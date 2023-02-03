@@ -116,7 +116,7 @@ namespace Halo_Forge_Bot
                 {
                     MapName = Path.GetFileNameWithoutExtension(openFileDialog.FileName)
                 };
-                
+
 
                 selectedMapPath = Path.GetDirectoryName(openFileDialog.FileName);
                 MapItemCount.Content = _itemsToSpawn.Count;
@@ -140,7 +140,7 @@ namespace Halo_Forge_Bot
                 float.Parse(OffsetZ.Text));
 
             _botSettings.SaveFrequency = 100;
-            
+
             try
             {
                 if (_itemsToSpawn == null)
@@ -162,13 +162,13 @@ namespace Halo_Forge_Bot
                 throw;
             }
         }
-    
-        
+
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-             var process =  Process.GetCurrentProcess();
-             process.Close();
+            var process = Process.GetCurrentProcess();
+            process.Close();
         }
         /* private async void ResumeBot_OnClick(object sender, RoutedEventArgs e)
          {
@@ -259,6 +259,18 @@ namespace Halo_Forge_Bot
         private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             Utils.HyperlinkRequestNavigate(sender, e);
+        }
+
+
+        private ForgeNavigation? _forgeUiWindow = new ForgeNavigation();
+
+        private void BotNavigateWindowButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_forgeUiWindow is null)
+                _forgeUiWindow = new ForgeNavigation();
+
+
+            _forgeUiWindow.Show();
         }
     }
 }
