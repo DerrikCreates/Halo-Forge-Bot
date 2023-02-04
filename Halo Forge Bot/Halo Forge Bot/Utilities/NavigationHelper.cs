@@ -22,8 +22,8 @@ public static class NavigationHelper
     private static int _closeUIInitialSleep = 50;
     private static int _closeUIAfterSleep = 300;
 
-    private static int _enterUIInitialSleep = 50;
-    private static int _enterUIAfterSleep = 300;
+    private static int _enterUIInitialSleep = 200;
+    private static int _enterUIAfterSleep = 200;
 
     /// <summary>
     /// Holds all data relating to the current UI navigation state
@@ -152,6 +152,14 @@ public static class NavigationHelper
 
             var previousWasFolder = false;
 
+            await Task.Delay(50);
+            if (await MemoryHelper.GetGlobalHover() == ForgeObjectBrowser.Categories.Count - 1)
+            {
+                Log.Information("Ui is already in a homed state. skipping homing");
+                return;
+            }
+                
+            
             //Go up the menu closing all categories until you reach index 1 (prefabs)
             while (MemoryHelper.GetMenusVisible() != 0 && await MemoryHelper.GetGlobalHoverVerbose() != 1)
             {
@@ -459,21 +467,36 @@ public static class NavigationHelper
         await MoveToTab(ContentBrowserTabs.ObjectBrowser);
         await NavigateToFolder(item.ParentFolder);
 
-        if (item.ParentFolder.FolderObjects.Count == 1)
-        {
-            return;
-        }
+        
+        
+        // if (item.ParentFolder.FolderObjects.Count == 1)
+        // {
+        //     while (await MemoryHelper.GetGlobalHover() != item.ObjectOrder - 1)
+        //     {
+        //         await Task.Delay(10);
+        //     }
+        //     
+        //     return;
+        // }
         await NavigateVertical(item.ObjectOrder - 1);
+        
+       
     }
 
+    
     /// <summary>
     /// Spawn a forge item into the world
     /// </summary>
     /// <param name="item"></param>
     public static async Task SpawnItem(ForgeUIObject item)
     {
+       
+        
         await NavigateToItem(item);
-        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
+        
+        await Input.KeyPress(VirtualKeyCode.RETURN,10, 25);
+        await Input.KeyPress(VirtualKeyCode.RETURN, 10, 25);
+        
     }
 
     /// <summary>
