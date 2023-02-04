@@ -81,7 +81,9 @@ public partial class ForgeNavigation : Window
         ForgeObjectBrowser.FindItem((string)item, out var forgeUiObject);
 
         MemoryHelper.Memory.OpenProcess(ForgeUI.SetHaloProcess().Id);
-        await NavigationHelper.NavigateToItem(forgeUiObject);
+            // await NavigationHelper.NavigateToItem(forgeUiObject);
+
+        await NavigationHelper.SpawnItem(forgeUiObject);
     }
 
     public void UpdateSubCategory(object sender, EventArgs e)
