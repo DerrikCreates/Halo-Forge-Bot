@@ -107,15 +107,7 @@ public static class Bot
         }
 
 
-        /*
-         * Create a bounding box off all the map items by looping over and finding the highest x y and z position for each axis
-         * then find the lowest for each axis
-         *
-         * calculate the center of that box by dividing the distance by of the min to the max? of each axis
-         *
-         * get the bottom center of that box
-         * 
-         */
+       
 
 
         List<MapItem> temp = new();
@@ -225,10 +217,7 @@ public static class Bot
 
             await Task.Delay(200);
 
-            if (item.Key == ObjectId.PLAYER_SCALE_OBJECT)
-            {
-                continue;
-            }
+            
 
 
             foreach (var mapItem in item.Value)
@@ -246,8 +235,9 @@ public static class Bot
                    
 
                     Vector3 centerOffset = botState.BoundingBox.bottomCenter - settings.NewCenter;
-
-                    Vector3 newPosition = centerOffset - basePos - itemOffset;
+                    
+                   
+                    Vector3 newPosition = basePos - centerOffset - itemOffset;
                     mapItem.item.PositionX = newPosition.X;
                     mapItem.item.PositionY = newPosition.Y;
                     mapItem.item.PositionZ = newPosition.Z;
@@ -259,7 +249,7 @@ public static class Bot
 
                 // Start of item spawning
                 // there are many redundant memory sets. this is to make sure the data is correct when we force the server update by editing the property
-                OnItemStart.Invoke(null, itemCountId);
+                //OnItemStart.Invoke(null, itemCountId);
 
                 SetDataMemory(mapItem, itemCountId);
                 await NavigationHelper.SpawnItem(_forgeObject);
@@ -325,7 +315,7 @@ public static class Bot
                 }
 
 
-                OnItemDone.Invoke(null, itemCountId);
+              //  OnItemDone.Invoke(null, itemCountId);
 
                 itemCountId++;
             }
