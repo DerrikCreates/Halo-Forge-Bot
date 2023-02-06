@@ -23,7 +23,7 @@ public static class NavigationHelper
     private static int _closeUIAfterSleep = 300;
 
     private static int _enterUIInitialSleep = 200;
-    private static int _enterUIAfterSleep = 200;
+    private static int _enterUIAfterSleep = 300;
 
     /// <summary>
     /// Holds all data relating to the current UI navigation state
@@ -494,8 +494,9 @@ public static class NavigationHelper
         
         await NavigateToItem(item);
         
-        await Input.KeyPress(VirtualKeyCode.RETURN,10, 25);
-        await Input.KeyPress(VirtualKeyCode.RETURN, 10, 25);
+        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
+        await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
+        
         
     }
 

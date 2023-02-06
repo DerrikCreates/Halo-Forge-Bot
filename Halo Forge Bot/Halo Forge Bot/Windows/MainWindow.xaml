@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Halo_Forge_Bot"
+        xmlns:userControls="clr-namespace:Halo_Forge_Bot.Windows.UserControls"
         mc:Ignorable="d"
         Title="Derrik's Forge Bot" Height="500" Width="800" MinWidth="800" MinHeight="525">
 
@@ -54,7 +55,6 @@
                 200
             </TextBox>
 
-           
 
             <Label FontSize="15" HorizontalAlignment=" Center">Scale</Label>
             <TextBox Name="Scale" Width="50" Height="auto" FontSize="15" HorizontalContentAlignment="Center"
@@ -89,8 +89,11 @@
                     </TextBox>
                 </UniformGrid>
             </StackPanel>
-            
-            <Button Name="BotNavigateWindowButton" Click="BotNavigateWindowButton_OnClick" Margin="0,30,0,0"  Height="25" Width="140" FontSize="15">Navigation</Button>
+
+            <Button Name="BotNavigateWindowButton" Click="BotNavigateWindowButton_OnClick" Margin="0,30,0,0"
+                    Height="25" Width="140" FontSize="15">
+                Navigation
+            </Button>
             <Button Name="EnterDev" Margin="0,15,0,0" Height="25" Width="140" FontSize="10"
                     Click="EnterDev_OnClick">
                 Enter Dev View
@@ -104,11 +107,16 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <StackPanel Name="MapInfoStackPanel">
                 <Grid ShowGridLines="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"></ColumnDefinition>
                         <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel>
@@ -120,11 +128,12 @@
                         <Label Name="EstimatedTime" HorizontalContentAlignment="Left" Width="auto"></Label>
                     </StackPanel>
 
+                    
 
                 </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Background="{StaticResource Base1}">
+            <StackPanel Grid.Column="0" Grid.Row="1" Background="Transparent">
                 <UniformGrid Rows="1">
                     <TextBlock Foreground="{StaticResource BrandAccentColor}">
                         For help join the
@@ -133,11 +142,11 @@
                             Discord
                         </Hyperlink>
                     </TextBlock>
-
                 </UniformGrid>
                 <Label></Label>
             </StackPanel>
 
+            <userControls:BotActionsControl Grid.Row="0" Grid.Column="1"></userControls:BotActionsControl>
 
         </Grid>
 
