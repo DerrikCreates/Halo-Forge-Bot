@@ -39,7 +39,7 @@ namespace Halo_Forge_Bot
         public MainWindow()
         {
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
+                .MinimumLevel.Verbose()
                 .Enrich.WithThreadId()
                 .WriteTo.Console()
                 .WriteTo.File($"{Utils.ExePath}/log.txt")
