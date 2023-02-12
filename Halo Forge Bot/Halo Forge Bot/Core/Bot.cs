@@ -20,7 +20,7 @@ namespace Halo_Forge_Bot.Core;
 
 public static class Bot
 {
-    public static string Version = "0.2.8n";
+    public static string Version = "0.2.10n"; //todo add proper version 
     public static string PosLogString = "";
 
 
