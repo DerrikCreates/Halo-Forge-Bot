@@ -17,6 +17,7 @@ public class HaloPointers
 
     public static readonly string ItemCount = "HaloInfinite.exe+4905198,0x78";
     public static readonly string ItemCountScaleArray = "HaloInfinite.exe+4905198,0x78";
+    public static readonly string SelectedItemText = "HaloInfinite.exe+42F0B08,C8,390,774";
     
     /// <summary>
     /// the black selector when navigating menus. This is its index in the ui. Working for both the item browser and the edit properties tab
