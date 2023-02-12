@@ -1,9 +1,12 @@
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Halo_Forge_Bot.Core;
+using Halo_Forge_Bot.DataModels;
 using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
+using InfiniteForgeConstants.ObjectSettings;
 using WindowsInput.Native;
 
 namespace Halo_Forge_Bot.Windows.UserControls;
@@ -25,34 +28,113 @@ public partial class AdvancedBotMenuControl : UserControl
             {
                 await NavigationHelper.NavigateToFolder(folder.Value);
 
-                // Loop downwards using global hover to find each items name and xpositon value
+                //enters the current folder?
+                await Task.Delay(100);
+                Input.PressKey(VirtualKeyCode.RETURN);
+                await Task.Delay(100);
 
-                while (MemoryHelper.GetMenusVisible() != 0)
+                var expectedItemHover = 0;
+                while (expectedItemHover == await MemoryHelper.GetGlobalHover())
                 {
+                    //spawn the item?
+                    await Task.Delay(100);
                     Input.PressKey(VirtualKeyCode.RETURN);
-                    await Task.Delay(25);
+                    await Task.Delay(100);
+
+
+                    await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectProperties);
+                    await Task.Delay(100);
+                    await NavigationHelper.NavigateVertical(1);
+                    await Task.Delay(100);
+                    bool loop = true;
+                    int retryCount = 0;
+
+                    while (loop)
+                    {
+                        if (await MemoryHelper.GetGlobalHover() == 0)
+                        {
+                            await CollectData(isStatic: false);
+                            loop = false;
+                            break;
+                        }
+
+                        var id = GetSelectedId();
+                        if (id is null)
+                        {
+                            loop = false;
+                            break;
+                        }
+
+                        await Task.Delay(200);
+                        Input.PressKey(VirtualKeyCode.VK_S);
+                        await Task.Delay(200);
+                        var currentPos = MemoryHelper.ReadItemPosition(MemoryHelper.GetItemCount() - 1);
+                        Input.PressKey(VirtualKeyCode.VK_A);
+
+                        var changedPos = MemoryHelper.ReadItemPosition(MemoryHelper.GetItemCount() - 1);
+                        if (Math.Abs(changedPos.X - currentPos.X) > 0.001)
+                        {
+                            if (Math.Abs(changedPos.Y - currentPos.Y) < 0.001)
+                            {
+                                if (Math.Abs(changedPos.Z - currentPos.Z) < 0.001)
+                                {
+                                    // Found the x ui pos
+
+                                    await CollectData(true);
+                                    loop = false;
+                                    break;
+                                }
+                            }
+                        }
+
+
+                        await Task.Delay(200);
+                        Input.PressKey(VirtualKeyCode.VK_D);
+                        await Task.Delay(200);
+
+
+                        async Task CollectData(bool isStatic)
+                        {
+                            var ItemName = MemoryHelper.GetSelectedFullName();
+                            ItemName = ItemName.Replace(" ", "_");
+                            ItemName = ItemName.ToUpper();
+                            ObjectId objectId = Enum.Parse<ObjectId>(ItemName);
+
+                            var data = new ForgeObjectData(ItemName, objectId, isStatic,
+                                await MemoryHelper.GetGlobalHover(),
+                                category.Value.CategoryOrder, folder.Value.FolderOffset,
+                                expectedItemHover);
+                            ItemDB.AddItem(data);
+                        }
+
+                        ObjectId? GetSelectedId()
+                        {
+                            var ItemName = MemoryHelper.GetSelectedFullName();
+                            ItemName = ItemName.Replace(" ", "_");
+                            ItemName = ItemName.ToUpper();
+                            var valid = Enum.TryParse<ObjectId>(ItemName, out var result);
+                            if (valid)
+                            {
+                                return result;
+                            }
+
+                            return null;
+                        }
+                    }
+
+                    await NavigationHelper.CloseUI();
+
+                    await Task.Delay(100);
+                    Input.PressKey(VirtualKeyCode.DELETE);
+                    await Task.Delay(100);
+
+                    await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectBrowser);
+                    //move to next object in the folder
+                    await Task.Delay(100);
+                    Input.PressKey(VirtualKeyCode.VK_S);
+                    await Task.Delay(100);
+                    expectedItemHover++;
                 }
-
-                //Item is spawned
-
-                //Get the Item name from the transform UI. Need to find a pointer.
-
-                //save the name to the a item db
-
-                await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectProperties);
-
-                await NavigationHelper.NavigateVertical(1);
-
-                int expectedHover = 1;
-                bool loop = true;
-                while (loop)
-                {
-                   // var forward = MemoryHelper.geti
-                    Input.PressKey(VirtualKeyCode.VK_A);
-                    
-                }
-                
-                
             }
         }
     }

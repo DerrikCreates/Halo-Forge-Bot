@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Numerics;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Memory;
@@ -118,6 +119,24 @@ public static class MemoryHelper
         var str = s.Split(sep, StringSplitOptions.TrimEntries)[0];
         str = str.Replace("\0", "");
         return str;
+    }
+
+    /// <summary>
+    /// Gets the selected item name from the transform UI
+    /// </summary>
+    /// <returns></returns>
+    public static string GetSelectedFullName()
+    {
+      var v =  Memory.Get64BitCode(HaloPointers.SelectedItemText);
+      
+      var str =  Memory.ReadString(HaloPointers.SelectedItemText,length:200, zeroTerminated: false);
+
+     var split = str.Split("\0\0\0");
+     var sp2 = split[0].Split(")");
+     var final = sp2[1].Replace("\0", "").Trim();
+
+     return final;
+
     }
 
     public static Vector3 GetSelectedPosition()
@@ -423,8 +442,6 @@ public static class MemoryHelper
 
     public static void UnFreezeItemRotation(int itemIndex)
     {
-       
-
         var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
