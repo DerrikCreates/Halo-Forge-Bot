@@ -20,7 +20,7 @@ namespace Halo_Forge_Bot.Core;
 
 public static class Bot
 {
-    public static string Version = "0.2.10n"; //todo add proper version 
+    public static string Version = "0.2.11n"; //todo add proper version 
     public static string PosLogString = "";
 
 
@@ -241,6 +241,10 @@ public static class Bot
                     mapItem.item.PositionZ = newPosition.Z;
                 }
 
+                //rounding the position early
+                mapItem.item.PositionX = MathF.Round(mapItem.item.PositionX, 3);
+                mapItem.item.PositionY = MathF.Round(mapItem.item.PositionY, 3);
+                mapItem.item.PositionZ = MathF.Round(mapItem.item.PositionZ, 3);
 
                 // Start of item spawning
                 // there are many redundant memory sets. this is to make sure the data is correct when we force the server update by editing the property

@@ -101,7 +101,7 @@ public static class PropertyHelper
 
     public static async Task SetForwardProperty(float value, ForgeUIObjectModeEnum itemObjectMode)
     {
-        var s = Math.Round(value, 2).ToString("F2");
+        var s = Math.Round(value, 3).ToString("F3");
         Log.Debug("Setting Forward Property to {StringToType}",s);
         await SetProperty(s,
             ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward, itemObjectMode));
