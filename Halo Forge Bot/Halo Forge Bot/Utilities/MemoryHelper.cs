@@ -259,7 +259,7 @@ public static class MemoryHelper
     /// <param name="scale"></param>
     public static void SetItemScale(int itemIndex, Vector3 scale)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
 
 
         int itemScaleSize = 0x1E0;
@@ -276,7 +276,7 @@ public static class MemoryHelper
 
     public static void FreezeItemScale(int itemIndex, Vector3 scale)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
 
 
         int itemScaleSize = 0x1E0;
@@ -293,7 +293,7 @@ public static class MemoryHelper
 
     public static void UnFreezeItemScale(int itemIndex)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
 
 
         int itemScaleSize = 0x1E0;
@@ -310,7 +310,7 @@ public static class MemoryHelper
 
     public static void SetItemPosition(int itemIndex, Vector3 pos)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
 
@@ -326,7 +326,7 @@ public static class MemoryHelper
 
     public static void FreezeItemPosition(int itemIndex, Vector3 pos)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
 
@@ -341,7 +341,7 @@ public static class MemoryHelper
 
     public static void UnFreezeItemPosition(int itemIndex)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
 
@@ -358,7 +358,7 @@ public static class MemoryHelper
     public static Vector3 ReadItemPosition(int itemIndex)
     {
         var vector = new Vector3();
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
 
@@ -380,7 +380,7 @@ public static class MemoryHelper
         var left = Vector3.Cross(up, forward);
         left = Vector3.Normalize(left);
 
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
         ptr += itemScaleSize * itemIndex + 0x68;
@@ -414,7 +414,7 @@ public static class MemoryHelper
         var left = Vector3.Cross(up, forward);
         left = Vector3.Normalize(left);
 
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
         ptr += itemScaleSize * itemIndex + 0x68;
@@ -442,7 +442,7 @@ public static class MemoryHelper
 
     public static void UnFreezeItemRotation(int itemIndex)
     {
-        var ptr = Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
+        var ptr = (long)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
         ptr += itemScaleSize * itemIndex + 0x68;
