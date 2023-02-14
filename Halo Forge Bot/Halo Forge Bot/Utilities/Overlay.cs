@@ -101,12 +101,7 @@ public static class Overlay
             $"Item Count: {MemoryHelper.GetItemCount()}");
 
 
-        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
-            gfx.CreateSolidBrush(0, 0, 0), 50, 150,
-            $"Potentially Failed Item Count: {_botState.FailedItems}");
-        gfx.DrawTextWithBackground(_largeFont, 12, gfx.CreateSolidBrush(255, 0, 0),
-            gfx.CreateSolidBrush(0, 0, 0), 50, 200,
-            Bot.PosLogString);
+        
     }
 
     private static void DestroyGraphics(object? sender, DestroyGraphicsEventArgs e)
