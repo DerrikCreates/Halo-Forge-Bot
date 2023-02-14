@@ -1,4 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Management.Automation;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,6 +13,7 @@ using Halo_Forge_Bot.DataModels;
 using Halo_Forge_Bot.Utilities;
 using InfiniteForgeConstants.Forge_UI.Object_Browser;
 using InfiniteForgeConstants.ObjectSettings;
+using Newtonsoft.Json;
 using WindowsInput.Native;
 
 namespace Halo_Forge_Bot.Windows.UserControls;
@@ -137,5 +144,137 @@ public partial class AdvancedBotMenuControl : UserControl
                 }
             }
         }
+    }
+
+    class NameToID
+    {
+        public int ItemId;
+        public string FileName;
+    }
+
+    string savePath = @"G:\_Projects\_Halo\HaloDesignSet\";
+    string itemPath = @"Z:\Halo\ForgeObjectData\";
+    private string unpackPath = @"Z:\Halo\Winter Retail Unpack__chore\";
+
+    private void CollectSavedCategoryInfo_OnClick(object sender, RoutedEventArgs e)
+    {
+        Bot.BuildUiLayout();
+        var json = Utils.ExePath + "/Core/FileNamesToID.json";
+        var ids = JsonConvert.DeserializeObject<List<NameToID>>(File.ReadAllText(json));
+        int renderModelFailCount = 0;
+        int textureFailCount = 0;
+        int dataFileFailCount = 0;
+        int itemCount = 0;
+        foreach (var folder in ForgeObjectBrowser.Categories["Halo_Design_Set"].CategoryFolders)
+        {
+            foreach (var item in folder.Value.FolderObjects)
+            {
+                itemCount++;
+                var nameToIds = ids.First(x => x.ItemId == (int)item.Value.ObjectId);
+                if (nameToIds is null)
+                {
+                    dataFileFailCount++;
+                    break;
+                }
+
+                var fileInfo = new FileInfo(savePath + folder.Key + "/" +
+                                            Path.GetFileNameWithoutExtension(nameToIds.FileName) + "/" +
+                                            nameToIds.FileName);
+
+                Directory.CreateDirectory(fileInfo.Directory.FullName);
+
+
+                File.Copy(itemPath + nameToIds.FileName, fileInfo.FullName, true);
+
+                File.WriteAllText(fileInfo.Directory + "/ForgeObjectID.txt", nameToIds.ItemId.ToString());
+
+                PowerShell shell = PowerShell.Create();
+                shell.Commands.AddCommand($"strings").AddArgument(fileInfo.FullName);
+                var output = shell.Invoke();
+
+
+                List<string> strings = new();
+                foreach (var s in output)
+                {
+                    strings.Add(s.ToString());
+                }
+
+                string matBasePath = "/pc__/";
+                string modBasePath = "/gen__/";
+                string relativePath = "";
+
+                for (int i = 0; i < strings.Count; i++)
+                {
+                    if (strings[i].StartsWith("__"))
+                    {
+                        relativePath = strings[i - 1];
+                        break;
+                    }
+                }
+
+                var modelPathInfo = new FileInfo(unpackPath + modBasePath + relativePath);
+                var materialPathInfo = new FileInfo(unpackPath + matBasePath + relativePath);
+                var materialDirectory = materialPathInfo.Directory;
+                var modelDirectory = modelPathInfo.Directory;
+
+
+                if (!modelDirectory.Exists)
+                {
+                    renderModelFailCount++;
+                    continue;
+                }
+
+                var modelPaths = modelDirectory.GetFiles("*",SearchOption.AllDirectories);
+                foreach (var model in modelPaths)
+                {
+
+                    foreach (var file in  model.Directory.GetFiles("*",searchOption: SearchOption.AllDirectories))
+                    {
+                        File.Copy(file.FullName, $"{fileInfo.Directory}/{Path.GetFileName(model.FullName)}",true);
+                       
+                    }
+                   
+                }
+
+                if (!materialDirectory.Exists)
+                {
+                    textureFailCount++;
+                    continue;
+                }
+
+
+                var bitmapFiles = materialDirectory.GetFiles("*", SearchOption.AllDirectories);
+
+                foreach (var bitmap in bitmapFiles)
+                {
+                    
+                    foreach (var file in  bitmap.Directory.GetFiles("*",searchOption: SearchOption.AllDirectories))
+                    {
+                        File.Copy(file.FullName, $"{fileInfo.Directory}/{Path.GetFileName(file.FullName)}",true);
+                    }
+                }
+                // Process process = new();
+                // ProcessStartInfo startInfo = new()
+                // {
+                //     WindowStyle = ProcessWindowStyle.Normal,
+                //     FileName = "cmd.exe", 
+                //     Arguments = $"strings \"{fileInfo.FullName}\"",
+                //     RedirectStandardOutput = true,
+                //     RedirectStandardError = true,
+                //     UseShellExecute = false
+                // };
+                // startInfo.WorkingDirectory = "Z:\\";
+                // process.StartInfo = startInfo;
+                // process.Start();
+                // var s = process.StandardOutput.ReadToEnd();
+                // var ss = process.StandardError.ReadToEnd();
+                // process.WaitForExit();
+            }
+        }
+    }
+
+    private void Collect_material_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -14,6 +14,7 @@
         
         <StackPanel>
             <Button Name="CollectItemData" Click="CollectItemData_OnClick" >Collect Item Data</Button>
+            <Button Name="CollectSavedCategoryInfo" Click="CollectSavedCategoryInfo_OnClick" >Collect Saved Category Info</Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             
