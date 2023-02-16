@@ -152,12 +152,24 @@ public partial class AdvancedBotMenuControl : UserControl
         public string FileName;
     }
 
+    class DataForBlender
+    {
+        public string? RenderModel;
+        public string? ASG;
+        public string? Mask;
+        public int ObjectId;
+        public string IdName;
+    }
+
     string savePath = @"G:\_Projects\_Halo\HaloDesignSet\";
     string itemPath = @"Z:\Halo\ForgeObjectData\";
     private string unpackPath = @"Z:\Halo\Winter Retail Unpack__chore\";
 
+
     private void CollectSavedCategoryInfo_OnClick(object sender, RoutedEventArgs e)
     {
+        List<DataForBlender> blenderData = new();
+
         Bot.BuildUiLayout();
         var json = Utils.ExePath + "/Core/FileNamesToID.json";
         var ids = JsonConvert.DeserializeObject<List<NameToID>>(File.ReadAllText(json));
@@ -169,6 +181,11 @@ public partial class AdvancedBotMenuControl : UserControl
         {
             foreach (var item in folder.Value.FolderObjects)
             {
+                if (item.Value.ParentFolder.FolderName.Contains("MP"))
+                {
+                    continue;
+                }
+                
                 itemCount++;
                 var nameToIds = ids.First(x => x.ItemId == (int)item.Value.ObjectId);
                 if (nameToIds is null)
@@ -224,16 +241,13 @@ public partial class AdvancedBotMenuControl : UserControl
                     continue;
                 }
 
-                var modelPaths = modelDirectory.GetFiles("*",SearchOption.AllDirectories);
+                var modelPaths = modelDirectory.GetFiles("*", SearchOption.AllDirectories);
                 foreach (var model in modelPaths)
                 {
-
-                    foreach (var file in  model.Directory.GetFiles("*",searchOption: SearchOption.AllDirectories))
+                    foreach (var file in model.Directory.GetFiles("*", searchOption: SearchOption.AllDirectories))
                     {
-                        File.Copy(file.FullName, $"{fileInfo.Directory}/{Path.GetFileName(model.FullName)}",true);
-                       
+                        File.Copy(file.FullName, $"{fileInfo.Directory}/{Path.GetFileName(file.FullName)}", true);
                     }
-                   
                 }
 
                 if (!materialDirectory.Exists)
@@ -247,10 +261,9 @@ public partial class AdvancedBotMenuControl : UserControl
 
                 foreach (var bitmap in bitmapFiles)
                 {
-                    
-                    foreach (var file in  bitmap.Directory.GetFiles("*",searchOption: SearchOption.AllDirectories))
+                    foreach (var file in bitmap.Directory.GetFiles("*", searchOption: SearchOption.AllDirectories))
                     {
-                        File.Copy(file.FullName, $"{fileInfo.Directory}/{Path.GetFileName(file.FullName)}",true);
+                        File.Copy(file.FullName, $"{fileInfo.Directory}/{Path.GetFileName(file.FullName)}", true);
                     }
                 }
                 // Process process = new();
@@ -269,12 +282,30 @@ public partial class AdvancedBotMenuControl : UserControl
                 // var s = process.StandardOutput.ReadToEnd();
                 // var ss = process.StandardError.ReadToEnd();
                 // process.WaitForExit();
+
+
+                var asg = fileInfo.Directory.GetFiles()
+                    .FirstOrDefault(x => Path.GetExtension(x.Name) == ".bitmap" && x.Name.Contains("_asg_"));
+                var mask = fileInfo.Directory.GetFiles()
+                    .FirstOrDefault(x => Path.GetExtension(x.Name) == ".bitmap" && x.Name.Contains("_mask_"));
+
+                var renderModel = fileInfo.Directory.GetFiles()
+                    .FirstOrDefault(x => Path.GetExtension(x.Name) == ".render_model");
+
+
+                blenderData.Add(new DataForBlender()
+                {
+                    ASG = asg?.FullName,
+                    Mask = mask?.FullName,
+                    RenderModel = renderModel?.FullName,
+                    ObjectId = (int)item.Value.ObjectId,
+                    IdName = item.Value.ObjectId.ToString()
+                });
             }
         }
-    }
 
-    private void Collect_material_OnClick(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
+        var blendJson = JsonConvert.SerializeObject(blenderData);
+
+        File.WriteAllText(savePath + "BlenderImportData.json", blendJson);
     }
 }
