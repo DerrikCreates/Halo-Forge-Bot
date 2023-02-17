@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Management.Automation;
+
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
@@ -165,7 +165,7 @@ public partial class AdvancedBotMenuControl : UserControl
     string itemPath = @"Z:\Halo\ForgeObjectData\";
     private string unpackPath = @"Z:\Halo\Winter Retail Unpack__chore\";
 
-
+/*
     private void CollectSavedCategoryInfo_OnClick(object sender, RoutedEventArgs e)
     {
         List<DataForBlender> blenderData = new();
@@ -308,4 +308,6 @@ public partial class AdvancedBotMenuControl : UserControl
 
         File.WriteAllText(savePath + "BlenderImportData.json", blendJson);
     }
+    
+    */
 }

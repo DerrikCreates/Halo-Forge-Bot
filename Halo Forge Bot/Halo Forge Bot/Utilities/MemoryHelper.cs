@@ -13,13 +13,14 @@ namespace Halo_Forge_Bot.Utilities;
 public static class MemoryHelper
 {
     public static readonly Mem Memory = new();
-
+    
     public static readonly HaloPointers HaloPointers =
         JsonConvert.DeserializeObject<HaloPointers>(File.ReadAllText("./config/halo_pointers.json")) ??
         throw new NullReferenceException("/config/halo_pointers.json file has an issue");
 
     public static T ReadMemory<T>(string address)
     {
+      
         // Log.Debug("Reading Memory of type: {Type} at address {Address}", typeof(T).ToString(), address);
         return Memory.ReadMemory<T>(address);
     }
@@ -162,8 +163,8 @@ public static class MemoryHelper
     public static Vector3 GetSelectedRotation()
     {
         var x = ReadMemory<decimal>(HaloPointers.XRotationUi);
-        var y = ReadMemory<decimal>(HaloPointers.XRotationUi);
-        var z = ReadMemory<decimal>(HaloPointers.XRotationUi);
+        var y = ReadMemory<decimal>(HaloPointers.YRotationUi);
+        var z = ReadMemory<decimal>(HaloPointers.ZRotationUi);
 
         return new Vector3(Convert.ToSingle(x), Convert.ToSingle(y), (Convert.ToSingle(z)));
     }
