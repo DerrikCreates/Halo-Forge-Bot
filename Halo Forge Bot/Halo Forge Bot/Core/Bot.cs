@@ -245,7 +245,10 @@ public static class Bot
                 mapItem.item.PositionX = MathF.Round(mapItem.item.PositionX, 3);
                 mapItem.item.PositionY = MathF.Round(mapItem.item.PositionY, 3);
                 mapItem.item.PositionZ = MathF.Round(mapItem.item.PositionZ, 3);
-
+                
+                mapItem.item.ScaleX = MathF.Round(mapItem.item.ScaleX, 3);
+                mapItem.item.ScaleY = MathF.Round(mapItem.item.ScaleY, 3);
+                mapItem.item.ScaleZ = MathF.Round(mapItem.item.ScaleZ, 3);
                 // Start of item spawning
                 // there are many redundant memory sets. this is to make sure the data is correct when we force the server update by editing the property
                 //OnItemStart.Invoke(null, itemCountId);
