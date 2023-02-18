@@ -38,12 +38,13 @@ namespace Halo_Forge_Bot
 
         public MainWindow()
         {
+            DirectoryInfo logDirectory = new DirectoryInfo($"{Utils.ExePath}/logs/");
+            logDirectory.Create();
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .Enrich.WithThreadId()
                 .WriteTo.Console()
-                .WriteTo.File($"{Utils.ExePath}/log.txt")
-                .WriteTo.File(new CompactJsonFormatter(), $"{Utils.ExePath}/log.json")
+                .WriteTo.File(new CompactJsonFormatter(), $"{logDirectory.FullName}/{DateTime.UtcNow:yyyy-MM-dd_HH-mm}.json")
                 .WriteTo.Debug()
                 .CreateLogger();
 
