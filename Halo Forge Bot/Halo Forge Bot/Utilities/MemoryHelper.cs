@@ -67,7 +67,9 @@ public static class MemoryHelper
         }
 
 
-        Memory.WriteMemory(address, memoryType, data.ToString());
+        var formatedData = data.ToString().Replace(",", ".");
+
+        Memory.WriteMemory(address, memoryType, formatedData);
     }
 
     /// <summary>
