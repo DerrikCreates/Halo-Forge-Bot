@@ -26,7 +26,8 @@ public static class MemoryHelper
 
     public static void WriteMemory<T>(string address, T data)
     {
-        Log.Debug("Writing Memory to address: {Address} , Data: {Data}", address, data);
+        Log.Debug("Writing Memory to address: {Address} , Data: {Data}, DataAsString{DataToString}", address, data,
+            data.ToString());
         if (data == null)
         {
             throw new NullReferenceException(
@@ -64,6 +65,7 @@ public static class MemoryHelper
                 throw new NotSupportedException($"Type:{data.GetType().FullName}, is not supported");
                 break;
         }
+
 
         Memory.WriteMemory(address, memoryType, data.ToString());
     }
