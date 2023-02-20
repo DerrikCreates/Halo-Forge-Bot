@@ -49,7 +49,7 @@ namespace Halo_Forge_Bot
                 .CreateLogger();
 
             Log.Information("----------APP START----------");
-
+            Log.Information("----------BOT VERSION:{Version}----------", Bot.Version);
             // BotClipboard.clipboard.ClipboardChanged += BotClipboard.ClipboardChanged;
 
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
