@@ -13,14 +13,13 @@ namespace Halo_Forge_Bot.Utilities;
 public static class MemoryHelper
 {
     public static readonly Mem Memory = new();
-    
+
     public static readonly HaloPointers HaloPointers =
         JsonConvert.DeserializeObject<HaloPointers>(File.ReadAllText("./config/halo_pointers.json")) ??
         throw new NullReferenceException("/config/halo_pointers.json file has an issue");
 
     public static T ReadMemory<T>(string address)
     {
-      
         // Log.Debug("Reading Memory of type: {Type} at address {Address}", typeof(T).ToString(), address);
         return Memory.ReadMemory<T>(address);
     }
@@ -128,16 +127,15 @@ public static class MemoryHelper
     /// <returns></returns>
     public static string GetSelectedFullName()
     {
-      var v =  Memory.Get64BitCode(HaloPointers.SelectedItemText);
-      
-      var str =  Memory.ReadString(HaloPointers.SelectedItemText,length:200, zeroTerminated: false);
+        var v = Memory.Get64BitCode(HaloPointers.SelectedItemText);
 
-     var split = str.Split("\0\0\0");
-     var sp2 = split[0].Split(")");
-     var final = sp2[1].Replace("\0", "").Trim();
+        var str = Memory.ReadString(HaloPointers.SelectedItemText, length: 200, zeroTerminated: false);
 
-     return final;
+        var split = str.Split("\0\0\0");
+        var sp2 = split[0].Split(")");
+        var final = sp2[1].Replace("\0", "").Trim();
 
+        return final;
     }
 
     public static Vector3 GetSelectedPosition()
@@ -260,6 +258,7 @@ public static class MemoryHelper
     /// <param name="scale"></param>
     public static void SetItemScale(int itemIndex, Vector3 scale)
     {
+        Log.Information("Setting {ItemIndex}'s scale to {Scale}", itemIndex, scale.ToString());
         var ptr = (ulong)Memory.Get64BitCode(HaloPointers.SetScaleItemArray);
 
 
@@ -311,6 +310,7 @@ public static class MemoryHelper
 
     public static void SetItemPosition(int itemIndex, Vector3 pos)
     {
+        Log.Information("Setting {ItemIndex}'s position to {Position}", itemIndex, pos.ToString());
         var ptr = (ulong)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 
         int itemScaleSize = 0x310;
@@ -380,6 +380,9 @@ public static class MemoryHelper
 
         var left = Vector3.Cross(up, forward);
         left = Vector3.Normalize(left);
+
+        Log.Information("Setting {ItemIndex}'s rotation -- Forward:{Forward} Up:{Up} Left:{Left}", itemIndex,
+            forward.ToString(), up.ToString(), left.ToString());
 
         var ptr = (ulong)Memory.Get64BitCode(HaloPointers.SetSetPositionItemArray);
 

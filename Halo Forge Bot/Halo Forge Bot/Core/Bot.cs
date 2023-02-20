@@ -182,7 +182,8 @@ public static class Bot
 
         MemoryHelper.SetItemPosition(i, pos);
 
-        var itemScale = new Vector3(MathF.Abs(current.item.ScaleX), MathF.Abs(current.item.ScaleY), MathF.Abs(current.item.ScaleZ));
+        var itemScale = new Vector3(MathF.Abs(current.item.ScaleX), MathF.Abs(current.item.ScaleY),
+            MathF.Abs(current.item.ScaleZ));
         MemoryHelper.SetItemScale(i, itemScale);
 
 
@@ -245,7 +246,7 @@ public static class Bot
                 mapItem.item.PositionX = MathF.Round(mapItem.item.PositionX, 3);
                 mapItem.item.PositionY = MathF.Round(mapItem.item.PositionY, 3);
                 mapItem.item.PositionZ = MathF.Round(mapItem.item.PositionZ, 3);
-                
+
                 mapItem.item.ScaleX = MathF.Round(mapItem.item.ScaleX, 3);
                 mapItem.item.ScaleY = MathF.Round(mapItem.item.ScaleY, 3);
                 mapItem.item.ScaleZ = MathF.Round(mapItem.item.ScaleZ, 3);
@@ -253,18 +254,22 @@ public static class Bot
                 // there are many redundant memory sets. this is to make sure the data is correct when we force the server update by editing the property
                 //OnItemStart.Invoke(null, itemCountId);
 
-                SetDataMemory(mapItem, itemCountId);
+                //SetDataMemory(mapItem, itemCountId);
                 await NavigationHelper.SpawnItem(_forgeObject);
+                Log.Information("Done spawning {ItemName}", _forgeObject.ObjectName);
                 await Task.Delay(250);
 
                 SetDataMemory(mapItem, itemCountId);
                 await NavigationHelper.MoveToTab(NavigationHelper.ContentBrowserTabs.ObjectProperties);
 
                 SetDataMemory(mapItem, itemCountId);
+
                 await NavigationHelper.NavigateVertical(
                     ObjectPropertiesOptions.GetPropertyIndex(ObjectPropertyName.Forward,
                         ForgeUIObjectModeEnum.STATIC_FIRST));
 
+
+                Log.Information("Setting item data multiple times just in case it didnt the first time");
                 SetDataMemory(mapItem, itemCountId);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
@@ -282,12 +287,13 @@ public static class Bot
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 Input.Simulate.Keyboard.KeyPress(VirtualKeyCode.VK_A);
                 await Task.Delay(50);
+
 
                 await PropertyHelper.SetForwardProperty(mapItem.item.PositionX * 10,
                     ForgeUIObjectModeEnum.STATIC_FIRST);
                 SetDataMemory(mapItem, itemCountId);
                 await Task.Delay(50);
-
+                Log.Information("Item Index: {ItemIndex}'s data should be set!", itemCountId);
                 await NavigationHelper.CloseEditUI();
                 await Task.Delay(10);
 
@@ -312,13 +318,13 @@ public static class Bot
                     botState.FailedItems++;
                     PosLogString = $"Last Error-- ExpectedPos: {expectedPos}, CurrentPos: {currentPos}";
                     Log.Error(
-                        "Item position not correct! current rounded position:{CurrentRoundedPosition} , Expected rounded position {ExpectedRoundedPosition}",
+                        "Item position might not be correct! current rounded position:{CurrentRoundedPosition} , Expected rounded position {ExpectedRoundedPosition}",
                         currentPos, expectedPos);
                 }
 
 
                 //  OnItemDone.Invoke(null, itemCountId);
-
+                
                 itemCountId++;
             }
         }

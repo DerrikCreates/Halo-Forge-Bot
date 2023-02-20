@@ -158,8 +158,8 @@ public static class NavigationHelper
                 Log.Information("Ui is already in a homed state. skipping homing");
                 return;
             }
-                
-            
+
+
             //Go up the menu closing all categories until you reach index 1 (prefabs)
             while (MemoryHelper.GetMenusVisible() != 0 && await MemoryHelper.GetGlobalHoverVerbose() != 1)
             {
@@ -297,6 +297,7 @@ public static class NavigationHelper
     /// <param name="index"> Index to navigate to </param>
     public static async Task NavigateVertical(int index)
     {
+        Log.Information("Navigating to UI Position: {Index}", index);
         await OpenUI();
         var currentIndex = await MemoryHelper.GetGlobalHoverVerbose();
         if (currentIndex == index) return;
@@ -424,7 +425,7 @@ public static class NavigationHelper
             "Navigating to Object Browser Folder! {Folder} , The folders offset is {FolderOffset}, inside of the parent Category {FolderParent}"
             , folder.FolderName, folder.FolderOffset,
             folder.ParentCategory == null ? "No parent folder" : folder.ParentCategory.CategoryName);
-        
+
         await MoveToTab(ContentBrowserTabs.ObjectBrowser);
         //Home to "Object Browser" folder level if needed
         switch (_navigationState.ObjectBrowserState.GetObjectBrowserDepth())
@@ -467,8 +468,7 @@ public static class NavigationHelper
         await MoveToTab(ContentBrowserTabs.ObjectBrowser);
         await NavigateToFolder(item.ParentFolder);
 
-        
-        
+
         // if (item.ParentFolder.FolderObjects.Count == 1)
         // {
         //     while (await MemoryHelper.GetGlobalHover() != item.ObjectOrder - 1)
@@ -479,25 +479,21 @@ public static class NavigationHelper
         //     return;
         // }
         await NavigateVertical(item.ObjectOrder - 1);
-        
-       
     }
 
-    
+
     /// <summary>
     /// Spawn a forge item into the world
     /// </summary>
     /// <param name="item"></param>
     public static async Task SpawnItem(ForgeUIObject item)
     {
-       
-        
+        Log.Information("Spawning Item:{ItemName}", item.ObjectName);
+
         await NavigateToItem(item);
-        
+
         await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
         await Input.KeyPress(VirtualKeyCode.RETURN, _enterUIAfterSleep, _enterUIInitialSleep);
-        
-        
     }
 
     /// <summary>
