@@ -36,7 +36,7 @@ public class HaloPointers
     /// <summary>
     /// the root pointer to the set position array. this array exists at the same level as the static item count
     /// </summary>
-    public static readonly string SetScaleItemRoot = "HaloInfinite.exe+490F338";
+    public static readonly string SetPositionItemRoot = "HaloInfinite.exe+490F338";
 
     /// <summary>
     /// this is the edit property input textbox string
@@ -56,13 +56,13 @@ public class HaloPointers
     /// <summary>
     /// this is the item array that allows for position to be set. The correct address ONLY moves the transform widget to the set location
     /// </summary>
-    public static string SetSetPositionItemArray => $"{SetScaleItemRoot},0x10,0x0";
+    public static string SetSetPositionItemArray => $"{SetPositionItemRoot},0x10,0x0";
 
 
     /// <summary>
     /// this is the static item count of the map. used to help set static item positions
     /// </summary>
-    public static string ItemCount => $"{SetScaleItemRoot},0x78";
+    public static string ItemCount => $"{SetPositionItemRoot},0x78";
     //463 D000
 
     public readonly string
